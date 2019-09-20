@@ -29,21 +29,21 @@ window.SUBMIT_COLOR = 'rgb(241,220,148)'
 window.BASE_SIZE = rwd(iOS ? 14 : 13)
 // console.log(1111111111111111111)
 initAppFontSize = async () => {
-  try {
-    const value = await AsyncStorage.getItem('appBaseSize')
+    try {
+        const value = await AsyncStorage.getItem('appBaseSize')
 
-    // console.log(value, 'value 11111111111')
-    if (value) {
-      value = parseInt(value)
-      console.log(value, 'value 2222')
-      return value
-    } else {
-      return window.BASE_SIZE
-    }
-  } catch (error) {}
+        // console.log(value, 'value 11111111111')
+        if (value) {
+            value = parseInt(value)
+            console.log(value, 'value 2222')
+            return value
+        } else {
+            return window.BASE_SIZE
+        }
+    } catch (error) {}
 }
 initAppFontSize().then(value => {
-  // window.BASE_SIZE = value
+    // window.BASE_SIZE = value
 })
 
 // let headerHeight = Platform.OS === 'ios' ? 44 : 46
@@ -70,91 +70,93 @@ let statusBarHeight = StatusBar.currentHeight
 //     (screenHeight === X_WIDTH && screenWidth === X_HEIGHT))
 import D from 'react-native-device-info'
 window.isSimulator = () => {
-  return D.isEmulator()
+    return D.isEmulator()
 }
 
 window.deviceInfo = () => {
-  let { currentUser } = global
-  return {
-    is__DEV__: __DEV__,
-    Brand: D.getBrand(),
-    Manufacturer: D.getManufacturer(),
-    APILevel: D.getAPILevel(),
-    Model: D.getModel(),
-    ReadableVersion: D.getReadableVersion(),
-    SystemVersion: D.getSystemVersion(),
-    SystemName: D.getSystemName(),
-    ApplicationName: D.getApplicationName(),
-    // getBatteryLevel: D.getBatteryLevel(),
-    BuildNumber: D.getBuildNumber(),
-    BundleId: D.getBundleId(),
-    // getCarrier: D.getCarrier(),
-    DeviceCountry: D.getDeviceCountry(),
-    // DeviceId: D.getDeviceId(),
-    DeviceLocale: D.getDeviceLocale(),
-    DeviceName: D.getDeviceName(),
-    FirstInstallTime: D.getFirstInstallTime(),
-    FontScale: D.getFontScale(),
-    FreeDiskStorage: D.getFreeDiskStorage(),
-    InstallReferrer: D.getInstallReferrer(),
-    InstanceID: D.getInstanceID(),
-    LastUpdateTime: D.getLastUpdateTime(),
-    MaxMemory: D.getMaxMemory(),
-    PhoneNumber: D.getPhoneNumber(),
-    Timezone: D.getTimezone(),
-    TotalDiskCapacity: D.getTotalDiskCapacity(),
-    TotalMemory: D.getTotalMemory(),
-    UserAgent: D.getUserAgent(),
-    Version: D.getVersion(),
-    is24Hour: D.is24Hour(),
-    isEmulator: D.isEmulator(),
-    isPinOrFingerprintSet: D.isPinOrFingerprintSet(),
-    isTablet: D.isTablet(),
-    hasNotch: D.hasNotch(),
-    isLandscape: D.isLandscape(),
-    getIPAddress: D.getIPAddress(),
-    getMACAddress: D.getMACAddress(),
-    SerialNumber: D.getSerialNumber(),
-    UniqueID: D.getUniqueID(),
-    // isAirPlaneMode: D.isAirPlaneMode(),
-    userId: currentUser?.id,
-    userName: currentUser?.name,
-  }
+    let { currentUser } = global
+    return {
+        is__DEV__: __DEV__,
+        Brand: D.getBrand(),
+        Manufacturer: D.getManufacturer(),
+        APILevel: D.getApiLevel(),
+        Model: D.getModel(),
+        ReadableVersion: D.getReadableVersion(),
+        SystemVersion: D.getSystemVersion(),
+        SystemName: D.getSystemName(),
+        ApplicationName: D.getApplicationName(),
+        // getBatteryLevel: D.getBatteryLevel(),
+        BuildNumber: D.getBuildNumber(),
+        BundleId: D.getBundleId(),
+        // getCarrier: D.getCarrier(),
+        DeviceCountry: 'NAN', //D.getDeviceCountry(),
+        // DeviceId: D.getDeviceId(),
+        DeviceLocale: 'NAN', //D.getDeviceLocale(),
+        DeviceName: D.getDeviceName(),
+        FirstInstallTime: D.getFirstInstallTime(),
+        FontScale: D.getFontScale(),
+        FreeDiskStorage: D.getFreeDiskStorage(),
+        InstallReferrer: D.getInstallReferrer(),
+        InstanceID: 'NAN', //D.getInstanceID(),
+        LastUpdateTime: D.getLastUpdateTime(),
+        MaxMemory: D.getMaxMemory(),
+        PhoneNumber: D.getPhoneNumber(),
+        Timezone: 'NAN', //D.getTimezone(),
+        TotalDiskCapacity: D.getTotalDiskCapacity(),
+        TotalMemory: D.getTotalMemory(),
+        UserAgent: D.getUserAgent(),
+        Version: D.getVersion(),
+        is24Hour: 'NAN', //D.is24Hour(),
+        isEmulator: D.isEmulator(),
+        isPinOrFingerprintSet: D.isPinOrFingerprintSet(),
+        isTablet: D.isTablet(),
+        hasNotch: D.hasNotch(),
+        isLandscape: D.isLandscape(),
+        getIPAddress: 'NAN', //D.getIPAddress(),
+        getMACAddress: 'NAN', //D.getMACAddress(),
+        SerialNumber: D.getSerialNumber(),
+        UniqueID: 'NAN', // D.getUniqueID(),
+        // isAirPlaneMode: D.isAirPlaneMode(),
+        userId: currentUser?.id,
+        userName: currentUser?.name,
+    }
 }
+log(deviceInfo(), 'deviceInfo')
 
-window.iPhoneX = iOS && deviceInfo().Model.indexOf('iPhone X') == 0
+window.iPhoneX =
+    iOS && (async () => deviceInfo().Model.indexOf('iPhone X'))() == 0
 
 export const size = {
-  normalSize: normalSize,
-  padding: padding,
-  statusBarHeight: statusBarHeight,
-  headerHeight: headerHeight,
-  footerHeight: footerHeight,
-  viewHeight: screenHeight - headerHeight,
-  sideMenuWidth: (screenWidth / 3) * 2,
-  viewPadding: rwd(15),
-  defaultSpacer: rwd(15),
-  screenHeight: screenHeight,
-  screenWidth: screenWidth,
-  helfScreenWidth: screenWidth / 2,
-  // divider: {backgroundColor: colors.smoke},
-  safeAreaPaddingTop: iPhoneX ? rwd(30) : 0,
-  safeAreaPaddingBottom: iPhoneX ? rwd(15) : 0,
-  baseImageStyle: { flex: 1, width: undefined, height: undefined },
+    normalSize: normalSize,
+    padding: padding,
+    statusBarHeight: statusBarHeight,
+    headerHeight: headerHeight,
+    footerHeight: footerHeight,
+    viewHeight: screenHeight - headerHeight,
+    sideMenuWidth: (screenWidth / 3) * 2,
+    viewPadding: rwd(15),
+    defaultSpacer: rwd(15),
+    screenHeight: screenHeight,
+    screenWidth: screenWidth,
+    helfScreenWidth: screenWidth / 2,
+    // divider: {backgroundColor: colors.smoke},
+    safeAreaPaddingTop: iPhoneX ? rwd(30) : 0,
+    safeAreaPaddingBottom: iPhoneX ? rwd(15) : 0,
+    baseImageStyle: { flex: 1, width: undefined, height: undefined },
 }
 
 export const color = {
-  navigationColor: mainBGColor,
-  titleColor: mainColor,
-  tabColor: mainBGColor,
-  tabActiveColor: '#21201F',
-  tabInactiveColor: '#FFF',
-  indicatorColor: 'rgb(255,255,255)',
+    navigationColor: mainBGColor,
+    titleColor: mainColor,
+    tabColor: mainBGColor,
+    tabActiveColor: '#21201F',
+    tabInactiveColor: '#FFF',
+    indicatorColor: 'rgb(255,255,255)',
 }
 
 export const Const = {
-  color: color,
-  size: size,
+    color: color,
+    size: size,
 }
 
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
