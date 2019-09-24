@@ -13,7 +13,7 @@ target = "/Volumes/RamDisk/amp/node_modules/ct-ui-kit"
 
 guard :shell do
   watch(%r{src}) {
-    ['amp'].each do |app|
+    %w(amp bootstrap).each do |app|
       p app
       # ['writus', 'ctnews'].each do |app|
       target = "/Volumes/RamDisk/#{app}/node_modules/ct-ui-kit"
