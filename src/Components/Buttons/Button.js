@@ -19,7 +19,9 @@ export class Button extends React.Component {
             color,
             titleColor = color || FCOLOR,
             rightIcon,
+            leftIcon,
             titleStyle,
+            labelTheme = 'H5',
             onPress,
             fontSize = titleStyle?.fontSize || BASE_SIZE * 1.2,
             padding = fontSize * 0.5,
@@ -50,8 +52,9 @@ export class Button extends React.Component {
                         ...style,
                     }}
                 >
+                    {leftIcon}
                     <Label
-                        theme="H5"
+                        theme={labelTheme}
                         style={{
                             color: titleColor,
                             // fontSize: fontSize,

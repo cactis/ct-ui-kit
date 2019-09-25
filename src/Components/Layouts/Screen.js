@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, StatusBar } from 'react-native'
+import { StyleSheet, StatusBar, Keyboard } from 'react-native'
 import { Scroll, Grid, SafeArea } from './'
 
 let _navigation
@@ -34,7 +34,12 @@ export class Screen extends React.PureComponent {
                     backgroundColor={STATUSBAR_COLOR}
                     barStyle="light-content"
                 />
-                <Grid padding={padding} {...this.props} />
+                <Grid
+                    activeOpacity={1}
+                    onPress={() => Keyboard.dismiss()}
+                    padding={padding}
+                    {...this.props}
+                />
             </Scroll>
         ) : (
             <>
@@ -43,7 +48,12 @@ export class Screen extends React.PureComponent {
                     barStyle="light-content"
                 />
 
-                <Grid padding={padding} {...this.props} />
+                <Grid
+                    activeOpacity={1}
+                    onPress={() => Keyboard.dismiss()}
+                    padding={padding}
+                    {...this.props}
+                />
             </>
         )
         const body = safeAreaDisabled ? (

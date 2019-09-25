@@ -1,6 +1,7 @@
 import React, { PureComponent as Component } from 'react'
 
 import { Keyboard, KeyboardAvoidingView } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export class Form extends Component {
     constructor(props) {
@@ -15,6 +16,7 @@ export class Form extends Component {
     render() {
         let {
             scrollable = true,
+            // scrollable = false,
             backgroundColor = 'white',
             padding = 0,
             children = (
@@ -27,7 +29,7 @@ export class Form extends Component {
             ...props
         } = this.props
         return scrollable ? (
-            <KeyboardAvoidingView
+            <KeyboardAwareScrollView
                 // flex={1}
                 enableOnAndroid={true}
                 backgroundColor={backgroundColor}
@@ -42,7 +44,7 @@ export class Form extends Component {
                 >
                     {children}
                 </T.Grid>
-            </KeyboardAvoidingView>
+            </KeyboardAwareScrollView>
         ) : (
             <T.Grid flex={0} padding={padding} {...props}>
                 {children}
