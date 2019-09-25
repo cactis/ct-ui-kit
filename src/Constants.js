@@ -9,6 +9,12 @@ import { StatusBar } from 'react-native'
 import { Dimensions, Platform } from 'react-native'
 // const { StatusBarManager } = NativeModules
 
+// OVERWRITE
+window.BCOLOR = 'rgb(59,9,66)'
+window.FCOLOR = 'rgb(219,219,219)'
+window.ICON_COLOR = 'rgba(55,47,66,1)'
+window.SUBMIT_COLOR = 'rgb(241,220,148)'
+
 window.iOS = Platform.OS == 'ios'
 window.isTablet = screenWidth > 500
 
@@ -22,10 +28,9 @@ const screenHeight = Dimensions.get('window').height
 let mainBGColor = '#25B1C4'
 // let mainBGColor = 'transparent'
 // window.ICON_COLOR = 'rgba(150,44,30,.57)' //'#D6CC4A'
-window.ICON_COLOR = 'rgba(134,136,136,.76)'
-window.ICON_COLOR = 'rgba(55,47,66,1)'
+
 window.MAIN_COLOR = mainBGColor
-window.SUBMIT_COLOR = 'rgb(241,220,148)'
+
 window.BASE_SIZE = rwd(iOS ? 14 : 13)
 // console.log(1111111111111111111)
 initAppFontSize = async () => {
@@ -73,58 +78,69 @@ window.isSimulator = () => {
     return D.isEmulator()
 }
 
-window.deviceInfo = () => {
+window._deviceInfo = async () => {
     let { currentUser } = global
     return {
         is__DEV__: __DEV__,
-        Brand: D.getBrand(),
-        Manufacturer: D.getManufacturer(),
-        APILevel: D.getApiLevel(),
-        Model: D.getModel(),
-        ReadableVersion: D.getReadableVersion(),
-        SystemVersion: D.getSystemVersion(),
-        SystemName: D.getSystemName(),
-        ApplicationName: D.getApplicationName(),
-        // getBatteryLevel: D.getBatteryLevel(),
-        BuildNumber: D.getBuildNumber(),
-        BundleId: D.getBundleId(),
-        // getCarrier: D.getCarrier(),
+        Brand: await D.getBrand(),
+        Manufacturer: await D.getManufacturer(),
+        APILevel: await D.getApiLevel(),
+        Model: await D.getModel(),
+        ReadableVersion: await D.getReadableVersion(),
+        SystemVersion: await D.getSystemVersion(),
+        SystemName: await D.getSystemName(),
+        ApplicationName: await D.getApplicationName(),
+        // getBatteryLevel: await D.getBatteryLevel(),
+        BuildNumber: await D.getBuildNumber(),
+        BundleId: await D.getBundleId(),
+        // getCarrier: await D.getCarrier(),
         DeviceCountry: 'NAN', //D.getDeviceCountry(),
-        // DeviceId: D.getDeviceId(),
+        // DeviceId: await D.getDeviceId(),
         DeviceLocale: 'NAN', //D.getDeviceLocale(),
-        DeviceName: D.getDeviceName(),
-        FirstInstallTime: D.getFirstInstallTime(),
-        FontScale: D.getFontScale(),
-        FreeDiskStorage: D.getFreeDiskStorage(),
-        InstallReferrer: D.getInstallReferrer(),
+        DeviceName: await D.getDeviceName(),
+        FirstInstallTime: await D.getFirstInstallTime(),
+        FontScale: await D.getFontScale(),
+        FreeDiskStorage: await D.getFreeDiskStorage(),
+        InstallReferrer: await D.getInstallReferrer(),
         InstanceID: 'NAN', //D.getInstanceID(),
-        LastUpdateTime: D.getLastUpdateTime(),
-        MaxMemory: D.getMaxMemory(),
-        PhoneNumber: D.getPhoneNumber(),
+        LastUpdateTime: await D.getLastUpdateTime(),
+        MaxMemory: await D.getMaxMemory(),
+        PhoneNumber: await D.getPhoneNumber(),
         Timezone: 'NAN', //D.getTimezone(),
-        TotalDiskCapacity: D.getTotalDiskCapacity(),
-        TotalMemory: D.getTotalMemory(),
-        UserAgent: D.getUserAgent(),
-        Version: D.getVersion(),
+        TotalDiskCapacity: await D.getTotalDiskCapacity(),
+        TotalMemory: await D.getTotalMemory(),
+        UserAgent: await D.getUserAgent(),
+        Version: await D.getVersion(),
         is24Hour: 'NAN', //D.is24Hour(),
-        isEmulator: D.isEmulator(),
-        isPinOrFingerprintSet: D.isPinOrFingerprintSet(),
-        isTablet: D.isTablet(),
-        hasNotch: D.hasNotch(),
-        isLandscape: D.isLandscape(),
+        isEmulator: await D.isEmulator(),
+        isPinOrFingerprintSet: await D.isPinOrFingerprintSet(),
+        isTablet: await D.isTablet(),
+        hasNotch: await D.hasNotch(),
+        isLandscape: await D.isLandscape(),
         getIPAddress: 'NAN', //D.getIPAddress(),
         getMACAddress: 'NAN', //D.getMACAddress(),
-        SerialNumber: D.getSerialNumber(),
+        SerialNumber: await D.getSerialNumber(),
         UniqueID: 'NAN', // D.getUniqueID(),
         // isAirPlaneMode: D.isAirPlaneMode(),
         userId: currentUser?.id,
         userName: currentUser?.name,
     }
 }
-log(deviceInfo(), 'deviceInfo')
+
+window.setDeviceInfo = async () => {
+    let _info = await _deviceInfo()
+    log(_info, '_info')
+    global.deviceInfo = _info
+}
+
+window.deviceInfo = () => {
+    return global.deviceInfo
+}
 
 window.iPhoneX =
-    iOS && (async () => deviceInfo().Model.indexOf('iPhone X'))() == 0
+    iOS &&
+    (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
+        deviceInfo.Model?.indexOf('iPhone 11') == 0)
 
 export const size = {
     normalSize: normalSize,
@@ -159,5 +175,12 @@ export const Const = {
     size: size,
 }
 
-window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
-window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+window.initConstant = () => {
+    window.iPhoneX =
+        iOS &&
+        (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
+            deviceInfo.Model?.indexOf('iPhone 11') == 0)
+
+    window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
+    window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+}
