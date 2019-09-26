@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View as RNView } from 'react-native'
 // import { Example } from './'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export class View extends React.Component {
     render() {
@@ -11,22 +12,26 @@ export class View extends React.Component {
             xAlign,
             style = {},
             children,
+            // keyboardAware = false,
             ...props
         } = this.props
         align && (yAlign = align) && (xAlign = align)
         yAlign && (style.alignItems = yAlign)
         xAlign && (style.justifyContent = xAlign)
         let emptyStyle = !children ? EMPTYSTYLE : {}
-        return (
+        let content = (
             <RNView
-                // borderWidth={0.5}
                 flexDirection={flow}
                 style={{ ...emptyStyle, ...style }}
                 {...props}
             >
                 {children}
-                {/* {drawBorders(this)} */}
             </RNView>
+        )
+        return this.props.keyboardAware ? (
+            <KeyboardAwareScrollView>{content}</KeyboardAwareScrollView>
+        ) : (
+            content
         )
     }
 }

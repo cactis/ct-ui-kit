@@ -15,11 +15,14 @@ window.FCOLOR = 'rgb(219,219,219)'
 window.ICON_COLOR = 'rgba(55,47,66,1)'
 window.SUBMIT_COLOR = 'rgb(241,220,148)'
 
-window.iOS = Platform.OS == 'ios'
+window.iOS = Platform.OS === 'ios'
 window.isTablet = screenWidth > 500
 
 window.SCREEN_WIDTH = Dimensions.get('window').width
 window.SCREEN_HEIGHT = Dimensions.get('window').height
+window.SCREEN_HEIGHT = !iOS
+    ? Dimensions.get('window').height - StatusBar.currentHeight
+    : Dimensions.get('window').height
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height

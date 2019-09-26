@@ -13,6 +13,7 @@ import { Icon } from '../Images'
 export class Button extends React.Component {
     render() {
         let {
+            flex = 0,
             theme = 'normal',
             title = 'Button',
             style,
@@ -38,9 +39,9 @@ export class Button extends React.Component {
         //     : 'white',
         // } = props
         return (
-            <Touch {...props} onPress={onPress}>
+            <Touch onPress={onPress}>
                 <Center
-                    flex={0}
+                    flex={flex}
                     style={{
                         ...styles[theme],
                         borderColor: borderColor,
@@ -49,8 +50,10 @@ export class Button extends React.Component {
                         paddingHorizontal: padding * 2,
                         paddingVertical: padding,
                         // ...Styles.shadow,
+
                         ...style,
                     }}
+                    {...props}
                 >
                     {leftIcon}
                     <Label
