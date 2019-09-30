@@ -30,7 +30,7 @@ export class Button extends React.Component {
             backgroundColor = BUTTON_COLOR,
             ...props
         } = this.props
-        let borderColor = 'rgba(161,171,166,.64)'
+        let borderColor = 'rgba(255,255,255,.4)'
         // let {
         //   borderColor = backgroundColor
         //     ? tinycolor(backgroundColor)

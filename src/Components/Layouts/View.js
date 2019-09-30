@@ -29,7 +29,9 @@ export class View extends React.Component {
             </RNView>
         )
         return this.props.keyboardAware ? (
-            <KeyboardAwareScrollView>{content}</KeyboardAwareScrollView>
+            <KeyboardAwareScrollView {...props}>
+                {content}
+            </KeyboardAwareScrollView>
         ) : (
             content
         )

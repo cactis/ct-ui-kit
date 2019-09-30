@@ -24,12 +24,16 @@ export class Screen extends React.PureComponent {
 
     render() {
         let {
-            padding = 10,
+            padding = rwd(10),
             safeAreaDisabled = false,
             scrollable = false,
+            backgroundColor = BCOLOR,
         } = this.props
         const content = scrollable ? (
-            <Scroll>
+            <Scroll
+                backgroundColor={backgroundColor}
+                // style={{ backgroundColor: backgroundColor }}
+            >
                 <StatusBar
                     backgroundColor={STATUSBAR_COLOR}
                     barStyle="light-content"
