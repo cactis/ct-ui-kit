@@ -140,6 +140,10 @@ window.deviceInfo = () => {
     return global.deviceInfo
 }
 
+window.deviceName = () => {
+    return global.deviceInfo.deviceName
+}
+
 window.iPhoneX =
     iOS &&
     (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
