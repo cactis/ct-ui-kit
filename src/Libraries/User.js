@@ -20,8 +20,9 @@ export class User extends Component {
         if (user !== undefined && user.id !== undefined) {
             runLast(() => {
                 let appV = parseInt(
-                    _.last(deviceInfo().ReadableVersion.split('.'))
+                    _.last(DEVICE_INFO.ReadableVersion?.split('.'))
                 )
+                log(appV, 'appV')
                 let serverV = parseInt(_.last(user.lastVersion.split('.')))
                 if (serverV > appV && !__DEV__) {
                     alert(

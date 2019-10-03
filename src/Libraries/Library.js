@@ -141,3 +141,12 @@ if (!__DEV__) {
     window._autoRun = () => {}
     window._trace = () => {}
 }
+
+window.getDataByPaths = (json, paths) => {
+    let pathArr = paths
+    if (typeof paths === 'string') pathArr = paths.split('/')
+    return pathArr.reduce(
+        (obj, key) => (obj && obj[key] !== 'undefined' ? obj[key] : undefined),
+        json
+    )
+}

@@ -82,12 +82,12 @@ export class Api {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             'User-Agent': '',
-            modal: deviceInfo().Model,
-            build: deviceInfo().ReadableVersion,
+            modal: DEVICE_INFO?.Model,
+            build: DEVICE_INFO?.ReadableVersion,
             tokens: accessTokens,
             appName: AppConfig.appName,
         }
-        // log(headers, 'headers')
+        log(headers, 'headers')
         // log(deviceInfo, 'deviceInfo')
         // alert(_url)
         switch (method) {
