@@ -1,3 +1,4 @@
+if (__DEV__) console.log('Library.js')
 import _ from 'lodash'
 window._ = _
 
@@ -7,7 +8,24 @@ window.log = (...message) => {
     if (!Dev.disableLog) {
         console.log(message)
     }
-    _trace()
+    _trace('log')
+}
+
+window._autoRun = (action, run, always = false) => {
+    log(action, 'action')
+    if (Dev.autoRunTrace)
+        log(Dev.doIndex, action, Dev.do, 'doIndex, action, Dev.do')
+    log(Dev, 'Dev')
+    let i = (Dev.doIndex >= 0 ? Dev.doIndex : 99) + 1
+    let DoString = Dev.do //?.split('-').slice(0, i)
+    log(DoString, 'DoString')
+    log(DoString?.indexOf(action), 'DoString?.indexOf(action)')
+    if (DoString?.indexOf(action) > -1 || always) {
+        log(action, run, 'action, run')
+        _runOnce(action, () => {
+            delayed(run)
+        })
+    }
 }
 
 window._trace = (key = randId()) => {
@@ -18,14 +36,6 @@ window._trace = (key = randId()) => {
 
 window.randId = (min = 99999999, max = 999999999) => {
     return _.random(min, max)
-}
-
-window._runOnce = (key, run) => {
-    let _runOnce = global._runOnce || {}
-    if (!_runOnce[key]) {
-        global._runOnce[key] = true
-        run()
-    }
 }
 
 window.rwd = (num, weight = 1) => {
@@ -113,4 +123,21 @@ window.columnsNumber = (padding = 0) => {
     let numColumns = Math.floor(s / columnWidth)
     columnWidth = (s - (numColumns - 1) * gutter - 2 * padding) / numColumns
     return { gutter: gutter, numColumns: numColumns, columnWidth: columnWidth }
+}
+
+window._runOnce = (key, run) => {
+    let runKeys = global.runKeys || {}
+    // if (__DEV__) console.log(runKeys, 'runKeys')
+    if (!runKeys[key]) {
+        runKeys[key] = true
+        window.runKeys = runKeys
+        run()
+    }
+}
+
+if (!__DEV__) {
+    window._runOnce = () => {}
+    window.log = () => {}
+    window._autoRun = () => {}
+    window._trace = () => {}
 }

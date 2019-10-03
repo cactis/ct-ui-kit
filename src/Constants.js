@@ -1,7 +1,4 @@
-// import React from 'react'
-// import * as T from 'ct-rn-kit'
-
-// import { Storage } from 'ct-rn-kit'
+log('Constant.js')
 import { AsyncStorage } from 'react-native'
 
 import { StatusBar } from 'react-native'
@@ -81,6 +78,10 @@ window.isSimulator = () => {
     return D.isEmulator()
 }
 
+window.deviceName = () => {
+    return global.deviceInfo?.deviceName
+}
+
 window._deviceInfo = async () => {
     let { currentUser } = global
     return {
@@ -134,14 +135,11 @@ window.setDeviceInfo = async () => {
     let _info = await _deviceInfo()
     log(_info, '_info')
     global.deviceInfo = _info
+    global.DEVICE_INFO = _info
 }
 
 window.deviceInfo = () => {
     return global.deviceInfo
-}
-
-window.deviceName = () => {
-    return global.deviceInfo.deviceName
 }
 
 window.iPhoneX =
@@ -191,3 +189,5 @@ window.initConstant = () => {
     window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
     window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
 }
+// setDeviceInfo() run in SplashScreen
+// initConstant() run in SplashScreen

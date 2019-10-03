@@ -15,6 +15,7 @@ export class Field extends Component {
             theme = 'H8',
             type = 'TextInput',
             children,
+            color = 'rgb(92,92,92)',
             height,
             preIcon,
             fieldStyle,
@@ -54,7 +55,7 @@ export class Field extends Component {
                         <T.Label
                             theme={theme}
                             style={styles.label}
-                            color={FCOLOR}
+                            color={color}
                         >
                             {title}
                         </T.Label>
@@ -71,7 +72,7 @@ export class Field extends Component {
                         // backgroundColor={backgroundColor}
                         // lineHeight={rwd(20)}
                         {...heightStyle}
-                        placeholder={iOS ? placeholder : null}
+                        placeholder={true || iOS ? placeholder : null}
                         {...props}
                     />
                     {children ? (

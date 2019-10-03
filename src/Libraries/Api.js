@@ -114,6 +114,7 @@ export class Api {
         const contentType = response.headers.get('content-type')
         // log(contentType, 'contentType')
 
+        log(Dev.logResponse, 'Dev.logResponse')
         if (contentType && contentType.indexOf('application/json') !== -1) {
             const json = await response.json()
             if (Dev.logResponse) log(json, 'json in Api.js')
