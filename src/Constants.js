@@ -1,5 +1,14 @@
 log('Constant.js')
-import { AsyncStorage } from 'react-native'
+
+setDeviceName = () => {
+    D.getDeviceName().then(res => {
+        global.DeviceName = res
+    })
+}
+setDeviceName()
+
+// import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 
 import { StatusBar } from 'react-native'
 
@@ -31,7 +40,7 @@ let mainBGColor = '#25B1C4'
 
 window.MAIN_COLOR = mainBGColor
 
-window.BASE_SIZE = rwd(iOS ? 14 : 13)
+window.BASE_SIZE = rwd(iOS ? 12 : 12)
 // console.log(1111111111111111111)
 initAppFontSize = async () => {
     try {
@@ -137,6 +146,7 @@ window.setDeviceInfo = async () => {
     global.deviceInfo = _info
     global.DEVICE_INFO = _info
 }
+setDeviceInfo()
 
 window.deviceInfo = () => {
     return global.deviceInfo

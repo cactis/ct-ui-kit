@@ -1,15 +1,15 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 let _navigation
-export class Section extends React.PureComponent {
+export class BarLine extends React.PureComponent {
     state = {
         data: null,
         mounted: false,
     }
 
     componentDidMount() {
-        _trace('Section')
+        _trace('BarLine')
         this.mounted = true
         _navigation = this.props.navigation
         this.initStateData(() => {
@@ -23,23 +23,18 @@ export class Section extends React.PureComponent {
 
     render() {
         let { data } = this.state
-        log(data, 'data in Section render()')
+        // log(data, 'data in BarLine render()')
         // if (!data) return null
         // let { item = data } = data
-        let { children, ...props } = this.props
         return (
-            <View
-                marginTop={rwd(30)}
-                borderTopWidth={0.5}
-                borderBottomWidth={0.5}
-                borderColor="rgba(131,131,131,.51)"
-                paddingVertical={rwd(10)}
-                marginBottom={rwd(30)}
-                // {...props}
-            >
-                <T.Title title={this.props.title} />
-                {children}
-            </View>
+            <T.Row>
+                <T.Space theme="small" />
+                <T.View
+                    backgroundColor="rgba(181,181,181,.20)"
+                    height={rwd(8)}
+                />
+                <T.Space />
+            </T.Row>
         )
     }
 
@@ -50,6 +45,7 @@ export class Section extends React.PureComponent {
                 onComplete && onComplete()
             })
     }
+
     componentWillUnmount() {
         this.mounted = false
     }

@@ -4,61 +4,62 @@ import { Linking } from 'react-native'
 
 export class User extends Component {
     static validateToken = async onSuccess => {
-        // log('validateToken called')
+        log('validateToken called')
 
         let accessTokens = await User.tokens()
-        // log(accessTokens, 'accessTokens in User validateToken')
-        if (!accessTokens) {
-            return //#T.AuthLoadingScreen.boot()
+        log(accessTokens, 'accessTokens in User validateToken')
+        if (accessTokens) {
+            global.accessTokens = accessTokens
+            // return accessTokens //#T.AuthLoadingScreen.boot()
         }
-        global.accessTokens = accessTokens
-        let url = '/validate_token'
+        let url = '/validate_tokens'
         // log(url, 'url')
-        let response = await Api.get(url)
-        let user = response.data || response
-        // log(user, 'user in validateToken')
+        let res = await Api.get(url)
+        let { data: user = res } = res
+        log(user, 'user in validateToken')
         if (user !== undefined && user.id !== undefined) {
-            runLast(() => {
-                let appV = parseInt(
-                    _.last(DEVICE_INFO.ReadableVersion?.split('.'))
-                )
-                log(appV, 'appV')
-                let serverV = parseInt(_.last(user.lastVersion.split('.')))
-                if (serverV > appV && !__DEV__) {
-                    alert(
-                        `Version ${user.lastVersion} is available.\nPlease upgrade app immediately.\nDon't forget to rate us please.`,
-                        'success',
-                        () => {
-                            Linking.canOpenURL(APP_STORE_URL).then(
-                                supported => {
-                                    if (supported) {
-                                        Linking.openURL(APP_STORE_URL)
-                                    } else {
-                                        log(
-                                            "Don't know how to open URI: " +
-                                                APP_STORE_URL
-                                        )
-                                    }
-                                }
-                            )
-                        }
-                    )
-                }
-            }, 3000)
+            // runLast(() => {
+            //     let appV = parseInt(
+            //         _.last(DEVICE_INFO.ReadableVersion?.split('.'))
+            //     )
+            //     log(appV, 'appV')
+            //     let serverV = parseInt(_.last(user.lastVersion.split('.')))
+            //     if (serverV > appV && !__DEV__) {
+            //         alert(
+            //             `Version ${user.lastVersion} is available.\nPlease upgrade app immediately.\nDon't forget to rate us please.`,
+            //             'success',
+            //             () => {
+            //                 Linking.canOpenURL(APP_STORE_URL).then(
+            //                     supported => {
+            //                         if (supported) {
+            //                             Linking.openURL(APP_STORE_URL)
+            //                         } else {
+            //                             log(
+            //                                 "Don't know how to open URI: " +
+            //                                     APP_STORE_URL
+            //                             )
+            //                         }
+            //                     }
+            //                 )
+            //             }
+            //         )
+            //     }
+            // }, 3000)
+            // if (__DEV__) alert(user.name)
             global.currentUser = user
-            global.isLogged = true
             onSuccess && onSuccess(user)
 
-            let uts = await Storage.get('uts')
-            uts = uts || '{}'
-            // uts = JSON.parse(uts)
-            uts[user.id] = {
-                member: user.member_token,
-                user: user.token,
-            }
-            global._uts = uts
-
-            Storage.set('uts', uts)
+            // let uts = await Storage.get('uts')
+            // uts = uts || '{}'
+            // // uts = JSON.parse(uts)
+            // uts[user.id] = {
+            //     // member: user.member_token,
+            //     user: user.token,
+            // }
+            // global._uts = uts
+            log(user.token)
+            Storage.set('userToken', user.token)
+            global.isLogged = true
         } else {
             global.isLogged = undefined
         }
@@ -67,16 +68,18 @@ export class User extends Component {
     }
 
     static tokens = async () => {
+        log(Dev.accessTokens, 'Dev.accessTokens')
         if (Dev.accessTokens) return Dev.accessTokens
         let userToken = await Storage.get('userToken')
-        let memberToken = await Storage.get('memberToken')
-        if (userToken == undefined || memberToken == undefined) {
+        log(userToken, 'userToken')
+        // let memberToken = await Storage.get('memberToken')
+        if (userToken == undefined) {
             return undefined
         } else {
             if (Dev.accessTokens) {
                 return Dev.accessTokens
             } else {
-                return [memberToken, userToken].join('; ')
+                return userToken
             }
         }
     }
@@ -98,28 +101,15 @@ export class User extends Component {
         Dev.accessTokens = null
         global.accessTokens = undefined
 
-        let phone = await Storage.get('phone')
-        let remembered = await Storage.get('remembered')
+        // let remembered = await Storage.get('remembered')
         // log(phone, remembered, 'phone, remembered')
 
-        let uts = await Storage.get('uts')
-        // uts = JSON.parse(uts)
-        log(uts, 'uts 11111')
-
-        delete uts[currentUser.id]
-        log(uts, 'uts 22222')
-        global._uts = uts
-
+        onSuccess()
         await Storage.clearAll()
-        if (phone) await Storage.set('phone', phone)
-        if (remembered) await Storage.set('remembered', remembered)
-
-        if (uts) await Storage.set('uts', uts)
+        // if (remembered) await Storage.set('remembered', remembered)
 
         global.isLogged = undefined
         global.currentUser = undefined
-
-        onSuccess()
     }
 
     static signUp = async (params, onSuccess) => {
@@ -144,32 +134,28 @@ export class User extends Component {
     }
 }
 
-global.setCurrentUser = async (user, onSuccess) => {
-    log(user, 'user - in setCurrentUser')
-    user = user?.data || user
+global.setCurrentUser = async (data, onSuccess) => {
+    log(data, 'data - in setCurrentUser')
+    let { data: user } = data
     log(user?.id, 'user?.id')
     if (user?.id) {
-        let memberToken = user.member_token
+        // let memberToken = user.member_token
         let userToken = user.token
         global.isLogged = true
         global.currentUser = user
-        global.accessTokens = `${memberToken}; ${userToken}; ${user.name}`
+        global.accessTokens = `${userToken}; ${user.name}`
         // log(global.currentUser, 'global.currentUser')
-
-        log(memberToken, 'memberToken')
-        Storage.set('phone', user.phone)
-        // Storage.set('remembered', String(params.remembered))
-        await Storage.set('memberToken', memberToken)
+        // Storage.set('phone', user.phone)
         await Storage.set('userToken', userToken)
-        log(await Storage.get('memberToken'), "Storage.get('memberToken')")
-        log(await Storage.get('userToken'), "Storage.get('userToken')")
         onSuccess && onSuccess(user)
     }
 }
 
 export default User
 
-import { AsyncStorage } from 'react-native'
+// import { AsyncStorage } from 'react-native'
+
+import AsyncStorage from '@react-native-community/async-storage'
 
 export class Storage {
     static clearAll = async callback => {

@@ -38,6 +38,6 @@ var styles = StyleSheet.create({
         borderRadius: 3,
         // color: 'white',
         // backgroundColor: 'rgb(99,209,231)',
-        // fontWeight: '500',
+        fontWeight: '900',
     },
 })

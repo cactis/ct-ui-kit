@@ -6,9 +6,10 @@ import { View, Center } from '../Layouts'
 import { Label } from '../Texts'
 import { Icon } from '../Images'
 
-// import Styles from '../../Styles'
-
-// import tinycolor from 'tinycolor2'
+export const Button1 = props => {
+    let { color = 'white', backgroundColor = BUTTON_COLOR1, ...prop } = props
+    return <Button color={color} backgroundColor={backgroundColor} {...prop} />
+}
 
 export class Button extends React.Component {
     render() {
@@ -18,7 +19,7 @@ export class Button extends React.Component {
             title = 'Button',
             style,
             color,
-            titleColor = color || FCOLOR,
+            titleColor = color,
             rightIcon,
             leftIcon,
             titleStyle,
@@ -27,10 +28,10 @@ export class Button extends React.Component {
             fontSize = titleStyle?.fontSize || BASE_SIZE * 1.2,
             padding = fontSize * 0.5,
             // backgroundColor = disabled ? 'rgb(213,213,213)' : 'white',
-            backgroundColor = BUTTON_COLOR,
+            backgroundColor,
             ...props
         } = this.props
-        let borderColor = 'rgba(255,255,255,.4)'
+        // let borderColor = 'rgba(255,255,255,.4)'
         // let {
         //   borderColor = backgroundColor
         //     ? tinycolor(backgroundColor)
@@ -38,14 +39,17 @@ export class Button extends React.Component {
         //         .toString()
         //     : 'white',
         // } = props
+        let negtive = this.props.negtive ? styles.negtive : {}
+        log(negtive, 'negtive')
         return (
             <Touch onPress={onPress}>
                 <Center
                     flex={flex}
                     style={{
                         ...styles[theme],
-                        borderColor: borderColor,
+                        ...negtive,
                         backgroundColor: backgroundColor,
+                        // borderColor: borderColor,
                         flexDirection: 'row',
                         paddingHorizontal: padding * 2,
                         paddingVertical: padding,
@@ -59,8 +63,9 @@ export class Button extends React.Component {
                     <Label
                         theme={labelTheme}
                         style={{
-                            color: titleColor,
                             // fontSize: fontSize,
+                            ...styles[theme]['label'],
+                            color: titleColor,
                             ...titleStyle,
 
                             // fontWeight: '400',
@@ -77,7 +82,7 @@ export class Button extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const styles = {
     pill: {
         borderRadius: rwd(5),
         borderWidth: 0.5,
@@ -87,12 +92,23 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         // backgroundColor: 'rgb(93,12,142)',
         // ...Styles.shadow,
+        label: {},
     },
     normal: {
         borderRadius: 5,
-        lineHeight: 2.5,
-        borderWidth: 0.5,
-        borderColor: 'rgba(56,203,193,.66)',
+        // lineHeight: 2.5,
+        paddingHorizontal: rwd(10),
+        paddingVertical: rwd(5),
+        borderWidth: 1,
+        backgroundColor: 'transparent',
+        borderColor: 'rgba(29,29,29,.3)',
+        label: {
+            color: 'rgba(#666,.75)',
+        },
+
         // backgroundColor: 'rgb(245,197,66)',
     },
-})
+    negtive: {
+        backgroundColor: 'red',
+    },
+}

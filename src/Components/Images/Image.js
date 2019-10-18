@@ -6,7 +6,7 @@ import FastImage from 'react-native-fast-image'
 export class Image extends Component {
     render() {
         let {
-            uri = __DEV__ ? 'https://placekitten.com/600/600' : null,
+            uri = 'https://placekitten.com/600/600',
             source,
             size,
             rounded,
@@ -21,18 +21,19 @@ export class Image extends Component {
             uri: uri,
             priority: FastImage.priority.normal,
         }
-
         // if (source) {
         //   // log(source, 'source found')
         //   let _source = source //{ ...source, priority: FastImage.priority.normal }
         // }
         // log(_source, '_source')
         aspectRatio = aspectRatio ? { aspectRatio: aspectRatio } : {}
+        // _log(uri)
         return (
             <FastImage
                 {...this.props}
                 style={{
                     width: width,
+                    // borderWidth: 0.5,
                     borderRadius: rounded && size ? size / 2 : 0,
                     ...aspectRatio,
                     ...this.props.style,

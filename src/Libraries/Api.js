@@ -37,6 +37,10 @@ export class Api {
         // log('post end')
     }
 
+    static graphql = async (params = {}, onSuccess, onError) => {
+        return await Api.request('POST', '/graphql', params, onSuccess, onError)
+    }
+
     static request = async (method, url, params = {}, onSuccess, onError) => {
         if (Dev.logResponse)
             log(method, url, params, '(method, url, params in request')
@@ -76,7 +80,7 @@ export class Api {
         _url = encodeURI(_url)
         // [_url, AppConfig.apiVersion].join('/')
         // _log(method, _url, 'mthod, _url')
-        console.log(_url)
+        if (_url.indexOf('/page/1')) log(_url, 'url')
         var response = {}
         const headers = {
             Accept: 'application/json',
@@ -87,7 +91,7 @@ export class Api {
             tokens: accessTokens,
             appName: AppConfig.appName,
         }
-        log(headers, 'headers')
+        // log(headers, 'headers')
         // log(deviceInfo, 'deviceInfo')
         // alert(_url)
         switch (method) {
@@ -119,7 +123,13 @@ export class Api {
             const json = await response.json()
             if (Dev.logResponse) log(json, 'json in Api.js')
             let { meta } = json
-
+            let { errors } = json
+            if (errors) {
+                if (__DEV__) {
+                    alert(errors.map(e => e.message).join('\n'))
+                }
+                return onError && onError(errors)
+            }
             if (meta) {
                 if (meta.alert) {
                     alert(json.alert)

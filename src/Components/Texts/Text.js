@@ -1,7 +1,9 @@
 import React from 'react'
 import { Text as RNText, Platform } from 'react-native'
 // import Constants from '../../Constants.js'
-// var faker = require('faker')
+import faker from '../../lib/faker.min.js'
+window.faker = faker
+
 export { RNText }
 
 export class Text extends React.Component {
@@ -16,13 +18,13 @@ export class Text extends React.Component {
             color,
             selectable = true,
             numberOfLines = 2,
-            title,
+            title = Dev.seeds ? faker.lorem.sentence : null,
             text = title,
             label,
             children = text || label, //|| (__DEV__ ? faker.commerce.productName() : ''),
             ...props
         } = this.props
-        customFont = fontTheme
+        let customFont = fontTheme
             ? { fontFamily: FontTheme[fontTheme] }
             : font
             ? { fontFamily: font }
@@ -36,7 +38,9 @@ export class Text extends React.Component {
                 ? { lineHeight: themeStyle.fontSize * 1.5 }
                 : {}
 
-        return !children ? null : (
+        return !children ? (
+            <T.View />
+        ) : (
             <RNText
                 // flex={1}
                 numberOfLines={numberOfLines}
@@ -133,17 +137,17 @@ const styles = {
     H6: {
         fontFamily: BODY_FONT,
         // fontFamily: iOS ? 'GillSans' : 'sourcesanspro_regular',
-        fontSize: baseSize + (iOS ? 3 : 4),
-        fontWeight: iOS ? '400' : '300',
+        fontSize: baseSize + (iOS ? 2 : 2),
+        fontWeight: iOS ? '300' : '200',
         color: 'rgba(0,0,0,.8)',
     },
     H7: {
-        fontSize: baseSize + (iOS ? 3 : 4),
+        fontSize: baseSize + (iOS ? 1 : 1),
         fontWeight: iOS ? '400' : '200',
         color: 'rgba(0,0,0,.70)',
     },
     H8: {
-        fontSize: baseSize + 1,
+        fontSize: baseSize + 0,
         fontWeight: '400',
         color: 'rgba(0,0,0,.60)',
     },

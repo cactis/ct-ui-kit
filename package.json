@@ -9,7 +9,6 @@
     "author": "cactis <cactis.lin@gmail.com>",
     "license": "ISC",
     "devDependencies": {
-        "react-native-device-info": "^3.1.4",
         "lodash": "^4.17.15"
     },
     "jest": {
@@ -25,6 +24,7 @@
         "react-native-vector-icons": "^6.6.0",
         "react-native-dropdownalert": "^4.2.0",
         "react-native-fast-image": "^7.0.2",
-        "react-native-modalbox": "2.0.0"
+        "react-native-modalbox": "2.0.0",
+        "react-native-image-view": "2.1.6"
     }
 }

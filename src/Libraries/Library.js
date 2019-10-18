@@ -7,6 +7,7 @@ window.Dev = {}
 window.log = (...message) => {
     if (!Dev.disableLog) {
         console.log(message)
+        console.log('')
     }
     _trace('log')
 }
@@ -39,23 +40,8 @@ window.randId = (min = 99999999, max = 999999999) => {
 }
 
 window.rwd = (num, weight = 1) => {
-    // log(SCREEN_WIDTH, 'SCREEN_WIDTH')
-    // alert(SCREEN_WIDTH)
-    // log(num, (SCREEN_WIDTH / 320) * num, 'num, rwd num')
-    // let ra1 = weight > 1 ? weight : 1
-    // let ra2 = weight > 1 ? weight / 2 : 1
     let r = SCREEN_WIDTH / 1400
-    // let ratio = SCREEN_HEIGHT / SCREEN_WIDTH
-    // alert(Dimensions.get('window').height)
-    // alert(r)
     return num * (0.7 + r)
-    // return r > 10
-    //   ? num * 1.5 * ra1
-    //   : r > 5
-    //   ? num * 1.2 * ra1
-    //   : r > 3.5
-    //   ? num * 0.8 * ra2
-    //   : num * 0.6 /// ratio
 }
 
 window.delayedTimer = undefined
@@ -67,7 +53,7 @@ window.delayed = (func, wait = 1000, ...args) => {
 }
 
 window.navigateTo = (navigation, route, params = {}) => {
-    log(navigation, 'navigation----------------')
+    log(navigation, 'navigation in Library#navigateTo----------------')
     let nextKey = `${route}_${params?.data?.item?.id ||
         params?.data?.id ||
         params?.url}_${randId()}`
@@ -86,7 +72,10 @@ window.navigateTo = (navigation, route, params = {}) => {
         navigation.push(route, params, nextKey)
     } else {
         log(params, 'params in navigate')
-
+        // log(
+        //     { routeName: route, params: params, key: nextKey },
+        //     '{ routeName: route, params: params, key: nextKey }'
+        // )
         navigation.navigate({ routeName: route, params: params, key: nextKey })
     }
     // global.routesStack.push(routeName)
@@ -135,9 +124,16 @@ window._runOnce = (key, run) => {
     }
 }
 
+window._log = (...message) => {
+    if (!Dev.disableLog) {
+        console.log(...message)
+    }
+}
+
 if (!__DEV__) {
     window._runOnce = () => {}
     window.log = () => {}
+    window._log = () => {}
     window._autoRun = () => {}
     window._trace = () => {}
 }
@@ -149,4 +145,10 @@ window.getDataByPaths = (json, paths) => {
         (obj, key) => (obj && obj[key] !== 'undefined' ? obj[key] : undefined),
         json
     )
+}
+
+import moment from 'moment'
+window.timeAgo = date => {
+    // log(date, 'date')
+    return moment(date).fromNow()
 }

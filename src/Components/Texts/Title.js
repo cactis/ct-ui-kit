@@ -23,7 +23,7 @@ export class Title extends React.PureComponent {
 
     render() {
         let { data } = this.state
-        log(data, 'data in Title render()')
+        // log(data, 'data in Title render()')
         // if (!data) return null
         // let { item = data } = data
         return (

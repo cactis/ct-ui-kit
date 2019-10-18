@@ -8,8 +8,7 @@ def copy_commend(target)
 end
 
 target = "/Volumes/RamDisk/amp/node_modules/ct-ui-kit"
-`copy_commend(target)`
-
+copy_commend target
 
 guard :shell do
   watch(%r{src}) {

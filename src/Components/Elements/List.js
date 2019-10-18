@@ -11,7 +11,7 @@ export class List extends React.PureComponent {
         this.onComplete = this.props.onComplete || this.onComplete
     }
     state = {
-        data: null,
+        data: !this.props.url && Dev.seeds ? _.range(100) : null,
         selecteds: [],
         ddd__: Array(15)
             .join()
@@ -192,7 +192,24 @@ export class List extends React.PureComponent {
         }
         // if (!pagination) url = url.split('/page')[0]
 
-        let json = await Api.get(url)
+        let json
+        let { graphql } = this.props
+        if (graphql) {
+            log(this.props.url, 'this.props.url')
+            let key = this.props.url.replace('/', '')
+            log(key, 'key')
+            let res = await Api.graphql({
+                query: `{${key} (page: ${page}) ${graphql}}`,
+            })
+            log(res, 'res')
+            let { data } = res
+            let items = data[key]
+            json = { data: items }
+            log(json, 'json')
+        } else {
+            json = await Api.get(url)
+        }
+
         // log(json, 'json in List')
         this.props.onLoadedData && this.props.onLoadedData(json)
         let data = getDataByPaths(json, dataPath)
@@ -266,7 +283,8 @@ export class List extends React.PureComponent {
             url,
             toTop,
         } = this.state
-        let { loadingUri } = this.props
+        let { loadingUri = `${AppConfig.web}/img/loading1.gif` } = this.props
+        // _log(loadingUri, 'loadingUri')
         // if (!data) return null
         let {
             numColumns = 1,
