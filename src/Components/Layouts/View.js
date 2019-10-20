@@ -4,42 +4,40 @@ import { View as RNView } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export class View extends React.Component {
-    render() {
-        let {
-            align,
-            yAlign,
-            flow = 'column',
-            xAlign,
-            style = {},
-            children,
-            // keyboardAware = false,
-            ...props
-        } = this.props
-        align && (yAlign = align) && (xAlign = align)
-        yAlign && (style.alignItems = yAlign)
-        xAlign && (style.justifyContent = xAlign)
-        let emptyStyle = !children ? EMPTYSTYLE : {}
-        let content = (
-            <RNView
-                flexDirection={flow}
-                style={{ ...emptyStyle, ...style }}
-                {...props}
-            >
-                {children}
-            </RNView>
-        )
-        return this.props.keyboardAware ? (
-            <KeyboardAwareScrollView {...props}>
-                {content}
-            </KeyboardAwareScrollView>
-        ) : (
-            content
-        )
-    }
+  render() {
+    let {
+      align,
+      yAlign,
+      flow = 'column',
+      xAlign,
+      style = {},
+      children,
+      // keyboardAware = false,
+      ...props
+    } = this.props
+    align && (yAlign = align) && (xAlign = align)
+    yAlign && (style.alignItems = yAlign)
+    xAlign && (style.justifyContent = xAlign)
+    let emptyStyle = !children ? EMPTYSTYLE : {}
+    let content = (
+      <RNView
+        flexDirection={flow}
+        style={{ ...emptyStyle, ...style }}
+        {...props}
+      >
+        {children}
+      </RNView>
+    )
+    return this.props.keyboardAware ? (
+      <KeyboardAwareScrollView {...props}>{content}</KeyboardAwareScrollView>
+    ) : (
+      content
+    )
+  }
 }
 
 const EMPTYSTYLE = {
-    // borderWidth: 1,
-    // margin: 5,
-    // backgroundColor: 'red'
+  // borderWidth: 1,
+  // margin: 5,
+  // backgroundColor: 'red'
 }
