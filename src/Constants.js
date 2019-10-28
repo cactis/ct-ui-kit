@@ -74,6 +74,7 @@ let padding = 8
 
 // let statusBarHeight = iOS ? 20 : StatusBarManager.HEIGHT
 let statusBarHeight = StatusBar.currentHeight
+window.STATUSBAR_HEIGHT = statusBarHeight
 // iPhoneX
 // const X_WIDTH = 375
 // const X_HEIGHT = 812
@@ -201,3 +202,11 @@ window.initConstant = () => {
 }
 // setDeviceInfo() run in SplashScreen
 // initConstant() run in SplashScreen
+
+window.iPhoneX =
+  iOS &&
+  (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
+    deviceInfo.Model?.indexOf('iPhone 11') == 0)
+
+window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
+window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
