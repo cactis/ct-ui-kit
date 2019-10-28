@@ -49,19 +49,26 @@ export class DropdownAlert extends React.PureComponent {
         entry="top"
         backdropOpacity={0.1}
         style={{
-          backgroundColor: 'rgba(0,140,195,1)',
+          backgroundColor: 'transparent',
           // marginTop: -1 * (iOS ? 0 : STATUSBAR_HEIGHT),
-          paddingTop: SAFEAREA_TOP,
+          paddingHorizontal: rwd(20),
+          paddingTop: SAFEAREA_TOP + rwd(10),
           // flex: 0,
           height: 'auto',
         }}
       >
         <T.Grid
+          // margin={rwd(20)}
           flex={0}
           padding={rwd(10)}
-          paddingVertical={rwd(20)}
-          width={SCREEN_WIDTH}
+          paddingVertical={rwd(15)}
+          width={SCREEN_WIDTH - rwd(30) * 2}
           flow="row"
+          style={{
+            borderRadius: rwd(40),
+            backgroundColor: 'rgba(36,122,212,.96)',
+          }}
+          activeOpacity={1}
           onPress={() => {
             this._onDropdownAlertTapped()
             this.modal.close()
