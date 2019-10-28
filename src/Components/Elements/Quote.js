@@ -23,7 +23,7 @@ export class Quote extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Quote render()')
+    // log(data, 'data in Quote render()')
     if (!data) return null
     let { item = data } = data
     return (
