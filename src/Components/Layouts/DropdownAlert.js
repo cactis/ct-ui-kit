@@ -21,19 +21,22 @@ export class DropdownAlert extends React.PureComponent {
     if (prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
+
   _onDropdownAlertTapped = () => {}
 
   open = (content, onTap = () => {}, options = {}) => {
-    log(options, 'options')
+    // log(options, 'options')
     let { title } = options
     this.mounted &&
       this.setState({
         title,
         content,
       })
-    log(this.state, 'this.state')
+    // log(this.state, 'this.state')
     this.modal.open()
-    this._onDropdownAlertTapped = onTap
+    log(onTap, 'onTap')
+    log(typeof onTap == 'function')
+    if (typeof onTap == 'function') this._onDropdownAlertTapped = onTap
   }
   close = () => {
     this.modal.close()
@@ -60,13 +63,13 @@ export class DropdownAlert extends React.PureComponent {
         <T.Grid
           // margin={rwd(20)}
           flex={0}
-          padding={rwd(10)}
+          paddingHorizontal={rwd(15)}
           paddingVertical={rwd(15)}
           width={SCREEN_WIDTH - rwd(30) * 2}
           flow="row"
           style={{
             borderRadius: rwd(40),
-            backgroundColor: 'rgba(36,122,212,.96)',
+            backgroundColor: 'rgba(0,100,217,1)',
           }}
           activeOpacity={1}
           onPress={() => {
@@ -77,9 +80,9 @@ export class DropdownAlert extends React.PureComponent {
           <T.Center flex={0}>
             <T.Icon
               size={rwd(30)}
-              name="infocirlceo"
+              name="sun"
               color="#efefef"
-              iconSet="AntDesign"
+              iconSet="Feather"
             />
           </T.Center>
           <T.Space />
