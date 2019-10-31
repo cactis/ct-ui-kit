@@ -10,7 +10,8 @@ export class KeyboardInput extends React.PureComponent {
     data: null,
     mounted: false,
     paddingBottom: SAFEAREA_BOTTOM,
-    textInputHeight: rwd(50),
+    textInputHeight: rwd(80),
+    replyTo: null,
   }
 
   componentDidMount() {
@@ -44,8 +45,11 @@ export class KeyboardInput extends React.PureComponent {
       _navigation = this.props.navigation
   }
   _onKeyboardTapped = () => {}
-
-  open = (text, onSend = () => {}, options = {}) => {
+  replyTo = replyTo => {
+    this.setState({ replyTo })
+  }
+  open = (text, options = {}) => {
+    let { onSend = () => {}, cancelReplyTo = () => {} } = options
     // log(options, 'options')
     // let { title } = options
     this.mounted &&
@@ -54,16 +58,25 @@ export class KeyboardInput extends React.PureComponent {
         text,
       })
     this.onSend = onSend
-    log(this.state, 'this.state')
+    this.cancelReplyTo = cancelReplyTo
+    // log(this.state, 'this.state')
     this.modal.open()
   }
   close = () => {
+    this._cancelReplyTo()
     this.modal.close()
   }
 
   render() {
-    let { text, textInputHeight, title, content, paddingBottom } = this.state
-    log(textInputHeight, 'textInputHeight')
+    let {
+      text,
+      textInputHeight,
+      title,
+      content,
+      paddingBottom,
+      replyTo,
+    } = this.state
+    // log(textInputHeight, 'textInputHeight')
     let containerHeight =
       textInputHeight + rwd(5) + (iPhoneX ? rwd(10) : rwd(5))
     // alert(containerHeight)
@@ -85,6 +98,7 @@ export class KeyboardInput extends React.PureComponent {
           // paddingHorizontal: rwd(20),
           // paddingTop: SAFEAREA_TOP + rwd(10),
           backgroundColor: 'rgba(241,242,242,1)',
+          backgroundColor: 'white',
           // flex: 0,
           height: containerHeight,
         }}
@@ -116,34 +130,71 @@ export class KeyboardInput extends React.PureComponent {
             height="auto"
             // height={textInputHeight + rwd(5) + iPhoneX ? rwd(10) : rwd(5)}
           >
-            <TextInput
-              value={text}
-              onChangeText={text => this.setState({ text })}
-              onContentSizeChange={e =>
-                this.updateSize(e.nativeEvent.contentSize.height)
-              }
-              multiline={true}
-              height={200}
+            <T.Div
               style={{
-                flex: 1,
-                height: textInputHeight,
-                height: 200,
-                backgroundColor: 'white',
+                // backgroundColor: 'white',
+                backgroundColor: 'rgb(238,238,238)',
                 width: '100%',
-                borderColor: '#999',
-                borderRadius: rwd(5),
-                padding: rwd(8),
-                borderWidth: 0.4,
+                borderRadius: rwd(20),
+                padding: rwd(4),
+                paddingHorizontal: rwd(10),
+                // borderWidth: 0.4,
+                // borderColor: '#999',
+                height: textInputHeight - rwd(5) * 2,
               }}
-            />
+            >
+              {replyTo ? (
+                <T.Row flex={0} yAlign="flex-start" id="replyTo">
+                  <T.Center
+                    flex={0}
+                    flow="row"
+                    style={{
+                      backgroundColor: 'white',
+                      borderRadius: rwd(20),
+                      paddingRight: rwd(8),
+                      paddingVertical: rwd(2),
+                    }}
+                  >
+                    <T.Icon
+                      name="close"
+                      onPress={this._cancelReplyTo}
+                      color="rgb(186,186,186)"
+                      size={rwd(14)}
+                    />
+                    <T.Label text={`reply to ${replyTo}`} theme="H8" />
+                  </T.Center>
+                </T.Row>
+              ) : null}
+              <TextInput
+                ref={c => (window.input = c)}
+                value={text}
+                onChangeText={text => this.setState({ text })}
+                onContentSizeChange={e =>
+                  this.updateSize(e.nativeEvent.contentSize.height)
+                }
+                multiline={true}
+                height={200}
+                style={{
+                  flex: 1,
+                  backgroundColor: 'rgb(238,238,238)',
+                  // height: textInputHeight,
+                  // height: 200,
+                }}
+              />
+            </T.Div>
           </T.Center>
           <T.Space />
-          <T.Center flex={0}>
+          <T.Col align="center" flex={0}>
             <T.Label borderWidth={0.6} title="Send" onPress={this._onSend} />
-          </T.Center>
+          </T.Col>
         </T.Grid>
       </ModalBox>
     )
+  }
+
+  _cancelReplyTo = () => {
+    this.setState({ replyTo: null })
+    this.cancelReplyTo()
   }
   onSend = () => {}
 

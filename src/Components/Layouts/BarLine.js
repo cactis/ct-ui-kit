@@ -28,7 +28,7 @@ export class BarLine extends React.PureComponent {
     // let { item = data } = data
     return (
       <T.Row>
-        <T.Space theme="small" />
+        {/* <T.Space theme="small" /> */}
         <T.View backgroundColor="rgba(181,181,181,.20)" height={rwd(8)} />
         <T.Space />
       </T.Row>

@@ -69,7 +69,7 @@ export class DropdownAlert extends React.PureComponent {
           flow="row"
           style={{
             borderRadius: rwd(40),
-            backgroundColor: 'rgba(0,100,217,1)',
+            backgroundColor: DROPDOWNALERT_COLOR,
           }}
           activeOpacity={1}
           onPress={() => {
@@ -87,8 +87,8 @@ export class DropdownAlert extends React.PureComponent {
           </T.Center>
           <T.Space />
           <T.Col xAlign="center">
-            <T.Label color="#efefef" text={title} theme="H2" />
-            <T.Text color="#efefef" text={content} numberOfLines={0} />
+            <T.Label color="#fff" text={title} theme="H2" />
+            <T.Text color="#fff" text={content} numberOfLines={0} />
           </T.Col>
         </T.Grid>
       </ModalBox>
