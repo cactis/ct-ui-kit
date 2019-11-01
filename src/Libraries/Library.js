@@ -9,7 +9,7 @@ window.log = (...message) => {
     console.log(message)
     console.log('')
   }
-  _trace('log')
+  // _trace('log')
 }
 
 window._autoRun = (action, run, always = false) => {

@@ -95,17 +95,18 @@ export class User extends Component {
   }
 
   static logout = async onSuccess => {
-    // log('logout')
-    let { currentUser } = global
+    log('logout')
+    // let { currentUser } = global
     // log(currentUser, 'currentUser')
+    await Storage.clearAll()
+    log(Dev, 'Dev 1111111111111111')
     Dev.accessTokens = null
     global.accessTokens = undefined
-
+    log(Dev, 'Dev 2222222222222222')
     // let remembered = await Storage.get('remembered')
     // log(phone, remembered, 'phone, remembered')
 
-    onSuccess()
-    await Storage.clearAll()
+    onSuccess && onSuccess()
     // if (remembered) await Storage.set('remembered', remembered)
 
     global.isLogged = undefined
@@ -159,7 +160,10 @@ import AsyncStorage from '@react-native-community/async-storage'
 
 export class Storage {
   static clearAll = async callback => {
+    // alert('clear all')
     AsyncStorage.clear(() => {
+      // alert('clear done')
+      log('clear all AsyncStorage')
       AsyncStorage.getAllKeys().then(keys => {
         log(keys, 'keys - in Storage clearAll')
         callback && callback()
