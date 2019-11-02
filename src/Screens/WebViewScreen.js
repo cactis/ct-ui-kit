@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { WebView } from 'react-native-webview'
-
+import { WebSocketBase } from './WebSocketBase'
 let _this, _navigation
-export class WebViewScreen extends React.PureComponent {
+export class WebViewScreen extends WebSocketBase {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.state.params?.title || '預設標題',
@@ -11,6 +11,7 @@ export class WebViewScreen extends React.PureComponent {
   }
   state = {
     data: null,
+    room: global.room,
   }
 
   componentDidMount() {
@@ -20,6 +21,7 @@ export class WebViewScreen extends React.PureComponent {
     this.initStateData(() => {
       this.autoRun()
     })
+    this.connectSocket()
   }
 
   render() {

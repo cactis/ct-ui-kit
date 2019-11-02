@@ -49,7 +49,7 @@ initAppFontSize = async () => {
     // console.log(value, 'value 11111111111')
     if (value) {
       value = parseInt(value)
-      console.log(value, 'value 2222')
+      // console.log(value, 'value 2222')
       return value
     } else {
       return window.BASE_SIZE

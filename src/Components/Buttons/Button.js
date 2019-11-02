@@ -15,6 +15,10 @@ export const Button1 = props => {
 
 let _this, _navigation
 export class Button extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    _navigation = props.navigation
+  }
   onPress = () => {
     let { url, onPress } = this.props
     if (url) {
@@ -23,11 +27,6 @@ export class Button extends React.PureComponent {
       log('onPress')
       onPress && onPress()
     }
-  }
-
-  componentWillMount() {
-    _navigation = this.props.navigation
-    log(_navigation, '_navigation 22222220')
   }
 
   componentDidMount() {
@@ -46,10 +45,10 @@ export class Button extends React.PureComponent {
   handleClick = () => {
     let { url } = this.props
     if (!url) return
-    log('handleClick')
+    log(this.props.inApp, 'inApp in handleClick')
     if (this.props.inApp) {
-      _log(url, 'url')
-      log(_navigation, '_navigation 22222')
+      // _log(url, 'url')
+      // log(_navigation, '_navigation 22222')
       navigateTo(_navigation, 'WebViewScreen', {
         uri: url,
         title: 'abc',
@@ -139,7 +138,7 @@ const styles = {
   pill: {
     borderRadius: rwd(5),
     borderWidth: 0.5,
-    borderColor: 'rgba(56,203,193,.66)',
+    borderColor: 'rgba(138,210,205,.66)',
     // padding: 6,
     lineHeight: 1.8,
     paddingHorizontal: 20,

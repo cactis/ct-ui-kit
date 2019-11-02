@@ -2,6 +2,15 @@ import React, { PureComponent as Component } from 'react'
 import { TouchableOpacity } from 'react-native'
 
 export class Touch extends Component {
+  // static getDerivedStateFromProps(props, state) {
+  //   // _navigation = props.navigation
+  // }
+
+  constructor(props) {
+    super(props)
+    this.id = randId()
+    this.state = {}
+  }
   onPress = () => {
     let { disabled = false, onPress, ...props } = this.props
     // log(this, 'this')
@@ -16,10 +25,6 @@ export class Touch extends Component {
     delayed(() => {
       global.justRun = null
     })
-  }
-
-  UNSAFE_componentWillMount() {
-    this.id = randId()
   }
 
   render() {

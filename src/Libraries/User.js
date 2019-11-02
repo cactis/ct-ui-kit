@@ -8,6 +8,8 @@ export class User extends Component {
 
     let accessTokens = await User.tokens()
     log(accessTokens, 'accessTokens in User validateToken')
+    // alert(accessTokens)
+
     if (accessTokens) {
       global.accessTokens = accessTokens
       // return accessTokens //#T.AuthLoadingScreen.boot()
@@ -68,7 +70,7 @@ export class User extends Component {
   }
 
   static tokens = async () => {
-    log(Dev.accessTokens, 'Dev.accessTokens')
+    log(Dev.accessTokens, 'Dev.accessTokens in User#tokens')
     if (Dev.accessTokens) return Dev.accessTokens
     let userToken = await Storage.get('userToken')
     log(userToken, 'userToken')
@@ -99,10 +101,10 @@ export class User extends Component {
     // let { currentUser } = global
     // log(currentUser, 'currentUser')
     await Storage.clearAll()
-    log(Dev, 'Dev 1111111111111111')
+    // log(Dev, 'Dev 1111111111111111')
     Dev.accessTokens = null
     global.accessTokens = undefined
-    log(Dev, 'Dev 2222222222222222')
+    // log(Dev, 'Dev 2222222222222222')
     // let remembered = await Storage.get('remembered')
     // log(phone, remembered, 'phone, remembered')
 
