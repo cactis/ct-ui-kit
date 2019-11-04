@@ -45,6 +45,7 @@ export class Button extends React.PureComponent {
   handleClick = () => {
     let { url } = this.props
     if (!url) return
+    _log(url, 'url')
     log(this.props.inApp, 'inApp in handleClick')
     if (this.props.inApp) {
       // _log(url, 'url')

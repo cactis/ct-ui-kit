@@ -72,6 +72,7 @@ export class User extends Component {
   static tokens = async () => {
     log(Dev.accessTokens, 'Dev.accessTokens in User#tokens')
     if (Dev.accessTokens) return Dev.accessTokens
+    if (global.accessTokens) return global.accessTokens
     let userToken = await Storage.get('userToken')
     log(userToken, 'userToken')
     // let memberToken = await Storage.get('memberToken')

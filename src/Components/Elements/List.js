@@ -88,6 +88,7 @@ export class List extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
+    // log('List#componentDidUpdate')
     if (prevProps.data !== this.props.data)
       this.mounted && this.setState({ data: this.props.data })
     if (prevProps.onLoad !== this.props.onLoad) this.onLoad = this.props.onLoad
@@ -96,17 +97,23 @@ export class List extends React.PureComponent {
     // log(this.props.url, 'this.props.url')
     // log(prevProps.url !== this.props.url, 'prevProps.url !== this.props.url')
     if (prevProps.url !== this.props.url) {
+      // log(this.props.url, 'url changed')
       this.mounted &&
-        this.setState({
-          page: 0,
-          data: [],
-          meta: null,
-          isRefreshing: true,
-          url: this.props.url,
-          lastPage: false,
-          isPageLoading: false,
-        })
-      this.fetchData()
+        this.setState(
+          {
+            // page: 0,
+            // data: [],
+            // meta: null,
+            // isRefreshing: true,
+            url: this.props.url,
+            // lastPage: false,
+            // isPageLoading: false,
+          },
+          () => {
+            this.reloadData()
+          }
+        )
+      // this.fetchData()
     }
   }
 
@@ -130,13 +137,14 @@ export class List extends React.PureComponent {
           isPageLoading: false,
         },
         () => {
+          log(this.state, 'this.state')
           this.fetchData()
         }
       )
   }
 
   scrollToTop = (delay = 500) => {
-    log('scrollToTop in List')
+    // log('scrollToTop in List')
     // delayed(() => {
     this.flatList.scrollToOffset({ offset: 0, animated: true })
     this.mounted && this.setState({ toTop: 0 })
@@ -153,12 +161,13 @@ export class List extends React.PureComponent {
       // log('isPageLoading')
       return
     } else {
+      // log('not isPageLoading')
       this.mounted && this.setState({ isPageLoading: true })
     }
 
     // log(this.state.lastPage, 'lastPage')
     if (this.state.lastPage) {
-      log('已是最後一頁。')
+      // log('已是最後一頁。')
       return
     }
     // let url = this.state.url
