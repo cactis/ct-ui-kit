@@ -62,11 +62,11 @@ export class Modal extends React.PureComponent {
       quoteable,
       fullScreen,
       paddable = true,
+      padding = rwd(15),
       ...opts
     } = options
     if (scrollable || fullScreen) swipeToClose = false
     modalHeight = fullScreen ? SCREEN_HEIGHT : modalHeight
-    let padding = paddable ? rwd(15) : 0
     return (
       <ModalBox
         ref={c => (this.modal = c)}
@@ -86,7 +86,7 @@ export class Modal extends React.PureComponent {
         {...this.props}
       >
         <T.Space size={fullScreen ? SAFEAREA_TOP / 2 : 0} />
-        <T.Row flex={0} padding={rwd(15)} flow="row" xAlign="center">
+        <T.Row flex={0} padding={padding} flow="row" xAlign="center">
           <T.Col borderWidth={0} xAlign="center">
             {title && (
               <T.Label
@@ -98,7 +98,12 @@ export class Modal extends React.PureComponent {
               />
             )}
           </T.Col>
-          <T.Col borderWidth={0} flex={0} align="center">
+          <T.Col
+            borderWidth={0}
+            flex={0}
+            align="center"
+            padding={padding == 0 ? rwd(15) : 0}
+          >
             <T.Icon
               onPress={this.modal?.close}
               name="close"
