@@ -3,7 +3,13 @@ import { Row, Space } from '.'
 
 export class Line extends React.Component {
   render() {
-    let { flex = 0, size = 0.2, style, color = 'white', ...props } = this.props
+    let {
+      flex = 0,
+      size = 0.2,
+      style,
+      color = 'rgb(15,15,15)',
+      ...props
+    } = this.props
     return (
       <Row
         style={{

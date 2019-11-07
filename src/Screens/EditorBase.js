@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor'
 import ModalBox from 'react-native-modalbox'
-import { KeyboardAware } from './KeyboardAware'
+import { KeyboardAware } from '../Components/Keyboard'
 
 const initHTML = `
 <h1><center><b>Pell.js Rich Editor</b></center></h1>
@@ -48,7 +48,6 @@ export class EditorBase extends KeyboardAware {
     log(height, 'height')
     this.mounted &&
       this.setState({ paddingBottom: height, toolbarHeight: height })
-    // this.mounted && this.setState({ paddingBottom: height })
     // log(this.modal, 'this.modal')
     if (this.modal && height > 0) {
       // log('open')

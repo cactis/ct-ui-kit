@@ -70,9 +70,10 @@ export const IconLabel = props => {
           {_icon}
           {image}
         </Col>
-        <Col flex={0} align="center" height={size}>
+        <Col flex={0} align="center" height={size} flow="row">
           {label}
         </Col>
+        <Col>{props.rightIcon}</Col>
       </Div>
     </Touch>
   )

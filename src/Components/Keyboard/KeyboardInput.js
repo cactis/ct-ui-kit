@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, TextInput, Keyboard as RNKeyboard } from 'react-native'
-import ModalBox from 'react-native-modalbox'
+// import ModalBox from 'react-native-modalbox'
 // import { AutoGrowTextInput } from 'react-native-auto-grow-textinput'
-export { RNKeyboard }
+// export { RNKeyboard }
 
 let _navigation
 export class KeyboardInput extends React.PureComponent {
@@ -21,50 +21,30 @@ export class KeyboardInput extends React.PureComponent {
     this.initStateData(() => {
       this.autoRun()
     })
-    // this.keyboardShowListener = RNKeyboard.addListener('keyboardDidShow', e =>
-    //   this.keyboardShow(e)
-    // )
-    // this.keyboardHideListener = RNKeyboard.addListener('keyboardDidHide', e =>
-    //   this.keyboardHide(e)
-    // )
-  }
-  keyboardShow(e) {
-    // alert('change ------------')
-    this.setState({
-      // paddingBottom: SAFEAREA_BOTTOM,
-    })
-  }
-
-  keyboardHide(e) {
-    this.setState({
-      paddingBottom: 0,
-    })
   }
   componentDidUpdate(prevProps) {
     if (prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
+
   _onKeyboardTapped = () => {}
   replyTo = replyTo => {
     this.setState({ replyTo })
   }
   open = (text, options = {}) => {
     let { onSend = () => {}, cancelReplyTo = () => {} } = options
-    // log(options, 'options')
-    // let { title } = options
     this.mounted &&
       this.setState({
-        // title,
         text,
       })
     this.onSend = onSend
     this.cancelReplyTo = cancelReplyTo
-    // log(this.state, 'this.state')
-    this.modal.open()
+    this.toolbar.open()
   }
+
   close = () => {
     this._cancelReplyTo()
-    this.modal.close()
+    this.toolbar.close()
   }
 
   render() {
@@ -77,48 +57,17 @@ export class KeyboardInput extends React.PureComponent {
       replyTo,
     } = this.state
     // log(textInputHeight, 'textInputHeight')
-    let containerHeight =
-      textInputHeight + rwd(5) + (iPhoneX ? rwd(10) : rwd(5))
-    // alert(containerHeight)
+    let modalHeight = textInputHeight + rwd(5) + (iPhoneX ? rwd(10) : rwd(5))
+    // alert(modalHeight)
     return (
-      <ModalBox
-        ref={c => (this.modal = c)}
-        flex={0}
-        position="bottom"
-        entry="bottom"
-        backdropOpacity={0.5}
-        backdrop={false}
-        backdropPressToClose={false}
-        style={{
-          borderTopWidth: 0.5,
-          borderColor: '#999',
-          // backgroundColor: 'white',
-          // padding: rwd(10),
-          // marginTop: -1 * (iOS ? 0 : STATUSBAR_HEIGHT),
-          // paddingHorizontal: rwd(20),
-          // paddingTop: SAFEAREA_TOP + rwd(10),
-          backgroundColor: 'rgba(241,242,242,1)',
-          backgroundColor: 'white',
-          // flex: 0,
-          height: containerHeight,
-        }}
-      >
+      <T.KeyboardToolbar ref={c => (this.toolbar = c)}>
         <T.Grid
-          // margin={rwd(20)}
           flex={0}
-          // paddingHorizontal={rwd(5)}
-          // paddingVertical={rwd(5)}
           width="100%"
           flow="row"
           style={{
-            // height: 'auto',
             height: textInputHeight,
-            // borderRadius: rwd(40),
-            // borderWidth: 1,
             padding: rwd(5),
-
-            // paddingBottom: iPhoneX ? rwd(10) : rwd(5),
-            // paddingBottom: 0,
           }}
           activeOpacity={1}
         >
@@ -188,7 +137,7 @@ export class KeyboardInput extends React.PureComponent {
             <T.Label borderWidth={0.6} title="Send" onPress={this._onSend} />
           </T.Col>
         </T.Grid>
-      </ModalBox>
+      </T.KeyboardToolbar>
     )
   }
 

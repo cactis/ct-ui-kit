@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import * as T from 'ct-ui-kit'
 import ModalBox from 'react-native-modalbox'
-
+export { ModalBox }
 let _navigation
 export class Modal extends React.PureComponent {
   state = {
@@ -32,7 +32,7 @@ export class Modal extends React.PureComponent {
   }
 
   open = (content, options = {}) => {
-    log(options, 'options')
+    log(options, 'options---------------')
     this.mounted &&
       this.setState({
         content,
@@ -40,12 +40,19 @@ export class Modal extends React.PureComponent {
           ...{ title: null, ...this.state._options, ...options },
         },
       })
-    log(this.state, 'this.state')
     this.modal.open()
   }
 
   close = () => {
+    this.onClose()
     this.modal.close()
+  }
+
+  onClose = () => {
+    let { options } = this.state
+    log(options, 'options')
+    let { onClose } = options
+    onClose && onClose()
   }
 
   render() {
@@ -105,7 +112,7 @@ export class Modal extends React.PureComponent {
             padding={padding == 0 ? rwd(15) : 0}
           >
             <T.Icon
-              onPress={this.modal?.close}
+              onPress={this.close}
               name="close"
               size={rwd(18)}
               iconSet="AntDesign"

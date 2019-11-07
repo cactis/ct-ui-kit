@@ -4,11 +4,6 @@ import { StyleSheet, Keyboard } from 'react-native'
 export class KeyboardAware extends React.PureComponent {
   constructor(props) {
     super(props)
-  }
-  state = {}
-  componentDidMount() {
-    _trace()
-
     this.keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       this.keyboardDidShow
@@ -18,23 +13,33 @@ export class KeyboardAware extends React.PureComponent {
       this.keyboardDidHide
     )
   }
+
+  state = {}
+
   onKeyboardChanged = height => {
-    // log(height, 'hegiht')
+    alert('_onKeyboardTapped')
+    log(
+      height,
+      'keyboard height. KeyboardAware say: set onKeyboardChanged to handle this keyboard event'
+    )
+    // log(this.onKeyboardChanged, 'this.onKeyboardChanged')
+    // this.onKeyboardChanged && this.onKeyboardChanged(height)
   }
 
   keyboardDidShow = e => {
-    // log(e, 'e keyboardDidShow')
     let keyboardHeight = e.endCoordinates.height
     runLast(() => {
+      // log(e, 'e keyboardDidShow')
       this.onKeyboardChanged(keyboardHeight)
-    })
+    }, 100)
   }
 
   keyboardDidHide = e => {
-    let keyboardHeight = SCREEN_HEIGHT - rwd(125) - SAFEAREA_TOP
+    // let keyboardHeight = SCREEN_HEIGHT - rwd(125) - SAFEAREA_TOP
     runLast(() => {
       this.onKeyboardChanged(0)
-    })
+      // log(e, 'e keyboardDidHide')
+    }, 100)
   }
 
   componentWillUnmount() {

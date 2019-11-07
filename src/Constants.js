@@ -143,7 +143,7 @@ window._deviceInfo = async () => {
 
 window.setDeviceInfo = async () => {
   let _info = await _deviceInfo()
-  log(_info, '_info')
+  // log(_info, '_info')
   global.deviceInfo = _info
   global.DEVICE_INFO = _info
 }

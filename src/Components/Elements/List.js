@@ -137,7 +137,6 @@ export class List extends React.PureComponent {
           isPageLoading: false,
         },
         () => {
-          log(this.state, 'this.state')
           this.fetchData()
         }
       )

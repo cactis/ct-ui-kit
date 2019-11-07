@@ -34,8 +34,8 @@ export class DropdownAlert extends React.PureComponent {
       })
     // log(this.state, 'this.state')
     this.modal.open()
-    log(onTap, 'onTap')
-    log(typeof onTap == 'function')
+    // log(onTap, 'onTap')
+    // log(typeof onTap == 'function')
     if (typeof onTap == 'function') this._onDropdownAlertTapped = onTap
   }
   close = () => {

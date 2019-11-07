@@ -155,12 +155,16 @@ window._log = (...message) => {
   }
 }
 
+window._clear = () => {
+  console.clear()
+}
 if (!__DEV__) {
   window._runOnce = () => {}
   window.log = () => {}
   window._log = () => {}
   window._autoRun = () => {}
   window._trace = () => {}
+  window._clear = () => {}
 }
 
 window.getDataByPaths = (json, paths) => {
@@ -176,4 +180,15 @@ import moment from 'moment'
 window.timeAgo = date => {
   // log(date, 'date')
   return moment(date).fromNow()
+}
+
+Array.prototype.insert = function(index, item) {
+  log(this, 'this')
+  return [...this.slice(0, index), item, ...this.slice(index)]
+}
+
+_.insert = function(arr, index, item) {
+  arr.splice(index, 0, item)
+  log(arr, 'arr')
+  return arr
 }
