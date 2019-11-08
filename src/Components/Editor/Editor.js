@@ -22,6 +22,7 @@ export class Editor extends KeyboardAware {
       this.attachKeyBoard()
     })
     window.editor = this
+    // window.currentIndex = __DEV__ ? 1 : 0
     window.currentIndex = 0
   }
 
@@ -124,6 +125,16 @@ export class Editor extends KeyboardAware {
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => {
+    _autoRun(
+      'insertPhoto',
+      () => {
+        delayed(() => {
+          // window.tag?.setTag('img')
+        })
+      },
+      3000
+    )
+  }
 }
 var styles = StyleSheet.create({})

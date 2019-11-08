@@ -1,13 +1,9 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
+import { TagBase } from './TagBase'
 let _navigation
-export class IMG extends React.PureComponent {
-  state = {
-    data: null,
-    mounted: false,
-  }
-
+export class IMG extends TagBase {
   componentDidMount() {
     _trace('IMG')
     this.mounted = true
@@ -22,12 +18,20 @@ export class IMG extends React.PureComponent {
   }
 
   render() {
-    let { data } = this.state
+    let { data, currentIndex } = this.state
     log(data, 'data in IMG render()')
     if (!data) return null
     let { item = data } = data
+    log(data.index, 'data.index')
     return (
-      <T.Row>
+      <T.Row
+        borderWidth={5}
+        marginBottom={this.marginBottom}
+        onPress={this.onFocus}
+        borderColor={
+          currentIndex == data.index ? EDITOR_FOCUSED : EDITOR_NOT_FOCUSED
+        }
+      >
         <T.Image uri={item.src} />
       </T.Row>
     )

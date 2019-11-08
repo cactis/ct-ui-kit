@@ -2,16 +2,9 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { AutoGrowTextInput as TextInput } from 'react-native-auto-grow-textinput'
 
-import { KeyboardAware } from '../../Keyboard'
-
+import { TagBase } from './TagBase'
 let _navigation
-export class P extends React.PureComponent {
-  state = {
-    data: null,
-    mounted: false,
-    currentIndex: window.currentIndex,
-  }
-
+export class P extends TagBase {
   componentDidMount() {
     _trace('P')
     this.mounted = true
@@ -48,15 +41,15 @@ export class P extends React.PureComponent {
       <T.Row
         padding={rwd(10)}
         borderLeftWidth={5}
-        marginBottom={5}
-        borderColor="rgb(20,167,73)"
+        marginBottom={this.marginBottom}
+        borderColor={this.isMe() ? EDITOR_FOCUSED : EDITOR_NOT_FOCUSED}
         // paddingVertical={rwd(10)}
         // borderBottomWidth={0.2}
         color="rgba(235,232,232,.57)"
       >
         <TextInput
           value={value}
-          autoFocus={data.index == currentIndex ? true : false}
+          autoFocus={this.isMe() ? true : false}
           // autoFocus={data.index == 0 ? true : false}
           onChangeText={this.onChangeText}
           numberOfLines={0}
@@ -80,31 +73,6 @@ export class P extends React.PureComponent {
 
   onSelectionChange = e => {
     // log(e, 'onSelectionChange')
-  }
-
-  onFocus = e => {
-    // window.keyboardToolbar.open(<T.TagsToolbar />, { modalHeight: rwd(50) })
-    log(e, 'onFocus')
-    // this.tagsToolbar.open()
-    window.tag = this
-    window.currentIndex = this.state.data.inde
-    this.setState({ currentIndex: window.currentIndex })
-    // alert(window.tag.state.data.index)
-    log(window.tag, 'window.tag')
-    window.tagsToolbar.setCurrentTag(this.state.data.item.tag)
-  }
-
-  setTag = tagName => {
-    _clear()
-    log(tagName, 'tagName in P#setTag')
-    let { data } = this.state
-    data.item.tag = tagName
-    this.setState({ data: { ...data } })
-    this.forceUpdate()
-    this.setState({ state: this.state })
-
-    this.updateData({ ...data })
-    window.tagsToolbar.setCurrentTag(tagName)
   }
 
   updateData = data => {

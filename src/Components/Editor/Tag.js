@@ -31,10 +31,10 @@ export class Tag extends React.PureComponent {
     let tag
     switch (data.item.tag) {
       case 'img':
-        tag = <T.IMG data={data} />
+        tag = <T.IMG data={data} parent={this} />
         break
       case 'a':
-        tag = <T.A data={data} />
+        tag = <T.A data={data} parent={this} />
         break
       case 'hr':
       case 'ol':
@@ -49,8 +49,10 @@ export class Tag extends React.PureComponent {
   }
 
   updateData = data => {
+    log('updateData in Tag')
     // log(data, 'data in Tag00000')
     this.setState({ ...data })
+    this.forceUpdate()
     let { parent } = this.props
     parent.updateItem(data)
   }

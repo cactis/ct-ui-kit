@@ -1,3 +1,4 @@
+export * from './TagBase'
 export * from './P'
 export * from './OL'
 export * from './UL'
