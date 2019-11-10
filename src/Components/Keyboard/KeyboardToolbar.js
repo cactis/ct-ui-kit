@@ -60,7 +60,7 @@ export class KeyboardToolbar extends React.PureComponent {
       paddingBottom,
       replyTo,
     } = this.state
-    log(iPhoneX, 'iPhoneX --------------')
+    // log(iPhoneX, 'iPhoneX --------------')
     let {
       modalHeight = textInputHeight + (iPhoneX ? rwd(18) : rwd(0)),
     } = options

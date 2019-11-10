@@ -92,7 +92,6 @@ const Icon = props => {
         // alert(index)
         window.editor.insertItem(index + 1)
         break
-
       case 'img':
         ImagePicker.openPicker({
           compressImageQuality: 1,
@@ -111,7 +110,10 @@ const Icon = props => {
       case 'p':
         window.tag.setTag(tag)
         break
-
+      case 'ul':
+        log(tag, ' tag')
+        // window.tag.setTag(tag)
+        alert()
         break
       default:
         alert()

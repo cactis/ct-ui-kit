@@ -22,7 +22,7 @@ export class P extends TagBase {
   }
 
   onChangeText = value => {
-    this.setState({ value })
+    this.mounted && this.setState({ value })
     let { data } = this.state
     data.item.content = value
     this.updateData(data)
@@ -30,12 +30,12 @@ export class P extends TagBase {
 
   render() {
     let { data, value, currentIndex } = this.state
-    _log(data, 'data in P render()')
+    // _log(data, 'data in P render()')
     if (!data) return null
     let { item = data } = data
     // log(item, 'item in P')
     let _tag = _.upperCase(item.tag).replace(' ', '')
-    log(_tag, '_tag in P#render')
+    // log(_tag, '_tag in P#render')
     let _style = T.TextStyles[_tag]
     return (
       <T.Row

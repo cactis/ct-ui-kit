@@ -148,6 +148,7 @@ export class KeyboardInput extends React.PureComponent {
     let { text } = this.state
     this.onSend && this.onSend(text)
     this.setState({ text: '' })
+    RNKeyboard.dismiss()
   }
 
   updateSize = textInputHeight => {
