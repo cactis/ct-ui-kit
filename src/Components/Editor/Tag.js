@@ -51,7 +51,7 @@ export class Tag extends React.PureComponent {
   updateData = data => {
     log('updateData in Tag')
     // log(data, 'data in Tag00000')
-    this.setState({ ...data })
+    this.mounted && this.setState({ ...data })
     this.forceUpdate()
     let { parent } = this.props
     parent.updateItem(data)

@@ -5,9 +5,9 @@ export class Line extends React.Component {
   render() {
     let {
       flex = 0,
-      size = 0.2,
+      size = 0.4,
       style,
-      color = 'rgb(15,15,15)',
+      color = 'rgb(182,182,182)',
       ...props
     } = this.props
     return (

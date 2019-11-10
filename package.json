@@ -25,6 +25,7 @@
     "react-native-dropdownalert": "^4.2.0",
     "react-native-fast-image": "^7.0.2",
     "react-native-modalbox": "2.0.0",
+    "npm-check-updates": "latest",
     "react-native-image-view": "2.1.8"
   }
 }

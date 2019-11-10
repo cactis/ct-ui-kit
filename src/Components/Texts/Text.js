@@ -136,6 +136,13 @@ const styles = {
     fontWeight: '400',
     color: 'rgba(0,0,0,.85)',
   },
+  P: {
+    fontFamily: BODY_FONT,
+    // fontFamily: iOS ? 'GillSans' : 'sourcesanspro_regular',
+    fontSize: baseSize + (iOS ? 2 : 2),
+    fontWeight: iOS ? '300' : '200',
+    color: 'rgba(0,0,0,.8)',
+  },
   H6: {
     fontFamily: BODY_FONT,
     // fontFamily: iOS ? 'GillSans' : 'sourcesanspro_regular',

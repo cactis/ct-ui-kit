@@ -22,32 +22,7 @@ export class KeyboardToolbar extends React.PureComponent {
     this.initStateData(() => {
       this.autoRun()
     })
-    // this.keyboardShowListener = RNKeyboard.addListener('keyboardDidShow', e =>
-    //   this.keyboardShow(e)
-    // )
-    // this.keyboardHideListener = RNKeyboard.addListener('keyboardDidHide', e =>
-    //   this.keyboardHide(e)
-    // )
   }
-
-  // show = () => {
-  //   // this.setState({ modalHeight: 0 })
-  // }
-  //
-  // hide = () => {}
-  // // keyboardShow(e) {
-  // //   alert('show')
-  // //   this.setState({
-  // //     // paddingBottom: SAFEAREA_BOTTOM,
-  // //   })
-  // // }
-  // //
-  // // keyboardHide(e) {
-  // //   alert('hide')
-  // //   this.setState({
-  // //     paddingBottom: 0,
-  // //   })
-  // // }
 
   componentDidUpdate(prevProps) {
     if (prevProps.navigation !== this.props.navigation)
@@ -78,17 +53,16 @@ export class KeyboardToolbar extends React.PureComponent {
   }
 
   render() {
-    let { content, options = {} } = this.state
     let {
-      // text,
+      content,
+      options = {},
       textInputHeight,
-      // title,
-      // content,
       paddingBottom,
       replyTo,
     } = this.state
+    log(iPhoneX, 'iPhoneX --------------')
     let {
-      modalHeight = textInputHeight + rwd(5) + (iPhoneX ? rwd(10) : rwd(5)),
+      modalHeight = textInputHeight + (iPhoneX ? rwd(18) : rwd(0)),
     } = options
     let { children = content, title: propTitle, height } = this.props
     // log(textInputHeight, 'textInputHeight')
@@ -108,7 +82,7 @@ export class KeyboardToolbar extends React.PureComponent {
           borderColor: '#999',
           backgroundColor: 'white',
           height: modalHeight,
-          height: rwd(50),
+          // height: rwd(50),
         }}
       >
         {children}

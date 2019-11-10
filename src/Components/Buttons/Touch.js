@@ -16,15 +16,16 @@ export class Touch extends Component {
     // log(this, 'this')
     if (disabled) return
     // log(global.justRun, this.id, 'global.justRun, this.id')
+    runLast(() => {
+      global.justRun = null
+    })
     if (global.justRun == this.id) {
+      log(global.justRun, 'justRun')
       return
     }
 
     this.props.onPress()
     global.justRun = this.id
-    delayed(() => {
-      global.justRun = null
-    })
   }
 
   render() {

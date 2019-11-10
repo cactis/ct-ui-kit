@@ -75,7 +75,7 @@ export class Icon extends React.Component {
         width={width}
         height={height}
         padding={padding}
-        // paddingTop={paddingTop}
+        paddingTop={paddingTop}
         marginHorizontals={pad}
         {...props}
       >

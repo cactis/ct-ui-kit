@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
+import ImagePicker from 'react-native-image-crop-picker'
 
 let _navigation
 export class TagsToolbar extends React.PureComponent {
@@ -61,7 +62,7 @@ export class TagsToolbar extends React.PureComponent {
         </Icon>
         <Divide />
         <Icon currentTag={currentTag} tag="enter">
-          <T.Icon name="enter" iconSet="AntDesign" />
+          <T.Icon name="playlist-plus" iconSet="MaterialCommunityIcons" />
         </Icon>
       </T.Center>
     )
@@ -83,6 +84,39 @@ var styles = StyleSheet.create({})
 
 import { useState } from 'react'
 const Icon = props => {
+  onPress = () => {
+    switch (tag) {
+      case 'enter':
+        log(window.tag.state.data)
+        let index = window.tag.state.data.index
+        // alert(index)
+        window.editor.insertItem(index + 1)
+        break
+
+      case 'img':
+        ImagePicker.openPicker({
+          compressImageQuality: 1,
+          // width: 300,
+          // height: 400,
+          // cropping: false,
+          // cicular: true,
+          includeBase64: true,
+        }).then(image => {
+          log(image, 'image')
+          window.tag.setTag(tag, { image })
+        })
+        break
+      case 'h1':
+      case 'h2':
+      case 'p':
+        window.tag.setTag(tag)
+        break
+
+        break
+      default:
+        alert()
+    }
+  }
   let { navigation, currentTag, tag } = props
   let [data, setData] = useState(props.data)
   let flag =
@@ -96,30 +130,7 @@ const Icon = props => {
       </T.Float>
     ) : null
   return (
-    <T.Center
-      {...props}
-      onPress={() => {
-        switch (tag) {
-          case 'enter':
-            log(window.tag.state.data)
-            let index = window.tag.state.data.index
-            // alert(index)
-            window.editor.insertItem(index + 1)
-            break
-
-          case 'h1':
-          case 'h2':
-          case 'img':
-          case 'p':
-            window.tag.setTag(tag)
-            break
-
-            break
-          default:
-            alert()
-        }
-      }}
-    >
+    <T.Center {...props} onPress={onPress}>
       {flag}
       {props.children}
     </T.Center>

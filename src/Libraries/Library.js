@@ -83,6 +83,10 @@ window.navigateTo = (navigation, route, params = {}) => {
   // log(key, 'key current')
   // log(route, 'navigate to route')
   // log(nextKey, 'nextKey - in Library navigateTo')
+  runLast(() => {
+    // log('clear currentRoute')
+    global.currentRoute = null
+  })
   if (global.currentRoute == route) {
     return log('duplicate click')
   }
@@ -99,10 +103,7 @@ window.navigateTo = (navigation, route, params = {}) => {
     navigation.navigate({ routeName: route, params: params, key: nextKey })
   }
   global.currentRoute = route
-  runLast(() => {
-    // log('clear currentRoute')
-    global.currentRoute = null
-  })
+
   // global.routesStack.push(routeName)
   // log(global.routesStack, 'global.routesStack')
 }
@@ -191,4 +192,18 @@ _.insert = function(arr, index, item) {
   arr.splice(index, 0, item)
   log(arr, 'arr')
   return arr
+}
+
+String.prototype.asJSON = function() {
+  try {
+    log(this, 'this')
+    var json = JSON.parse(this)
+    if (typeof json === 'object') {
+      return json
+    } else {
+      return null
+    }
+  } catch (e) {
+    return null
+  }
 }

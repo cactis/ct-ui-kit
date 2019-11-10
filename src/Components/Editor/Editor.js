@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { KeyboardAware } from '../Keyboard'
 let _navigation
+let _PADDING_BOTTOM = rwd(30)
 export class Editor extends KeyboardAware {
   constructor(props) {
     super(props)
@@ -11,6 +12,7 @@ export class Editor extends KeyboardAware {
   state = {
     data: null,
     mounted: false,
+    paddingBottom: _PADDING_BOTTOM,
   }
 
   componentDidMount() {
@@ -39,7 +41,7 @@ export class Editor extends KeyboardAware {
   onKeyboardChanged = height => {
     // alert(height)
     // this.attachKeyBoard()
-    this.mounted && this.setState({ paddingBottom: height })
+    this.mounted && this.setState({ paddingBottom: height + _PADDING_BOTTOM })
   }
 
   save = () => {
@@ -47,15 +49,15 @@ export class Editor extends KeyboardAware {
   }
 
   render() {
-    let { data, paddingBottom = 0 } = this.state
+    let { data, paddingBottom } = this.state
     // log(data, 'data in Editor render()')
     // if (!data) return null
     // let { item = data } = data
     return (
       <T.Screen padding={0} paddingBottom={paddingBottom}>
-        <T.Row flex={0} yAlign="flex-end" paddingRight={rwd(10)}>
+        <R.Toolbar flex={0} yAlign="flex-end" paddingRight={rwd(10)}>
           <T.Button name="save" title="Save" onPress={this.save} />
-        </T.Row>
+        </R.Toolbar>
         <T.List
           // flex={1}
           ref={c => (this.list = c)}

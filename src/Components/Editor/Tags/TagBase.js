@@ -33,11 +33,26 @@ export class TagBase extends React.PureComponent {
     window.tagsToolbar.setCurrentTag(this.state.data.item.tag)
   }
 
-  setTag = tagName => {
-    _clear()
-    log(tagName, 'tagName in P#setTag')
+  setTag = (tagName, options = {}) => {
+    // _clear()
+    log(options, 'options')
+    log(tagName, 'tagName in TagBase#setTag')
     let { data } = this.state
     data.item.tag = tagName
+
+    let { image } = options
+    log(image, 'image from options')
+    if (image) {
+      log(image.data, 'base64data')
+      // data.item.content = null
+      data.item.src = image.path // for preview
+      data.item.base64 = image.data // for server save
+    } else {
+      data.item.src = null
+      data.item.base64 = null
+    }
+    log(data.item.base64, 'data.item.base64')
+
     this.mounted && this.setState({ data: { ...data } })
     this.forceUpdate()
     this.mounted && this.setState({ state: this.state })

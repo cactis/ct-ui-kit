@@ -75,13 +75,6 @@ export class P extends TagBase {
     // log(e, 'onSelectionChange')
   }
 
-  updateData = data => {
-    let { parent } = this.props
-    if (parent) {
-      parent.updateData(data)
-    }
-  }
-
   onBlur = e => {}
 
   initStateData = onComplete => {

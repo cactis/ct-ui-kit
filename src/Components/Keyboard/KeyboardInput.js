@@ -1,8 +1,5 @@
 import React from 'react'
 import { StyleSheet, TextInput, Keyboard as RNKeyboard } from 'react-native'
-// import ModalBox from 'react-native-modalbox'
-// import { AutoGrowTextInput } from 'react-native-auto-grow-textinput'
-// export { RNKeyboard }
 
 let _navigation
 export class KeyboardInput extends React.PureComponent {
