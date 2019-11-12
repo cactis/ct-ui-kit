@@ -28,9 +28,7 @@ export class IMG extends TagBase {
         borderWidth={5}
         marginBottom={this.marginBottom}
         onPress={this.onFocus}
-        borderColor={
-          currentIndex == data.index ? EDITOR_FOCUSED : EDITOR_NOT_FOCUSED
-        }
+        borderColor={this.isMe() ? EDITOR_FOCUSED : EDITOR_NOT_FOCUSED}
       >
         <T.Image uri={item.src} />
       </T.Row>

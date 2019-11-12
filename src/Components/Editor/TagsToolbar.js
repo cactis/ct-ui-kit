@@ -13,19 +13,14 @@ export class TagsToolbar extends React.PureComponent {
     _trace('TagsToolbar')
     this.mounted = true
     _navigation = this.props.navigation
-    this.initStateData(() => {
-      this.autoRun()
-    })
+    // this.initStateData(() => {
+    //   this.autoRun()
+    // })
     window.tagsToolbar = this
   }
   componentDidUpdate(prevProps) {
     if (prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
-  }
-
-  setCurrentTag = currentTag => {
-    log(currentTag, 'currentTag')
-    this.setState({ currentTag })
   }
 
   render() {
@@ -36,28 +31,28 @@ export class TagsToolbar extends React.PureComponent {
 
     return (
       <T.Center flow="row">
-        <Icon currentTag={currentTag} tag="h1">
+        <Icon currentTag={currentTag} tagName="h1">
           <T.Label theme="H4" text="H1" />
         </Icon>
-        <Icon currentTag={currentTag} tag="h2">
+        <Icon currentTag={currentTag} tagName="h2">
           <T.Label theme="H4" text="H2" />
         </Icon>
-        <Icon currentTag={currentTag} tag="p">
+        <Icon currentTag={currentTag} tagName="p">
           <T.Label theme="H4" text="P" />
         </Icon>
         <Divide />
-        <Icon currentTag={currentTag} tag="img">
+        <Icon currentTag={currentTag} tagName="img">
           <T.Icon name="image" />
         </Icon>
         <Divide />
-        <Icon currentTag={currentTag} tag="ul">
+        <Icon currentTag={currentTag} tagName="ul">
           <T.Icon name="list-ul" />
         </Icon>
-        <Icon currentTag={currentTag} tag="ol">
+        <Icon currentTag={currentTag} tagName="ol">
           <T.Icon name="list-ol" />
         </Icon>
         <Divide />
-        <Icon currentTag={currentTag} tag="link">
+        <Icon currentTag={currentTag} tagName="link">
           <T.Icon name="link" />
         </Icon>
         <Divide />
@@ -68,13 +63,19 @@ export class TagsToolbar extends React.PureComponent {
     )
   }
 
-  initStateData = onComplete => {
-    let { data } = this.props
-    this.mounted &&
-      this.setState({ data }, () => {
-        onComplete && onComplete()
-      })
+  // initStateData = onComplete => {
+  //   let { data } = this.props
+  //   this.mounted &&
+  //     this.setState({ data }, () => {
+  //       onComplete && onComplete()
+  //     })
+  // }
+
+  setCurrentTag = currentTag => {
+    log(currentTag, 'currentTag')
+    this.setState({ currentTag })
   }
+
   componentWillUnmount() {
     this.mounted = false
   }
@@ -84,8 +85,11 @@ var styles = StyleSheet.create({})
 
 import { useState } from 'react'
 const Icon = props => {
+  let { navigation, currentTag, tagName } = props
+  let [data, setData] = useState(props.data)
   onPress = () => {
-    switch (tag) {
+    window.tagsToolbar.setCurrentTag(tagName)
+    switch (tagName) {
       case 'enter':
         log(window.tag.state.data)
         let index = window.tag.state.data.index
@@ -102,27 +106,26 @@ const Icon = props => {
           includeBase64: true,
         }).then(image => {
           log(image, 'image')
-          window.tag.setTag(tag, { image })
+          window.tag.setTag(tagName, { image })
         })
         break
       case 'h1':
       case 'h2':
       case 'p':
-        window.tag.setTag(tag)
+        window.tag.setTag(tagName)
         break
       case 'ul':
-        log(tag, ' tag')
-        // window.tag.setTag(tag)
-        alert()
+        log(tagName, ' tagName')
+        window.tag.setTag(tagName)
+        // alert()
         break
       default:
         alert()
     }
   }
-  let { navigation, currentTag, tag } = props
-  let [data, setData] = useState(props.data)
+
   let flag =
-    currentTag == tag ? (
+    currentTag == tagName ? (
       <T.Float width="100%" height="100%" align="center">
         <T.Space
           size={rwd(20)}

@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { AutoGrowTextInput as TextInput } from 'react-native-auto-grow-textinput'
+import { AutoGrowTextInput as GrowTextInput } from 'react-native-auto-grow-textinput'
+
+export { GrowTextInput }
 
 import { TagBase } from './TagBase'
 let _navigation
@@ -29,7 +31,7 @@ export class P extends TagBase {
   }
 
   render() {
-    let { data, value, currentIndex } = this.state
+    let { data, value } = this.state
     // _log(data, 'data in P render()')
     if (!data) return null
     let { item = data } = data
@@ -39,15 +41,16 @@ export class P extends TagBase {
     let _style = T.TextStyles[_tag]
     return (
       <T.Row
+        marginBottom={rwd(10)}
         padding={rwd(10)}
         borderLeftWidth={5}
-        marginBottom={this.marginBottom}
         borderColor={this.isMe() ? EDITOR_FOCUSED : EDITOR_NOT_FOCUSED}
+        marginBottom={this.marginBottom}
         // paddingVertical={rwd(10)}
         // borderBottomWidth={0.2}
         color="rgba(235,232,232,.57)"
       >
-        <TextInput
+        <GrowTextInput
           value={value}
           autoFocus={this.isMe() ? true : false}
           // autoFocus={data.index == 0 ? true : false}
