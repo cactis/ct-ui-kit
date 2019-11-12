@@ -54,9 +54,22 @@ export class Editor extends KeyboardAware {
     // if (!data) return null
     // let { item = data } = data
     return (
-      <T.Screen padding={0} paddingBottom={paddingBottom}>
-        <R.Toolbar flex={0} yAlign="flex-end" paddingRight={rwd(10)}>
-          <T.Button name="save" title="Save" onPress={this.save} />
+      <T.Screen padding={0} borderWidth_={1} paddingBottom={paddingBottom}>
+        <R.Toolbar
+          borderWidth_={1}
+          marginTop={iOS ? 0 : rwd(10)}
+          flex={0}
+          // borderBottomWidth={1}
+          align="flex-start"
+          // marginRight={rwd(60)}
+          // marginTop={rwd(-48)}
+        >
+          <T.Button
+            name="save"
+            title="Save"
+            borderWidth={0.5}
+            onPress={this.save}
+          />
         </R.Toolbar>
         <T.List
           // flex={1}

@@ -56,7 +56,7 @@ export class TagsToolbar extends React.PureComponent {
           <T.Icon name="link" />
         </Icon>
         <Divide />
-        <Icon currentTag={currentTag} tag="enter">
+        <Icon currentTag={currentTag} tagName="enter">
           <T.Icon name="playlist-plus" iconSet="MaterialCommunityIcons" />
         </Icon>
       </T.Center>
@@ -91,7 +91,7 @@ const Icon = props => {
     window.tagsToolbar.setCurrentTag(tagName)
     switch (tagName) {
       case 'enter':
-        log(window.tag.state.data)
+        // log(window.tag.state.data)
         let index = window.tag.state.data.index
         // alert(index)
         window.editor.insertItem(index + 1)
@@ -115,7 +115,7 @@ const Icon = props => {
         window.tag.setTag(tagName)
         break
       case 'ul':
-        log(tagName, ' tagName')
+        // log(tagName, ' tagName')
         window.tag.setTag(tagName)
         // alert()
         break

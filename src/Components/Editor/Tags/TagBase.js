@@ -11,7 +11,7 @@ export class TagBase extends React.PureComponent {
 
   isMe = () => {
     let { data, currentIndex } = this.state
-    log(data.index, currentIndex, 'data.index, currentIndex in TagBase#isMe()')
+    // log(data.index, currentIndex, 'data.index, currentIndex in TagBase#isMe()')
     return data.index == currentIndex
   }
   marginBottom = 5
@@ -35,8 +35,8 @@ export class TagBase extends React.PureComponent {
 
   setTag = (tagName, options = {}) => {
     // _clear()
-    log(options, 'options')
-    log(tagName, 'tagName in TagBase#setTag')
+    // log(options, 'options')
+    // log(tagName, 'tagName in TagBase#setTag')
     let { data } = this.state
     data.item.tag = tagName
 
@@ -51,7 +51,7 @@ export class TagBase extends React.PureComponent {
       data.item.src = null
       data.item.base64 = null
     }
-    log(data.item.base64, 'data.item.base64')
+    // log(data.item.base64, 'data.item.base64')
 
     this.mounted && this.setState({ data: { ...data } })
     this.forceUpdate()

@@ -69,7 +69,7 @@ export class Modal extends React.PureComponent {
       quoteable,
       fullScreen,
       paddable = true,
-      padding = rwd(15),
+      padding = rwd(10),
       ...opts
     } = options
     if (scrollable || fullScreen) swipeToClose = false
@@ -93,8 +93,17 @@ export class Modal extends React.PureComponent {
         {...this.props}
       >
         <T.Space size={fullScreen ? SAFEAREA_TOP / 2 : 0} />
-        <T.Row flex={0} padding={padding} flow="row" xAlign="center">
-          <T.Col borderWidth={0} xAlign="center">
+        <T.Float
+          flex={0}
+          // borderWidth={1}
+          // padding={padding}
+          flow="row"
+          // xAlign="center"
+          right={rwd(0)}
+          top={SAFEAREA_TOP}
+          zIndex={1000}
+        >
+          <T.Col borderWidth={0} flex={0} xAlign="center">
             {title && (
               <T.Label
                 theme="H0"
@@ -119,7 +128,7 @@ export class Modal extends React.PureComponent {
               color="rgb(131,131,131)"
             />
           </T.Col>
-        </T.Row>
+        </T.Float>
         {scrollable ? (
           <T.List
             quoteable={quoteable}

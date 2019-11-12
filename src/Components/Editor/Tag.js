@@ -39,7 +39,7 @@ export class Tag extends React.PureComponent {
       case 'hr':
       case 'ol':
       case 'ul':
-        tag = <T.UL data={data} parent={this} />
+        tag = <T.UL listKey={randId()} data={data} parent={this} />
         break
       default:
         tag = <T.P data={data} parent={this} />

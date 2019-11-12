@@ -25,22 +25,42 @@ export class UL extends TagBase {
   }
 
   onChangeText = (index, content) => {
-    log(index, 'content')
+    // log(index, 'content')
     let { data } = this.state
     let { item = data } = data
     item.children[index] = { tag: 'li', content }
-    _log(item, 'item')
+    // _log(item, 'item')
     this.mounted && this.setState({ data: { ...data } })
-    _log(this.state.data.item.children, 'this.state.data.item.children')
+    // _log(this.state.data.item.children, 'this.state.data.item.children')
   }
 
-  render() {
+  newLine = index => {
+    log(index, 'index in newLine')
     let { data } = this.state
-    log(data, 'data in UL render()')
+    let { item = data } = data
+    this.setState({ data: null }, () => {
+      _.insert(item.children, index + 1, {
+        tag: 'li',
+        // content: String(randId()),
+      })
+      this.currentLi = index + 1
+      this.setState({ currentLi: index + 1, data: { ...data } })
+    })
+  }
+
+  currentLi = 0
+
+  render() {
+    let { data, currentLi = 0 } = this.state
+    // alert(currentLi)
+    // log(data, 'data in UL render()')
     if (!data) return null
     let { item = data } = data
     if (item.content) {
       item.children = [{ tag: 'li', content: item.content }]
+    }
+    if (!item.children) {
+      item.children = [{ tag: 'li', content: '' }]
     }
     return (
       <T.Grid
@@ -58,7 +78,12 @@ export class UL extends TagBase {
         <T.List
           data={item.children}
           renderItem={item => (
-            <T.LI onChangeText={this.onChangeText} data={item} parent={this} />
+            <T.LI
+              autoFocus={currentLi == item.index}
+              onChangeText={this.onChangeText}
+              data={item}
+              parent={this}
+            />
           )}
         />
       </T.Grid>
