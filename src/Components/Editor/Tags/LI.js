@@ -20,7 +20,7 @@ export class LI extends React.PureComponent {
     if (prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
     if (prevProps.autoFocus !== this.props.autoFocus)
-      this.setState({ autoFocus })
+      this.setState({ autoFocus: this.props.autoFocus })
   }
 
   onChangeText = content => {
@@ -40,7 +40,7 @@ export class LI extends React.PureComponent {
     let { data, autoFocus } = this.state
     // log(data, 'data in LI render()')
     // log(autoFocus, 'autoFocus in LI#render')
-    log(parent.currentLi, 'parent.currentLi')
+    log(parent.currentLi, 'parent.currentLi in LI#render')
     if (!data) return null
     let { item = data, index } = data
     return (
@@ -54,7 +54,7 @@ export class LI extends React.PureComponent {
           // borderWidth={1}
           flex={0}
           yAlign="flex-end"
-          paddingTop={rwd(iOS ? 10 : 8)}
+          paddingTop={rwd(iOS ? (parent.editable ? 10 : 8) : 8)}
           // padding={rwd(iOS ? 6 : 8)}
           paddingRight={rwd(0)}
           // borderWidth={1}
@@ -70,24 +70,31 @@ export class LI extends React.PureComponent {
         </T.Col>
         <T.Space />
         <T.Col>
-          <T.GrowTextInput
-            ref={c => (this.input = c)}
-            // borderWidth={1}
-            // autoFocus={autoFocus}
-            editable={parent.editable}
-            onChangeText={this.onChangeText}
-            autoFocus={
-              parent.isMe() && parent.currentLi == index ? true : false
-            }
-            value={item.content}
-            style={T.TextStyles['H6']}
-            padding={rwd(4)}
-            // padding={rwd(8)}
-            blurOnSubmit={true}
-            onSubmitEditing={this.onSubmitEditing}
-            // onKeyPress={this.onKeyPress}
-            onFocus={parent.onFocus}
-          />
+          {parent.editable ? (
+            <T.RNTextInput
+              multiline={true}
+              ref={c => (this.input = c)}
+              // borderWidth={1}
+              // autoFocus={autoFocus}
+              // editable={parent.editable}
+              onChangeText={this.onChangeText}
+              autoFocus={
+                parent.isMe() && parent.currentLi == index ? true : false
+              }
+              value={item.content}
+              style={T.TextStyles['H6']}
+              padding={rwd(4)}
+              // padding={rwd(8)}
+              blurOnSubmit={true}
+              onSubmitEditing={this.onSubmitEditing}
+              // onKeyPress={this.onKeyPress}
+              onFocus={parent.onFocus}
+            />
+          ) : (
+            <T.Row padding={rwd(0)}>
+              <T.Label theme="H6" text={item.content} />
+            </T.Row>
+          )}
         </T.Col>
       </T.Row>
     )

@@ -50,7 +50,8 @@ export class P extends TagBase {
         // borderBottomWidth={0.2}
         color="rgba(235,232,232,.57)"
       >
-        <GrowTextInput
+        <T.RNTextInput
+          multiline={true}
           value={value}
           autoFocus={this.isMe() ? true : false}
           // autoFocus={data.index == 0 ? true : false}

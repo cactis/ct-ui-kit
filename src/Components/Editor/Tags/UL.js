@@ -38,14 +38,14 @@ export class UL extends TagBase {
     log(index, 'index in newLine')
     let { data } = this.state
     let { item = data } = data
-    this.setState({ data: null }, () => {
-      _.insert(item.children, index + 1, {
-        tag: 'li',
-        // content: String(randId()),
-      })
-      this.currentLi = index + 1
-      this.setState({ currentLi: index + 1, data: { ...data } })
+    // this.setState({ data: null }, () => {
+    _.insert(item.children, index + 1, {
+      tag: 'li',
+      // content: String(randId()),
     })
+    this.currentLi = index + 1
+    this.setState({ currentLi: index + 1, data: { ...data } })
+    // })
   }
 
   currentLi = 0
@@ -64,6 +64,8 @@ export class UL extends TagBase {
     }
     return (
       <T.Grid
+        key={item.id}
+        listKey={item.id}
         marginBottom={rwd(10)}
         paddingHorizontal={rwd(10)}
         borderLeftWidth={this.editable ? 5 : 0}
@@ -76,6 +78,8 @@ export class UL extends TagBase {
         }
       >
         <T.List
+          // key={randId()}
+          listKey={randId()}
           data={item.children}
           renderItem={item => (
             <T.LI

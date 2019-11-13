@@ -319,6 +319,9 @@ export class List extends React.PureComponent {
     return (
       <Grid>
         <FlatList
+          key={`randId()`}
+          // listKey={`randId()`}
+          // keyExtractor={(item, index) => index.toString()}
           ref={c => (this.flatList = c)}
           data={data}
           onScroll={this._onScroll}

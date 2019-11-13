@@ -28,7 +28,7 @@ export class Tag extends React.PureComponent {
     let { data } = this.state
     // _log(data, 'data in Tag render()')
     if (!data) return null
-    let tag
+    let tag = null
     switch (data.item.tag) {
       case 'img':
         tag = <T.IMG data={data} parent={this} />
@@ -39,7 +39,7 @@ export class Tag extends React.PureComponent {
       case 'hr':
       case 'ol':
       case 'ul':
-        tag = <T.UL listKey={randId()} data={data} parent={this} />
+        tag = <T.UL data={data} parent={this} />
         break
       default:
         tag = <T.P data={data} parent={this} />
