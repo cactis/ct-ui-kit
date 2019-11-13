@@ -114,6 +114,11 @@ const Icon = props => {
       case 'p':
         window.tag.setTag(tagName)
         break
+      case 'ol':
+        // log(tagName, ' tagName')
+        window.tag.setTag(tagName)
+        // alert()
+        break
       case 'ul':
         // log(tagName, ' tagName')
         window.tag.setTag(tagName)
