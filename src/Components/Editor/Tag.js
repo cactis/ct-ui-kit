@@ -38,6 +38,8 @@ export class Tag extends React.PureComponent {
         break
       case 'hr':
       case 'ol':
+        tag = <T.OL data={data} parent={this} />
+        break
       case 'ul':
         tag = <T.UL data={data} parent={this} />
         break

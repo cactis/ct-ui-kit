@@ -40,9 +40,48 @@ export class LI extends React.PureComponent {
     let { data, autoFocus } = this.state
     // log(data, 'data in LI render()')
     // log(autoFocus, 'autoFocus in LI#render')
-    log(parent.currentLi, 'parent.currentLi in LI#render')
+    let parent_name = parent.constructor.name
     if (!data) return null
     let { item = data, index } = data
+    let label = (
+      <>
+        <T.Space
+          size={
+            rwd(iOS ? (parent.editable ? 10 : 4) : parent.editable ? 5 : 1) / 2
+          }
+        />
+        <T.Text
+          text={`\u2022`}
+          numberOfLines={0}
+          style={{
+            ...T.TextStyles[iOS ? 'H6' : 'H6'],
+            fontSize: iOS ? 8 : 12,
+          }}
+          // style={T.TextStyles['H9']}
+        />
+      </>
+    )
+    if (parent_name == 'OL') {
+      label = (
+        <>
+          <T.Space
+            size={
+              rwd(iOS ? (parent.editable ? 6 : 1) : parent.editable ? 5 : 1) / 2
+            }
+          />
+          <T.Text
+            text={`${index + 1}.`}
+            numberOfLines={0}
+            style={{
+              ...T.TextStyles[iOS ? 'H6' : 'H6'],
+              fontSize: iOS ? 13 : 12,
+            }}
+
+            // style={T.TextStyles['H9']}
+          />
+        </>
+      )
+    }
     return (
       <T.Row
         flow="row"
@@ -54,19 +93,11 @@ export class LI extends React.PureComponent {
           // borderWidth={1}
           flex={0}
           yAlign="flex-end"
-          paddingTop={rwd(iOS ? (parent.editable ? 10 : 8) : 8)}
           // padding={rwd(iOS ? 6 : 8)}
           paddingRight={rwd(0)}
           // borderWidth={1}
         >
-          <T.Label
-            text={`\u2022`}
-            style={{
-              ...T.TextStyles[iOS ? 'H6' : 'H6'],
-              fontSize: iOS ? 8 : 12,
-            }}
-            // style={T.TextStyles['H9']}
-          />
+          {label}
         </T.Col>
         <T.Space />
         <T.Col>

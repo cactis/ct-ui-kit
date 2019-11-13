@@ -5,11 +5,6 @@ import { TagBase } from './TagBase'
 
 let _navigation
 export class UL extends TagBase {
-  // state = {
-  //   data: null,
-  //   mounted: false,
-  // }
-
   componentDidMount() {
     _trace('UL')
     this.mounted = true
