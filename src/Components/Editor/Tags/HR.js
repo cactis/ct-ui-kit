@@ -3,14 +3,14 @@ import { StyleSheet } from 'react-native'
 
 let _navigation
 import { TagBase } from './TagBase'
-export class A extends TagBase {
+export class HR extends TagBase {
   state = {
     data: null,
     mounted: false,
   }
 
   componentDidMount() {
-    _trace('A')
+    _trace('HR')
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {
@@ -23,33 +23,25 @@ export class A extends TagBase {
   }
 
   render() {
-    let { parent } = this.props
-    let { data } = this.state
-    // log(data, 'data in A render()')
+    let { data, value } = this.state
+    // _log(data, 'data in P render()')
     if (!data) return null
     let { item = data } = data
-    log(parent, 'parent')
     return (
-      <T.Row padding={rwd(10)}>
-        <T.Row flow="row">
-          <T.Col flex={0}>
-            <T.Label title="url" />
-          </T.Col>
-          <T.Space />
-          <T.Col>
-            <T.RNTextInput onFocus={this.onFocus} />
-          </T.Col>
-        </T.Row>
-        <T.Row flow="row">
-          <T.Col flex={0}>
-            <T.Label title="title" />
-          </T.Col>
-          <T.Space />
-          <T.Col>
-            <T.RNTextInput onFocus={this.onFocus} />
-          </T.Col>
-        </T.Row>
-      </T.Row>
+      <T.Center
+        padding={SIZE.m}
+        padding={rwd(10)}
+        borderLeftWidth={5}
+        borderColor={this.isMe() ? EDITOR_FOCUSED : EDITOR_NOT_FOCUSED}
+      >
+        <T.RNTextInput
+          value="．．．"
+          onFocus={this.onFocus}
+          autoFocus={this.isMe() ? true : false}
+          autoFocus={true}
+          style={{ fontWeight: '500', fontSize: rwd(18) }}
+        />
+      </T.Center>
     )
   }
 

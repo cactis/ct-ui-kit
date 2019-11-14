@@ -24,12 +24,36 @@ export class TagsToolbar extends React.PureComponent {
   }
 
   render() {
+    let { tagsBar = true } = window
     let { currentTag } = this.state
     // log(currentTag, 'currentTag in TagsToolbar render')
     // if (!data) return null
     // let { item = data } = data
-
-    return (
+    let stylesToolbar = (
+      <T.Row flow="row" xAlign="flex-start">
+        <Icon currentTag={currentTag} tagName="b">
+          <T.Label
+            size={rwd(16)}
+            theme="H8"
+            text="Bold"
+            style={{ fontWeight: '800' }}
+          />
+        </Icon>
+        <Icon currentTag={currentTag} tagName="i">
+          <T.Label
+            size={rwd(16)}
+            theme="H8"
+            text="Italic"
+            style={{ fontStyle: 'italic' }}
+          />
+        </Icon>
+        <Icon currentTag={currentTag} tagName="a">
+          <T.Label size={rwd(16)} theme="H8" text="Link" />
+        </Icon>
+        <T.Space />
+      </T.Row>
+    )
+    let tagsToolbar = (
       <T.Center flow="row">
         <Icon currentTag={currentTag} tagName="h1">
           <T.Label theme="H4" text="H1" />
@@ -41,7 +65,7 @@ export class TagsToolbar extends React.PureComponent {
           <T.Label theme="H4" text="P" />
         </Icon>
         <Icon currentTag={currentTag} tagName="c">
-          <T.Label theme="H4" text="C" />
+          <T.Label theme="H4" text="C" size={rwd(10)} />
         </Icon>
         <Divide />
         <Icon currentTag={currentTag} tagName="img">
@@ -55,15 +79,27 @@ export class TagsToolbar extends React.PureComponent {
           <T.Icon name="list-ol" />
         </Icon>
         <Divide />
-        <Icon currentTag={currentTag} tagName="link">
-          <T.Icon name="link" />
+        <Icon currentTag={currentTag} tagName="hr">
+          <T.Icon
+            name="dots-three-horizontal"
+            iconSet="Entypo"
+            size={rwd(14)}
+          />
         </Icon>
         <Divide />
+        {/* <Icon currentTag={currentTag} tagName="a">
+      <T.Icon name="link" />
+    </Icon> */}
+        <Divide />
+        {/* <Icon currentTag={currentTag} tagName="trash">
+          <T.Icon name="trash" iconSet="EvilIcons" size={rwd(24)} />
+        </Icon> */}
         <Icon currentTag={currentTag} tagName="enter">
           <T.Icon name="playlist-plus" iconSet="MaterialCommunityIcons" />
         </Icon>
       </T.Center>
     )
+    return <T.Row>{tagsBar ? tagsToolbar : stylesToolbar}</T.Row>
   }
 
   // initStateData = onComplete => {
@@ -94,9 +130,7 @@ const Icon = props => {
     window.tagsToolbar.setCurrentTag(tagName)
     switch (tagName) {
       case 'enter':
-        // log(window.tag.state.data)
         let index = window.tag.state.data.index
-        // alert(index)
         window.editor.insertItem(index + 1)
         break
       case 'img':
@@ -116,17 +150,11 @@ const Icon = props => {
       case 'h2':
       case 'c':
       case 'p':
-        window.tag.setTag(tagName)
-        break
       case 'ol':
-        // log(tagName, ' tagName')
-        window.tag.setTag(tagName)
-        // alert()
-        break
       case 'ul':
-        // log(tagName, ' tagName')
+      case 'hr':
+      case 'a':
         window.tag.setTag(tagName)
-        // alert()
         break
       default:
         alert()

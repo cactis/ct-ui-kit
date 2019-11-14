@@ -13,6 +13,7 @@ export class UL extends TagBase {
       this.autoRun()
     })
   }
+
   editable = true
   componentDidUpdate(prevProps) {
     if (prevProps.navigation !== this.props.navigation)
@@ -59,8 +60,6 @@ export class UL extends TagBase {
     }
     return (
       <T.Grid
-        key={item.id}
-        listKey={item.id}
         marginBottom={rwd(10)}
         paddingHorizontal={rwd(10)}
         borderLeftWidth={this.editable ? 5 : 0}

@@ -29,7 +29,9 @@ export class Editor extends KeyboardAware {
   }
 
   attachKeyBoard = () => {
-    window.keyboardToolbar.open(<T.TagsToolbar />, { modalHeight: rwd(50) })
+    window.keyboardToolbar.open(<T.TagsToolbar />, {
+      modalHeight: rwd(50),
+    })
     // window.keyboardToolbar.open(null, { modalHeight: 100 })
   }
 
@@ -77,7 +79,7 @@ export class Editor extends KeyboardAware {
           data={data}
           renderItem={item => (
             <T.Tag
-              key={item}
+              // key={item}
               data={item}
               parent={this}
               onEnter={this.onEnter}

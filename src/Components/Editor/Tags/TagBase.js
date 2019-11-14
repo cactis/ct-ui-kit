@@ -11,7 +11,7 @@ export class TagBase extends React.PureComponent {
 
   isMe = () => {
     let { data, currentIndex } = this.state
-    // log(data.index, currentIndex, 'data.index, currentIndex in TagBase#isMe()')
+    log(data.index, currentIndex, 'data.index, currentIndex in TagBase#isMe()')
     return data.index == currentIndex
   }
   marginBottom = 5

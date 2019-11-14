@@ -33,10 +33,12 @@ export class Tag extends React.PureComponent {
       case 'img':
         tag = <T.IMG data={data} parent={this} />
         break
-      case 'a':
-        tag = <T.A data={data} parent={this} />
-        break
+      // case 'a':
+      //   tag = <T.A data={data} parent={this} />
+      //   break
       case 'hr':
+        tag = <T.HR data={data} parent={this} />
+        break
       case 'ol':
         tag = <T.OL data={data} parent={this} />
         break

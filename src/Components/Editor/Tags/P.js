@@ -76,7 +76,13 @@ export class P extends TagBase {
   }
 
   onSelectionChange = e => {
-    // log(e, 'onSelectionChange')
+    log(e, 'onSelectionChange')
+    let { nativeEvent } = e
+    let { selection } = nativeEvent
+    log(selection, 'selection')
+    let { start, end } = selection
+    window.tagsBar = start == end
+    window.tagsToolbar.forceUpdate()
   }
 
   onBlur = e => {}
