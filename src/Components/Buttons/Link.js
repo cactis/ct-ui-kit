@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Linking } from 'react-native'
+export { Linking }
 import * as T from '../../'
 export class Link extends React.PureComponent {
   handleClick = () => {

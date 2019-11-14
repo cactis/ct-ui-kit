@@ -2,6 +2,10 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { AutoGrowTextInput as GrowTextInput } from 'react-native-auto-grow-textinput'
 
+import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor'
+
+export { RichEditor }
+
 export { GrowTextInput }
 
 import { TagBase } from './TagBase'
@@ -24,6 +28,7 @@ export class P extends TagBase {
   }
 
   onChangeText = value => {
+    log(value, 'value')
     this.mounted && this.setState({ value })
     let { data } = this.state
     data.item.content = value
@@ -39,6 +44,12 @@ export class P extends TagBase {
     let _tag = _.upperCase(item.tag).replace(' ', '')
     // log(_tag, '_tag in P#render')
     let _style = T.TextStyles[_tag]
+    // value = (
+    //   <T.Text>
+    //     123<T.Text style={{ fontWeight: '900' }}>456</T.Text>789
+    //   </T.Text>
+    // )
+    let that = this
     return (
       <T.Row
         marginBottom={rwd(10)}
@@ -50,6 +61,13 @@ export class P extends TagBase {
         // borderBottomWidth={0.2}
         color="rgba(235,232,232,.57)"
       >
+        {/* <RichEditor
+          ref={rf => (that.richText = rf)}
+          initialContentHTML={value}
+          onKeyPress={this.onKeyPress}
+          style={styles.rich}
+          on
+        /> */}
         <T.RNTextInput
           multiline={true}
           value={value}
@@ -67,6 +85,7 @@ export class P extends TagBase {
           onFocus={this.onFocus}
           onKeyPress={this.onKeyPress}
           onBlur={this.onBlur}
+          // children={value}
         />
       </T.Row>
     )
@@ -104,4 +123,19 @@ export class P extends TagBase {
     // window.keyboardToolbar.open(<T.TagsToolbar />, { modalHeight: rwd(50) })
   }
 }
-var styles = StyleSheet.create({})
+var styles = StyleSheet.create({
+  rich: {
+    // borderWidth: 1,
+    minHeight: 'auto',
+    flex: 0,
+  },
+})
+
+import { useState } from 'react'
+
+export const b = props => {
+  let { children, value = children } = props
+  let [data, setData] = useState(props.data)
+  // if (!data) return null
+  return <T.Label text={value} />
+}

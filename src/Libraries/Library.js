@@ -207,3 +207,14 @@ String.prototype.asJSON = function() {
     return null
   }
 }
+
+window.openURL = href => {
+  // alert(href)
+  T.Linking.canOpenURL(href).then(supported => {
+    if (supported) {
+      T.Linking.openURL(href)
+    } else {
+      log("Don't know how to open URI: " + href)
+    }
+  })
+}
