@@ -43,6 +43,8 @@ export class Tag extends React.PureComponent {
       case 'ul':
         tag = <T.UL data={data} parent={this} />
         break
+      case 'caption':
+        tag = <T.Caption data={data} parent={this} />
       default:
         tag = <T.P data={data} parent={this} />
     }

@@ -40,6 +40,9 @@ export class TagsToolbar extends React.PureComponent {
         <Icon currentTag={currentTag} tagName="p">
           <T.Label theme="H4" text="P" />
         </Icon>
+        <Icon currentTag={currentTag} tagName="c">
+          <T.Label theme="H4" text="C" />
+        </Icon>
         <Divide />
         <Icon currentTag={currentTag} tagName="img">
           <T.Icon name="image" />
@@ -111,6 +114,7 @@ const Icon = props => {
         break
       case 'h1':
       case 'h2':
+      case 'c':
       case 'p':
         window.tag.setTag(tagName)
         break
@@ -135,7 +139,7 @@ const Icon = props => {
         <T.Space
           size={rwd(20)}
           borderRadius={rwd(20)}
-          backgroundColor="rgba(180,147,9,.26)"
+          backgroundColor="rgba(113,237,109,.39)"
         />
       </T.Float>
     ) : null
