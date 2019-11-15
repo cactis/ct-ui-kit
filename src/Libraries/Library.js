@@ -208,13 +208,21 @@ String.prototype.asJSON = function() {
   }
 }
 
-window.openURL = href => {
-  // alert(href)
-  T.Linking.canOpenURL(href).then(supported => {
+window.openURL = (navigation, options = {}) => {
+  // alert(url)
+  let { url, title } = options
+  log(url, 'url')
+  navigateTo(navigation, 'WebViewScreen', {
+    uri: url,
+    title: url,
+    fullScreen: false,
+  })
+  return
+  T.Linking.canOpenURL(url).then(supported => {
     if (supported) {
-      T.Linking.openURL(href)
+      T.Linking.openURL(url)
     } else {
-      log("Don't know how to open URI: " + href)
+      log("Don't know how to open URI: " + url)
     }
   })
 }

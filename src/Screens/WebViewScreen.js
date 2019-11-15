@@ -25,17 +25,21 @@ export class WebViewScreen extends WebSocketBase {
   }
 
   render() {
-    let { data, uri } = this.state
+    let { data, uri, fullScreen } = this.state
     // if (!data) return null
+    // __DEV__ && alert(uri)
     log(data, 'data in WebViewScreen render() ')
+    let padding = fullScreen ? SIZE.s : SIZE.n
     return (
       <>
-        <T.Screen>
-          <T.BarItem
-            name="angle-left"
-            color="#333"
-            onPress={() => T.NavigationService.goBack()}
-          />
+        <T.Screen padding={padding}>
+          {fullScreen && (
+            <T.BarItem
+              name="angle-left"
+              color="#333"
+              onPress={() => T.NavigationService.goBack()}
+            />
+          )}
           {/* <T.Html uri={uri} /> */}
           <WebView
             // flex={1}
@@ -52,9 +56,9 @@ export class WebViewScreen extends WebSocketBase {
 
   initStateData = onComplete => {
     if (_navigation.state.params) {
-      let { data, uri } = _navigation.state.params
+      let { data, uri, fullScreen = true } = _navigation.state.params
       // _navigation.setParams({ title: '改為新標題' })
-      this.setState({ data, uri }, () => {
+      this.setState({ data, uri, fullScreen }, () => {
         onComplete && onComplete()
       })
     } else {

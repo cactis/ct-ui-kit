@@ -34,7 +34,7 @@ export class Screen extends React.Component {
   render() {
     let { refreshing } = this.state
     let {
-      padding = 10,
+      padding = SIZE.s,
       safeAreaDisabled = false,
       scrollable = false,
     } = this.props
