@@ -92,15 +92,15 @@ export class Modal extends React.PureComponent {
         {...opts}
         {...this.props}
       >
-        <T.Space size={fullScreen ? SAFEAREA_TOP / 2 : 0} />
+        <T.Space size={fullScreen ? SAFEAREA_TOP / 2 : SIZE.s} />
         <T.Float
           flex={0}
           // borderWidth={1}
           // padding={padding}
           flow="row"
           // xAlign="center"
-          right={rwd(0)}
-          top={SAFEAREA_TOP}
+          right={SIZE.s}
+          top={fullScreen ? SAFEAREA_TOP : SIZE.s}
           zIndex={1000}
         >
           <T.Col borderWidth={0} flex={0} xAlign="center">

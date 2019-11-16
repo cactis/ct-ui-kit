@@ -21,6 +21,7 @@ export class Button extends React.PureComponent {
   }
   onPress = () => {
     let { url, onPress } = this.props
+    // if (disabled) return
     if (url) {
       this.handleClick()
     } else {
@@ -80,8 +81,9 @@ export class Button extends React.PureComponent {
       onPress,
       fontSize = titleStyle?.fontSize || BASE_SIZE * 1.2,
       padding = fontSize * 0.5,
-      // backgroundColor = disabled ? 'rgb(213,213,213)' : 'white',
-      backgroundColor,
+      disabled = false,
+      backgroundColor = disabled ? 'rgb(213,213,213)' : 'white',
+      // backgroundColor,
       ...props
     } = this.props
     // let borderColor = 'rgba(255,255,255,.4)'
@@ -95,7 +97,7 @@ export class Button extends React.PureComponent {
     let negtive = this.props.negtive ? styles.negtive : {}
     // log(negtive, 'negtive')
     return (
-      <Touch onPress={this.onPress}>
+      <Touch disabled={disabled} onPress={this.onPress}>
         <Center
           flex={flex}
           style={{
