@@ -11,7 +11,7 @@ export class TagBase extends React.PureComponent {
 
   isMe = () => {
     let { data, currentIndex } = this.state
-    log(data.index, currentIndex, 'data.index, currentIndex in TagBase#isMe()')
+    // log(data.index, currentIndex, 'data.index, currentIndex in TagBase#isMe()')
     return data.index == currentIndex
   }
   marginBottom = 5
@@ -45,11 +45,15 @@ export class TagBase extends React.PureComponent {
     if (image) {
       // log(image.data, 'base64data')
       // data.item.content = null
+      log(image, data.item, 'image, data.item1111')
       data.item.src = image.path // for preview
-      data.item.base64 = image.data // for server save
+      data.item.data = image.data
+      data.item.mime = image.mime
+      // data.item = { ...data.item, ...image }
+      log(data.item, 'data.item2222')
     } else {
       data.item.src = null
-      data.item.base64 = null
+      data.item.data = null
     }
     // log(data.item.base64, 'data.item.base64')
 

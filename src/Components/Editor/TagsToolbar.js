@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import ImagePicker from 'react-native-image-crop-picker'
+import RNFS from 'react-native-fs'
 
 let _navigation
 export class TagsToolbar extends React.PureComponent {
@@ -142,8 +143,23 @@ const Icon = props => {
           // cicular: true,
           includeBase64: true,
         }).then(image => {
-          log(image, 'image')
-          window.tag.setTag(tagName, { image })
+          log(image, 'image 11111')
+          let { mime, path } = image
+          if (mime.search(/mp4/) > -1) {
+            log('read mp4')
+            RNFS.readFile(path, 'base64')
+              .then(base64 => {
+                log(base64, 'base64')
+                image.data = base64
+                log(image, 'image 22222')
+                window.tag.setTag(tagName, { image })
+              })
+              .catch(err => {
+                log(err, 'err')
+              })
+          } else {
+            window.tag.setTag(tagName, { image })
+          }
         })
         break
       case 'h1':
