@@ -7,6 +7,7 @@ export const Video = props => {
   // if (!data) return null
 
   _onPress = () => {
+    alert(url)
     popup.open(
       <RNVideo
         source={{ uri: url }}
@@ -39,7 +40,7 @@ export const Video = props => {
   }
   return (
     <T.Touch onPress={_onPress}>
-      <T.Image />
+      <T.Image {...props} />
     </T.Touch>
   )
 }
