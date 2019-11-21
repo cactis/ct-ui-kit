@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { WebView } from 'react-native-webview'
 import { WebSocketBase } from './WebSocketBase'
+export { WebView }
 let _this, _navigation
 export class WebViewScreen extends WebSocketBase {
   static navigationOptions = ({ navigation }) => {

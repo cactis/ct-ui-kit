@@ -157,7 +157,7 @@ window.iPhoneX =
   iOS &&
   (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
     deviceInfo.Model?.indexOf('iPhone 11') == 0)
-
+window.pad = SCREEN_WIDTH > 800
 export const size = {
   normalSize: normalSize,
   padding: padding,

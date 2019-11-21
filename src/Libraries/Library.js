@@ -132,9 +132,10 @@ window.pushTo = (navigation, route, params = {}) => {
 }
 
 window.columnsNumber = (padding = 0) => {
+  // alert(SCREEN_WIDTH)
   let s = SCREEN_WIDTH
   let gutter = s * 0.01
-  let columnWidth = s > 1000 ? 200 : s > 600 ? 130 : s > 400 ? 120 : 100
+  let columnWidth = s > 1000 ? 160 : s > 600 ? 150 : s > 400 ? 120 : 100
   let numColumns = Math.floor(s / columnWidth)
   columnWidth = (s - (numColumns - 1) * gutter - 2 * padding) / numColumns
   return { gutter: gutter, numColumns: numColumns, columnWidth: columnWidth }
@@ -225,4 +226,15 @@ window.openURL = (navigation, options = {}) => {
       log("Don't know how to open URI: " + url)
     }
   })
+}
+
+RegExp.prototype.indexOf = function(str, startIndex) {
+  var re = new RegExp(
+    this.source,
+    'g' + (this.ignoreCase ? 'i' : '') + (this.multiLine ? 'm' : '')
+  )
+  re.lastIndex = startIndex || 0
+  var res = re.exec(str)
+  if (!res) return -1
+  return re.lastIndex - res[0].length
 }

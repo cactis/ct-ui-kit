@@ -30,7 +30,11 @@ export class Screen extends React.Component {
       this.onOpen(this)
     })
   }
-
+  onLayout = e => {
+    window.SCREEN_WIDTH = e.nativeEvent.layout.width
+    window.SCREEN_HEIGHT = e.nativeEvent.layout.height
+    // alert(window.SCREEN_WIDTH)
+  }
   render() {
     let { refreshing } = this.state
     let {
@@ -55,7 +59,7 @@ export class Screen extends React.Component {
     ) : (
       <SafeArea flex={1}>{content}</SafeArea>
     )
-    return body
+    return <Grid onLayout={this.onLayout}>{body}</Grid>
   }
 
   initStateData = onComplete => {
