@@ -7,7 +7,7 @@ export const Video = props => {
   // if (!data) return null
 
   _onPress = () => {
-    alert(url)
+    // alert(url)
     popup.open(
       <RNVideo
         source={{ uri: url }}

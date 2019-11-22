@@ -2,21 +2,22 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import * as T from 'ct-ui-kit'
 import ModalBox from 'react-native-modalbox'
-export { ModalBox }
+
 let _navigation
-export class Modal extends React.PureComponent {
-  state = {
-    data: null,
-    content: null,
-    // title: null,
-    options: {},
-    _options: {
-      swipeToClose: true,
-      height: SCREEN_HEIGHT * (iOS ? 0.6 : 0.8),
-      direction: 'bottom',
-      title: null,
-    },
-  }
+import { ModalBase } from './ModalBase'
+export class Modal extends ModalBase {
+  // state = {
+  //   data: null,
+  //   content: null,
+  //   // title: null,
+  //   options: {},
+  //   _options: {
+  //     swipeToClose: true,
+  //     height: SCREEN_HEIGHT * (iOS ? 0.6 : 0.8),
+  //     direction: 'bottom',
+  //     title: null,
+  //   },
+  // }
 
   componentDidMount() {
     this.mounted = true
@@ -29,30 +30,6 @@ export class Modal extends React.PureComponent {
   componentDidUpdate(prevProps) {
     if (prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
-  }
-
-  open = (content, options = {}) => {
-    log(options, 'options---------------')
-    this.mounted &&
-      this.setState({
-        content,
-        options: {
-          ...{ title: null, ...this.state._options, ...options },
-        },
-      })
-    this.modal.open()
-  }
-
-  close = () => {
-    this.onClose()
-    this.modal.close()
-  }
-
-  onClose = () => {
-    let { options } = this.state
-    log(options, 'options')
-    let { onClose } = options
-    onClose && onClose()
   }
 
   render() {

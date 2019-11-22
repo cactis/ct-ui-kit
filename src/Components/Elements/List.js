@@ -61,16 +61,18 @@ export class List extends React.PureComponent {
     },
     onCreated: (item, that) => {
       this._reload()
+      return
       // let { item = newItem } = newItem
       // log(item, 'item')
       // // log(item, 'item - in List#itemCreated')
-      // let { data } = this.state
-      // data = [item, ...data]
+      let { data } = this.state
+      data = [item, ...data]
       // // // log(data, 'data - in ')
-      // this.setState({ data: [...data] })
+      // alert('update')
+      this.mounted && this.setState({ data: [...data] })
       // // this.setState({ data: [...newData] })
       // // log(newData, 'newData - in ')
-      // this.forceUpdate()
+      // this.flatList.forceUpdate()
       // that.forceUpdate()
     },
     onUpdated: item => {
@@ -319,7 +321,7 @@ export class List extends React.PureComponent {
     return (
       <Grid>
         <FlatList
-          key={`randId()`}
+          // key={`randId()`}
           // listKey={`randId()`}
           // keyExtractor={(item, index) => index.toString()}
           ref={c => (this.flatList = c)}
@@ -344,7 +346,9 @@ export class List extends React.PureComponent {
           // onPanResponderTerminationRequest={() => false}
           // horizontal
           renderItem={this.props.renderItem || this.renderItem}
-          extraData={refresh}
+          // extraData={refresh}
+          extraData={data}
+          key={data ? data.length : randId()}
           ListHeaderComponent={
             searchable ? (
               <Div>
