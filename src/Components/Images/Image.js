@@ -15,7 +15,7 @@ export class Image extends Component {
       mode = 'cover',
       ...props
     } = this.props
-    // log(source, uri, 'source, uri')
+    log(source, uri, 'source, uri')
     let _mode = FastImage.resizeMode[mode]
     let _source = {
       uri: uri,

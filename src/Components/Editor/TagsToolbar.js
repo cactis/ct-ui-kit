@@ -148,6 +148,9 @@ const Icon = props => {
           includeBase64: true,
         }).then(image => {
           log(image, 'image 11111')
+          // base64Image(image).then(image => {
+          //   window.tag.setTag(tagName, { image })
+          // })
           let { mime, path } = image
           if (mime.search(/mp4/) > -1) {
             log('read mp4')

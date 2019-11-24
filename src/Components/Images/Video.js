@@ -40,7 +40,21 @@ export const Video = props => {
   }
   return (
     <T.Touch onPress={_onPress}>
-      <T.Image {...props} />
+      {/* <T.Image {...props} /> */}
+      <RNVideo
+        // flex={1}
+        allowsFullscreenVideo={true}
+        // originWhitelist={['*']}
+        source={{ uri: url }}
+        playWhenInactive={false}
+        muted={true}
+        paused={true}
+        style={{
+          width: '100%',
+          height: SCREEN_WIDTH / 2,
+          // height: T.size.contentHeight,
+        }}
+      />
     </T.Touch>
   )
 }

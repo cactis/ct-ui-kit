@@ -25,7 +25,10 @@ export class FlexModal extends ModalBase {
     log(children, 'children')
     return (
       <ModalBox
-        style={{ height: 'auto', backgroundColor: 'red' }}
+        style={{
+          height: 'auto',
+          // backgroundColor: 'red'
+        }}
         position="bottom"
         entry="bottom"
         ref={c => (this.modal = c)}

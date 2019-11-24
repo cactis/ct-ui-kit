@@ -23,6 +23,7 @@ export class IMG extends TagBase {
     // log(data, 'data in IMG render()')
     if (!data) return null
     let { item = data } = data
+    log(item, 'item in IMG#render')
     // log(data.index, 'data.index')
     return (
       <T.Row
@@ -41,7 +42,17 @@ export class IMG extends TagBase {
             // onError={this.videoError} // Callback when video cannot be loaded
           />
         ) : ( */}
-        <T.Image uri={item.src} />
+        {item.src.search(/mp4/) > -1 ? (
+          <Video
+            muted={true}
+            paused={true}
+            source={{ uri: item.src }}
+            style={{ height: 200 }}
+          />
+        ) : (
+          <T.Image uri={item.src} />
+        )}
+
         {/* )} */}
       </T.Row>
     )
