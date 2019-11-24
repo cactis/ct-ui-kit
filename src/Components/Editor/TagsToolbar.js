@@ -101,7 +101,7 @@ export class TagsToolbar extends React.PureComponent {
       </T.Center>
     )
     return (
-      <T.Row borderWidth={1} flex={0}>
+      <T.Row borderWidth__={1} flex={0}>
         {tagsBar ? tagsToolbar : stylesToolbar}
       </T.Row>
     )

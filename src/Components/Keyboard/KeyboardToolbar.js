@@ -83,7 +83,7 @@ export class KeyboardToolbar extends React.PureComponent {
           borderTopWidth: 0.5,
           borderColor: '#999',
           backgroundColor: 'rgba(255,255,255,1)',
-          backgroundColor: 'red',
+          // backgroundColor: 'red',
           // height: modalHeight,
 
           height: 'auto',
