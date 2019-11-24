@@ -144,10 +144,11 @@ const styles = {
     color: 'rgba(0,0,0,.8)',
   },
   C: {
+    // caption
     fontFamily: BODY_FONT,
     // fontFamily: iOS ? 'GillSans' : 'sourcesanspro_regular',
     fontSize: baseSize + (iOS ? 2 : 2),
-    fontWeight: iOS ? '300' : '200',
+    fontWeight: iOS ? '100' : '100',
     color: 'rgba(0,0,0,.6)',
   },
   H6: {

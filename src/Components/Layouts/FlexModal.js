@@ -25,12 +25,17 @@ export class FlexModal extends ModalBase {
     log(children, 'children')
     return (
       <ModalBox
-        style={{ height: 'auto' }}
+        style={{ height: 'auto', backgroundColor: 'red' }}
         position="bottom"
         entry="bottom"
         ref={c => (this.modal = c)}
       >
-        <T.Grid flex={0} padding={SIZE.l} backgroundColor="rgb(241,241,241)">
+        <T.Grid
+          flex={0}
+          padding={SIZE.l}
+          backgroundColor="rgb(241,241,241)"
+          backgroundColor="transparent"
+        >
           {children}
           {/* <T.Button title="Close" onPress={() => this.close()} /> */}
         </T.Grid>

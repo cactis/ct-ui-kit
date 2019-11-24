@@ -1,11 +1,11 @@
 import React from 'react'
 import { StyleSheet, TextInput, Keyboard as RNKeyboard } from 'react-native'
-// import ModalBox from 'react-native-modalbox'
+import ModalBox from 'react-native-modalbox'
 // import { AutoGrowTextInput } from 'react-native-auto-grow-textinput'
 // export { RNKeyboard }
 
 let _navigation
-const _TEXT_INPUT_HEIGHT = rwd(80)
+const _TEXT_INPUT_HEIGHT = rwd(0)
 export class KeyboardToolbar extends React.PureComponent {
   state = {
     data: null,
@@ -62,31 +62,36 @@ export class KeyboardToolbar extends React.PureComponent {
     } = this.state
     // log(iPhoneX, 'iPhoneX --------------')
     let {
-      modalHeight = textInputHeight + (iPhoneX ? rwd(18) : rwd(0)),
+      modalHeight = textInputHeight + (iPhoneX ? rwd(0) : rwd(0)),
     } = options
     let { children = content, title: propTitle, height } = this.props
     // log(textInputHeight, 'textInputHeight')
 
     // alert(modalHeight)
     return (
-      <T.ModalBox
+      <ModalBox
         ref={c => (this.modal = c)}
-        flex={0}
+        // flex={0}
+        borderWidth={1}
         position="bottom"
+        // backgroundColor="red"
         entry="bottom"
-        zIndex={1000000}
+        // zIndex={1000000}
         // animationDuration={0}
         backdrop={false}
         style={{
           borderTopWidth: 0.5,
           borderColor: '#999',
-          backgroundColor: 'white',
-          height: modalHeight,
+          backgroundColor: 'rgba(255,255,255,1)',
+          backgroundColor: 'red',
+          // height: modalHeight,
+
+          height: 'auto',
           // height: rwd(50),
         }}
       >
-        {children}
-      </T.ModalBox>
+        <T.Grid flex={0}>{children}</T.Grid>
+      </ModalBox>
     )
   }
 

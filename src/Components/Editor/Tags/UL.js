@@ -59,9 +59,8 @@ export class UL extends TagBase {
       item.children = [{ tag: 'li', content: '' }]
     }
     return (
-      <T.Grid
-        marginBottom={rwd(10)}
-        paddingHorizontal={rwd(10)}
+      <T.Space
+        marginVertical={SIZE.m}
         borderLeftWidth={this.editable ? 5 : 0}
         borderColor={
           this.editable
@@ -84,7 +83,7 @@ export class UL extends TagBase {
             />
           )}
         />
-      </T.Grid>
+      </T.Space>
     )
   }
 

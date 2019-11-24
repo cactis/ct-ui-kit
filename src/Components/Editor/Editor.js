@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { KeyboardAware } from '../Keyboard'
 let _navigation
-let _PADDING_BOTTOM = rwd(30)
+let _PADDING_BOTTOM = SAFEAREA_BOTTOM //0 //rwd(30)
 export class Editor extends KeyboardAware {
   constructor(props) {
     super(props)
@@ -30,7 +30,7 @@ export class Editor extends KeyboardAware {
 
   attachKeyBoard = () => {
     window.keyboardToolbar.open(<T.TagsToolbar />, {
-      modalHeight: rwd(50),
+      // modalHeight: rwd(50),
     })
     // window.keyboardToolbar.open(null, { modalHeight: 100 })
   }
@@ -86,7 +86,7 @@ export class Editor extends KeyboardAware {
             />
           )}
         />
-        {/* <T.Space size={SCREEN_HEIGHT / 2} /> */}
+        {/* <T.Space size={paddingBottom} /> */}
       </T.Screen>
     )
   }

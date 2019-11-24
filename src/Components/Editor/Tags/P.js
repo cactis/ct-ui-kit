@@ -95,6 +95,7 @@ export class P extends TagBase {
   }
 
   onSelectionChange = e => {
+    return
     log(e, 'onSelectionChange')
     let { nativeEvent } = e
     let { selection } = nativeEvent

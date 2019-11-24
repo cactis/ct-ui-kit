@@ -31,7 +31,7 @@ export class TagsToolbar extends React.PureComponent {
     // if (!data) return null
     // let { item = data } = data
     let stylesToolbar = (
-      <T.Row flow="row" xAlign="flex-start">
+      <T.Row flow="row" xAlign="flex-start" flex={0}>
         <Icon currentTag={currentTag} tagName="b">
           <T.Label
             size={rwd(16)}
@@ -55,7 +55,7 @@ export class TagsToolbar extends React.PureComponent {
       </T.Row>
     )
     let tagsToolbar = (
-      <T.Center flow="row">
+      <T.Center flow="row" borderWidth_={1} flex={0}>
         <Icon currentTag={currentTag} tagName="h1">
           <T.Label theme="H4" text="H1" />
         </Icon>
@@ -100,7 +100,11 @@ export class TagsToolbar extends React.PureComponent {
         </Icon>
       </T.Center>
     )
-    return <T.Row>{tagsBar ? tagsToolbar : stylesToolbar}</T.Row>
+    return (
+      <T.Row borderWidth={1} flex={0}>
+        {tagsBar ? tagsToolbar : stylesToolbar}
+      </T.Row>
+    )
   }
 
   // initStateData = onComplete => {
@@ -188,7 +192,15 @@ const Icon = props => {
       </T.Float>
     ) : null
   return (
-    <T.Center {...props} onPress={onPress}>
+    <T.Center
+      style={{ height: rwd(50) }}
+      {...props}
+      onPress={onPress}
+      backgroundColor="transparent"
+      // backgroundColor="yellow"
+      borderWidth_={1}
+      padding={SIZE.s}
+    >
       {flag}
       {props.children}
     </T.Center>
