@@ -56,7 +56,12 @@ export class Editor extends KeyboardAware {
     // if (!data) return null
     // let { item = data } = data
     return (
-      <T.Screen padding={0} borderWidth_={1} paddingBottom={paddingBottom}>
+      <T.Screen
+        padding={0}
+        borderWidth_={1}
+        paddingBottom={paddingBottom}
+        // paddingBottom={200}
+      >
         <R.Toolbar
           borderWidth_={1}
           marginTop={iOS ? 0 : rwd(10)}
@@ -85,6 +90,7 @@ export class Editor extends KeyboardAware {
               onEnter={this.onEnter}
             />
           )}
+          ListFooterComponent1__=<T.Space size={200} />
         />
         {/* <T.Space size={paddingBottom} /> */}
       </T.Screen>
