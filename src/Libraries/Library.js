@@ -172,6 +172,7 @@ if (!__DEV__) {
 window.getDataByPaths = (json, paths) => {
   let pathArr = paths
   if (typeof paths === 'string') pathArr = paths.split('/')
+  log(pathArr, 'pathArr')
   return pathArr.reduce(
     (obj, key) => (obj && obj[key] !== 'undefined' ? obj[key] : undefined),
     json
