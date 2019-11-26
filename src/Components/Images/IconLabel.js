@@ -58,8 +58,16 @@ export const IconLabel = props => {
     />
   )
   let size = iconSize * 2
+
+  _onPress = () => {
+    if (onPress) {
+      onPress()
+    } else {
+      if (__DEV__) alert()
+    }
+  }
   return (
-    <Touch onPress={disabled ? null : onPress}>
+    <Touch onPress={disabled ? null : _onPress}>
       <Div
         flow="row"
         flex={0}
