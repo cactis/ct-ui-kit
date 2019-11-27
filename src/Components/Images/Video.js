@@ -21,6 +21,9 @@ export const Video = props => {
         resizeMode="cover"
         // style={styles.backgroundVideo}
         controls={true}
+        playInBackground={true}
+        ignoreSilentSwitch={'ignore'}
+        playWhenInactive={true}
         style={{
           // position: 'absolute',
           flex: 1,
