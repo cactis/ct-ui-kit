@@ -44,6 +44,7 @@ export class Editor extends KeyboardAware {
     // alert(height)
     // this.attachKeyBoard()
     this.mounted && this.setState({ paddingBottom: height + _PADDING_BOTTOM })
+    this.forceUpdate()
   }
 
   save = () => {
@@ -59,7 +60,7 @@ export class Editor extends KeyboardAware {
       <T.Screen
         padding={0}
         borderWidth_={1}
-        paddingBottom={paddingBottom}
+        marginBottom={paddingBottom}
         // paddingBottom={200}
       >
         <R.Toolbar
