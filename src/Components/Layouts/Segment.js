@@ -60,15 +60,15 @@ export class Segment extends Component {
 
   THEMES = {
     wrapper: {
-      padding: 2,
-      paddingVertical: 5,
+      padding: 0,
+      paddingVertical: SIZE.l,
     },
     parent: {
       wrapper: {
-        backgroundColor: MAIN_COLOR,
+        backgroundColor: SEGMENT_BGCOLOR,
         padding: 4,
       },
-      backgroundColor: MAIN_COLOR,
+      backgroundColor: SEGMENT_BGCOLOR,
     },
     child: {
       // borderColor: G.color.navBar,
@@ -100,7 +100,7 @@ export class Segment extends Component {
     let style = this.THEMES[theme]
     let wrapper = style.wrapper
     return (
-      <T.Grid onLayout={this._onLayout}>
+      <T.Grid onLayout={this._onLayout} paddingVertical={SIZE.s}>
         <T.Row flex={0} style={{ ...wrapper }} layout="row">
           {tabs.map((tab, index) => (
             <Tab

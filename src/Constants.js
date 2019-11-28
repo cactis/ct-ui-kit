@@ -38,7 +38,7 @@ let mainBGColor = '#25B1C4'
 // let mainBGColor = 'transparent'
 // window.ICON_COLOR = 'rgba(150,44,30,.57)' //'#D6CC4A'
 
-window.MAIN_COLOR = mainBGColor
+window.SEGMENT_COLOR = mainBGColor
 
 window.BASE_SIZE = rwd(iOS ? 12 : 12)
 // console.log(1111111111111111111)

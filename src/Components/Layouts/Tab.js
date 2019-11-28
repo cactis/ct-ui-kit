@@ -8,9 +8,9 @@ export class Tab extends Component {
       badge: { position: 'absolute', left: '65%', top: '25%' },
       isSelected: {
         false: {
-          padding: 20,
-          padding: 10,
-          paddingHorizontal: 20,
+          padding: rwd(20),
+          padding: rwd(10),
+          paddingHorizontal: rwd(20),
           color: '#111',
         },
       },
@@ -19,13 +19,17 @@ export class Tab extends Component {
       badge: { position: 'absolute', left: '65%', top: '25%' },
       isSelected: {
         true: {
-          padding: 5,
-          color: 'white',
-          backgroundColor: 'rgba(136,214,227,.34)',
+          paddingVertical: rwd(2),
+          color: SEGMENT_ACTIVE_COLOR,
+          backgroundColor: SEGMENT_ACTIVE_BGCOLOR,
+          fontWeight: '500',
+          fontSize: rwd(12),
         },
         false: {
-          padding: 5,
-          color: '#FFF',
+          paddingVertical: rwd(2),
+          color: SEGMENT_COLOR,
+          fontWeight: '300',
+          fontSize: rwd(12),
         },
       },
     },
@@ -81,9 +85,10 @@ export class Tab extends Component {
             {title ? (
               <T.Label
                 style={{
-                  fontSize: rwd(14),
-                  fontWeight: '400',
+                  // fontSize: rwd(14),
+                  // fontWeight: '400',
                   // textAlign: 'center',
+                  ...style.isSelected[selected],
                 }}
                 color={color}
                 onPress={e => this.props.onPress(this.props.index, e)}

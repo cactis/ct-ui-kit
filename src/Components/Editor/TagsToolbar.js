@@ -68,18 +68,18 @@ export class TagsToolbar extends React.PureComponent {
         <Icon currentTag={currentTag} tagName="c">
           <T.Label theme="H4" text="C" size={rwd(10)} />
         </Icon>
-        <Divide />
+        <Divider />
         <Icon currentTag={currentTag} tagName="img">
           <T.Icon name="image" />
         </Icon>
-        <Divide />
+        <Divider />
         <Icon currentTag={currentTag} tagName="ul">
           <T.Icon name="list-ul" />
         </Icon>
         <Icon currentTag={currentTag} tagName="ol">
           <T.Icon name="list-ol" />
         </Icon>
-        <Divide />
+        <Divider />
         <Icon currentTag={currentTag} tagName="hr">
           <T.Icon
             name="dots-three-horizontal"
@@ -87,14 +87,8 @@ export class TagsToolbar extends React.PureComponent {
             size={rwd(14)}
           />
         </Icon>
-        <Divide />
-        {/* <Icon currentTag={currentTag} tagName="a">
-      <T.Icon name="link" />
-    </Icon> */}
-        <Divide />
-        {/* <Icon currentTag={currentTag} tagName="trash">
-          <T.Icon name="trash" iconSet="EvilIcons" size={rwd(24)} />
-        </Icon> */}
+        <Divider />
+        <Divider />
         <Icon currentTag={currentTag} tagName="enter">
           <T.Icon name="playlist-plus" iconSet="MaterialCommunityIcons" />
         </Icon>
@@ -210,11 +204,11 @@ const Icon = props => {
   )
 }
 
-export const Divide = props => {
+export const Divider = props => {
   let { navigation } = props
   let [data, setData] = useState(props.data)
   // if (!data) return null
   return (
-    <T.Div backgroundColor="rgba(74,74,74,.5)" width={0.4} height={rwd(22)} />
+    <T.Div backgroundColor="rgba(116,116,116,1)" width={0.2} height={rwd(22)} />
   )
 }
