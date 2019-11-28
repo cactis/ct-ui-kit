@@ -51,6 +51,7 @@ export class Modal extends ModalBase {
     } = options
     if (scrollable || fullScreen) swipeToClose = false
     modalHeight = fullScreen ? SCREEN_HEIGHT : modalHeight
+    // alert([fullScreen, modalHeight])
     return (
       <ModalBox
         ref={c => (this.modal = c)}

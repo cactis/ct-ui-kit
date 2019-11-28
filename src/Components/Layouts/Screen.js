@@ -31,8 +31,8 @@ export class Screen extends React.Component {
     })
   }
   onLayout = e => {
-    window.SCREEN_WIDTH = e.nativeEvent.layout.width
-    window.SCREEN_HEIGHT = e.nativeEvent.layout.height
+    // window.SCREEN_WIDTH = e.nativeEvent.layout.width
+    // window.SCREEN_HEIGHT = e.nativeEvent.layout.height
     // alert(window.SCREEN_WIDTH)
   }
   render() {
