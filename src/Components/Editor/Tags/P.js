@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { AutoGrowTextInput as GrowTextInput } from 'react-native-auto-grow-textinput'
+// import { AutoGrowTextInput as GrowTextInput } from 'react-native-auto-grow-textinput'
 
 import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor'
 
 export { RichEditor }
 
-export { GrowTextInput }
+// export { GrowTextInput }
 
 import { TagBase } from './TagBase'
 let _navigation

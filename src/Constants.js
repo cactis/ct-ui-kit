@@ -39,7 +39,7 @@ let mainBGColor = '#25B1C4'
 // window.ICON_COLOR = 'rgba(150,44,30,.57)' //'#D6CC4A'
 
 window.SEGMENT_COLOR = mainBGColor
-
+window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
 window.BASE_SIZE = rwd(iOS ? 12 : 12)
 // console.log(1111111111111111111)
 initAppFontSize = async () => {
@@ -210,3 +210,12 @@ window.iPhoneX =
 
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+
+window.SIZE = {
+  h: rwd(32),
+  l: rwd(24),
+  m: rwd(16),
+  s: rwd(8),
+  t: rwd(4),
+  n: rwd(0),
+}
