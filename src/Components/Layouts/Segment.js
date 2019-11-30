@@ -65,8 +65,10 @@ export class Segment extends Component {
     },
     parent: {
       wrapper: {
+        marginTop: rwd(1),
         backgroundColor: SEGMENT_BGCOLOR,
-        padding: 4,
+        padding: rwd(1),
+        // paddingTop: rwd(1),
       },
       backgroundColor: SEGMENT_BGCOLOR,
     },
@@ -94,13 +96,14 @@ export class Segment extends Component {
       theme = 'parent',
       tabs = [{ title: 'TAB1' }, { title: 'Tab2' }],
       views = [<T.Grid />, <T.Grid />],
+      containerStyle = {},
     } = this.props
     tabs = _.compact(tabs)
     views = _.compact(views)
     let style = this.THEMES[theme]
     let wrapper = style.wrapper
     return (
-      <T.Grid onLayout={this._onLayout} paddingVertical={SIZE.s}>
+      <T.Grid onLayout={this._onLayout} paddingVertical={SIZE.n}>
         <T.Row flex={0} style={{ ...wrapper }} layout="row">
           {tabs.map((tab, index) => (
             <Tab
@@ -127,7 +130,11 @@ export class Segment extends Component {
             vertical={false}
           >
             {views.map((view, index) => (
-              <T.View key={index} width={this.state.width}>
+              <T.View
+                style={{ ...containerStyle }}
+                key={index}
+                width={this.state.width}
+              >
                 <T.SafeArea>{view}</T.SafeArea>
               </T.View>
             ))}

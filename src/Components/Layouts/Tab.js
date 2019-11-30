@@ -16,7 +16,7 @@ export class Tab extends Component {
       },
     },
     parent: {
-      badge: { position: 'absolute', left: '65%', top: '25%' },
+      badge: { position: 'absolute', left: '30%', top: '25%' },
       isSelected: {
         true: {
           paddingVertical: SIZE.t,
@@ -34,7 +34,7 @@ export class Tab extends Component {
       },
     },
     child: {
-      badge: { position: 'absolute', left: '65%', top: '25%' },
+      badge: { position: 'absolute', left: '30%', top: '25%' },
       paddingVertical: 30,
       paddingHorizontal: 25,
       isSelected: {
@@ -59,7 +59,7 @@ export class Tab extends Component {
     let style = this.THEMES[theme]
     let color = style.isSelected[selected].color
     return (
-      <T.Div flex={1}>
+      <T.Div flex={1} borderWidth={0.3} borderColor={SEGMENT_BORDER_COLOR}>
         <T.Touch onPress={e => this.props.onPress(this.props.index, e)}>
           <T.Row
             flex={0}
@@ -96,7 +96,9 @@ export class Tab extends Component {
                 {title}
               </T.Label>
             ) : null}
+            {/* <T.Float right="40%" top="0%"> */}
             <T.Badge style={style.badge} num={badge} />
+            {/* </T.Float> */}
           </T.Row>
         </T.Touch>
       </T.Div>

@@ -39,6 +39,7 @@ export class Badge extends React.PureComponent {
     return num ? (
       <T.Float
         right={((-1 * text.length) / 2) * 4}
+        left="40%"
         // right={0}
         top={0}
         zIndex={10000}
@@ -77,10 +78,13 @@ var styles = StyleSheet.create({
 })
 
 export class Round extends React.PureComponent {
+  _onPress = () => {
+    this.props.onPress && this.props.onPress()
+  }
   render() {
     let { width, height, bgColor = '#EDE5F0' } = this.props
     return (
-      <T.Touch onPress={this.props.onPress} flex={0}>
+      <T.Touch onPress={this._onPress} flex={0}>
         <T.Div
           {...this.props}
           flex={0}
