@@ -113,6 +113,7 @@ export class Segment extends Component {
               onPress={this.onTappedAt}
               selected={this.state.selectIndex === index}
               tab={tab}
+              badge={tab.badge}
             />
           ))}
         </T.Row>

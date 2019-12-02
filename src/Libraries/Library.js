@@ -12,6 +12,10 @@ window.log = (...message) => {
   // _trace('log')
 }
 
+window.error = (...message) => {
+  log(`___ ${message} ___`)
+}
+
 window._autoRun = (action, run, always = false) => {
   // log(action, 'action')
   if (Dev.autoRunTrace) {
@@ -150,7 +154,9 @@ window._runOnce = (key, run) => {
     run()
   }
 }
-
+window.__log = data => {
+  T.Api.post('/log', data)
+}
 window._log = (...message) => {
   if (!Dev.disableLog) {
     console.log(...message)

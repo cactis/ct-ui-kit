@@ -82,23 +82,28 @@ export class Round extends React.PureComponent {
     this.props.onPress && this.props.onPress()
   }
   render() {
-    let { width, height, bgColor = '#EDE5F0' } = this.props
-    return (
+    let { width, height, bgColor = '#EDE5F0', onPress } = this.props
+    let child = (
+      <T.Div
+        {...this.props}
+        flex={0}
+        style={{
+          borderRadius: height / 2,
+          // width: width,
+          // height: height,
+          backgroundColor: bgColor,
+          justifyContent: 'center',
+          alignItems: 'center',
+          ...this.props.style,
+        }}
+      />
+    )
+    return onPress ? (
       <T.Touch onPress={this._onPress} flex={0}>
-        <T.Div
-          {...this.props}
-          flex={0}
-          style={{
-            borderRadius: height / 2,
-            // width: width,
-            // height: height,
-            backgroundColor: bgColor,
-            justifyContent: 'center',
-            alignItems: 'center',
-            ...this.props.style,
-          }}
-        />
+        {child}
       </T.Touch>
+    ) : (
+      child
     )
   }
 }

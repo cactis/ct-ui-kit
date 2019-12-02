@@ -53,8 +53,14 @@ export class Tab extends Component {
   }
 
   render() {
-    let { theme, selected = false, size = BASE_SIZE * 2, tab } = this.props
-    let { title, icon, badge } = tab
+    let {
+      theme,
+      badge,
+      selected = false,
+      size = BASE_SIZE * 2,
+      tab,
+    } = this.props
+    let { title, icon } = tab
 
     let style = this.THEMES[theme]
     let color = style.isSelected[selected].color

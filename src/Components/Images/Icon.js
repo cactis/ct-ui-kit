@@ -79,7 +79,7 @@ export class Icon extends React.Component {
         marginHorizontals={pad}
         {...props}
       >
-        <Badge badge={badge} onPress={this.props.onPress} />
+        <Badge badge={badge} />
         {text ? (
           <Float style={{ right: 0, top: 0 }}>
             <Text
