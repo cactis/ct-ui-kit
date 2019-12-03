@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import RNVideo from 'react-native-video'
 
-import { Thumbnail } from 'react-native-thumbnail-video'
+// import { Thumbnail } from 'react-native-thumbnail-video'
 
 export const Video = props => {
   let { navigation, url } = props
-  let [paused = false, setPaused] = useState(props.data)
+  let [paused = false, setPaused] = useState(null)
+  let [color = 'rgba(38,38,38,.78)', setColor] = useState(null)
   // if (!data) return null
   let player = React.forwardRef()
   _onPress = () => {
@@ -50,49 +51,54 @@ export const Video = props => {
   }
   log(url, 'url')
   return (
-    <T.Touch onPress={_onPress}>
-      {/* <T.Image {...props} /> */}
-      {true ? (
-        <RNVideo
-          flex={1}
-          ref={c => (player = c)}
-          // flex={1}
-          allowsFullscreenVideo={true}
-          // originWhitelist={['*']}
-          source={{ uri: url }}
-          playWhenInactive={false}
-          muted={true}
-          resizeMode="cover"
-          paused={paused}
-          onLoad={() => {
-            player.seek(0)
-            // delayed(() => {
-            setPaused(true)
-            // })
-            // player.restoreUserInterfaceForPictureInPictureStopCompleted(true)
-          }}
-          style={{
-            // flex: 1,
-            width: '100%',
-            height: SCREEN_WIDTH / 1.5,
-            // height: 300,
-            // height: T.size.contentHeight,
-          }}
-        />
-      ) : (
-        <Thumbnail
-          imageWidth={SCREEN_WIDTH}
-          imageHeight={300}
-          url={url}
-          style={{
-            // flex: 1,
-            width: SCREEN_WIDTH,
-            height: SCREEN_WIDTH / (iOS ? 1.5 : 3),
-            height: 300,
-            // height: T.size.contentHeight,
-          }}
-        />
-      )}
-    </T.Touch>
+    <T.Grid>
+      <RNVideo
+        flex={1}
+        ref={c => (player = c)}
+        // flex={1}
+        allowsFullscreenVideo={true}
+        // originWhitelist={['*']}
+        source={{ uri: url }}
+        playWhenInactive={false}
+        muted={true}
+        resizeMode="cover"
+        paused={paused}
+        onLoad={() => {
+          player.seek(0)
+          // delayed(() => {
+          setPaused(true)
+          setColor('white')
+          // })
+          // player.restoreUserInterfaceForPictureInPictureStopCompleted(true)
+        }}
+        style={{
+          // flex: 1,
+          width: '100%',
+          height: SCREEN_WIDTH / 1.5,
+          // height: 300,
+          // height: T.size.contentHeight,
+        }}
+      />
+      <T.Float
+        flex={1}
+        // backgroundColor="rgba(255,255,255,.22)"
+        width="100%"
+        height="100%"
+      >
+        <T.Center>
+          <T.Icon
+            onPress={_onPress}
+            size={rwd(60)}
+            name="play"
+            color={color}
+            iconSet="AntDesign"
+            // borderWidth={0.5}
+            // borderColor="white"
+            // padding={rwd(20)}
+            // backgroundColor="black"
+          />
+        </T.Center>
+      </T.Float>
+    </T.Grid>
   )
 }
