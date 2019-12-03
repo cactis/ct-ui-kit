@@ -61,6 +61,7 @@ export class UL extends TagBase {
     return (
       <T.Space
         marginVertical={SIZE.m}
+        marginHorizontal={SIZE.m}
         borderLeftWidth={this.editable ? 5 : 0}
         borderColor={
           this.editable

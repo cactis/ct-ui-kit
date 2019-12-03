@@ -76,7 +76,7 @@ export class Icon extends React.Component {
         height={height}
         padding={padding}
         paddingTop={paddingTop}
-        marginHorizontals={pad}
+        marginHorizontal={pad}
         {...props}
       >
         <Badge badge={badge} />

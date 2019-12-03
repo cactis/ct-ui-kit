@@ -123,7 +123,7 @@ export class LI extends React.PureComponent {
             />
           ) : (
             <T.Row padding={rwd(0)}>
-              <T.Label theme="H6" text={item.content} />
+              <T.Label theme="H6" numberOfLines={0} text={item.content} />
             </T.Row>
           )}
         </T.Col>

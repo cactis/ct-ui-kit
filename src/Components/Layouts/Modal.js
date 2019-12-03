@@ -49,7 +49,7 @@ export class Modal extends ModalBase {
       padding = rwd(10),
       ...opts
     } = options
-    if (scrollable || fullScreen) swipeToClose = false
+    if ((scrollable || fullScreen) && !swipeToClose) swipeToClose = false
     modalHeight = fullScreen ? SCREEN_HEIGHT : modalHeight
     // alert([fullScreen, modalHeight])
     return (
