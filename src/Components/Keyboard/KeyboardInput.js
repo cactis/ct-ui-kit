@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, TextInput, Keyboard as RNKeyboard } from 'react-native'
-
+export { RNKeyboard }
 let _navigation
 export class KeyboardInput extends React.PureComponent {
   state = {

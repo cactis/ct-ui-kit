@@ -7,7 +7,7 @@ export class User extends Component {
     log('validateToken called')
 
     let accessTokens = await User.tokens()
-    log(accessTokens, 'accessTokens in User validateToken')
+    // log(accessTokens, 'accessTokens in User validateToken')
     // alert(accessTokens)
 
     if (accessTokens) {
@@ -18,7 +18,7 @@ export class User extends Component {
     // log(url, 'url')
     let res = await Api.get(url)
     let { data: user = res } = res
-    log(user, 'user in validateToken')
+    // log(user, 'user in validateToken')
     if (user !== undefined && user.id !== undefined) {
       // runLast(() => {
       //     let appV = parseInt(
@@ -59,7 +59,7 @@ export class User extends Component {
       //     user: user.token,
       // }
       // global._uts = uts
-      log(user.token)
+      // log(user.token)
       Storage.set('userToken', user.token)
       global.isLogged = true
     } else {
@@ -70,11 +70,11 @@ export class User extends Component {
   }
 
   static tokens = async () => {
-    log(Dev.accessTokens, 'Dev.accessTokens in User#tokens')
+    // log(Dev.accessTokens, 'Dev.accessTokens in User#tokens')
     if (Dev.accessTokens) return Dev.accessTokens
     if (global.accessTokens) return global.accessTokens
     let userToken = await Storage.get('userToken')
-    log(userToken, 'userToken')
+    // log(userToken, 'userToken')
     // let memberToken = await Storage.get('memberToken')
     if (userToken == undefined) {
       return undefined
@@ -98,7 +98,7 @@ export class User extends Component {
   }
 
   static logout = async onSuccess => {
-    log('logout')
+    // log('logout')
     // let { currentUser } = global
     // log(currentUser, 'currentUser')
     await Storage.clearAll()
@@ -117,10 +117,10 @@ export class User extends Component {
   }
 
   static signUp = async (params, onSuccess) => {
-    log(1111)
+    // log(1111)
     let response = await Api.post('/users', { user: params })
-    log(response, 'response')
-    log(222)
+    // log(response, 'response')
+    // log(222)
     setCurrentUser(response, onSuccess)
   }
 
@@ -139,9 +139,9 @@ export class User extends Component {
 }
 
 global.setCurrentUser = async (data, onSuccess) => {
-  log(data, 'data - in setCurrentUser')
+  // log(data, 'data - in setCurrentUser')
   let { data: user } = data
-  log(user?.id, 'user?.id')
+  // log(user?.id, 'user?.id')
   if (user?.id) {
     // let memberToken = user.member_token
     let userToken = user.token
@@ -166,7 +166,7 @@ export class Storage {
     // alert('clear all')
     AsyncStorage.clear(() => {
       // alert('clear done')
-      log('clear all AsyncStorage')
+      // log('clear all AsyncStorage')
       AsyncStorage.getAllKeys().then(keys => {
         log(keys, 'keys - in Storage clearAll')
         callback && callback()

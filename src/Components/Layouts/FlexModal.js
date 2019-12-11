@@ -20,9 +20,9 @@ export class FlexModal extends ModalBase {
 
   render() {
     let { content, options } = this.state
-    log(content, '000000')
+    // log(content, '000000')
     let { children = content, title: propTitle, height } = this.props
-    log(children, 'children')
+    // log(children, 'children')
     return (
       <ModalBox
         style={{

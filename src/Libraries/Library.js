@@ -1,4 +1,5 @@
 if (__DEV__) console.log('Library.js')
+import I from 'react-native-device-info'
 import _ from 'lodash'
 window._ = _
 
@@ -6,10 +7,20 @@ window.Dev = {}
 
 window.log = (...message) => {
   if (!Dev.disableLog) {
-    console.log(message)
+    let [m, ...ms] = message
     console.log('')
+    // console.log('<------------------------------------------------------')
+    console.log(m)
+    console.log(`'${ms} from ${I.getModel()}'`)
+    // console.log('------------------------------------------------------>')
+    // console.log('')
   }
   // _trace('log')
+}
+
+window.__log = (message, title = '') => {
+  log(message, title)
+  T.Api.post('/log', { '----- what to logged -----': title, logged: message })
 }
 
 window.error = (...message) => {
@@ -104,7 +115,11 @@ window.navigateTo = (navigation, route, params = {}) => {
     //     { routeName: route, params: params, key: nextKey },
     //     '{ routeName: route, params: params, key: nextKey }'
     // )
-    navigation.navigate({ routeName: route, params: params, key: nextKey })
+    navigation.navigate({
+      routeName: route,
+      params: params,
+      key: nextKey,
+    })
   }
   global.currentRoute = route
 
@@ -154,9 +169,7 @@ window._runOnce = (key, run) => {
     run()
   }
 }
-window.__log = data => {
-  T.Api.post('/log', data)
-}
+
 window._log = (...message) => {
   if (!Dev.disableLog) {
     console.log(...message)
@@ -178,7 +191,7 @@ if (!__DEV__) {
 window.getDataByPaths = (json, paths) => {
   let pathArr = paths
   if (typeof paths === 'string') pathArr = paths.split('/')
-  log(pathArr, 'pathArr')
+  // log(pathArr, 'pathArr')
   return pathArr.reduce(
     (obj, key) => (obj && obj[key] !== 'undefined' ? obj[key] : undefined),
     json

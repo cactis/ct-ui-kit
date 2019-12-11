@@ -37,9 +37,10 @@ export class P extends TagBase {
 
   render() {
     let { data, value } = this.state
-    // _log(data, 'data in P render()')
+    _log(data, 'data in P render()')
     if (!data) return null
-    let { item = data } = data
+    let { item = data, index } = data
+    // alert(index)
     // log(item, 'item in P')
     let _tag = _.upperCase(item.tag).replace(' ', '')
     // log(_tag, '_tag in P#render')
@@ -49,6 +50,10 @@ export class P extends TagBase {
     //     123<T.Text style={{ fontWeight: '900' }}>456</T.Text>789
     //   </T.Text>
     // )
+    __log(item, 'item')
+    let placeholder = index == 0 ? this.props.placeholder : null
+    // log(placeholder, 'placeholder')
+    // alert(placeholder)
     let that = this
     return (
       <T.Row
@@ -71,6 +76,7 @@ export class P extends TagBase {
         <T.RNTextInput
           multiline={true}
           value={value}
+          placeholder={placeholder}
           autoFocus={this.isMe() ? true : false}
           // autoFocus={data.index == 0 ? true : false}
           onChangeText={this.onChangeText}

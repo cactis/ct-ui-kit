@@ -86,6 +86,7 @@ export class Editor extends KeyboardAware {
           renderItem={item => (
             <T.Tag
               // key={item}
+              placeholder={this.props.placeholder}
               data={item}
               parent={this}
               onEnter={this.onEnter}

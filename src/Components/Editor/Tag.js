@@ -48,7 +48,9 @@ export class Tag extends React.PureComponent {
       case 'caption':
         tag = <T.Caption data={data} parent={this} />
       default:
-        tag = <T.P data={data} parent={this} />
+        tag = (
+          <T.P data={data} parent={this} placeholder={this.props.placeholder} />
+        )
     }
     // log(tag, 'tag')
     return <T.Row>{tag}</T.Row>

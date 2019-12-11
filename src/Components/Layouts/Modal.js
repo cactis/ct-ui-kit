@@ -38,7 +38,8 @@ export class Modal extends ModalBase {
     let {
       height: modalHeight = height,
       backgroundColor = 'rgba(255,255,255,.98)',
-
+      // backgroundColor = 'rgba(204,57,57,.98)',
+      safeArea = true,
       direction = 'bottom',
       scrollable = false,
       swipeToClose,
@@ -70,7 +71,7 @@ export class Modal extends ModalBase {
         {...opts}
         {...this.props}
       >
-        <T.Space size={fullScreen ? SAFEAREA_TOP / 2 : SIZE.s} />
+        {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_TOP / 2 : SIZE.s} /> */}
         <T.Float
           flex={0}
           // borderWidth={1}
@@ -78,7 +79,7 @@ export class Modal extends ModalBase {
           flow="row"
           // xAlign="center"
           right={SIZE.s}
-          top={fullScreen ? SAFEAREA_TOP : SIZE.s}
+          top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
           zIndex={1000}
         >
           <T.Col borderWidth={0} flex={0} xAlign="center">
@@ -114,9 +115,11 @@ export class Modal extends ModalBase {
             contentContainerStyle={{ padding: rwd(10) }}
           />
         ) : (
-          <T.Screen padding={padding}>{children}</T.Screen>
+          <T.Screen padding={padding} safeAreaDisabled={!safeArea}>
+            {children}
+          </T.Screen>
         )}
-        <T.Space size={fullScreen ? SAFEAREA_BOTTOM : 0} />
+        {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_BOTTOM : 0} /> */}
       </ModalBox>
     )
   }
