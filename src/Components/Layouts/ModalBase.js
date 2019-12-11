@@ -20,7 +20,7 @@ export class ModalBase extends React.PureComponent {
   }
 
   open = (content, options = {}) => {
-    log(options, 'options---------------')
+    // log(options, 'options---------------')
     this.mounted &&
       this.setState({
         content,
@@ -38,7 +38,7 @@ export class ModalBase extends React.PureComponent {
 
   onClose = () => {
     let { options } = this.state
-    log(options, 'options')
+    // log(options, 'options')
     let { onClose } = options
     onClose && onClose()
   }

@@ -92,7 +92,7 @@ export class Api {
       appName: AppConfig.appName,
     }
 
-    // log(headers, 'headers')
+    log(headers, 'headers')
     // log(deviceInfo, 'deviceInfo')
     // alert(_url)
     switch (method) {
@@ -145,14 +145,14 @@ export class Api {
       }
       if (onSuccess) {
         // log(json, 'onSuccess --------------')
-        onSuccess(json)
+        return onSuccess(json)
       } else {
         return json
       }
     } else {
       let text = await response.text()
       if (onSuccess) {
-        onSuccess(text)
+        return onSuccess(text)
       } else {
         return text
       }
