@@ -123,24 +123,26 @@ export class Api {
     if (contentType && contentType.indexOf('application/json') !== -1) {
       const json = await response.json()
       if (Dev.logResponse) log(json, 'json in Api.js')
-      let { meta } = json
-      let { errors } = json
-      if (errors) {
-        if (__DEV__) {
-          alert(errors.map(e => e.message).join('\n'))
+      if (json) {
+        let { meta } = json
+        let { errors } = json
+        if (errors) {
+          if (__DEV__) {
+            alert(errors.map(e => e.message).join('\n'))
+          }
+          return onError && onError(errors)
         }
-        return onError && onError(errors)
-      }
-      if (meta) {
-        if (meta.alert) {
-          alert(json.alert)
-        }
-        if (meta.error) {
-          alert(meta.error, 'error')
-          return onError && onError(meta)
-        }
-        if (meta.notice) {
-          alert(meta.notice)
+        if (meta) {
+          if (meta.alert) {
+            alert(json.alert)
+          }
+          if (meta.error) {
+            alert(meta.error, 'error')
+            return onError && onError(meta)
+          }
+          if (meta.notice) {
+            alert(meta.notice)
+          }
         }
       }
       if (onSuccess) {
