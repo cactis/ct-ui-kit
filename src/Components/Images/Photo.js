@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native'
 import * as T from '../../'
 import ImageView from 'react-native-image-view'
 import FastImage from 'react-native-fast-image'
+import ImagePicker from 'react-native-image-crop-picker'
+
 let _navigation
 export class Photo extends React.PureComponent {
   state = {
@@ -29,6 +31,7 @@ export class Photo extends React.PureComponent {
       // size,
       ...props
     } = this.props
+    this.setState({ thumbUri })
     this.images = [
       {
         source: {
@@ -41,6 +44,10 @@ export class Photo extends React.PureComponent {
     ]
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.uri !== this.props.uri) this.setState({ uri: this.props.uri })
+  }
+
   // componentDidUpdate(prevProps) {
   //   if (prevProps.aspectRatio !== this.props.aspectRatio)
   //     this.setState({ aspectRatio: this.props.aspectRatio })
@@ -50,7 +57,7 @@ export class Photo extends React.PureComponent {
     let {
       url,
       uri = url,
-      thumbUri = uri,
+      // thumbUri = uri,
       data,
       // size,
       // aspectRatio,
@@ -58,8 +65,10 @@ export class Photo extends React.PureComponent {
       // preview,
       // aspectRatio,
       // size,
+      onChange,
       ...props
     } = this.props
+    let { thumbUri = uri } = this.state
     let { preview } = this.state
     // if (!data) return null
     // let { item } = data
@@ -94,8 +103,40 @@ export class Photo extends React.PureComponent {
             </T.Grid>
           )}
         />
+        {onChange ? (
+          <T.Float right={-5} bottom={0}>
+            <T.Center
+              width={rwd(32)}
+              height={rwd(32)}
+              backgroundColor="rgba(235,238,241,1)"
+              borderRadius={rwd(32)}
+              onPress={this.onChange}
+            >
+              <T.Icon name="edit" iconSet="AntDesign" size={rwd(15)} />
+            </T.Center>
+          </T.Float>
+        ) : null}
       </T.Touch>
     )
+  }
+  onChange = () => {
+    let { onChange } = this.props
+    if (onChange) {
+      ImagePicker.openPicker({
+        compressImageQuality: 1,
+        // width: 300,
+        // height: 400,
+        // cropping: false,
+        // cicular: true,
+        mediaType: 'photo',
+
+        includeBase64: true,
+      }).then(image => {
+        log(image, 'image 11111')
+        this.setState({ thumbUri: image.path })
+        onChange(image)
+      })
+    }
   }
 
   autoRun = () => {}

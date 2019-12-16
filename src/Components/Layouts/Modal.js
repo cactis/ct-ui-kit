@@ -47,7 +47,7 @@ export class Modal extends ModalBase {
       quoteable,
       fullScreen,
       paddable = true,
-      padding = rwd(10),
+      padding = SIZE.s,
       ...opts
     } = options
     if ((scrollable || fullScreen) && !swipeToClose) swipeToClose = false
@@ -71,18 +71,29 @@ export class Modal extends ModalBase {
         {...opts}
         {...this.props}
       >
-        {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_TOP / 2 : SIZE.s} /> */}
-        <T.Float
+        <T.Row
           flex={0}
+          padding={padding}
+          marginTop={fullScreen ? SAFEAREA_TOP + 3 * SIZE.s : 0}
           // borderWidth={1}
           // padding={padding}
           flow="row"
           // xAlign="center"
-          right={SIZE.s}
-          top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
-          zIndex={1000}
+          // right={SIZE.s}
+          // top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
+          // zIndex={1000}
         >
-          <T.Col borderWidth={0} flex={0} xAlign="center">
+          <T.Space borderWidth={0} flex={0} align="center">
+            <T.Icon
+              onPress={this.close}
+              name="close"
+              size={rwd(18)}
+              color="white"
+              iconSet="AntDesign"
+              // color="rgb(131,131,131)"
+            />
+          </T.Space>
+          <T.Col borderWidth={0} align="center">
             {title && (
               <T.Label
                 theme="H0"
@@ -93,12 +104,7 @@ export class Modal extends ModalBase {
               />
             )}
           </T.Col>
-          <T.Col
-            borderWidth={0}
-            flex={0}
-            align="center"
-            padding={padding == 0 ? rwd(15) : 0}
-          >
+          <T.Space borderWidth={0} flex={0} align="center">
             <T.Icon
               onPress={this.close}
               name="close"
@@ -106,8 +112,8 @@ export class Modal extends ModalBase {
               iconSet="AntDesign"
               color="rgb(131,131,131)"
             />
-          </T.Col>
-        </T.Float>
+          </T.Space>
+        </T.Row>
         {scrollable ? (
           <T.List
             quoteable={quoteable}
