@@ -79,8 +79,7 @@ export class Api {
     }
     _url = encodeURI(_url)
     // [_url, AppConfig.apiVersion].join('/')
-    // _log(method, _url, 'mthod, _url')
-    _log(_url, 'url')
+    _log(method, _url, 'mthod, _url')
     var response = {}
     const headers = {
       Accept: 'application/json',
@@ -92,7 +91,7 @@ export class Api {
       appName: AppConfig.appName,
     }
 
-    log(headers, 'headers')
+    // log(headers, 'headers')
     // log(deviceInfo, 'deviceInfo')
     // alert(_url)
     switch (method) {
