@@ -66,6 +66,7 @@ export const IconLabel = props => {
       if (__DEV__) alert()
     }
   }
+
   return (
     <Touch onPress={disabled ? null : _onPress}>
       <Div
@@ -85,8 +86,4 @@ export const IconLabel = props => {
       </Div>
     </Touch>
   )
-}
-
-{
-  /* <TwoCols col1={_icon} col2={label} {...props} /> */
 }
