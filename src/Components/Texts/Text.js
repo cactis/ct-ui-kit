@@ -145,9 +145,11 @@ const styles = {
   },
   C: {
     // caption
-    fontFamily: BODY_FONT,
+    // fontFamily: BODY_FONT,
+    // fontFamily: iOS ? 'GillSans' : 'Carrois Gothic SC',
     // fontFamily: iOS ? 'GillSans' : 'sourcesanspro_regular',
-    fontSize: baseSize + (iOS ? 2 : 2),
+    fontFamily: iOS ? 'GillSans' : 'Carrois Gothic SC',
+    fontSize: baseSize + (iOS ? 1.5 : 1.5),
     fontWeight: iOS ? '100' : '100',
     color: 'rgba(0,0,0,.3)',
   },

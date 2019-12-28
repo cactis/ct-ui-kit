@@ -8,21 +8,6 @@ export class LI extends React.PureComponent {
     mounted: false,
   }
 
-  componentDidMount() {
-    _trace('LI')
-    this.mounted = true
-    _navigation = this.props.navigation
-    this.initStateData(() => {
-      this.autoRun()
-    })
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
-      _navigation = this.props.navigation
-    if (prevProps.autoFocus !== this.props.autoFocus)
-      this.setState({ autoFocus: this.props.autoFocus })
-  }
-
   onChangeText = content => {
     if (!this.editing) return
     // log(content, 'content')
@@ -43,13 +28,11 @@ export class LI extends React.PureComponent {
     let parent_name = parent.constructor.name
     if (!data) return null
     let { item = data, index } = data
-    let label = (
+    let size =
+      rwd(iOS ? (parent.editable ? 6 : 4) : parent.editable ? 5 : 4) / 2
+    let listType = (
       <>
-        <T.Space
-          size={
-            rwd(iOS ? (parent.editable ? 10 : 4) : parent.editable ? 5 : 1) / 2
-          }
-        />
+        <T.Space size={size} />
         <T.Text
           text={`\u2022`}
           numberOfLines={0}
@@ -62,13 +45,9 @@ export class LI extends React.PureComponent {
       </>
     )
     if (parent_name == 'OL') {
-      label = (
+      listType = (
         <>
-          <T.Space
-            size={
-              rwd(iOS ? (parent.editable ? 6 : 1) : parent.editable ? 5 : 1) / 2
-            }
-          />
+          <T.Space size={size} />
           <T.Text
             text={`${index + 1}.`}
             numberOfLines={0}
@@ -87,17 +66,18 @@ export class LI extends React.PureComponent {
         flow="row"
         // paddingVertical={rwd(iOS ? 8 : 0)}
         marginTop={rwd(10)}
-        paddingHorizontal={rwd(20)}
+        paddingHorizontal={rwd(40)}
+        // paddingHorizontal={rwd(20)}
       >
         <T.Col
           // borderWidth={1}
           flex={0}
           yAlign="flex-end"
           // padding={rwd(iOS ? 6 : 8)}
-          paddingRight={rwd(0)}
+          // paddingRight={rwd(0)}
           // borderWidth={1}
         >
-          {label}
+          {listType}
         </T.Col>
         <T.Space />
         <T.Col>
@@ -122,7 +102,7 @@ export class LI extends React.PureComponent {
               onFocus={parent.onFocus}
             />
           ) : (
-            <T.Row padding={rwd(0)}>
+            <T.Row>
               <T.Label theme="H6" numberOfLines={0} text={item.content} />
             </T.Row>
           )}
@@ -162,6 +142,22 @@ export class LI extends React.PureComponent {
         onComplete && onComplete()
       })
   }
+
+  componentDidMount() {
+    _trace('LI')
+    this.mounted = true
+    _navigation = this.props.navigation
+    this.initStateData(() => {
+      this.autoRun()
+    })
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.navigation !== this.props.navigation)
+      _navigation = this.props.navigation
+    if (prevProps.autoFocus !== this.props.autoFocus)
+      this.setState({ autoFocus: this.props.autoFocus })
+  }
+
   componentWillUnmount() {
     this.mounted = false
   }
