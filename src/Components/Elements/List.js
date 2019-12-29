@@ -4,6 +4,7 @@ import { Api } from '../../Libraries/Api.js'
 import { Label } from '..'
 import { Div, Row, Grid, Col, RowLine, Cell, Space, Float, Hr } from '../'
 import { Avatar, Image, Icon } from '..'
+import DraggableFlatList from 'react-native-draggable-flatlist'
 
 export class List extends React.PureComponent {
   constructor(props) {
@@ -279,6 +280,16 @@ export class List extends React.PureComponent {
     this.props.onViewableItemsChanged && this.props.onViewableItemsChanged(info)
   }
 
+  // _onDragEnd = params => {
+  //   // log(params, 'params')
+  //   let { data } = params
+  //   let { onDragEnd } = this.props
+  //   onDragEnd && onDragEnd(params)
+  //   // this.setState({ data: [] }, () => {
+  //   //   // this.setState({ data: [...data], refresh: !this.state.refresh })
+  //   // })
+  // }
+
   render() {
     let { isRefreshing, refresh, data, meta, lastPage, url, toTop } = this.state
     let { loadingUri = `${AppConfig.web}/img/loading1.gif` } = this.props
@@ -290,6 +301,7 @@ export class List extends React.PureComponent {
       gutter = 0,
       ListHeaderComponent,
       ListFooterComponent,
+      draggable,
       searchable = false,
       ...extra
     } = this.props
@@ -318,64 +330,70 @@ export class List extends React.PureComponent {
     ) : (
       ListHeaderComponent
     )
+    let Tag = draggable ? DraggableFlatList : FlatList
     return (
       <Grid>
-        <FlatList
-          // key={`randId()`}
-          // listKey={`randId()`}
-          // keyExtractor={(item, index) => index.toString()}
-          ref={c => (this.flatList = c)}
-          data={data}
-          onScroll={this._onScroll}
-          onViewableItemsChanged={this.onViewableItemsChanged}
-          // refreshing={isRefreshing}
-          refreshing={false}
-          onRefresh={this._reload}
-          // onEndReached={this.fetchData}
-          // onEndThreshold={500}
-          // numColumns={data.length > 1 ? numColumns : 1}
-          // contentContainerStyle={{ margin: 4 }}
-          numColumns={numColumns}
-          // horizontal={false}
-          // columnWrapperStyle={{ flex: 1, justifyContent: 'space-between' }}
-          contentContainerStyle={{ padding: padding }}
-          keyExtractor={(item, index) => String(index)}
-          // ItemSeparatorComponent={() => <Space size={20} />}
-          // nestedScrollEnabled
-          // pagingEnabled
-          // onPanResponderTerminationRequest={() => false}
-          // horizontal
-          renderItem={this.props.renderItem || this.renderItem}
-          // extraData={refresh}
-          extraData={data}
-          key={data ? data.length : randId()}
-          ListHeaderComponent={
-            searchable ? (
-              <Div>
-                <SearchBar
-                  onChange={e => {
-                    let keyword = e.nativeEvent.text
-                    log(keyword, 'keyword')
-                    runLast(() => {
-                      this.mounted && this.setState({ keyword })
-                      this.reloadData()
-                    })
-                  }}
-                />
-                {ListHeaderComponentWithMeta}
-              </Div>
-            ) : (
-              ListHeaderComponentWithMeta
-            )
-          }
-          // ListHeaderComponent=<SearchBar />
-          ListFooterComponent={
-            <T.Row>
-              {ListFooterComponent}
-              {!this.props.horizontal ? (
-                <Row marginTop={rwd(0)}>
-                  {meta_tag}
-                  {/* {lastPage || this.props.quoteable ? (
+        {data ? (
+          <Tag
+            // key={`randId()`}
+            // listKey={`randId()`}
+            // keyExtractor={(item, index) => index.toString()}
+            onDragBegin={index => log(index, 'index')}
+            onRelease={index => log(index, 'index')}
+            // onDragEnd={this._onDragEnd}
+            ref={c => (this.flatList = c)}
+            data={data}
+            onScroll={this._onScroll}
+            onViewableItemsChanged={this.onViewableItemsChanged}
+            // refreshing={isRefreshing}
+            refreshing={false}
+            onRefresh={this._reload}
+            // onEndReached={this.fetchData}
+            // onEndThreshold={500}
+            // numColumns={data.length > 1 ? numColumns : 1}
+            // contentContainerStyle={{ margin: 4 }}
+            numColumns={numColumns}
+            // horizontal={false}
+            // columnWrapperStyle={{ flex: 1, justifyContent: 'space-between' }}
+            contentContainerStyle={{ padding: padding }}
+            keyExtractor={(item, index) => String(index)}
+            // ItemSeparatorComponent={() => <Space size={20} />}
+            // nestedScrollEnabled
+            // pagingEnabled
+            // onPanResponderTerminationRequest={() => false}
+            // horizontal
+            renderItem={this.props.renderItem || this.renderItem}
+            // extraData={this.props.data}
+            // extraData={this.state.refresh}
+            extraData={this.state}
+            // key={data ? data.length : randId()}
+            ListHeaderComponent={
+              searchable ? (
+                <Div>
+                  <SearchBar
+                    onChange={e => {
+                      let keyword = e.nativeEvent.text
+                      log(keyword, 'keyword')
+                      runLast(() => {
+                        this.mounted && this.setState({ keyword })
+                        this.reloadData()
+                      })
+                    }}
+                  />
+                  {ListHeaderComponentWithMeta}
+                </Div>
+              ) : (
+                ListHeaderComponentWithMeta
+              )
+            }
+            // ListHeaderComponent=<SearchBar />
+            ListFooterComponent={
+              <T.Row>
+                {ListFooterComponent}
+                {!this.props.horizontal ? (
+                  <Row marginTop={rwd(0)}>
+                    {meta_tag}
+                    {/* {lastPage || this.props.quoteable ? (
                                         <Row paddingTop={rwd(50)}>
                                             <T.Quote
                                                 paddable={true}
@@ -385,37 +403,41 @@ export class List extends React.PureComponent {
                                             />
                                         </Row>
                                     ) : null} */}
-                  {this.state.page < 3 ? null : (
-                    <Row align="center" paddingTop={rwd(50)}>
-                      <Icon
-                        iconSet="AntDesign"
-                        name="totop"
-                        size={rwd(12)}
-                        color="rgba(161,157,161,.73)"
-                        onPress={() => this.scrollToTop()}
-                      />
-                    </Row>
-                  )}
-                  {url && !lastPage && this.state.isPageLoading ? (
-                    <Row align="center" paddingTop={rwd(50)}>
-                      <Image
-                        size={20}
-                        uri={loadingUri}
-                        color="rgba(232,230,236,.76)"
-                      />
-                    </Row>
-                  ) : null}
-                </Row>
-              ) : null}
-            </T.Row>
-          }
-          {...extra}
-        />
+                    {this.state.page < 3 ? null : (
+                      <Row align="center" paddingTop={rwd(50)}>
+                        <Icon
+                          iconSet="AntDesign"
+                          name="totop"
+                          size={rwd(12)}
+                          color="rgba(161,157,161,.73)"
+                          onPress={() => this.scrollToTop()}
+                        />
+                      </Row>
+                    )}
+                    {url && !lastPage && this.state.isPageLoading ? (
+                      <Row align="center" paddingTop={rwd(50)}>
+                        <Image
+                          size={20}
+                          uri={loadingUri}
+                          color="rgba(232,230,236,.76)"
+                        />
+                      </Row>
+                    ) : null}
+                  </Row>
+                ) : null}
+              </T.Row>
+            }
+            {...extra}
+          />
+        ) : null}
       </Grid>
     )
   }
   onComplete = () => {}
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.data !== this.props.data)
+      this.setState({ data: this.props.data })
+  }
   componentWillUnmount() {
     this.mounted = false
   }

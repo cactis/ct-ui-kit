@@ -24,12 +24,12 @@ export class Touch extends Component {
       return
     }
 
-    this.props.onPress()
+    onPress && onPress()
     global.justRun = this.id
   }
 
   render() {
-    let { disabled = false, onPress, ...props } = this.props
+    let { disabled = false, ...props } = this.props
     // if (disabled) this.onPress = null
     return (
       <TouchableOpacity

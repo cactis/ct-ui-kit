@@ -51,6 +51,14 @@ export class Editor extends KeyboardAware {
     this.props.onSave(this.state.data)
   }
 
+  onDragEnd = params => {
+    log(params, 'params 3333')
+    let { data } = params
+    this.setState({ data: [] }, () => {
+      this.mounted && this.setState({ data: [...data] })
+    })
+  }
+
   render() {
     let { data, paddingBottom } = this.state
     // log(data, 'data in Editor render()')
@@ -81,16 +89,28 @@ export class Editor extends KeyboardAware {
         </R.Toolbar>
         <T.List
           // flex={1}
+          draggable={true}
           ref={c => (this.list = c)}
+          // keyExtractor={(item, index) => `draggable-item-${item.key}`}
           data={data}
+          // extraData={data}
+          onDragEnd={this.onDragEnd}
           renderItem={item => (
-            <T.Tag
-              // key={item}
-              placeholder={this.props.placeholder}
-              data={item}
-              parent={this}
-              onEnter={this.onEnter}
-            />
+            <T.Touch
+              onLongPress={item.drag}
+              style={{
+                borderWidth: 1,
+                borderColor: item.isActive ? '#aaa' : 'transparent',
+              }}
+            >
+              <T.Tag
+                // key={item}
+                placeholder={this.props.placeholder}
+                data={item}
+                parent={this}
+                onEnter={this.onEnter}
+              />
+            </T.Touch>
           )}
           ListFooterComponent1__=<T.Space size={200} />
         />

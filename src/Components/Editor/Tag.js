@@ -8,22 +8,6 @@ export class Tag extends React.PureComponent {
     mounted: false,
   }
 
-  componentDidMount() {
-    _trace('Tag')
-    this.mounted = true
-    _navigation = this.props.navigation
-    this.initStateData(() => {
-      this.autoRun()
-    })
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
-      _navigation = this.props.navigation
-
-    // if (prevProps.data !== this.props.data)
-    //   this.setState({ data: { ...this.props.data } })
-  }
-
   render() {
     let { data } = this.state
     // _log(data, 'data in Tag render()')
@@ -53,7 +37,14 @@ export class Tag extends React.PureComponent {
         )
     }
     // log(tag, 'tag')
-    return <T.Row>{tag}</T.Row>
+    return (
+      <T.Row flow="row" backgroundColor="white">
+        <T.Col>{tag}</T.Col>
+        <T.Center flex={0}>
+          <T.Icon name="navicon" iconSet="Evil" color="#999" />
+        </T.Center>
+      </T.Row>
+    )
   }
 
   updateData = data => {
@@ -72,6 +63,22 @@ export class Tag extends React.PureComponent {
         onComplete && onComplete()
       })
   }
+  componentDidMount() {
+    _trace('Tag')
+    this.mounted = true
+    _navigation = this.props.navigation
+    this.initStateData(() => {
+      this.autoRun()
+    })
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.navigation !== this.props.navigation)
+      _navigation = this.props.navigation
+
+    // if (prevProps.data !== this.props.data)
+    //   this.setState({ data: { ...this.props.data } })
+  }
+
   componentWillUnmount() {
     this.mounted = false
   }
