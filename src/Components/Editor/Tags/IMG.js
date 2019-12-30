@@ -27,7 +27,7 @@ export class IMG extends TagBase {
     // log(data.index, 'data.index')
     return (
       <T.Row
-        borderWidth={5}
+        borderWidth={EDITOR_LEFT_BORDER_WIDTH}
         marginBottom={this.marginBottom}
         onPress={this.onFocus}
         borderColor={this.isMe() ? EDITOR_FOCUSED : EDITOR_NOT_FOCUSED}

@@ -37,7 +37,7 @@ export class P extends TagBase {
 
   render() {
     let { data, value } = this.state
-    _log(data, 'data in P render()')
+    // _log(data, 'data in P render()')
     if (!data) return null
     let { item = data, index } = data
     // alert(index)
@@ -50,7 +50,7 @@ export class P extends TagBase {
     //     123<T.Text style={{ fontWeight: '900' }}>456</T.Text>789
     //   </T.Text>
     // )
-    __log(item, 'item')
+    // __log(item, 'item')
     let placeholder = index == 0 ? this.props.placeholder : null
     // log(placeholder, 'placeholder')
     // alert(placeholder)
@@ -59,7 +59,7 @@ export class P extends TagBase {
       <T.Row
         marginBottom={rwd(10)}
         padding={rwd(10)}
-        borderLeftWidth={5}
+        borderLeftWidth={EDITOR_LEFT_BORDER_WIDTH}
         borderColor={this.isMe() ? EDITOR_FOCUSED : EDITOR_NOT_FOCUSED}
         marginBottom={this.marginBottom}
         // paddingVertical={rwd(10)}

@@ -31,7 +31,7 @@ export class HR extends TagBase {
       <T.Center
         padding={SIZE.m}
         padding={rwd(10)}
-        borderLeftWidth={5}
+        borderLeftWidth={EDITOR_LEFT_BORDER_WIDTH}
         borderColor={this.isMe() ? EDITOR_FOCUSED : EDITOR_NOT_FOCUSED}
       >
         <T.RNTextInput

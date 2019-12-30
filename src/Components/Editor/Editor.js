@@ -107,6 +107,13 @@ export class Editor extends KeyboardAware {
                 // key={item}
                 placeholder={this.props.placeholder}
                 data={item}
+                onRemoveItem={index => {
+                  let { data } = this.state
+                  data.splice(index, 1)
+                  this.setState({ data: [] }, () => {
+                    this.setState({ data: [...data] })
+                  })
+                }}
                 parent={this}
                 onEnter={this.onEnter}
               />

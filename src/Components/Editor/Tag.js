@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Animated } from 'react-native'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
 
 let _navigation
 export class Tag extends React.PureComponent {
@@ -38,12 +39,27 @@ export class Tag extends React.PureComponent {
     }
     // log(tag, 'tag')
     return (
+      // <Swipeable ref="swipeable" renderRightActions={this.renderRightActions}>
       <T.Row flow="row" backgroundColor="white">
+        <T.Col flex={0} xAlign="center" yAlign="center">
+          <T.Icon
+            // style={styles.leftAction}
+            onPressIn={() => {
+              // alert()
+              // log(data, 'data')
+              this.props.onRemoveItem(data.index)
+            }}
+            color="#F7A7A7"
+            name="close"
+            iconSet="EvilIcons"
+          />
+        </T.Col>
         <T.Col>{tag}</T.Col>
         <T.Center flex={0}>
           <T.Icon name="navicon" iconSet="Evil" color="#999" />
         </T.Center>
       </T.Row>
+      // </Swipeable>
     )
   }
 
@@ -54,6 +70,56 @@ export class Tag extends React.PureComponent {
     this.forceUpdate()
     let { parent } = this.props
     parent.updateItem(data)
+  }
+
+  renderRightActions = (progress, dragX) => {
+    let { data } = this.state
+
+    let { item = data } = data
+    const trans = dragX.interpolate({
+      inputRange: [(-1 * SCREEN_WIDTH) / 2, -100, 0, 100, 101],
+      outputRange: [SCREEN_WIDTH / 2, 0, 1, 0, 0],
+      // inputRange: [(-1 * SCREEN_WIDTH) / 2, -100, 0, 200, 201],
+      // outputRange: [SCREEN_WIDTH / 2, 0, 1, 0, 0],
+      // inputRange: [0, 250],
+      // outputRange: [250, 0],
+      // extrapolate: 'clamp',
+      inputRange: [0, 1, 1],
+      outputRange: [0, 300, 1],
+      extrapolate: 'clamp',
+    })
+    return (
+      <Animated.View
+        style={[
+          // styles.actionText,
+          {
+            transform: [{ translateX: trans }],
+          },
+        ]}
+      >
+        <T.Center
+          flow="row"
+          // paddingHorizontal={rwd(20)}
+          backgroundColor="rgba(249,184,73,.91)"
+        >
+          <T.Icon
+            // style={styles.leftAction}
+            onPress={() => {
+              alert()
+              log(data, 'data')
+              // this.props.onRemoveItem(data.index)
+            }}
+            color="#888"
+            name="trash"
+            iconSet="Feather"
+          />
+        </T.Center>
+      </Animated.View>
+    )
+  }
+
+  swipeLeft = () => {
+    this.refs.swipeable.openRight()
   }
 
   initStateData = onComplete => {

@@ -57,6 +57,8 @@ export class Icon extends React.Component {
       height = width,
       backgroundColor = 'transparent',
       onPress,
+      onPressIn,
+      onPressOut,
       badge,
       text,
       disabled,
@@ -102,8 +104,13 @@ export class Icon extends React.Component {
         {/* <Space style={{position: 'absolute', backgroundColor: backgroundColor, width: '100%', height: '100%'}} borderRadius={width / 2} flex={1}></Space> */}
       </View>
     )
-    return onPress ? (
-      <Touch disabled={disabled} onPress={this.onPress}>
+    return onPress || onPressIn || onPressOut ? (
+      <Touch
+        disabled={disabled}
+        onPressOut={this.onPress}
+        onPressIn={this.onPress}
+        onPress={this.onPress}
+      >
         {child}
       </Touch>
     ) : (
@@ -118,5 +125,7 @@ export class Icon extends React.Component {
       // Vibration.vibrate(DURATION)
     }
     this.props.onPress && this.props.onPress()
+    this.props.onPressIn && this.props.onPressIn()
+    this.props.onPressOut && this.props.onPressOut()
   }
 }
