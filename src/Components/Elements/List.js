@@ -330,11 +330,11 @@ export class List extends React.PureComponent {
     ) : (
       ListHeaderComponent
     )
-    let Tag = draggable ? DraggableFlatList : FlatList
+    let ListTagType = draggable ? DraggableFlatList : FlatList
     return (
       <Grid>
         {data ? (
-          <Tag
+          <ListTagType
             // key={`randId()`}
             // listKey={`randId()`}
             // keyExtractor={(item, index) => index.toString()}

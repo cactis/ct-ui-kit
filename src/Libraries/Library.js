@@ -222,10 +222,10 @@ String.prototype.asJSON = function() {
     if (typeof json === 'object') {
       return json
     } else {
-      return null
+      return this
     }
   } catch (e) {
-    return null
+    return this
   }
 }
 
