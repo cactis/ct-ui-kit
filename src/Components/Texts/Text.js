@@ -189,7 +189,7 @@ const IOS_FONTS = [
   'Baskerville',
   'BradleyHandITCTT-Bold',
   'ChalkboardSE-Regular',
-  'Chalkduster',
+  'Chalkduster', //黑板字
   'Cochin',
   'Copperplate',
   'Courier',
