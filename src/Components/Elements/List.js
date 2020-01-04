@@ -91,7 +91,7 @@ export class List extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    // log('List#componentDidUpdate')
+    log('List#componentDidUpdate')
     if (prevProps.data !== this.props.data)
       this.mounted && this.setState({ data: this.props.data })
     if (prevProps.onLoad !== this.props.onLoad) this.onLoad = this.props.onLoad
@@ -121,6 +121,7 @@ export class List extends React.PureComponent {
   }
 
   reloadData = () => {
+    log('reloadData in List')
     this._reload()
   }
 
@@ -129,6 +130,7 @@ export class List extends React.PureComponent {
   }
 
   _reload = onSuccess => {
+    log('_reload in List')
     this.mounted &&
       this.setState(
         {
@@ -158,7 +160,7 @@ export class List extends React.PureComponent {
   }
 
   fetchData = async onSuccess => {
-    // log('fetchData')
+    log('fetchData')
     if (this.state.isPageLoading) {
       // log('isPageLoading')
       return
@@ -174,7 +176,7 @@ export class List extends React.PureComponent {
     }
     // let url = this.state.url
     let { url, dataPath = 'data' } = this.state
-    // log(url, 'url in List')
+    log(url, 'url in List')
     if (!url) return
     let { meta, pagination } = this.state
     let page = this.state.page + 1

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Scroll, Grid, SafeArea } from './'
 import { RefreshControl } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 let _navigation
 export class Screen extends React.Component {
@@ -39,10 +40,11 @@ export class Screen extends React.Component {
     let { refreshing } = this.state
     let {
       padding = SIZE.s,
+      keyboardAware = false,
       safeAreaDisabled = false,
       scrollable = false,
     } = this.props
-    const content = scrollable ? (
+    let content = scrollable ? (
       <Scroll
         ref={c => (this.scroll = c)}
         refreshControl={
@@ -54,6 +56,19 @@ export class Screen extends React.Component {
     ) : (
       <Grid padding={padding} {...this.props} />
     )
+    content = keyboardAware ? (
+      <KeyboardAwareScrollView
+        enableOnAndroid={true}
+        // backgroundColor={backgroundColor}
+        ref={ref => (this.scroll = ref)}
+        {...this.props}
+      >
+        <Grid padding={padding} {...this.props} />
+      </KeyboardAwareScrollView>
+    ) : (
+      content
+    )
+
     const body = safeAreaDisabled ? (
       content
     ) : (

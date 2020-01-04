@@ -25,7 +25,7 @@ export class Button extends React.PureComponent {
     if (url) {
       this.handleClick()
     } else {
-      log('onPress')
+      // log('onPress')
       onPress && onPress()
     }
   }

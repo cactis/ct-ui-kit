@@ -17,7 +17,7 @@ export class KeyboardAware extends React.PureComponent {
   state = {}
 
   onKeyboardChanged = height => {
-    alert('_onKeyboardTapped')
+    // alert('_onKeyboardTapped')
     log(
       height,
       'keyboard height. KeyboardAware say: set onKeyboardChanged to handle this keyboard event'

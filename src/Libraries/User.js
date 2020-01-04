@@ -119,7 +119,7 @@ export class User extends Component {
   static signUp = async (params, onSuccess) => {
     // log(1111)
     let response = await Api.post('/users', { user: params })
-    // log(response, 'response')
+    log(response, 'response')
     // log(222)
     setCurrentUser(response, onSuccess)
   }

@@ -46,6 +46,7 @@ export class Modal extends ModalBase {
       title = propTitle,
       quoteable,
       fullScreen,
+      keyboardAware = false,
       paddable = true,
       padding = SIZE.s,
       ...opts
@@ -88,7 +89,7 @@ export class Modal extends ModalBase {
               onPress={this.close}
               name="close"
               size={rwd(18)}
-              color="white"
+              color="transparent"
               iconSet="AntDesign"
               // color="rgb(131,131,131)"
             />
@@ -121,7 +122,11 @@ export class Modal extends ModalBase {
             contentContainerStyle={{ padding: rwd(10) }}
           />
         ) : (
-          <T.Screen padding={padding} safeAreaDisabled={!safeArea}>
+          <T.Screen
+            padding={padding}
+            keyboardAware={keyboardAware}
+            safeAreaDisabled={!safeArea}
+          >
             {children}
           </T.Screen>
         )}
