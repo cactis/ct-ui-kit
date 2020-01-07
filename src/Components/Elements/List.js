@@ -121,7 +121,7 @@ export class List extends React.PureComponent {
   }
 
   reloadData = () => {
-    log('reloadData in List')
+    // log('reloadData in List')
     this._reload()
   }
 
@@ -130,7 +130,7 @@ export class List extends React.PureComponent {
   }
 
   _reload = onSuccess => {
-    log('_reload in List')
+    // log('_reload in List')
     this.mounted &&
       this.setState(
         {
@@ -439,7 +439,9 @@ export class List extends React.PureComponent {
   componentDidUpdate(prevProps) {
     if (prevProps.data !== this.props.data)
       this.setState({ data: this.props.data })
+    if (prevProps.url !== this.props.url) this.setState({ url: this.props.url })
   }
+
   componentWillUnmount() {
     this.mounted = false
   }
