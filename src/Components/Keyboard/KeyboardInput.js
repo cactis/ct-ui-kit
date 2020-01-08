@@ -140,7 +140,7 @@ export class KeyboardInput extends React.PureComponent {
 
   _cancelReplyTo = () => {
     this.setState({ replyTo: null })
-    this.cancelReplyTo()
+    this.cancelReplyTo && this.cancelReplyTo()
   }
   onSend = () => {}
 

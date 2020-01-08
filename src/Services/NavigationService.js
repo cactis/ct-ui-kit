@@ -11,7 +11,7 @@ export class NavigationService {
     log('goBack in NavigationService')
     runLast(() => {
       _navigator.dispatch(NavigationActions.back())
-    }, 100)
+    }, 200)
   }
 
   // static push = (routeName, params = {}) => {
