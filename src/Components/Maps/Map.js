@@ -18,7 +18,7 @@ export class Map extends React.PureComponent {
     _navigation = this.props.navigation
     this.initStateData(() => {
       delayed(() => {
-        this.getUserLocation()
+        // this.getUserLocation()
       })
       this.autoRun()
     })

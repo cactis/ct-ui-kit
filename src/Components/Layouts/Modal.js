@@ -37,7 +37,7 @@ export class Modal extends ModalBase {
     let { children = content, title: propTitle, height } = this.props
     let {
       height: modalHeight = height,
-      backgroundColor = 'rgba(255,255,255,.98)',
+      backgroundColor = 'rgba(255,255,255,1)',
       // backgroundColor = 'rgba(204,57,57,.98)',
       safeArea = true,
       direction = 'bottom',
@@ -123,6 +123,7 @@ export class Modal extends ModalBase {
           />
         ) : (
           <T.Screen
+            backgroundColor="green"
             padding={padding}
             keyboardAware={keyboardAware}
             safeAreaDisabled={!safeArea}

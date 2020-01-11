@@ -1,10 +1,42 @@
 import React, { PureComponent as Component } from 'react'
 import { TouchableOpacity } from 'react-native'
 
+import ReactNativeHaptic from 'react-native-haptic'
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
+
+window.beep = () => {
+  if (__DEV__) alert('test beep')
+  if (iOS) {
+    ReactNativeHaptic.generate('notification')
+  } else {
+    const options = {
+      enableVibrateFallback: true,
+      ignoreAndroidSystemSettings: false,
+    }
+    // let effect = [
+    //   'selection',
+    //   'impactLight',
+    //   'impactMedium',
+    //   'impactHeavy',
+    //   'notificationSuccess',
+    //   'notificationWarning',
+    //   'notificationError',
+    // ].sample()
+    effect = 'notificationSuccess'
+    ReactNativeHapticFeedback.trigger(effect, options)
+    if (__DEV__) alert(effect)
+  }
+}
+
 export class Touch extends Component {
   // static getDerivedStateFromProps(props, state) {
   //   // _navigation = props.navigation
   // }
+  _beep = beep => {
+    log(beep, 'beep')
+    // let { beep = false } = this.props
+    if (beep) window.beep()
+  }
 
   constructor(props) {
     super(props)
@@ -12,7 +44,8 @@ export class Touch extends Component {
     this.state = {}
   }
   onPress = () => {
-    let { disabled = false, onPress, ...props } = this.props
+    let { disabled = false, onPress, beep, ...props } = this.props
+    this._beep(beep)
     // log(this, 'this')
     if (disabled) return
     // log(global.justRun, this.id, 'global.justRun, this.id')
@@ -28,6 +61,13 @@ export class Touch extends Component {
     global.justRun = this.id
   }
 
+  onLongPress = () => {
+    log('onLongPress in Touch')
+    this._beep(true)
+    let { disabled = false, onLongPress } = this.props
+    if (!disabled) onLongPress && onLongPress()
+  }
+
   render() {
     let { disabled = false, ...props } = this.props
     // if (disabled) this.onPress = null
@@ -35,6 +75,7 @@ export class Touch extends Component {
       <TouchableOpacity
         activeOpacity={disabled ? 1 : 0.8}
         onPress={this.onPress}
+        onLongPress={this.onLongPress}
         {...props}
       />
     )

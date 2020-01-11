@@ -82,7 +82,7 @@ export class Editor extends KeyboardAware {
         >
           <T.Button
             name="save"
-            title="Save"
+            title="Share Now"
             borderWidth={0.5}
             onPress={this.save}
           />

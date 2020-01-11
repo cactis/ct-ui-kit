@@ -8,7 +8,7 @@ export class Field extends Component {
   render() {
     let {
       title = '',
-      placeholder = `please input ${title}`,
+      placeholder = `please enter ${title}`,
       // height = rwd(32),
       // backgroundColor = 'white',
       padding = rwd(5),
