@@ -44,6 +44,7 @@ export class LI extends React.PureComponent {
         />
       </>
     )
+    log(parent_name, 'parent_name')
     if (parent_name == 'OL') {
       listType = (
         <>

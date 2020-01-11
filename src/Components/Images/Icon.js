@@ -107,8 +107,8 @@ export class Icon extends React.Component {
     return onPress || onPressIn || onPressOut ? (
       <Touch
         disabled={disabled}
-        onPressOut={this.onPress}
-        onPressIn={this.onPress}
+        // onPressOut={this.onPress}
+        // onPressIn={this.onPress}
         onPress={this.onPress}
       >
         {child}
@@ -125,7 +125,7 @@ export class Icon extends React.Component {
       // Vibration.vibrate(DURATION)
     }
     this.props.onPress && this.props.onPress()
-    this.props.onPressIn && this.props.onPressIn()
-    this.props.onPressOut && this.props.onPressOut()
+    // this.props.onPressIn && this.props.onPressIn()
+    // this.props.onPressOut && this.props.onPressOut()
   }
 }
