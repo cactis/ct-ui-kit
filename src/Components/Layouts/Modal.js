@@ -123,7 +123,7 @@ export class Modal extends ModalBase {
           />
         ) : (
           <T.Screen
-            backgroundColor="green"
+            // backgroundColor="green"
             padding={padding}
             keyboardAware={keyboardAware}
             safeAreaDisabled={!safeArea}
