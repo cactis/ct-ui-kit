@@ -10,16 +10,18 @@ export class TagBase extends React.PureComponent {
   }
 
   isMe = () => {
+    log(window.currentIndex, 'window.currentIndex in TagBase#isMe()')
     let { data, currentIndex } = this.state
     // log(data.index, currentIndex, 'data.index, currentIndex in TagBase#isMe()')
-    return data.index == currentIndex
+    // return data.index == currentIndex
+    return data.index == window.currentIndex
   }
   marginBottom = 5
 
   onFocus = e => {
     // alert('onFocus')
     // window.keyboardToolbar.open(<T.TagsToolbar />, { modalHeight: rwd(50) })
-    // log(e, 'onFocus')
+    // log(e, 'e in TagBase#onFocus')
     // this.tagsToolbar.open()
     window.prevTag = window.tag
     window.currentIndex = this.state.data.index

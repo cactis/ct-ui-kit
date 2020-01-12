@@ -160,7 +160,7 @@ export class List extends React.PureComponent {
   }
 
   fetchData = async onSuccess => {
-    log('fetchData')
+    // log('fetchData')
     if (this.state.isPageLoading) {
       // log('isPageLoading')
       return
@@ -176,7 +176,7 @@ export class List extends React.PureComponent {
     }
     // let url = this.state.url
     let { url, dataPath = 'data' } = this.state
-    log(url, 'url in List')
+    // log(url, 'url in List')
     if (!url) return
     let { meta, pagination } = this.state
     let page = this.state.page + 1
@@ -207,17 +207,17 @@ export class List extends React.PureComponent {
     let json
     let { graphql } = this.props
     if (graphql) {
-      log(this.props.url, 'this.props.url')
+      // log(this.props.url, 'this.props.url')
       let key = this.props.url.replace('/', '')
       log(key, 'key')
       let res = await Api.graphql({
         query: `{${key} (page: ${page}) ${graphql}}`,
       })
-      log(res, 'res')
+      // log(res, 'res')
       let { data } = res
       let items = data[key]
       json = { data: items }
-      log(json, 'json')
+      // log(json, 'json')
     } else {
       json = await Api.get(url)
     }

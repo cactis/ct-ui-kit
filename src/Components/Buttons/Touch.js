@@ -33,7 +33,7 @@ export class Touch extends Component {
   //   // _navigation = props.navigation
   // }
   _beep = beep => {
-    log(beep, 'beep')
+    // log(beep, 'beep')
     // let { beep = false } = this.props
     if (beep) window.beep()
   }

@@ -15,31 +15,6 @@ export class Editor extends KeyboardAware {
     paddingBottom: _PADDING_BOTTOM,
   }
 
-  componentDidMount() {
-    _trace('Editor')
-    this.mounted = true
-    _navigation = this.props.navigation
-    this.initStateData(() => {
-      this.autoRun()
-      this.attachKeyBoard()
-    })
-    window.editor = this
-    // window.currentIndex = __DEV__ ? 1 : 0
-    window.currentIndex = 0
-  }
-
-  attachKeyBoard = () => {
-    window.keyboardToolbar.open(<T.TagsToolbar />, {
-      // modalHeight: rwd(50),
-    })
-    // window.keyboardToolbar.open(null, { modalHeight: 100 })
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
-      _navigation = this.props.navigation
-  }
-
   onKeyboardChanged = height => {
     // alert(height)
     // this.attachKeyBoard()
@@ -127,16 +102,11 @@ export class Editor extends KeyboardAware {
   }
 
   insertItem = index => {
-    // log(index, 'index')
-    // let { data } = this.state
-    //
-    // log(data.length, 'data.length')
-    // _log(data, 'data')
     let item = {
       tag: 'p',
-      // content: `${randId()}`,
     }
     window.currentIndex = index
+    log(window.currentIndex, 'window.currentIndex in Edtor#insertItem')
     // log(item, 'item')
     let { data } = this.state
     this.mounted &&
@@ -150,6 +120,13 @@ export class Editor extends KeyboardAware {
     // this.setState({ data: [...data] })
     // this.forceUpdate()
     // this.list.reloadData()
+  }
+
+  attachKeyBoard = () => {
+    window.keyboardToolbar.open(<T.TagsToolbar />, {
+      // modalHeight: rwd(50),
+    })
+    // window.keyboardToolbar.open(null, { modalHeight: 100 })
   }
 
   updateItem = item => {
@@ -174,6 +151,25 @@ export class Editor extends KeyboardAware {
         onComplete && onComplete()
       })
   }
+
+  componentDidMount() {
+    _trace('Editor')
+    this.mounted = true
+    _navigation = this.props.navigation
+    this.initStateData(() => {
+      this.autoRun()
+      this.attachKeyBoard()
+    })
+    window.editor = this
+    // window.currentIndex = __DEV__ ? 1 : 0
+    window.currentIndex = 0
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.navigation !== this.props.navigation)
+      _navigation = this.props.navigation
+  }
+
   componentWillUnmount() {
     this.mounted = false
   }

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import * as T from '..'
 
 import MapView, { Marker, navigator } from 'react-native-maps'
-
+export { Marker }
 let _navigation
 
 export class Map extends React.PureComponent {
@@ -18,6 +18,7 @@ export class Map extends React.PureComponent {
     _navigation = this.props.navigation
     this.initStateData(() => {
       delayed(() => {
+        // this.fitToElements()
         // this.getUserLocation()
       })
       this.autoRun()
@@ -31,7 +32,7 @@ export class Map extends React.PureComponent {
 
   render() {
     let { userRegion, markers } = this.state
-    log(userRegion, markers, 'userRegion, markers')
+    log([userRegion, markers], '[userRegion, markers]')
 
     let { data } = this.state
     log(data, 'data in Map render()')
@@ -55,7 +56,32 @@ export class Map extends React.PureComponent {
           onRegionChange={this.onRegionChange}
           style={{ flex: 1, ...StyleSheet.absoluteFillObject }}
           {...this.props}
-        />
+        >
+          {markers.map(item => (
+            <Marker
+              key={randId()}
+              title={`${item.latitude}`}
+              // title={
+              //   item.coordable?.id != global.currentUser.id
+              //     ? item.coordable?.name
+              //     : '(yourself)'
+              // }
+              // pinColor={
+              //   item.coordable?.id != global.currentUser.id
+              //     ? 'rgb(255,0,0)'
+              //     : iOS
+              //     ? 'rgba(43,219,14,.95)'
+              //     : 'rgba(21,117,5,.95)'
+              // }
+              // onPress={() => this.onMarkerPress(item)}
+              // description={item.coordable?.description}
+              coordinate={item.coordinate}
+              pinColor="red"
+              title={item.title}
+              // coordinate={33}
+            />
+          ))}
+        </MapView>
         <T.Float right={rwd(10)} bottom={SAFEAREA_BOTTOM + 0}>
           <T.Icon
             size={rwd(25)}
@@ -133,8 +159,14 @@ export class Map extends React.PureComponent {
     })
   }
 
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.markers !== this.props.markers)
+  //     this.setState({ markers: this.props.markers })
+  // }
+
   initStateData = onComp => {
-    let { data, markers, onComplete } = this.props
+    let { data, markers = [], onComplete } = this.props
+    log(markers, 'markers')
     this.setState({ data, markers, onComplete }, () => {
       onComp && onComp()
     })

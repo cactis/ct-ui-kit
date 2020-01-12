@@ -10,20 +10,6 @@ export class TagsToolbar extends React.PureComponent {
     mounted: false,
   }
 
-  componentDidMount() {
-    _trace('TagsToolbar')
-    this.mounted = true
-    _navigation = this.props.navigation
-    // this.initStateData(() => {
-    //   this.autoRun()
-    // })
-    window.tagsToolbar = this
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
-      _navigation = this.props.navigation
-  }
-
   render() {
     let { tagsBar = true } = window
     let { currentTag } = this.state
@@ -114,6 +100,20 @@ export class TagsToolbar extends React.PureComponent {
     this.setState({ currentTag })
   }
 
+  componentDidMount() {
+    _trace('TagsToolbar')
+    this.mounted = true
+    _navigation = this.props.navigation
+    // this.initStateData(() => {
+    //   this.autoRun()
+    // })
+    window.tagsToolbar = this
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.navigation !== this.props.navigation)
+      _navigation = this.props.navigation
+  }
+
   componentWillUnmount() {
     this.mounted = false
   }
@@ -125,11 +125,13 @@ import { useState } from 'react'
 const Icon = props => {
   let { navigation, currentTag, tagName } = props
   let [data, setData] = useState(props.data)
+
   onPress = () => {
     window.tagsToolbar.setCurrentTag(tagName)
     switch (tagName) {
       case 'enter':
         let index = window.tag.state.data.index
+        log(index, 'index: TagsToolbar#Icon/onPress')
         window.editor.insertItem(index + 1)
         break
       case 'img':
