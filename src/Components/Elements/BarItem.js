@@ -8,7 +8,7 @@ export class BarItem extends React.Component {
     return (
       <Icon
         badge={badge}
-        paddingTop={iOS ? SIZE.s : 0}
+        // paddingTop={iOS ? SIZE.s : 0}
         size={size}
         beep={true}
         color="white"
