@@ -96,7 +96,7 @@ export class Input extends React.PureComponent {
             borderWidth: 0.5,
             borderColor: '#666',
             borderRadius: rwd(3),
-            height: height,
+            height: height - (iOS ? rwd(10) : rwd(43)),
           }}
           flex={0}
         >
@@ -129,6 +129,7 @@ export class Input extends React.PureComponent {
             backgroundColor={SUBMIT_COLOR}
             theme="pill"
             title="OK"
+            color="white"
             onPress={() => {
               log(this.props.onChangeText)
               this.props.onChangeText(this.state.value)

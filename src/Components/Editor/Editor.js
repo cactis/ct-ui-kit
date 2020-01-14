@@ -29,9 +29,10 @@ export class Editor extends KeyboardAware {
   onDragEnd = params => {
     log(params, 'params 3333')
     let { data } = params
-    this.setState({ data: [] }, () => {
-      this.mounted && this.setState({ data: [...data] })
-    })
+    this.mounted &&
+      this.setState({ data: [] }, () => {
+        this.mounted && this.setState({ data: [...data] })
+      })
   }
 
   render() {

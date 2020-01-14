@@ -29,6 +29,7 @@ window.SCREEN_HEIGHT = Dimensions.get('window').height
 window.SCREEN_HEIGHT = !iOS
   ? Dimensions.get('window').height - StatusBar.currentHeight
   : Dimensions.get('window').height
+window.SCREEN_HEIGHT = Dimensions.get('window').height
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
