@@ -5,7 +5,7 @@ import DateTimePicker from 'react-native-date-picker'
 // import DateTimePicker from '@react-native-community/datetimepicker'
 
 toDate = date => {
-  return date.toLocaleDateString()
+  return date.toLocaleDateString('en-US')
 }
 
 let _navigation
@@ -17,6 +17,7 @@ export class DatePicker extends React.PureComponent {
   setDate = data => {
     log(data, 'data')
     this.setState({ data: toDate(data) })
+    this.props.onUpdated && this.props.onUpdated(toDate(data))
   }
 
   show = () => {

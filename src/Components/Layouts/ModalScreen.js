@@ -56,7 +56,7 @@ export class ModalScreen extends ModalBase {
           height: modalHeight,
           zIndex: 10000,
           // borderWidth: 3,
-          borderRadius: fullScreen ? 0 : rwd(20),
+          borderRadius: 0,
           backgroundColor: backgroundColor,
         }}
         {...opts}
@@ -94,14 +94,14 @@ export class ModalScreen extends ModalBase {
               theme="H1"
             />
           </T.Space>
-          <T.Col borderWidth={0} align="center">
+          <T.Col borderWidth={0} align="center" paddingHorizontal={SIZE.l}>
             {title && (
               <T.Label
                 // theme="H0"
                 // marginTop={0}
                 theme="H1"
                 size={rwd(16)}
-                numberOfLines={0}
+                // numberOfLines={1}
                 marginBottom={0}
                 color="white"
                 text={title}
