@@ -22,6 +22,7 @@ export const Video = props => {
         // onBuffer={this.onBuffer} // Callback when remote video is buffering
         onError={videoError} // Callback when video cannot be loaded
         resizeMode={iOS ? 'contain' : 'contain'}
+        // resizeMode='cover'
         // style={styles.backgroundVideo}
         controls={true}
         playInBackground={true}

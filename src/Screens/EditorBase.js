@@ -45,7 +45,7 @@ export class EditorBase extends KeyboardAware {
   }
 
   onKeyboardChanged = height => {
-    log(height, 'height')
+    // log(height, 'height')
     this.mounted &&
       this.setState({ paddingBottom: height, toolbarHeight: height })
     // log(this.modal, 'this.modal')

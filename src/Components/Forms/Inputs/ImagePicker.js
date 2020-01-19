@@ -33,23 +33,25 @@ export const ImagePicker = props => {
   )
 }
 
-window.base64Image = image => {
-  log(image, 'image 11111')
+window.base64Image = async image => {
+  log(image, 'image 11111111 in base64Image')
   let { mime, path } = image
-  log(path, 'path')
+  // log(path, 'path')
   if (mime.search(/mp4/) > -1) {
-    log('read mp4')
-    RNFS.readFile(path, 'base64')
-      .then(base64 => {
-        log(base64, 'base64')
-        image.data = base64
-        log(image, 'image 22222')
-        // onGetImage(image)
-        return image
-      })
-      .catch(err => {
-        log(err, 'err')
-      })
+    // log('read mp4')
+    let base64 = await RNFS.readFile(path, 'base64')
+    image.data = base64
+    // .then(async base64 => {
+    //   // log(base64, 'base64 222222222222')
+    //   image.data = await base64
+    log(image, 'image 22222222222222222222')
+    //   // onGetImage(image)
+    //   return image
+    // })
+    // .catch(err => {
+    //   log(err, 'err')
+    // })
+    return image
   } else {
     // onGetImage(image)
     return image

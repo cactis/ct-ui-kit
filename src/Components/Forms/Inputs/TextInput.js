@@ -51,7 +51,7 @@ export class TextInput extends React.PureComponent {
   render() {
     let { value } = this.state
     let { multiline, height = multiline ? rwd(300) : rwd(40) } = this.props
-    log(height, 'height')
+    // log(height, 'height')
     return (
       <T.Row
         theme="bordered"
