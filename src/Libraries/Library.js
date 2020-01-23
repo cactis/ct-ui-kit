@@ -28,15 +28,18 @@ window.error = (...message) => {
 }
 
 window._autoRun = (action, run, always = false) => {
+  let DoString = Dev.do //?.split('-').slice(0, i)
   // log(action, 'action')
   if (Dev.autoRunTrace) {
-    log(Dev.doIndex, action, Dev.do, 'doIndex, action, Dev.do')
+    log(
+      [Dev.doIndex, action, Dev.do, DoString?.indexOf(action)],
+      '[Dev.doIndex, action, Dev.do, DoString?.indexOf(action)]'
+    )
   }
   // log(Dev, 'Dev')
   let i = (Dev.doIndex >= 0 ? Dev.doIndex : 99) + 1
-  let DoString = Dev.do //?.split('-').slice(0, i)
-  // log(DoString, 'DoString')
-  // log(DoString?.indexOf(action), 'DoString?.indexOf(action)')
+  log(DoString, 'DoString')
+  log(DoString?.indexOf(action), 'DoString?.indexOf(action)')
   if (DoString?.indexOf(action) > -1 || always) {
     // log(action, run, 'action, run')
     _runOnce(action, () => {

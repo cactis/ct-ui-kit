@@ -11,7 +11,7 @@ export class Full extends React.PureComponent {
   componentDidMount() {
     _trace('Full')
     _navigation = this.props.navigation
-    log(_navigation, '_navigation 0000000')
+    // log(_navigation, '_navigation 0000000')
     this.initStateData(() => {
       this.autoRun()
     })
@@ -85,8 +85,8 @@ export class Full extends React.PureComponent {
   }
 
   close = () => {
-    log(this.props.navigation, '111')
-    log(_navigation, '222')
+    // log(this.props.navigation, '111')
+    // log(_navigation, '222')
     _navigation.goBack()
   }
 

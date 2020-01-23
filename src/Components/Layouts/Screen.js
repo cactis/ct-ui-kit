@@ -7,7 +7,7 @@ let _navigation
 export class Screen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     _navigation = navigation
-    log(_navigation, '--------------------------')
+    // log(_navigation, '--------------------------')
     // return {
     //   title: navigation.state.params?.title || '',
     // }

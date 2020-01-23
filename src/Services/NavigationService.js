@@ -14,9 +14,6 @@ export class NavigationService {
     }, 200)
   }
 
-  // static push = (routeName, params = {}) => {
-  //   navigate(routeName, params)
-  // }
   static navigate = (routeName, params = {}) => {
     let key = `${routeName}_${params.data?.id}`
     if (global.currentKey == key) return log('duplicate click')
@@ -33,4 +30,12 @@ export class NavigationService {
       global.currentKey = null
     }, 3000)
   }
+}
+
+window.gotoScreen = (screenname, options = {}) => {
+  T.NavigationService.navigate(screenname, options)
+}
+
+window.goBack = () => {
+  T.NavigationService.goBack()
 }

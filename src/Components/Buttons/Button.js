@@ -154,11 +154,12 @@ const styles = {
     // lineHeight: 2.5,
     paddingHorizontal: rwd(10),
     paddingVertical: rwd(5),
-    borderWidth: 1,
+    borderWidth: 0.5,
     backgroundColor: 'transparent',
-    borderColor: 'rgba(29,29,29,.3)',
+    borderColor: 'rgba(255,255,255,1)',
     label: {
-      color: 'rgba(#666,.75)',
+      // color: 'rgba(#666,.75)',
+      color: 'white',
     },
 
     // backgroundColor: 'rgb(245,197,66)',

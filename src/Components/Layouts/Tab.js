@@ -72,6 +72,7 @@ export class Tab extends Component {
             flexDirection={theme == 'parent' ? 'row' : 'column'}
             style={{
               ...this.props.style,
+              margin: SIZE.t,
               ...style.isSelected[selected],
               justifyContent: 'center',
               alignItems: 'center',

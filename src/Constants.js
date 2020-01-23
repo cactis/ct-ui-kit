@@ -1,5 +1,7 @@
 log('Constant.js')
 
+window.TColor = require('tinycolor2')
+
 setDeviceName = () => {
   D.getDeviceName().then(res => {
     global.DeviceName = res
@@ -14,9 +16,16 @@ import { StatusBar } from 'react-native'
 
 import { Dimensions, Platform } from 'react-native'
 // const { StatusBarManager } = NativeModules
+window.SCREEN_WIDTH = Dimensions.get('window').width
+// window.SCREEN_HEIGHT = Dimensions.get('window').height
+// window.SCREEN_HEIGHT = !iOS
+//   ? Dimensions.get('window').height - StatusBar.currentHeight
+//   : Dimensions.get('window').height
+window.SCREEN_HEIGHT = Dimensions.get('window').height
 
 // OVERWRITE
 window.BCOLOR = 'rgb(59,9,66)'
+window.BCOLOR_DEV = 'rgb(108,108,108)'
 window.FCOLOR = 'rgb(219,219,219)'
 window.ICON_COLOR = 'rgba(55,47,66,1)'
 window.SUBMIT_COLOR = 'rgb(241,220,148)'
@@ -24,24 +33,16 @@ window.SUBMIT_COLOR = 'rgb(241,220,148)'
 window.iOS = Platform.OS === 'ios'
 window.isTablet = screenWidth > 500
 
-window.SCREEN_WIDTH = Dimensions.get('window').width
-window.SCREEN_HEIGHT = Dimensions.get('window').height
-window.SCREEN_HEIGHT = !iOS
-  ? Dimensions.get('window').height - StatusBar.currentHeight
-  : Dimensions.get('window').height
-window.SCREEN_HEIGHT = Dimensions.get('window').height
+window.BASE_SIZE = rwd(iOS ? 12 : 12)
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
 
 // window.ICON_COLOR = 'rgba(111,81,143,.5)'
-let mainBGColor = '#25B1C4'
+let mainBGColor = 'rgb(196,104,37)'
 // let mainBGColor = 'transparent'
 // window.ICON_COLOR = 'rgba(150,44,30,.57)' //'#D6CC4A'
 
-window.SEGMENT_COLOR = mainBGColor
-window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
-window.BASE_SIZE = rwd(iOS ? 12 : 12)
 // console.log(1111111111111111111)
 initAppFontSize = async () => {
   try {
@@ -70,7 +71,7 @@ let normalSize = BASE_SIZE * 3 + 3
 // let mainBGColor = 'rgb(168,105,231)'
 // let mainBGColor = 'rgb(231,105,105)'
 let mainColor = '#fff'
-// let mainColor = 'white'
+// let mainColor = LIGHT_COLOR
 let padding = 8
 
 // let statusBarHeight = iOS ? 20 : StatusBarManager.HEIGHT
@@ -158,6 +159,7 @@ window.iPhoneX =
   iOS &&
   (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
     deviceInfo.Model?.indexOf('iPhone 11') == 0)
+
 window.pad = SCREEN_WIDTH > 800
 export const size = {
   normalSize: normalSize,
@@ -193,13 +195,21 @@ export const Const = {
 }
 
 window.initConstant = () => {
-  window.iPhoneX =
-    iOS &&
-    (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
-      deviceInfo.Model?.indexOf('iPhone 11') == 0)
+  // window.iPhoneX =
+  //   iOS &&
+  //   (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
+  //     deviceInfo.Model?.indexOf('iPhone 11') == 0)
 
   window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
   window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+
+  window.LIGHT_COLOR = 'white'
+  window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
+  window.SEGMENT_COLOR = LIGHT_COLOR
+  window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR
+  window.SEGMENT_ACTIVE_BGCOLOR = TColor(BCOLOR)
+  window.SEGMENT_BORDER_COLOR = 'transparent'
+  window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
 }
 // setDeviceInfo() run in SplashScreen
 // initConstant() run in SplashScreen
