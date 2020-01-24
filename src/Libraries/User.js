@@ -116,17 +116,34 @@ export class User extends Component {
     global.currentUser = undefined
   }
 
+  static setCurrentUser = async (data, onSuccess) => {
+    // log(data, 'data - in setCurrentUser')
+    let { data: user } = data
+    // log(user?.id, 'user?.id')
+    if (user?.id) {
+      // let memberToken = user.member_token
+      let userToken = user.token
+      global.isLogged = true
+      global.currentUser = user
+      global.accessTokens = `${userToken}; ${user.name}`
+      // log(global.currentUser, 'global.currentUser')
+      // Storage.set('phone', user.phone)
+      await Storage.set('userToken', userToken)
+      onSuccess && onSuccess(user)
+    }
+  }
+
   static signUp = async (params, onSuccess) => {
     // log(1111)
     let response = await Api.post('/users', { user: params })
     log(response, 'response')
     // log(222)
-    setCurrentUser(response, onSuccess)
+    User.setCurrentUser(response, onSuccess)
   }
 
   static login = async (params, onSuccess) => {
     let response = await Api.post('/sign_in', { user: params })
-    setCurrentUser(response, onSuccess)
+    User.setCurrentUser(response, onSuccess)
   }
 
   // static current = () => {
@@ -137,24 +154,6 @@ export class User extends Component {
     return global.isLogged
   }
 }
-
-global.setCurrentUser = async (data, onSuccess) => {
-  // log(data, 'data - in setCurrentUser')
-  let { data: user } = data
-  // log(user?.id, 'user?.id')
-  if (user?.id) {
-    // let memberToken = user.member_token
-    let userToken = user.token
-    global.isLogged = true
-    global.currentUser = user
-    global.accessTokens = `${userToken}; ${user.name}`
-    // log(global.currentUser, 'global.currentUser')
-    // Storage.set('phone', user.phone)
-    await Storage.set('userToken', userToken)
-    onSuccess && onSuccess(user)
-  }
-}
-
 export default User
 
 // import { AsyncStorage } from 'react-native'

@@ -8,7 +8,6 @@ export class WebSocketBase extends React.PureComponent {
     // alert('connectSocket')
     let accessTokens = global.accessTokens
     // log(accessTokens, 'accessTokens')
-    // AppConfig.webSocket = 'wss://dev.theampdr.com/cable'
 
     log(AppConfig.webSocket, 'AppConfig.webSocket')
     ws = new WebSocket(AppConfig.webSocket, '', {
