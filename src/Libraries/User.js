@@ -62,6 +62,12 @@ export class User extends Component {
       // log(user.token)
       Storage.set('userToken', user.token)
       global.isLogged = true
+      // T.Api.get('/me', res => {
+      //   let { data } = res
+      //   if (data) {
+      //     global.currentUser = data
+      //   }
+      // })
     } else {
       global.isLogged = undefined
     }
