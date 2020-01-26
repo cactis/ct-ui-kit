@@ -31,7 +31,7 @@ window.ICON_COLOR = 'rgba(55,47,66,1)'
 window.SUBMIT_COLOR = 'rgb(241,220,148)'
 
 window.iOS = Platform.OS === 'ios'
-window.isTablet = screenWidth > 500
+window.isTablet = SCREEN_WIDTH > 500
 
 window.BASE_SIZE = rwd(iOS ? 12 : 12)
 
@@ -148,6 +148,11 @@ window.setDeviceInfo = async () => {
   // log(_info, '_info')
   global.deviceInfo = _info
   global.DEVICE_INFO = _info
+
+  window.iPhoneX =
+    iOS &&
+    (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||
+      DEVICE_INFO.Model?.indexOf('iPhone 1') == 0)
 }
 setDeviceInfo()
 
@@ -158,7 +163,7 @@ window.deviceInfo = () => {
 window.iPhoneX =
   iOS &&
   (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
-    deviceInfo.Model?.indexOf('iPhone 11') == 0)
+    deviceInfo.Model?.indexOf('iPhone 1') == 0)
 
 window.pad = SCREEN_WIDTH > 800
 export const size = {

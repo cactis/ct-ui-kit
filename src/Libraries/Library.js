@@ -261,3 +261,20 @@ RegExp.prototype.indexOf = function(str, startIndex) {
   if (!res) return -1
   return re.lastIndex - res[0].length
 }
+
+window.asCurrency = function(num) {
+  if (num == null) {
+    return
+  }
+  let n = String(num)
+  n = n.replace(/,/g, '')
+  let p = n.indexOf('.')
+  let r = n.replace(/\d(?=(?:\d{3})+(?:\.|$))/g, (m, i) =>
+    p < 0 || i < p ? `${m},` : m
+  )
+  return r
+}
+
+Number.prototype.asCurrency = function(dollar = '') {
+  return asCurrency(this)
+}
