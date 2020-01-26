@@ -74,7 +74,8 @@ export class Modal extends ModalBase {
       >
         <T.Row
           flex={0}
-          padding={padding}
+          padding={SIZE.l}
+          paddingBottom={padding / 2}
           marginTop={fullScreen ? SAFEAREA_TOP + 3 * SIZE.s : 0}
           // borderWidth={1}
           // padding={padding}

@@ -32,7 +32,7 @@ export class ModalScreen extends ModalBase {
       swipeToClose,
       title = propTitle,
       quoteable,
-      fullScreen,
+      fullScreen = true,
       keyboardAware = false,
       paddable = true,
       padding = 2 * SIZE.s,
@@ -64,8 +64,9 @@ export class ModalScreen extends ModalBase {
       >
         <T.Row
           flex={0}
-          padding={padding}
-          marginTop={fullScreen ? SAFEAREA_TOP + 1 * SIZE.s : 0}
+          padding={padding / 2}
+          paddingTop={padding}
+          marginTop={fullScreen ? SAFEAREA_TOP + 4 * SIZE.s : 0}
           // borderWidth={1}
           // padding={padding}
 
@@ -75,7 +76,7 @@ export class ModalScreen extends ModalBase {
           // top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
           // zIndex={1000}
         >
-          <T.Space borderWidth={0} flex={0} align="center">
+          <T.Space borderWidth={0} paddingLeft={SIZE.m} flex={0} align="center">
             {/* <T.Icon
               onPress={this.close}
               name="close"

@@ -51,7 +51,7 @@ export class Input extends React.PureComponent {
         height:
           SCREEN_HEIGHT -
           e.endCoordinates.height -
-          rwd(iOS ? 125 : 140) -
+          rwd(iOS ? 138 : 140) -
           SAFEAREA_TOP,
       })
 
