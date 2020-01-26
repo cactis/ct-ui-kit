@@ -20,6 +20,7 @@ export class Scroll extends React.Component {
     log(params, 'params')
     this.scroll.getScrollResponder().scrollResponderScrollTo(params)
   }
+
   render() {
     return (
       <ScrollView

@@ -96,6 +96,7 @@ export class Tab extends Component {
                   // fontWeight: '400',
                   // textAlign: 'center',
                   ...style.isSelected[selected],
+                  paddingHorizontal: SIZE.l,
                 }}
                 color={color}
                 onPress={e => this.props.onPress(this.props.index, e)}

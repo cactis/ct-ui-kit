@@ -27,6 +27,8 @@ export class Segment extends Component {
 
   onTappedAt = (index, e) => {
     // log(index)
+    let _index = index <= 1 ? 0 : index - 1
+    this.tabs_scroll.scrollToIndex(_index)
     if (index == this.state.selectIndex) {
       let views = this.props.views
       // log(views, 'views')
@@ -105,17 +107,34 @@ export class Segment extends Component {
     return (
       <T.Grid onLayout={this._onLayout} paddingVertical={SIZE.n}>
         <T.Row flex={0} style={{ ...wrapper }} layout="row">
-          {tabs.map((tab, index) => (
-            <Tab
-              theme={theme}
-              key={index}
-              index={index}
-              onPress={this.onTappedAt}
-              selected={this.state.selectIndex === index}
-              tab={tab}
-              badge={tab.badge}
-            />
-          ))}
+          <T.List
+            data={tabs}
+            horizontal
+            ref={c => (this.tabs_scroll = c)}
+            renderItem={({ item, index }) => (
+              <Tab
+                theme={theme}
+                key={index}
+                index={index}
+                onPress={this.onTappedAt}
+                selected={this.state.selectIndex === index}
+                tab={item}
+                badge={item.badge}
+              />
+            )}
+          />
+          {/* {tabs.map((tab, index) => ( */}
+          {/* <Tab
+                theme={theme}
+                key={index}
+                index={index}
+                onPress={this.onTappedAt}
+                selected={this.state.selectIndex === index}
+                tab={tab}
+                badge={tab.badge}
+              /> */}
+          {/* ))} */}
+          {/* </T.list> */}
         </T.Row>
         <T.Row>
           <T.Scroll
@@ -152,8 +171,11 @@ export class Segment extends Component {
     runLast(
       () => {
         let index = Math.floor(x / this.state.width)
-        index = _.min([_.max([0, index]), this.props.tabs.length - 1])
-        this.setState({ selectIndex: index })
+        let _index = _.min([_.max([0, index]), this.props.tabs.length - 1])
+        this.setState({ selectIndex: _index }, () => {
+          index = index <= 1 ? 0 : index - 1
+          this.tabs_scroll.scrollToIndex(index)
+        })
       },
       300,
       e

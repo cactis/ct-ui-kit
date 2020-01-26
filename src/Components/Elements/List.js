@@ -155,6 +155,11 @@ export class List extends React.PureComponent {
     // }, delay)
   }
 
+  scrollToIndex = index => {
+    // alert(index)
+    this.flatList.scrollToIndex({ index: index })
+  }
+
   refresh = () => {
     this.mounted && this.setState({ refresh: !this.state.refresh })
   }
