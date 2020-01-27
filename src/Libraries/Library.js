@@ -262,7 +262,7 @@ RegExp.prototype.indexOf = function(str, startIndex) {
   return re.lastIndex - res[0].length
 }
 
-window.asCurrency = function(num) {
+window.asCurrency = function(num, dollar = '') {
   if (num == null) {
     return
   }
@@ -272,7 +272,7 @@ window.asCurrency = function(num) {
   let r = n.replace(/\d(?=(?:\d{3})+(?:\.|$))/g, (m, i) =>
     p < 0 || i < p ? `${m},` : m
   )
-  return r
+  return `${dollar} ${r}`
 }
 
 Number.prototype.asCurrency = function(dollar = '') {

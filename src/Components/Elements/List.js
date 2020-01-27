@@ -266,6 +266,8 @@ export class List extends React.PureComponent {
     if (onSuccess && typeof onSuccess === 'function') {
       onSuccess(this.state.data)
     }
+    this.props.onUpdatedStateData &&
+      this.props.onUpdatedStateData(this.state.data, this.state.meta)
   }
 
   onLoad = () => {
