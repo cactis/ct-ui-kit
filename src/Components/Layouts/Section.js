@@ -26,10 +26,10 @@ export class Section extends React.PureComponent {
     // log(data, 'data in Section render()')
     // if (!data) return null
     // let { item = data } = data
-    let { children, ...props } = this.props
+    let { children, marginTop = SIZE.l, ...props } = this.props
     return (
       <View
-        marginTop={rwd(30)}
+        marginTop={marginTop}
         borderTopWidth={0.5}
         borderBottomWidth={0.5}
         borderColor="rgba(131,131,131,.51)"

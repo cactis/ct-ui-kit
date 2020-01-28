@@ -125,16 +125,18 @@ export class TextInput1 extends Component {
       value,
       backgroundColor = 'rgb(242,240,240)',
       height,
+      editable = true,
       bordered = true,
       ...props
     } = this.props
-    let borderStyle = bordered
-      ? {
-          borderWidth: 0.5,
-          borderColor: 'rgba(223,223,223,.84)',
-          borderRadius: rwd(3),
-        }
-      : {}
+    let borderStyle =
+      bordered && editable
+        ? {
+            borderWidth: 0.5,
+            borderColor: 'rgba(223,223,223,.84)',
+            borderRadius: rwd(3),
+          }
+        : {}
     // log(props, 'props')
     let alignTop = iOS && multiline ? {} : { textAlignVertical: 'top' }
     let heightStyle = this.props.height
@@ -172,6 +174,7 @@ export class TextInput1 extends Component {
           // borderWidth={0.5}
 
           padding={rwd(5)}
+          editable={editable}
           // flex={1}
           // style={{
           //   ...style.textInput,
@@ -201,7 +204,7 @@ export class TextInput1 extends Component {
             // borderWidth: 1,
             // textAlignVertical: 'top',
           }}
-          clearButtonMode="always"
+          clearButtonMode={editable ? 'always' : ''}
           // height={rwd(30)}
           multiline={multiline}
           ref={el => (this.input = el)}
