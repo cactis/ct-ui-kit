@@ -27,7 +27,7 @@ export class FlexModal extends ModalBase {
       <ModalBox
         style={{
           height: 'auto',
-          // backgroundColor: 'red'
+          backgroundColor: 'transparent',
         }}
         position="bottom"
         entry="bottom"
@@ -36,7 +36,7 @@ export class FlexModal extends ModalBase {
         <T.Grid
           flex={0}
           padding={SIZE.l}
-          backgroundColor="rgb(241,241,241)"
+          // backgroundColor="rgb(241,241,241)"
           backgroundColor="transparent"
         >
           {children}
