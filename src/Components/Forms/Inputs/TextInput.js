@@ -133,7 +133,7 @@ export class TextInput1 extends Component {
       bordered && editable
         ? {
             borderWidth: 0.5,
-            borderColor: 'rgba(223,223,223,.84)',
+            borderColor: 'rgba(1,1,1,0.4)',
             borderRadius: rwd(3),
           }
         : {}

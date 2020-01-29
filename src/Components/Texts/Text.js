@@ -21,6 +21,7 @@ export class Text extends React.Component {
       title = Dev.seeds ? faker.lorem.sentence : null,
       text = title,
       label,
+      backgroundColor,
       children = text || label, //|| (__DEV__ ? faker.commerce.productName() : ''),
       ...props
     } = this.props
@@ -40,9 +41,7 @@ export class Text extends React.Component {
         ? { lineHeight: themeStyle.fontSize * 1.5 }
         : {}
 
-    return !children ? (
-      <T.View />
-    ) : (
+    let tag = !children ? null : ( // <T.View />
       <RNText
         // flex={1}
         numberOfLines={numberOfLines}
@@ -63,6 +62,21 @@ export class Text extends React.Component {
       >
         {children}
       </RNText>
+    )
+    return backgroundColor ? (
+      <T.Div
+        borderWidth={1}
+        borderColor={color}
+        borderRadius={3}
+        borderStyle="dashed"
+        backgroundColor={backgroundColor}
+        paddingHorizontal={SIZE.s}
+        paddingVertical={SIZE.t}
+      >
+        {tag}
+      </T.Div>
+    ) : (
+      tag
     )
   }
 }

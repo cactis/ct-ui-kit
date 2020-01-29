@@ -264,7 +264,7 @@ RegExp.prototype.indexOf = function(str, startIndex) {
 
 window.asCurrency = function(num, dollar = '') {
   if (num == null) {
-    return
+    return ''
   }
   let n = String(num)
   n = n.replace(/,/g, '')
