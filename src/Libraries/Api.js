@@ -161,7 +161,7 @@ export class Api {
   }
 }
 
-function objToQueryString(obj) {
+window.objToQueryString = obj => {
   const keyValuePairs = []
   for (const key in obj) {
     keyValuePairs.push(

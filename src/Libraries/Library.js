@@ -232,23 +232,35 @@ String.prototype.asJSON = function() {
   }
 }
 
-window.openURL = (navigation, options = {}) => {
+window.openURL = (url, options = {}) => {
   // alert(url)
-  let { url, title } = options
+  // let { url, title } = options
+  let { title } = options
   log(url, 'url')
-  navigateTo(navigation, 'WebViewScreen', {
+  // navigateTo(navigation, 'WebViewScreen', {
+  //   uri: url,
+  //   title: url,
+  //   fullScreen: false,
+  // })
+
+  gotoScreen('WebViewScreen', {
     uri: url,
-    title: url,
+    title: title,
     fullScreen: false,
   })
-  return
-  T.Linking.canOpenURL(url).then(supported => {
-    if (supported) {
-      T.Linking.openURL(url)
-    } else {
-      log("Don't know how to open URI: " + url)
-    }
-  })
+  //
+  // popupScreen.open(<T.WebViewScreen />, {
+  //   uri: url,
+  //   title: url,
+  // })
+  // return
+  // T.Linking.canOpenURL(url).then(supported => {
+  //   if (supported) {
+  //     T.Linking.openURL(url)
+  //   } else {
+  //     log("Don't know how to open URI: " + url)
+  //   }
+  // })
 }
 
 RegExp.prototype.indexOf = function(str, startIndex) {

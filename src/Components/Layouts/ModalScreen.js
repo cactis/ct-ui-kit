@@ -125,7 +125,7 @@ export class ModalScreen extends ModalBase {
             contentContainerStyle={{ padding: rwd(10) }}
           />
         ) : (
-          <T.Screen
+          <T.Scroll
             // backgroundColor="green"
             backgroundColor="white"
             padding={padding}
@@ -133,7 +133,7 @@ export class ModalScreen extends ModalBase {
             safeAreaDisabled={!safeArea}
           >
             {children}
-          </T.Screen>
+          </T.Scroll>
         )}
         {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_BOTTOM : 0} /> */}
         <T.SafeArea flex={0} backgroundColor="white" />
