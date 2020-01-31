@@ -235,3 +235,5 @@ window.SIZE = {
   t: rwd(4),
   n: rwd(0),
 }
+
+window.language = 'en'

@@ -4,11 +4,12 @@ import ReactNative, { StyleSheet } from 'react-native'
 
 import * as Inputs from './Inputs'
 
+let please_input = window.language == 'en' ? 'please enter ' : '請輸入'
 export class Field extends Component {
   render() {
     let {
       title = '',
-      placeholder = `please enter ${title}`,
+      placeholder = `${please_input}${title}`,
       // height = rwd(32),
       // backgroundColor = 'white',
       padding = rwd(5),
