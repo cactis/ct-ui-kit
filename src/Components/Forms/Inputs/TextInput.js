@@ -121,7 +121,7 @@ export class TextInput1 extends Component {
   render() {
     let {
       multiline = false,
-      fontSize = iOS ? rwd(14) : rwd(16),
+      fontSize = iOS ? rwd(14) : rwd(14),
       value,
       backgroundColor = 'rgb(242,240,240)',
       height,
@@ -173,7 +173,8 @@ export class TextInput1 extends Component {
         <PureRNTextInput
           // borderWidth={0.5}
 
-          padding={rwd(5)}
+          padding={iOS ? rwd(5) : 0}
+          paddingHorizontal={rwd(5)}
           editable={editable}
           // flex={1}
           // style={{
@@ -195,7 +196,7 @@ export class TextInput1 extends Component {
             // // paddingBottom: iOS ? 0 : rwd(2),
             // marginBottom: iOS ? 0 : -rwd(0),
             // // marginBottom: 0,
-            // fontSize: fontSize,
+            fontSize: fontSize,
             // lineHeight: iOS ? 0 : rwd(10), //!!!!!!ANDROID!
             fontWeight: '600',
             // flex: 1,
