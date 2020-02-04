@@ -66,7 +66,9 @@ export class ModalScreen extends ModalBase {
           flex={0}
           padding={padding / 2}
           paddingTop={padding}
-          marginTop={fullScreen ? SAFEAREA_TOP + (iPhoneX ? 0 : 2) * SIZE.s : 0}
+          marginTop={
+            fullScreen ? SAFEAREA_TOP + (iPhoneX ? 0.5 : 0) * SIZE.s : 0
+          }
           // borderWidth={1}
           // padding={padding}
 

@@ -12,7 +12,7 @@ export class BarItem extends React.Component {
         size={size}
         beep={true}
         color="white"
-        pad={rwd(10)}
+        pad={SIZE.s}
         {...this.props}
       />
     )

@@ -199,6 +199,7 @@ export const Const = {
   size: size,
 }
 
+window.LIGHT_COLOR = 'white'
 window.initConstant = () => {
   // window.iPhoneX =
   //   iOS &&
@@ -215,6 +216,7 @@ window.initConstant = () => {
   window.SEGMENT_ACTIVE_BGCOLOR = TColor(BCOLOR)
   window.SEGMENT_BORDER_COLOR = 'transparent'
   window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
+  window.WARNING_COLOR = 'rgba(208,35,35,1)'
 }
 // setDeviceInfo() run in SplashScreen
 // initConstant() run in SplashScreen

@@ -50,7 +50,7 @@ export class Icon extends React.Component {
         : 1,
       iconSize = size * ratio,
       padding,
-      pad = padding || 4,
+      pad = padding || iconSize * 0.3,
       paddingTop = 0, //iOS ? pad + 2 : pad,
       color = '#333',
       width = 2 * pad + iconSize,
