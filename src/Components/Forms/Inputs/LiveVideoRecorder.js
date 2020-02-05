@@ -20,9 +20,10 @@ export class LiveVideoRecorder extends React.PureComponent {
     return (
       <T.ModalBox
         ref={c => (this.modal = c)}
-        padding={SIZE.n}
+        padding={SIZE.l}
         height={SCREEN_HEIGHT}
         style={{ height: SCREEN_HEIGHT }}
+        swipeToClose={false}
       >
         {/* <RNCamera
           height={SCREEN_HEIGHT}
@@ -37,19 +38,27 @@ export class LiveVideoRecorder extends React.PureComponent {
             'We need your permission to use your camera phone'
           }
         /> */}
+        {/* <T.Row borderWidth={3} /> */}
         <NodeCameraView
-          style={{ height: SCREEN_HEIGHT }}
+          style={{
+            flex: 1,
+            width: SCREEN_WIDTH,
+            height: SCREEN_HEIGHT,
+            padding: SIZE.l,
+            borderWidth: 10,
+            borderColor: 'rgba(25,143,182,1)',
+          }}
           ref={vb => {
             this.vb = vb
           }}
           outputUrl={'rtmp://dev.theampdr.com:1935/live/stream'}
-          camera={{ cameraId: 1, cameraFrontMirror: true }}
+          camera={{ cameraId: 1, cameraFrontMirror: iOS }}
           audio={{ bitrate: 32000, profile: 1, samplerate: 44100 }}
           video={{
             preset: 12,
             bitrate: 400000,
             profile: 1,
-            fps: 15,
+            fps: 30,
             videoFrontMirror: false,
           }}
           autopreview={true}
@@ -65,15 +74,29 @@ export class LiveVideoRecorder extends React.PureComponent {
             name="camera"
             size={SIZE.l * 2}
             color={recording ? WARNING_COLOR : LIGHT_COLOR}
-            backgroundColor="rgba(1,1,1,0.3)"
+            backgroundColor={BCOLOR}
             onPress={this.onCameraPress}
+          />
+        </T.Float>
+        <T.Float
+          right={-0.5 * SIZE.l}
+          padding={SIZE.l}
+          bottom={SAFEAREA_BOTTOM + SIZE.l}
+        >
+          <T.Icon
+            name="camera-retake-outline"
+            iconSet="MaterialCommunityIcons"
+            backgroundColor="rgba(0,0,0,.23)"
+            onPress={this.toggleCamera}
+            size={SIZE.l}
+            color="white"
           />
         </T.Float>
         <T.Float right={-0.5 * SIZE.l} padding={SIZE.l} top={SAFEAREA_TOP}>
           <T.Icon
             name="close"
             iconSet="AntDesign"
-            backgroundColor="rgba(51,51,51,.61)"
+            backgroundColor="rgba(0,0,0,.48)"
             onPress={this.onClose}
             size={SIZE.l}
             color="white"
@@ -81,6 +104,11 @@ export class LiveVideoRecorder extends React.PureComponent {
         </T.Float>
       </T.ModalBox>
     )
+  }
+
+  toggleCamera = () => {
+    this.vb.switchCamera()
+    this.vb.startPreview()
   }
   onCameraPress = async () => {
     // alert(SIZE.l)

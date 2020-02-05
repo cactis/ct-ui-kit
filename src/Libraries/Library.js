@@ -1,6 +1,7 @@
 if (__DEV__) console.log('Library.js')
 import I from 'react-native-device-info'
 import _ from 'lodash'
+import { PermissionsAndroid, Platform } from 'react-native'
 window._ = _
 
 window.Dev = {}
@@ -289,4 +290,14 @@ window.asCurrency = function(num, dollar = '') {
 
 Number.prototype.asCurrency = function(dollar = '') {
   return asCurrency(this)
+}
+
+window.requestPermissions = async () => {
+  if (!iOS) {
+    const result = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA
+    )
+    return result === PermissionsAndroid.RESULTS.GRANTED || result === true
+  }
+  return true
 }

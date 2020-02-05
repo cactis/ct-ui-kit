@@ -40,7 +40,7 @@ export class LiveVideoPlayer extends React.PureComponent {
           <T.Icon
             name="close"
             iconSet="AntDesign"
-            onPress={() => this.modal.close()}
+            onPress={() => this.onClose()}
             size={SIZE.l}
             color="white"
             backgroundColor="rgba(51,51,51,.61)"
@@ -52,6 +52,10 @@ export class LiveVideoPlayer extends React.PureComponent {
 
   open = () => {
     this.modal.open()
+  }
+  onClose = () => {
+    this.modal.close()
+    this.vp?.stop()
   }
   onPress = () => {
     if (this.props.onPress) {
