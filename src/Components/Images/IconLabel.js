@@ -10,11 +10,12 @@ export const IconLabel = props => {
   let {
     name,
     icon = name,
-    iconSize = rwd(18),
+    iconSize = rwd(20),
     labelSize = iconSize * 0.8,
     color = ICON_COLOR,
     iconColor = ICON_COLOR,
     bordered,
+    theme = 'H3',
     pill,
     image,
     text,
@@ -29,7 +30,7 @@ export const IconLabel = props => {
         backgroundColor: disabled ? 'white' : SUBMIT_COLOR,
         borderColor: disabled ? '#999' : '#333',
         borderRadius: rwd(3),
-        paddingRight: rwd(8),
+        paddingRight: SIZE.s,
       }
     : {}
   // color = disabled ? color : '#eee'
@@ -42,7 +43,7 @@ export const IconLabel = props => {
         borderRadius: rwd(20),
         borderWidth: 0.5,
         borderColor: 'rgb(184,174,180)',
-        paddingHorizontal: rwd(16),
+        paddingHorizontal: SIZE.s,
         paddingVertical: rwd(0),
       }
     : {}
@@ -51,9 +52,9 @@ export const IconLabel = props => {
     <Label
       color={color}
       text={text}
-      // theme="H5"
-      disabled={disabled}
       size={labelSize}
+      theme={theme}
+      disabled={disabled}
       {...extra}
     />
   )
@@ -63,11 +64,11 @@ export const IconLabel = props => {
     if (onPress) {
       onPress()
     } else {
-      if (__DEV__) alert()
+      // if (__DEV__) alert()
     }
   }
 
-  return (
+  return onPress ? (
     <Touch onPress={disabled ? null : _onPress}>
       <Div
         flow="row"
@@ -75,21 +76,31 @@ export const IconLabel = props => {
         yAlign="center"
         style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
       >
-        <Col flex={0} xAlign="center" height_={size} borderWidth__={1}>
+        <Col flex={0} xAlign="center" height_={size} borderWidth_={1}>
           {_icon}
           {image}
         </Col>
-        <Col
-          borderWidth__={1}
-          flex={0}
-          align="center"
-          height_={size}
-          flow="row"
-        >
+        <Col borderWidth_={1} flex={0} align="center" height_={size} flow="row">
           {label}
         </Col>
         <Col>{props.rightIcon}</Col>
       </Div>
     </Touch>
+  ) : (
+    <Div
+      flow="row"
+      flex={0}
+      yAlign="center"
+      style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
+    >
+      <Col flex={0} xAlign="center" height_={size} borderWidth_={1}>
+        {_icon}
+        {image}
+      </Col>
+      <Col borderWidth_={1} flex={0} align="center" height_={size} flow="row">
+        {label}
+      </Col>
+      <Col>{props.rightIcon}</Col>
+    </Div>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-import { RNCamera, FaceDetector } from 'react-native-camera'
+// import { RNCamera, FaceDetector } from 'react-native-camera'
 import ModalBox from 'react-native-modalbox'
 import { NodeCameraView } from 'react-native-nodemediaclient'
 import { NodePlayerView } from 'react-native-nodemediaclient'
@@ -13,8 +13,13 @@ export class LiveVideoRecorder extends React.PureComponent {
   }
 
   render() {
-    let { data, recording = false } = this.state
+    log(outputUrl, 'outputUrl')
+    let { data, recording = false, appName, streamName } = this.state
     log(data, 'data in LiveVideoRecorder render()')
+    let outputUrl =
+      __DEV__ && false
+        ? `rtmp://localhost:1935/live/stream`
+        : `rtmp://${AppConfig.domain}:1935/${appName}/${streamName}`
     // if (!data) return null
     // let { item = data } = data
     return (
@@ -45,20 +50,20 @@ export class LiveVideoRecorder extends React.PureComponent {
             width: SCREEN_WIDTH,
             height: SCREEN_HEIGHT,
             padding: SIZE.l,
-            borderWidth: 10,
-            borderColor: 'rgba(25,143,182,1)',
+            // borderWidth: 10,
+            // borderColor: 'rgba(25,143,182,1)',
           }}
           ref={vb => {
             this.vb = vb
           }}
-          outputUrl={'rtmp://dev.theampdr.com:1935/live/stream'}
+          outputUrl={outputUrl}
           camera={{ cameraId: 1, cameraFrontMirror: iOS }}
           audio={{ bitrate: 32000, profile: 1, samplerate: 44100 }}
           video={{
             preset: 12,
             bitrate: 400000,
             profile: 1,
-            fps: 30,
+            fps: 15,
             videoFrontMirror: false,
           }}
           autopreview={true}
@@ -137,7 +142,11 @@ export class LiveVideoRecorder extends React.PureComponent {
     // }
   }
 
-  open = () => {
+  open = (options = {}) => {
+    // alert(options.appName)
+    log(options, 'options')
+    let { appName = 'app', streamName = 'stream' } = options
+    this.setState({ appName, streamName })
     this.modal.open()
   }
   onClose = () => {

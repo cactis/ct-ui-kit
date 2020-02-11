@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-import { RNCamera, FaceDetector } from 'react-native-camera'
+// import { RNCamera, FaceDetector } from 'react-native-camera'
 import ModalBox from 'react-native-modalbox'
 import { NodeCameraView } from 'react-native-nodemediaclient'
 import { NodePlayerView } from 'react-native-nodemediaclient'

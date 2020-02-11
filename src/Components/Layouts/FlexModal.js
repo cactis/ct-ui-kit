@@ -20,6 +20,7 @@ export class FlexModal extends ModalBase {
 
   render() {
     let { content, options } = this.state
+    let { padding = SIZE.l } = this.props
     // log(content, '000000')
     let { children = content, title: propTitle, height } = this.props
     // log(children, 'children')
@@ -27,7 +28,7 @@ export class FlexModal extends ModalBase {
       <ModalBox
         style={{
           height: 'auto',
-          backgroundColor: 'transparent',
+          // backgroundColor: 'transparent',
         }}
         position="bottom"
         entry="bottom"
@@ -35,7 +36,7 @@ export class FlexModal extends ModalBase {
       >
         <T.Grid
           flex={0}
-          padding={SIZE.l}
+          padding={padding}
           // backgroundColor="rgb(241,241,241)"
           backgroundColor="transparent"
         >

@@ -12,7 +12,7 @@ export class Cell extends React.Component {
         {...this.props}
         backgroundColor={backgroundColor}
         borderBottomWidth={rwd(0.5)}
-        borderColor="rgba(92,103,103,.57)"
+        borderColor="rgba(92,103,103,.29)"
         marginBottom={0.5}
       >
         {children}

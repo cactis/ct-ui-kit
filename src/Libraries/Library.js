@@ -39,8 +39,8 @@ window._autoRun = (action, run, always = false) => {
   }
   // log(Dev, 'Dev')
   let i = (Dev.doIndex >= 0 ? Dev.doIndex : 99) + 1
-  log(DoString, 'DoString')
-  log(DoString?.indexOf(action), 'DoString?.indexOf(action)')
+  // log(DoString, 'DoString')
+  // log(DoString?.indexOf(action), 'DoString?.indexOf(action)')
   if (DoString?.indexOf(action) > -1 || always) {
     // log(action, run, 'action, run')
     _runOnce(action, () => {

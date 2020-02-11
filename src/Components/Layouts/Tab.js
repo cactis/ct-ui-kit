@@ -69,7 +69,8 @@ export class Tab extends Component {
         <T.Touch onPress={e => this.props.onPress(this.props.index, e)}>
           <T.Row
             flex={0}
-            flexDirection={theme == 'parent' ? 'row' : 'column'}
+            // flexDirection={theme == 'parent' ? 'row' : 'column'}
+            flow="row"
             style={{
               ...this.props.style,
               margin: SIZE.t,
@@ -77,18 +78,20 @@ export class Tab extends Component {
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: 3,
+              paddingHorizontal: SIZE.l,
             }}
           >
             {icon ? (
               <T.Icon
                 theme={theme == 'child' ? 'large' : 'normal'}
-                marginRight={5}
-                name={icon}
+                // marginRight={5}
+                // name={icon}
+                {...icon}
                 color={color}
                 onPress={e => this.props.onPress(this.props.index, e)}
               />
             ) : null}
-            {icon && title ? <T.Space /> : null}
+            {/* {icon && title ? <T.Space size={SIZE.t} /> : null} */}
             {title ? (
               <T.Label
                 style={{
@@ -96,7 +99,7 @@ export class Tab extends Component {
                   // fontWeight: '400',
                   // textAlign: 'center',
                   ...style.isSelected[selected],
-                  paddingHorizontal: SIZE.l,
+                  // paddingHorizontal: SIZE.l,
                 }}
                 color={color}
                 onPress={e => this.props.onPress(this.props.index, e)}
