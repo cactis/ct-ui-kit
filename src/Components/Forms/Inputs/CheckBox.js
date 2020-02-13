@@ -9,7 +9,7 @@ export class CheckBox extends React.PureComponent {
 
   render() {
     let { checked } = this.state
-    log(checked, 'checked in CheckBox render()')
+    // log(checked, 'checked in CheckBox render()')
     // if (!checked) return null
     // let { item = checked } = checked
     let name = checked ? 'ios-checkmark-circle' : 'ios-checkmark-circle-outline'
