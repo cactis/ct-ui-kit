@@ -53,7 +53,7 @@ export class Icon extends React.Component {
       pad = padding || iconSize * 0.2,
       paddingTop = 0, //iOS ? pad + 2 : pad,
       color = '#333',
-      width = 2 * pad + iconSize,
+      width = 3 * pad + iconSize,
       height = width,
       backgroundColor = 'transparent',
       onPress,
@@ -69,15 +69,15 @@ export class Icon extends React.Component {
     // log(key, 'key')
     const TagName = this.iconSets[key]
     const child = (
-      <View
+      <T.Center
         flex={0}
-        align="center"
+        // align="center"
         backgroundColor={backgroundColor}
         borderRadius={backgroundColor ? width / 2 : 2}
         width={width}
         height={height}
-        padding={padding}
-        paddingTop={paddingTop}
+        // padding={padding}
+        // paddingTop={paddingTop}
         marginHorizontal={pad}
         {...props}
       >
@@ -102,7 +102,7 @@ export class Icon extends React.Component {
           {...props}
         />
         {/* <Space style={{position: 'absolute', backgroundColor: backgroundColor, width: '100%', height: '100%'}} borderRadius={width / 2} flex={1}></Space> */}
-      </View>
+      </T.Center>
     )
     return onPress || onPressIn || onPressOut ? (
       <Touch

@@ -13,15 +13,10 @@ export class LiveVideoRecorder extends React.PureComponent {
   }
 
   render() {
-    log(outputUrl, 'outputUrl')
-    let { data, recording = false, appName, streamName } = this.state
+    let { outputUrl, data, recording = false, appName, streamName } = this.state
     log(data, 'data in LiveVideoRecorder render()')
-    let outputUrl =
-      __DEV__ && false
-        ? `rtmp://localhost:1935/live/stream`
-        : `rtmp://${AppConfig.domain}:1935/${appName}/${streamName}`
+    log(outputUrl, 'outputUrl')
     // if (!data) return null
-    // let { item = data } = data
     return (
       <T.ModalBox
         ref={c => (this.modal = c)}
@@ -75,6 +70,16 @@ export class LiveVideoRecorder extends React.PureComponent {
           bottom={SAFEAREA_BOTTOM + SIZE.l}
           // padding={SIZE.l}
         >
+          {/* <T.Row
+            flex={0}
+            width="90%"
+            backgroundColor="whitergba(255,255,255,.85)"
+            padding={SIZE.m}
+            borderRadius={SIZE.s}
+          >
+            <T.Field title="Title" type="TextInput1" />
+          </T.Row>
+          <T.Space /> */}
           <T.Icon
             name="camera"
             size={SIZE.l * 2}
@@ -97,14 +102,35 @@ export class LiveVideoRecorder extends React.PureComponent {
             color="white"
           />
         </T.Float>
-        <T.Float right={-0.5 * SIZE.l} padding={SIZE.l} top={SAFEAREA_TOP}>
+        <T.Float
+          right={-0.5 * SIZE.l}
+          width="100%"
+          padding={SIZE.l}
+          top={SAFEAREA_TOP}
+          flow="row"
+          xAlign="space-between"
+          yAlign="center"
+        >
+          {data ? (
+            <T.Share
+              title="title"
+              message={`url: ${data?.url} live: ${data?.live}`}
+              options={{ subject: 'subject' }}
+            />
+          ) : (
+            <T.Space />
+          )}
+
           <T.Icon
-            name="close"
+            name="closecircleo"
             iconSet="AntDesign"
-            backgroundColor="rgba(0,0,0,.48)"
+            // backgroundColor="rgba(0,0,0,.48)"
+            // borderColor={STRONG_COLOR}
+            // borderWidth={0.5}
             onPress={this.onClose}
             size={SIZE.l}
-            color="white"
+            // color="white"
+            // color={STRONG_COLOR}
           />
         </T.Float>
       </T.ModalBox>
@@ -117,22 +143,19 @@ export class LiveVideoRecorder extends React.PureComponent {
   }
   onCameraPress = async () => {
     // alert(SIZE.l)
-    let { recording } = this.state
+
+    // this.setState({ data, outputUrl })
+    // let { data } = this.state
+    let { recording, appName, streamName } = this.state
     recording = !recording
     if (!recording) {
       this.setState({
-        publishBtnTitle: 'Start Publish',
-        isPublish: false,
         recording: false,
       })
       this.vb.stop()
     } else {
-      this.setState({
-        publishBtnTitle: 'Stop Publish',
-        isPublish: true,
-        recording: true,
-      })
       this.vb.start()
+      this.setState({ recording: true })
     }
     // this.setState({ recording })
     // if (recording) {
@@ -147,7 +170,23 @@ export class LiveVideoRecorder extends React.PureComponent {
     log(options, 'options')
     let { appName = 'app', streamName = 'stream' } = options
     this.setState({ appName, streamName })
-    this.modal.open()
+    T.Api.get('/streamings/new', {}, res => {
+      let { data } = res
+      T.Api.post(data.routes, { resource: data }, res => {})
+      let outputUrl = `rtmp://${
+        AppConfig.domain
+      }:1935/${appName}/${streamName}?filename=${data.filename}`
+      log(outputUrl, 'outputUrl')
+      this.setState(
+        {
+          data,
+          outputUrl,
+        },
+        () => {
+          this.modal.open()
+        }
+      )
+    })
   }
   onClose = () => {
     this.modal.close()

@@ -13,9 +13,8 @@ export class LiveVideoPlayer extends React.PureComponent {
   }
 
   render() {
-    let { data, recording = false } = this.state
+    let { data, url } = this.state
     log(data, 'data in LiveVideoPlayer render()')
-    // if (!data) return null
     // let { item = data } = data
     return (
       <T.ModalBox
@@ -29,11 +28,12 @@ export class LiveVideoPlayer extends React.PureComponent {
           ref={vp => {
             this.vp = vp
           }}
-          inputUrl={'rtmp://dev.theampdr.com:1935/live/stream'}
+          inputUrl={url}
           scaleMode={'ScaleAspectFit'}
           bufferTime={300}
           maxBufferTime={1000}
           autoplay={true}
+          onStatus={this.onStatus}
         />
 
         <T.Float right={-0.5 * SIZE.l} padding={SIZE.l} top={SAFEAREA_TOP}>
@@ -49,9 +49,19 @@ export class LiveVideoPlayer extends React.PureComponent {
       </T.ModalBox>
     )
   }
+  onStatus = status => {
+    alert('status changed')
+    log(status, 'status')
+  }
 
-  open = () => {
-    this.modal.open()
+  open = url => {
+    if (url) {
+      this.setState({ url })
+
+      this.modal.open()
+    } else {
+      alert('No url for live streaming to play.')
+    }
   }
   onClose = () => {
     this.modal.close()
