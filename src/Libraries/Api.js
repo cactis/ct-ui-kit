@@ -136,6 +136,7 @@ export class Api {
             alert(json.alert)
           }
           if (meta.error) {
+            log('error type ==================')
             alert(meta.error, 'error')
             return onError && onError(meta)
           }

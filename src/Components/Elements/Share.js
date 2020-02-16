@@ -12,7 +12,14 @@ export class Share extends React.PureComponent {
     log(data, 'data in Share render()')
     // if (!data) return null
     // let { item = data} = data
-    return <T.Icon name="share" iconSet="Feather" onPress={this.onPress} />
+    return (
+      <T.Icon
+        name="share"
+        iconSet="Feather"
+        {...this.props}
+        onPress={this.onPress}
+      />
+    )
   }
   onPress = () => {
     if (this.props.onPress) {

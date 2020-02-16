@@ -29,7 +29,7 @@ window.BCOLOR_DEV = 'rgb(108,108,108)'
 window.FCOLOR = 'rgb(219,219,219)'
 window.ICON_COLOR = 'rgba(55,47,66,1)'
 window.SUBMIT_COLOR = 'rgb(241,220,148)'
-window.STRONG_COLOR = 'rgba(222,18,18,1)'
+window.STRONG_COLOR = 'rgba(133,15,15,1)'
 
 window.iOS = Platform.OS === 'ios'
 window.isTablet = SCREEN_WIDTH > 500

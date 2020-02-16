@@ -25,20 +25,6 @@ export class LiveVideoRecorder extends React.PureComponent {
         style={{ height: SCREEN_HEIGHT }}
         swipeToClose={false}
       >
-        {/* <RNCamera
-          height={SCREEN_HEIGHT}
-          ref={ref => {
-            this.camera = ref
-          }}
-          style={styles.preview}
-          type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.on}
-          permissionDialogTitle={'Permission to use camera'}
-          permissionDialogMessage={
-            'We need your permission to use your camera phone'
-          }
-        /> */}
-        {/* <T.Row borderWidth={3} /> */}
         <NodeCameraView
           style={{
             flex: 1,
@@ -70,16 +56,6 @@ export class LiveVideoRecorder extends React.PureComponent {
           bottom={SAFEAREA_BOTTOM + SIZE.l}
           // padding={SIZE.l}
         >
-          {/* <T.Row
-            flex={0}
-            width="90%"
-            backgroundColor="whitergba(255,255,255,.85)"
-            padding={SIZE.m}
-            borderRadius={SIZE.s}
-          >
-            <T.Field title="Title" type="TextInput1" />
-          </T.Row>
-          <T.Space /> */}
           <T.Icon
             name="camera"
             size={SIZE.l * 2}
@@ -114,6 +90,7 @@ export class LiveVideoRecorder extends React.PureComponent {
           {data ? (
             <T.Share
               title="title"
+              color={LIGHT_COLOR}
               message={`url: ${data?.url} live: ${data?.live}`}
               options={{ subject: 'subject' }}
             />
@@ -124,13 +101,13 @@ export class LiveVideoRecorder extends React.PureComponent {
           <T.Icon
             name="closecircleo"
             iconSet="AntDesign"
-            // backgroundColor="rgba(0,0,0,.48)"
+            // backgroundColor="rgba(255,255,255,.3)"
             // borderColor={STRONG_COLOR}
             // borderWidth={0.5}
             onPress={this.onClose}
             size={SIZE.l}
             // color="white"
-            // color={STRONG_COLOR}
+            color={LIGHT_COLOR}
           />
         </T.Float>
       </T.ModalBox>

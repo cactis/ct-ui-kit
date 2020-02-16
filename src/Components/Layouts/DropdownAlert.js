@@ -26,9 +26,10 @@ export class DropdownAlert extends React.PureComponent {
 
   open = (content, onTap = () => {}, options = {}) => {
     // log(options, 'options')
-    let { title } = options
+    let { title, type = 'success' } = options
     this.mounted &&
       this.setState({
+        type,
         title,
         content,
       })
@@ -43,7 +44,10 @@ export class DropdownAlert extends React.PureComponent {
   }
 
   render() {
-    let { title, content } = this.state
+    let { title, content, type } = this.state
+    log(type, 'type')
+    let backgroundColor = type == 'success' ? DROPDOWNALERT_COLOR : STRONG_COLOR
+    log(backgroundColor, 'backgroundColor')
     return (
       <ModalBox
         ref={c => (this.modal = c)}
@@ -69,7 +73,7 @@ export class DropdownAlert extends React.PureComponent {
           flow="row"
           style={{
             borderRadius: rwd(40),
-            backgroundColor: DROPDOWNALERT_COLOR,
+            backgroundColor: backgroundColor,
           }}
           activeOpacity={1}
           onPress={() => {
