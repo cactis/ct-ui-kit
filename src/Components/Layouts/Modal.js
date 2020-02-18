@@ -74,9 +74,10 @@ export class Modal extends ModalBase {
       >
         <T.Row
           flex={0}
-          padding={SIZE.l}
+          paddingHorizontal={SIZE.m}
+          paddingVertical={SIZE.l}
           paddingBottom={padding / 2}
-          marginTop={fullScreen ? SAFEAREA_TOP + 3 * SIZE.s : 0}
+          marginTop={fullScreen ? SAFEAREA_TOP : 0}
           // borderWidth={1}
           // padding={padding}
           flow="row"
@@ -88,9 +89,11 @@ export class Modal extends ModalBase {
           <T.Space borderWidth={0} flex={0} align="center">
             <T.Icon
               onPress={this.close}
-              name="close"
+              // name="close"
               size={rwd(18)}
               color="transparent"
+              // iconSet="AntDesign"
+              name="closecircleo"
               iconSet="AntDesign"
               // color="rgb(131,131,131)"
             />
@@ -106,15 +109,15 @@ export class Modal extends ModalBase {
               />
             )}
           </T.Col>
-          <T.Space borderWidth={0} flex={0} align="center">
+          <T.Div borderWidth={0} flex={0}>
             <T.Icon
               onPress={this.close}
-              name="close"
               size={rwd(18)}
+              name="closecircleo"
               iconSet="AntDesign"
               color="rgb(131,131,131)"
             />
-          </T.Space>
+          </T.Div>
         </T.Row>
         {scrollable ? (
           <T.List
