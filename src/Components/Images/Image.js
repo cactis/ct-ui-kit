@@ -6,7 +6,7 @@ import FastImage from 'react-native-fast-image'
 export class Image extends Component {
   render() {
     let {
-      uri = 'https://placekitten.com/600/600',
+      uri, //= 'https://placekitten.com/600/600',
       source,
       size,
       rounded,

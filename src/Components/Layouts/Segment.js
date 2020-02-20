@@ -105,7 +105,11 @@ export class Segment extends Component {
     let style = this.THEMES[theme]
     let wrapper = style.wrapper
     return (
-      <T.Grid onLayout={this._onLayout} paddingVertical={SIZE.n}>
+      <T.Grid
+        onLayout={this._onLayout}
+        // borderWidth={20}
+        paddingVertical={SIZE.n}
+      >
         <T.Row flex={0} style={{ ...wrapper }} layout="row">
           <T.List
             data={tabs}
