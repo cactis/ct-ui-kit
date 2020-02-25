@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 export class View extends React.Component {
   render() {
+    if (this.props.__hidden__) return null
     let {
       align,
       yAlign,

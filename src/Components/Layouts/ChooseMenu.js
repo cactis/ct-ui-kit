@@ -13,9 +13,16 @@ export class ChooseMenu extends React.PureComponent {
     if (!menus) return null
     // let { item = data} = data
     let _title = (
-      <T.Cell flex={0} padding={SIZE.m} align="center">
-        <T.Label text={title} theme="H3" />
-      </T.Cell>
+      <T.Row
+        flex={0}
+        padding={SIZE.m}
+        align="center"
+        backgroundColor="rgba(0,0,0,.85)"
+        borderTopWidth={0.5}
+        borderColor="rgba(255,255,255,.9)"
+      >
+        <T.Label text={title} color="white" theme="H3" />
+      </T.Row>
     )
     let _menu = menus.map((menu, index) => (
       <T.Cell

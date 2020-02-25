@@ -203,8 +203,15 @@ window.getDataByPaths = (json, paths) => {
 }
 
 import moment from 'moment'
-window.timeAgo = date => {
+// require('moment/min/locales.min')
+// import 'moment/min/moment-with-locales'
+// import 'moment/locale/en'
+// import 'moment/locale/zh-tw'
+
+// alert(moment.locale())
+window.timeAgo = (date, locale = 'en') => {
   // log(date, 'date')
+  // moment.locale(locale)
   return moment(date).fromNow()
 }
 

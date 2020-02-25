@@ -49,6 +49,7 @@ export class Modal extends ModalBase {
       keyboardAware = false,
       paddable = true,
       padding = SIZE.s,
+      noHeader = false,
       ...opts
     } = options
     if ((scrollable || fullScreen) && !swipeToClose) swipeToClose = false
@@ -72,53 +73,46 @@ export class Modal extends ModalBase {
         {...opts}
         {...this.props}
       >
-        <T.Row
-          flex={0}
-          paddingHorizontal={SIZE.m}
-          paddingVertical={SIZE.l}
-          paddingBottom={padding / 2}
-          marginTop={fullScreen ? SAFEAREA_TOP : 0}
-          // borderWidth={1}
-          // padding={padding}
-          flow="row"
-          // xAlign="center"
-          // right={SIZE.s}
-          // top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
-          // zIndex={1000}
-        >
-          <T.Space borderWidth={0} flex={0} align="center">
-            <T.Icon
-              onPress={this.close}
-              // name="close"
-              size={rwd(18)}
-              color="transparent"
-              // iconSet="AntDesign"
-              name="closecircleo"
-              iconSet="AntDesign"
-              // color="rgb(131,131,131)"
-            />
-          </T.Space>
-          <T.Col borderWidth={0} align="center">
-            {title && (
-              <T.Label
-                theme="H0"
-                marginTop={0}
-                numberOfLines={0}
-                marginBottom={0}
-                text={title}
+        {noHeader ? null : (
+          <T.Row
+            flex={0}
+            paddingHorizontal={SIZE.m}
+            paddingVertical={SIZE.l}
+            paddingBottom={padding / 2}
+            marginTop={fullScreen ? SAFEAREA_TOP : 0}
+            flow="row"
+          >
+            <T.Space borderWidth={0} flex={0} align="center">
+              <T.Icon
+                onPress={this.close}
+                size={rwd(18)}
+                color="transparent"
+                name="closecircleo"
+                iconSet="AntDesign"
               />
-            )}
-          </T.Col>
-          <T.Div borderWidth={0} flex={0}>
-            <T.Icon
-              onPress={this.close}
-              size={rwd(18)}
-              name="closecircleo"
-              iconSet="AntDesign"
-              color="rgb(131,131,131)"
-            />
-          </T.Div>
-        </T.Row>
+            </T.Space>
+            <T.Col borderWidth={0} align="center">
+              {title && (
+                <T.Label
+                  theme="H0"
+                  marginTop={0}
+                  numberOfLines={0}
+                  marginBottom={0}
+                  text={title}
+                />
+              )}
+            </T.Col>
+            <T.Div borderWidth={0} flex={0}>
+              <T.Icon
+                onPress={this.close}
+                size={rwd(18)}
+                name="closecircleo"
+                iconSet="AntDesign"
+                color="rgb(131,131,131)"
+              />
+            </T.Div>
+          </T.Row>
+        )}
         {scrollable ? (
           <T.List
             quoteable={quoteable}
@@ -127,7 +121,6 @@ export class Modal extends ModalBase {
           />
         ) : (
           <T.Screen
-            // backgroundColor="green"
             padding={padding}
             keyboardAware={keyboardAware}
             safeAreaDisabled={!safeArea}
@@ -135,7 +128,17 @@ export class Modal extends ModalBase {
             {children}
           </T.Screen>
         )}
-        {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_BOTTOM : 0} /> */}
+        {noHeader ? (
+          <T.Float marginTop={SAFEAREA_TOP} right={SIZE.m} top={SIZE.m}>
+            <T.Icon
+              onPress={this.close}
+              size={rwd(18)}
+              name="closecircleo"
+              iconSet="AntDesign"
+              color="rgb(131,131,131)"
+            />
+          </T.Float>
+        ) : null}
       </ModalBox>
     )
   }

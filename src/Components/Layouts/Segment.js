@@ -94,6 +94,7 @@ export class Segment extends Component {
   }
 
   render() {
+    if (this.props.__hidden__) return null
     let {
       theme = 'parent',
       tabs = [{ title: 'TAB1' }, { title: 'Tab2' }],

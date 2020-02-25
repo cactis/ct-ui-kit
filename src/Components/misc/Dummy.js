@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 
-export const Dummy_ = props => {
-  let { navigation } = props
-  let [data, setData] = useState(props.data)
-  return null
+export const Dummy = props => {
+  return <T.Label text="dummy" />
 }

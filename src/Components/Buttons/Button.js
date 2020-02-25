@@ -71,6 +71,7 @@ export class Button extends React.PureComponent {
       theme = 'normal',
       title = 'Button',
       style,
+      beep,
       color,
       titleColor = color,
       rightIcon,
@@ -97,7 +98,7 @@ export class Button extends React.PureComponent {
     let negtive = this.props.negtive ? styles.negtive : {}
     // log(negtive, 'negtive')
     return (
-      <Touch disabled={disabled} onPress={this.onPress}>
+      <Touch disabled={disabled} beep={beep} onPress={this.onPress}>
         <Center
           flex={flex}
           style={{

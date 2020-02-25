@@ -22,13 +22,13 @@ export class Tab extends Component {
           paddingVertical: SIZE.t,
           color: SEGMENT_ACTIVE_COLOR,
           backgroundColor: SEGMENT_ACTIVE_BGCOLOR,
-          fontWeight: '500',
+          // fontWeight: '900',
           fontSize: rwd(15),
         },
         false: {
           paddingVertical: SIZE.t,
           color: SEGMENT_COLOR,
-          fontWeight: '300',
+          // fontWeight: '300',
           fontSize: rwd(15),
         },
       },
@@ -41,6 +41,7 @@ export class Tab extends Component {
         true: {
           paddingVertical: 10,
           color: '#333',
+          // fontWeight: '900',
           borderColor: 'white',
           borderBottomWidth: 2,
         },
@@ -60,7 +61,7 @@ export class Tab extends Component {
       size = BASE_SIZE * 2,
       tab,
     } = this.props
-    let { title, icon } = tab
+    let { title, icon, titleComponent } = tab
 
     let style = this.THEMES[theme]
     let color = style.isSelected[selected].color
@@ -94,6 +95,7 @@ export class Tab extends Component {
             {/* {icon && title ? <T.Space size={SIZE.t} /> : null} */}
             {title ? (
               <T.Label
+                theme="H4"
                 style={{
                   // fontSize: rwd(14),
                   // fontWeight: '400',
@@ -107,6 +109,7 @@ export class Tab extends Component {
                 {title}
               </T.Label>
             ) : null}
+            {titleComponent}
             {/* <T.Float right="40%" top="0%"> */}
             <T.Badge style={style.badge} num={badge} />
             {/* </T.Float> */}
