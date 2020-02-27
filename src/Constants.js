@@ -31,6 +31,10 @@ window.ICON_COLOR = 'rgba(55,47,66,1)'
 window.SUBMIT_COLOR = 'rgb(241,220,148)'
 window.STRONG_COLOR = 'rgba(133,15,15,1)'
 
+window.BUTTON_COLOR = 'rgba(217,76,111,0.8)'
+window.BUTTON_COLOR1 = 'rgba(0,111,182,.87)'
+window.BUTTON_COLOR = 'rgba(1,64,122,.20)'
+
 window.iOS = Platform.OS === 'ios'
 window.isTablet = SCREEN_WIDTH > 500
 

@@ -7,7 +7,7 @@ export class WebSocketBase extends React.PureComponent {
     // alert('connectSocket')
     // alert('connectSocket')
     let accessTokens = global.accessTokens
-    // log(accessTokens, 'accessTokens')
+    log(accessTokens, 'accessTokens')
 
     log(AppConfig.webSocket, 'AppConfig.webSocket')
     ws = new WebSocket(AppConfig.webSocket, '', {
@@ -19,6 +19,7 @@ export class WebSocketBase extends React.PureComponent {
 
     ws.onopen = () => {
       log('onopen-----')
+      // if (__DEV__) alert('onopen')
       this._runCommand('subscribe')
       this.mounted && this.setState({ disabled: false })
     }
@@ -57,8 +58,10 @@ export class WebSocketBase extends React.PureComponent {
   processMessage = data => {}
 
   _runCommand = (command, content) => {
-    log(command, 'command')
+    log(command, 'command in WebSocketBase#_runCommand')
+    log(content, 'content in WebSocketBase#_runCommand')
     let { room } = this.state
+    log(room, 'room')
     // log(channel, 'channel in _runCommand')
     if (room) {
       var message = {

@@ -11,7 +11,7 @@ export class MediasInput extends React.PureComponent {
   render() {
     let { data } = this.state
     let { editable = true } = this.props
-    log(data, 'data in MediasInput render()')
+    // log(data, 'data in MediasInput render()')
     if (!data) return null
     let { item = data } = data
     return (

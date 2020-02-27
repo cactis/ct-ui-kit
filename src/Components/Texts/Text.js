@@ -72,6 +72,7 @@ export class Text extends React.Component {
         backgroundColor={backgroundColor}
         paddingHorizontal={SIZE.s}
         paddingVertical={SIZE.t}
+        align="center"
       >
         {tag}
       </T.Div>
