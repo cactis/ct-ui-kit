@@ -420,7 +420,7 @@ export class List extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    log('List#componentDidUpdate')
+    // log('List#componentDidUpdate')
     if (prevProps.data !== this.props.data)
       this.setState({ data: [] }, () => {
         this.setState({

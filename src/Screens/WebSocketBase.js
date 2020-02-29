@@ -70,7 +70,7 @@ export class WebSocketBase extends React.PureComponent {
       }
       message.data = content
       const text = JSON.stringify(message)
-      // log(text, 'text in _runCommand')
+      log(text, 'text in _runCommand')
       ws.send(text)
     }
   }
