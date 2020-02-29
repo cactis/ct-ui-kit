@@ -1,10 +1,12 @@
 import React from 'react'
-import { FlatList, View, TextInput } from 'react-native'
+import { FlatList as RNList, View, TextInput } from 'react-native'
 import { Api } from '../../Libraries/Api.js'
 import { Label } from '..'
 import { Div, Row, Grid, Col, RowLine, Cell, Space, Float, Hr } from '../'
 import { Avatar, Image, Icon } from '..'
 import DraggableFlatList from 'react-native-draggable-flatlist'
+
+export { RNList }
 
 export class List extends React.PureComponent {
   constructor(props) {
@@ -25,19 +27,6 @@ export class List extends React.PureComponent {
     lastPage: false,
     pagination: null,
     toTop: false,
-  }
-
-  componentDidMount() {
-    this.mounted = true
-
-    let { data, dataPath = 'data', onLoad, pagination = true } = this.props
-
-    if (data) {
-      this.mounted && this.setState({ data, dataPath, pagination })
-    } else {
-      this.mounted && this.setState({ dataPath, pagination })
-    }
-    this.fetchData()
   }
 
   indexChanged = (index, checked) => {
@@ -90,43 +79,16 @@ export class List extends React.PureComponent {
     },
   }
 
-  componentDidUpdate(prevProps) {
-    log('List#componentDidUpdate')
-    if (prevProps.data !== this.props.data)
-      this.mounted && this.setState({ data: this.props.data })
-    if (prevProps.onLoad !== this.props.onLoad) this.onLoad = this.props.onLoad
-    // log('componentDidUpdate')
-    // log(prevProps.url, 'prevProps.url')
-    // log(this.props.url, 'this.props.url')
-    // log(prevProps.url !== this.props.url, 'prevProps.url !== this.props.url')
-    if (prevProps.url !== this.props.url) {
-      // log(this.props.url, 'url changed')
-      this.mounted &&
-        this.setState(
-          {
-            // page: 0,
-            // data: [],
-            // meta: null,
-            // isRefreshing: true,
-            url: this.props.url,
-            // lastPage: false,
-            // isPageLoading: false,
-          },
-          () => {
-            this.reloadData()
-          }
-        )
-      // this.fetchData()
-    }
-  }
-
   reloadData = () => {
     // log('reloadData in List')
     this._reload()
   }
 
-  clearData = () => {
-    this.mounted && this.setState({ data: [] })
+  clearData = onComplete => {
+    this.mounted &&
+      this.setState({ data: [] }, () => {
+        onComplete && onComplete()
+      })
   }
 
   _reload = onSuccess => {
@@ -339,7 +301,7 @@ export class List extends React.PureComponent {
     ) : (
       ListHeaderComponent
     )
-    let ListTagType = draggable ? DraggableFlatList : FlatList
+    let ListTagType = draggable ? DraggableFlatList : RNList
     return (
       <Grid>
         {data ? (
@@ -374,7 +336,8 @@ export class List extends React.PureComponent {
             renderItem={this.props.renderItem || this.renderItem}
             // extraData={this.props.data}
             // extraData={this.state.refresh}
-            extraData={this.state}
+            // extraData={this.state}
+            extraData={data}
             // key={data ? data.length : randId()}
             ListHeaderComponent={
               searchable ? (
@@ -443,11 +406,59 @@ export class List extends React.PureComponent {
     )
   }
   onComplete = () => {}
-  componentDidUpdate(prevProps) {
-    if (prevProps.data !== this.props.data)
-      this.setState({ data: this.props.data })
-    if (prevProps.url !== this.props.url) this.setState({ url: this.props.url })
+  componentDidMount() {
+    this.mounted = true
+
+    let { data, dataPath = 'data', onLoad, pagination = true } = this.props
+
+    if (data) {
+      this.mounted && this.setState({ data, dataPath, pagination })
+    } else {
+      this.mounted && this.setState({ dataPath, pagination })
+    }
+    this.fetchData()
   }
+
+  componentDidUpdate(prevProps) {
+    log('List#componentDidUpdate')
+    if (prevProps.data !== this.props.data)
+      this.setState({ data: [] }, () => {
+        this.setState({
+          data: { ...this.props.data },
+          extraData: { ...this.props.data },
+        })
+      })
+    if (prevProps.onLoad !== this.props.onLoad) this.onLoad = this.props.onLoad
+    // log('componentDidUpdate')
+    // log(prevProps.url, 'prevProps.url')
+    // log(this.props.url, 'this.props.url')
+    // log(prevProps.url !== this.props.url, 'prevProps.url !== this.props.url')
+    if (prevProps.url !== this.props.url) {
+      // log(this.props.url, 'url changed')
+      this.mounted &&
+        this.setState(
+          {
+            // page: 0,
+            // data: [],
+            // meta: null,
+            // isRefreshing: true,
+            url: this.props.url,
+            // lastPage: false,
+            // isPageLoading: false,
+          },
+          () => {
+            this.reloadData()
+          }
+        )
+      // this.fetchData()
+    }
+  }
+
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.data !== this.props.data)
+  //     this.setState({ data: this.props.data })
+  //   if (prevProps.url !== this.props.url) this.setState({ url: this.props.url })
+  // }
 
   componentWillUnmount() {
     this.mounted = false

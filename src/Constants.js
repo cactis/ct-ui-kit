@@ -28,7 +28,7 @@ window.BCOLOR = 'rgb(59,9,66)'
 window.BCOLOR_DEV = 'rgb(108,108,108)'
 window.FCOLOR = 'rgb(219,219,219)'
 window.ICON_COLOR = 'rgba(55,47,66,1)'
-window.SUBMIT_COLOR = 'rgb(241,220,148)'
+window.SUBMIT_COLOR = BCOLOR //'rgb(241,220,148)'
 window.STRONG_COLOR = 'rgba(133,15,15,1)'
 
 window.BUTTON_COLOR = 'rgba(217,76,111,0.8)'

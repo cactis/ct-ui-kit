@@ -21,6 +21,7 @@ export class MediasInput extends React.PureComponent {
             text={`${_.reject(item.uploads, i => i._destroy).length} photos`}
           />
           <T.List
+            ref={c => (this.list = c)}
             horizontal
             data={item.uploads}
             renderItem={({ item, index }) =>
@@ -128,6 +129,12 @@ export class MediasInput extends React.PureComponent {
   componentDidUpdate(prevProps) {
     if (prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
+    if (prevProps.data !== this.props.data) {
+      //   alert('componentDidUpdate')
+      //   this.list.clearData(() => {
+      this.setState({ data: { ...this.props.data } })
+      //   })
+    }
   }
 
   componentWillUnmount() {
