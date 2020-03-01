@@ -17,7 +17,7 @@ export class Lists extends React.PureComponent {
         {data.items.map(item => (
           <>
             <T.Row key={item} flow="row" flex={0}>
-              <T.Col flex={0} paddingTop={SIZE.s * 0.6} borderWidth__={1}>
+              <T.Col flex={0} paddingTop={SIZE.s * 1.21} borderWidth__={1}>
                 <T.Icon
                   color="rgba(255,255,255,.68)"
                   name="check"
