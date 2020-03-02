@@ -87,20 +87,22 @@ export const IconLabel = props => {
       </Div>
     </Touch>
   ) : (
-    <Div
-      flow="row"
-      flex={0}
-      yAlign="center"
-      style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
-    >
-      <Col flex={0} xAlign="center" height_={size} borderWidth_={1}>
-        {_icon}
-        {image}
-      </Col>
-      <Col borderWidth_={1} flex={0} align="center" height_={size} flow="row">
-        {label}
-      </Col>
-      <Col>{props.rightIcon}</Col>
-    </Div>
+    <T.Center flex={0}>
+      <Div
+        flow="row"
+        flex={0}
+        yAlign="center"
+        style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
+      >
+        <Col flex={0} xAlign="center" height_={size} borderWidth_={1}>
+          {_icon}
+          {image}
+        </Col>
+        <Col borderWidth_={1} flex={0} align="center" height_={size} flow="row">
+          {label}
+        </Col>
+        <Col>{props.rightIcon}</Col>
+      </Div>
+    </T.Center>
   )
 }
