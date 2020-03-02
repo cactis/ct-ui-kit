@@ -72,7 +72,9 @@ export class Screen extends React.Component {
     const body = safeAreaDisabled ? (
       content
     ) : (
-      <SafeArea flex={1}>{content}</SafeArea>
+      <SafeArea flex={1} backgroundColor={BCOLOR}>
+        {content}
+      </SafeArea>
     )
     return <Grid onLayout={this.onLayout}>{body}</Grid>
   }

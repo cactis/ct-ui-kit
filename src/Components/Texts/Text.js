@@ -193,7 +193,7 @@ const styles = {
   },
 }
 
-const IOS_FONTS = [
+window.IOS_FONTS = [
   'AcademyEngravedLetPlain',
   'AlNile',
   'AmericanTypewriter',

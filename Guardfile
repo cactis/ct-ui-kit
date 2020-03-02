@@ -12,7 +12,7 @@ copy_commend target
 
 guard :shell do
   watch(%r{src}) {
-    %w(amp bootstrap iFix).each do |app|
+    %w(amp bootstrap nofriends iFix).each do |app|
       p app
       # ['writus', 'ctnews'].each do |app|
       target = "/Volumes/RamDisk/#{app}/node_modules/ct-ui-kit"

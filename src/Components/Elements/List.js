@@ -236,7 +236,10 @@ export class List extends React.PureComponent {
     // log('onLoad is not assigned')
   }
 
-  _onScroll = () => {}
+  _onScroll = () => {
+    // log('_onScroll')
+    // this.props.onScroll && this.props.onScroll()
+  }
 
   renderItem = ({ item }) => (
     <ListItem data={item} navigation={this.props.navigation} />
@@ -249,17 +252,22 @@ export class List extends React.PureComponent {
     // log(first?.index, 'first?.index')
     if (last?.index > this.state.data?.length - 6) this.fetchData()
     this.props.onViewableItemsChanged && this.props.onViewableItemsChanged(info)
+    // this.props.onScroll && this.props.onScroll()
   }
 
-  // _onDragEnd = params => {
-  //   // log(params, 'params')
-  //   let { data } = params
-  //   let { onDragEnd } = this.props
-  //   onDragEnd && onDragEnd(params)
-  //   // this.setState({ data: [] }, () => {
-  //   //   // this.setState({ data: [...data], refresh: !this.state.refresh })
-  //   // })
-  // }
+  _onBeginDrag = params => {
+    log(params, 'params in _onBeginDrag')
+    this.props.onBeginDrag && this.props.onBeginDrag()
+  }
+  _onDragEnd = params => {
+    log(params, 'params in _onDragEnd')
+    //   let { data } = params
+    //   let { onDragEnd } = this.props
+    //   onDragEnd && onDragEnd(params)
+    //   // this.setState({ data: [] }, () => {
+    //   //   // this.setState({ data: [...data], refresh: !this.state.refresh })
+    //   // })
+  }
 
   render() {
     let { isRefreshing, refresh, data, meta, lastPage, url, toTop } = this.state
@@ -311,7 +319,8 @@ export class List extends React.PureComponent {
             // keyExtractor={(item, index) => index.toString()}
             onDragBegin={index => log(index, 'index')}
             onRelease={index => log(index, 'index')}
-            // onDragEnd={this._onDragEnd}
+            onScrollBeginDrag={this._onBeginDrag}
+            onScrollEndDrag={this._onDragEnd}
             ref={c => (this.flatList = c)}
             data={data}
             onScroll={this._onScroll}
