@@ -75,7 +75,7 @@ export class Icon extends React.Component {
         backgroundColor={backgroundColor}
         borderRadius={backgroundColor ? width / 2 : 2}
         width={width}
-        height={height}
+        // height={height}
         // padding={padding}
         // paddingTop={paddingTop}
         marginHorizontal={pad}

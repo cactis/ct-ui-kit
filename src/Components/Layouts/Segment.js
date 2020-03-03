@@ -113,6 +113,7 @@ export class Segment extends Component {
       >
         <T.Row flex={0} style={{ ...wrapper }} layout="row">
           <T.List
+            // borderWidth={1}
             data={tabs}
             horizontal
             ref={c => (this.tabs_scroll = c)}

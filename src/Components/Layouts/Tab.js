@@ -23,13 +23,15 @@ export class Tab extends Component {
           color: SEGMENT_ACTIVE_COLOR,
           backgroundColor: SEGMENT_ACTIVE_BGCOLOR,
           // fontWeight: '900',
-          fontSize: rwd(15),
+          // fontSize: rwd(15),
+          height: rwd(32),
         },
         false: {
+          height: rwd(32),
           paddingVertical: SIZE.t,
           color: SEGMENT_COLOR,
           // fontWeight: '300',
-          fontSize: rwd(15),
+          // fontSize: rwd(15),
         },
       },
     },
@@ -96,13 +98,15 @@ export class Tab extends Component {
             {title ? (
               <T.Label
                 theme="H4"
-                style={{
-                  // fontSize: rwd(14),
-                  // fontWeight: '400',
-                  // textAlign: 'center',
-                  ...style.isSelected[selected],
-                  // paddingHorizontal: SIZE.l,
-                }}
+                style={
+                  {
+                    // fontSize: rwd(14),
+                    // fontWeight: '400',
+                    // textAlign: 'center',
+                    // ...style.isSelected[selected],
+                    // paddingHorizontal: SIZE.l,
+                  }
+                }
                 color={color}
                 onPress={e => this.props.onPress(this.props.index, e)}
               >

@@ -72,7 +72,7 @@ export class Screen extends React.Component {
     const body = safeAreaDisabled ? (
       content
     ) : (
-      <SafeArea flex={1} backgroundColor={BCOLOR}>
+      <SafeArea flex={1} backgroundColor={SCREEN_BACKGROUNDCOLOR}>
         {content}
       </SafeArea>
     )
