@@ -174,7 +174,7 @@ export class TextInput1 extends Component {
           // borderWidth={0.5}
 
           padding={iOS ? rwd(5) : 0}
-          paddingHorizontal={rwd(5)}
+          paddingHorizontal={bordered ? rwd(5) : 0}
           editable={editable}
           // flex={1}
           // style={{

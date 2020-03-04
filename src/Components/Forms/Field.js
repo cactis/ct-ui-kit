@@ -13,7 +13,7 @@ export class Field extends Component {
       // height = rwd(32),
       // backgroundColor = 'white',
       padding = rwd(5),
-      theme = 'H8',
+      theme = 'H5',
       type = 'TextInput',
       children,
       color = 'rgb(92,92,92)',

@@ -106,7 +106,7 @@ export class ModalScreen extends ModalBase {
                 size={rwd(16)}
                 // numberOfLines={1}
                 marginBottom={0}
-                color="white"
+                color={BFCOLOR}
                 text={title}
               />
             )}
@@ -129,7 +129,7 @@ export class ModalScreen extends ModalBase {
         ) : (
           <T.Scroll
             // backgroundColor="green"
-            backgroundColor="white"
+            // backgroundColor="white"
             padding={padding}
             keyboardAware={keyboardAware}
             safeAreaDisabled={!safeArea}
@@ -138,7 +138,7 @@ export class ModalScreen extends ModalBase {
           </T.Scroll>
         )}
         {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_BOTTOM : 0} /> */}
-        <T.SafeArea flex={0} backgroundColor="white" />
+        <T.SafeArea flex={0} backgroundColor={BCOLOR} />
       </ModalBox>
     )
   }
