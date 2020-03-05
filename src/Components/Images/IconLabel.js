@@ -35,7 +35,13 @@ export const IconLabel = props => {
     : {}
   // color = disabled ? color : '#eee'
   let _icon = icon ? (
-    <Icon color={iconColor} name={icon} size={iconSize} {...extra} />
+    <Icon
+      color={iconColor}
+      pad={iconSize * 0.1}
+      name={icon}
+      size={iconSize}
+      {...extra}
+    />
   ) : null
 
   let pillStyle = pill
@@ -68,41 +74,26 @@ export const IconLabel = props => {
     }
   }
 
+  let button = (
+    <Div
+      flow="row"
+      flex={0}
+      yAlign="center"
+      style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
+    >
+      <Col flex={0} xAlign="center" height_={size} borderWidth_={1}>
+        {_icon}
+        {image}
+      </Col>
+      <Col borderWidth_={1} flex={0} align="center" height_={size} flow="row">
+        {label}
+      </Col>
+      <Col>{props.rightIcon}</Col>
+    </Div>
+  )
   return onPress ? (
-    <Touch onPress={disabled ? null : _onPress}>
-      <Div
-        flow="row"
-        flex={0}
-        yAlign="center"
-        style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
-      >
-        <Col flex={0} xAlign="center" height_={size} borderWidth_={1}>
-          {_icon}
-          {image}
-        </Col>
-        <Col borderWidth_={1} flex={0} align="center" height_={size} flow="row">
-          {label}
-        </Col>
-        <Col>{props.rightIcon}</Col>
-      </Div>
-    </Touch>
+    <Touch onPress={disabled ? null : _onPress}>{button}</Touch>
   ) : (
-    <T.Center flex={0}>
-      <Div
-        flow="row"
-        flex={0}
-        yAlign="center"
-        style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
-      >
-        <Col flex={0} xAlign="center" height_={size} borderWidth_={1}>
-          {_icon}
-          {image}
-        </Col>
-        <Col borderWidth_={1} flex={0} align="center" height_={size} flow="row">
-          {label}
-        </Col>
-        <Col>{props.rightIcon}</Col>
-      </Div>
-    </T.Center>
+    <T.Center flex={0}>{button}</T.Center>
   )
 }

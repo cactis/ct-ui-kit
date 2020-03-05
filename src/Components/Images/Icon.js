@@ -50,12 +50,12 @@ export class Icon extends React.Component {
         : 1,
       iconSize = size * ratio,
       padding,
-      pad = padding || iconSize * 0.1,
-      paddingTop = 0, //iOS ? pad + 2 : pad,
+      pad = padding || iconSize * (this.props.backgroundColor ? 0.3 : 0.3),
+      // paddingTop = 0, //iOS ? pad + 2 : pad,
       color = '#333',
+      backgroundColor = 'transparent',
       width = 3 * pad + iconSize,
       height = width,
-      backgroundColor = 'transparent',
       onPress,
       onPressIn,
       onPressOut,
@@ -75,8 +75,8 @@ export class Icon extends React.Component {
         backgroundColor={backgroundColor}
         borderRadius={backgroundColor ? width / 2 : 2}
         width={width}
-        // height={height}
-        // padding={padding}
+        height={height}
+        padding={pad}
         // paddingTop={paddingTop}
         marginHorizontal={pad}
         {...props}

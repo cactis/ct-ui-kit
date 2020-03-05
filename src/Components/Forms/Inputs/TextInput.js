@@ -26,7 +26,7 @@ export class TextInput extends React.PureComponent {
 
   openInput = () => {
     let { multiline = false, onChangeText, ...props } = this.props
-    popup.open(
+    editor.open(
       <Input
         multiline={multiline}
         value={this.state.value}

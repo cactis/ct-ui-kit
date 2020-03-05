@@ -129,7 +129,7 @@ export class ModalScreen extends ModalBase {
         ) : (
           <T.Scroll
             // backgroundColor="green"
-            // backgroundColor="white"
+            backgroundColor="white"
             padding={padding}
             keyboardAware={keyboardAware}
             safeAreaDisabled={!safeArea}
@@ -138,7 +138,7 @@ export class ModalScreen extends ModalBase {
           </T.Scroll>
         )}
         {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_BOTTOM : 0} /> */}
-        <T.SafeArea flex={0} backgroundColor={BCOLOR} />
+        <T.SafeArea flex={0} backgroundColor="white" />
       </ModalBox>
     )
   }

@@ -133,7 +133,7 @@ export class Input extends React.PureComponent {
             onPress={() => {
               log(this.props.onChangeText)
               this.props.onChangeText(this.state.value)
-              popup.close()
+              editor.close()
             }}
           />
         </T.Row>
