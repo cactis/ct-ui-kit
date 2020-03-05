@@ -28,18 +28,18 @@ export class KeyboardAware extends React.PureComponent {
 
   keyboardDidShow = e => {
     let keyboardHeight = e.endCoordinates.height
-    runLast(() => {
-      // log(e, 'e keyboardDidShow')
-      this.onKeyboardChanged(keyboardHeight)
-    }, 100)
+    // runLast(() => {
+    // log(e, 'e keyboardDidShow')
+    this.onKeyboardChanged(keyboardHeight)
+    // }, 100)
   }
 
   keyboardDidHide = e => {
     // let keyboardHeight = SCREEN_HEIGHT - rwd(125) - SAFEAREA_TOP
-    runLast(() => {
-      this.onKeyboardChanged(0)
-      // log(e, 'e keyboardDidHide')
-    }, 100)
+    // runLast(() => {
+    this.onKeyboardChanged(0)
+    // log(e, 'e keyboardDidHide')
+    // }, 100)
   }
 
   componentWillUnmount() {

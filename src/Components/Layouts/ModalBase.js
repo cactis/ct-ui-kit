@@ -3,12 +3,13 @@ import { StyleSheet } from 'react-native'
 
 import ModalBox from 'react-native-modalbox'
 export { ModalBox }
-
+import { KeyboardAware } from '../Keyboard'
 let _navigation
-export class ModalBase extends React.PureComponent {
+export class ModalBase extends KeyboardAware {
   state = {
     data: null,
     content: null,
+    keyboardHeight: 0,
     // title: null,
     options: {},
     _options: {
@@ -17,6 +18,14 @@ export class ModalBase extends React.PureComponent {
       direction: 'bottom',
       title: null,
     },
+  }
+
+  updateHeight = () => {}
+  onKeyboardChanged = height => {
+    // alert('hhh')
+    // this.keyboardHeight = height
+    this.setState({ keyboardHeight: height })
+    // this.updateHeight()
   }
 
   open = (content, options = {}) => {

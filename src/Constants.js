@@ -243,6 +243,11 @@ window.SIZE = {
   s: rwd(8),
   t: rwd(4),
   n: rwd(0),
+  // h: SCREEN_WIDTH * 0.06,
+  // l: SCREEN_WIDTH * 0.05,
+  // m: SCREEN_WIDTH * 0.04,
+  // s: SCREEN_WIDTH * 0.03,
+  // t: SCREEN_WIDTH * 0.02,
 }
 
 window.language = 'en'

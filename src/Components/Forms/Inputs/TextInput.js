@@ -62,7 +62,7 @@ export class TextInput extends React.PureComponent {
       >
         {multiline ? (
           <T.Scroll>
-            <T.Text numberOfLines={0} text={value} />
+            <T.Text numberOfLines={0} text={value} backgroundColor_="white" />
           </T.Scroll>
         ) : (
           <T.Label text={value} />
