@@ -49,33 +49,40 @@ export class List extends React.PureComponent {
       this.mounted && this.setState({ data: [...data] })
       this.forceUpdate()
     },
-    onCreated: (item, that) => {
-      this._reload()
-      return
+    onCreated: item => {
+      // this._reload()
+      // return
       // let { item = newItem } = newItem
-      // log(item, 'item')
+      log(item, 'item in List#itemEvent#onCreated')
       // // log(item, 'item - in List#itemCreated')
       let { data } = this.state
       data = [item, ...data]
       // // // log(data, 'data - in ')
       // alert('update')
-      this.mounted && this.setState({ data: [...data] })
+      this.setState({ data: [] }, () => {
+        delayed(() => {
+          this.scrollToTop()
+        })
+        this.setState({ data: [...data], extraData: [...data] })
+      })
       // // this.setState({ data: [...newData] })
       // // log(newData, 'newData - in ')
       // this.flatList.forceUpdate()
-      // that.forceUpdate()
+      // this.forceUpdate()
     },
     onUpdated: item => {
-      // log(item, 'item - in itemChanged#List')
-      // let { data } = this.state
-      // data[item.index] = item.item
-      // log(data, 'data')
-      // this.setState({
-      //   data: [...data],
-      //   extraData: randId()
+      log(item, 'item - in itemChanged#List')
+      let { data } = this.state
+      data[item.index] = item.item
+      log(data, 'data')
+      // this.setState({ data: [] }, () => {
+      this.setState({
+        data: [...data],
+        extraData: [...data],
+      })
       // })
       // this.forceUpdate()
-      this._reload()
+      // this._reload()
     },
   }
 

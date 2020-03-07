@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 export const Media = props => {
   // let _ref = React.forwardRef()
-  let { navigation } = props
+  let { navigation, image } = props
   let [data, setData] = useState(props.data)
   if (!data) return null
   let { item = data } = data
