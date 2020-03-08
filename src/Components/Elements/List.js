@@ -46,8 +46,10 @@ export class List extends React.PureComponent {
       data.splice(item.index, 1)
       // data = data.filter(d => d.id !== item.id)
       // log(data, 'data - in List#onItemDeleted')
-      this.mounted && this.setState({ data: [...data] })
-      this.forceUpdate()
+      this.setState({ data: [] }, () => {
+        this.setState({ data: [...data], extraData: randId() })
+      })
+      // this.forceUpdate()
     },
     onCreated: item => {
       // this._reload()
@@ -63,7 +65,7 @@ export class List extends React.PureComponent {
         delayed(() => {
           this.scrollToTop()
         })
-        this.setState({ data: [...data], extraData: [...data] })
+        this.setState({ data: [...data], extraData: randId() })
       })
       // // this.setState({ data: [...newData] })
       // // log(newData, 'newData - in ')
@@ -78,7 +80,7 @@ export class List extends React.PureComponent {
       // this.setState({ data: [] }, () => {
       this.setState({
         data: [...data],
-        extraData: [...data],
+        extraData: randId(),
       })
       // })
       // this.forceUpdate()

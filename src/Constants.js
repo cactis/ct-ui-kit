@@ -154,7 +154,7 @@ window.setDeviceInfo = async () => {
   // log(_info, '_info')
   global.deviceInfo = _info
   global.DEVICE_INFO = _info
-
+  // window.isSimulator = _info.isSimulator
   window.iPhoneX =
     iOS &&
     (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||

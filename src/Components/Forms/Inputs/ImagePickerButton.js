@@ -10,14 +10,15 @@ export class ImagePickerButton extends React.PureComponent {
   render() {
     let { data } = this.state
     let { ...props } = this.props
-    log(data, 'data in ImagePickerButton render()')
+    // log(data, 'data in ImagePickerButton render()')
     // if (!data) return null
     // let { item = data} = data
     return <T.Icon {...props} onPress={this.onPress} />
   }
   onPress = () => {
     if (this.props.onPress) {
-      getImage().then(image => {
+      this.openAlbums(this.props.type, image => {
+        // log(image, 'image 2222 in ImagePickerButton#onPress')
         this.props.onPress(image)
       })
     } else {
@@ -25,21 +26,49 @@ export class ImagePickerButton extends React.PureComponent {
     }
   }
 
-  getImage = async () => {
-    RNImagePicker.openPicker({
-      compressImageQuality: 1,
-      // width: 300,
-      // height: 400,
-      // cropping: false,
-      // cicular: true,
-      includeBase64: true,
-    }).then(image => {
-      image = base64Image(image)
-      log(image, 'image ====')
-      setData(image)
-      onChanged(image)
-      return image
-    })
+  openAlbums = (type = 'photo', callback) => {
+    if (type == 'photo') {
+      T.RNImagePicker.openPicker({
+        compressImageQuality: 1,
+        // width: 300,
+        // height: 400,
+        // cropping: false,
+        // cicular: true,
+        includeBase64: true,
+      }).then(image => {
+        // log(image, 'image 00000')
+        base64Image(image).then(image => {
+          log(
+            image,
+            'image 1111 after base64Image in ImagePickerButton#openAlbums'
+          )
+          // setData(image)
+          // onChanged(image)
+          callback(image)
+        })
+      })
+    } else {
+      // if (DEVICE_INFO.isSimulator) return alert('相機不支援模擬器。')
+      T.RNImagePicker.openCamera({
+        compressImageQuality: 1,
+        // width: 300,
+        // height: 400,
+        // cropping: false,
+        // cicular: true,
+        includeBase64: true,
+      }).then(image => {
+        // log(image, 'image 00000')
+        base64Image(image).then(image => {
+          log(
+            image,
+            'image 1111 after base64Image in ImagePickerButton#openAlbums'
+          )
+          // setData(image)
+          // onChanged(image)
+          callback(image)
+        })
+      })
+    }
   }
 
   initStateData = onComplete => {

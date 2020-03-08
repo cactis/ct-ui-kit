@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import RNImagePicker from 'react-native-image-crop-picker'
 import RNFS from 'react-native-fs'
-
+export { RNImagePicker }
 export const ImagePicker = props => {
   let { navigation, onChanged = () => {}, size } = props
   let [data, setData] = useState(props.data)
@@ -34,7 +34,7 @@ export const ImagePicker = props => {
 }
 
 window.base64Image = async image => {
-  log(image, 'image 11111111 in base64Image')
+  // log(image, 'image in base64Image')
   let { mime, path } = image
   // log(path, 'path')
   if (mime.search(/mp4/) > -1) {
@@ -44,7 +44,7 @@ window.base64Image = async image => {
     // .then(async base64 => {
     //   // log(base64, 'base64 222222222222')
     //   image.data = await base64
-    log(image, 'image 22222222222222222222')
+    // log(image, 'image')
     //   // onGetImage(image)
     //   return image
     // })

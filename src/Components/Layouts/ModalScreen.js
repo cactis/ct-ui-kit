@@ -77,10 +77,10 @@ export class ModalScreen extends ModalBase {
           >
             <T.Space
               width={SIZE.l * 3}
-              borderWidth={0}
-              paddingLeft={SIZE.t}
+              borderWidth__={1}
+              // paddingLeft={SIZE.t}
               flex={0}
-              align="center"
+              xAlign="center"
             >
               {/* <T.Icon
               onPress={this.close}
