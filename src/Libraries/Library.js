@@ -1,3 +1,4 @@
+import React from 'react'
 if (__DEV__) console.log('Library.js')
 import I from 'react-native-device-info'
 import _ from 'lodash'
@@ -307,4 +308,19 @@ window.requestPermissions = async () => {
     return result === PermissionsAndroid.RESULTS.GRANTED || result === true
   }
   return true
+}
+
+window.audioRecording = item => {
+  flexPopup.open(
+    <T.Div borderRadius_={30} backgroundColor__={BFCOLOR}>
+      <T.Row flex={0} padding={SIZE.l * 2}>
+        <T.Text text={item.text} size={SIZE.l} numberOfLines={0} />
+      </T.Row>
+      <T.Center flex={0} padding={SIZE.l}>
+        <T.AudioRecorder1 data={item} />
+      </T.Center>
+      <T.Space />
+    </T.Div>,
+    { backdropOpacity: 0.8, backgroundColor_: 'transparent' }
+  )
 }

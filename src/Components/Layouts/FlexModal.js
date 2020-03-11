@@ -20,6 +20,7 @@ export class FlexModal extends ModalBase {
 
   render() {
     let { content, options } = this.state
+    let { backgroundColor = LIGHT_COLOR } = options
     let { padding = options.padding || SIZE.l } = this.props
     // log(content, '000000')
     let { children = content, title: propTitle, height } = this.props
@@ -28,8 +29,9 @@ export class FlexModal extends ModalBase {
       <ModalBox
         style={{
           height: 'auto',
-          // backgroundColor: 'transparent',
+          backgroundColor: backgroundColor,
         }}
+        {...options}
         position="bottom"
         entry="bottom"
         ref={c => (this.modal = c)}
@@ -38,7 +40,8 @@ export class FlexModal extends ModalBase {
           flex={0}
           // padding={padding}
           // backgroundColor="rgb(241,241,241)"
-          backgroundColor="transparent"
+          backgroundColor={backgroundColor}
+          // backgroundColor="red"
         >
           {children}
           {/* <T.Button title="Close" onPress={() => this.close()} /> */}

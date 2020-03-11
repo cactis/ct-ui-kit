@@ -52,7 +52,8 @@ export class Icon extends React.Component {
       padding,
       pad = padding || iconSize * (this.props.backgroundColor ? 0.3 : 0.3),
       // paddingTop = 0, //iOS ? pad + 2 : pad,
-      color = '#333',
+      disabled,
+      color = disabled ? '#ddd' : BFCOLOR,
       backgroundColor = 'transparent',
       width = 3 * pad + iconSize,
       height = width,
@@ -61,7 +62,6 @@ export class Icon extends React.Component {
       onPressOut,
       badge,
       text,
-      disabled,
       ...props
     } = this.props
 
@@ -104,7 +104,7 @@ export class Icon extends React.Component {
         {/* <Space style={{position: 'absolute', backgroundColor: backgroundColor, width: '100%', height: '100%'}} borderRadius={width / 2} flex={1}></Space> */}
       </T.Center>
     )
-    return onPress || onPressIn || onPressOut ? (
+    return (onPress && !disabled) || onPressIn || onPressOut ? (
       <Touch
         disabled={disabled}
         // onPressOut={this.onPress}

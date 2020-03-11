@@ -265,11 +265,11 @@ export class List extends React.PureComponent {
   }
 
   _onBeginDrag = params => {
-    log(params, 'params in _onBeginDrag')
+    // log(params, 'params in _onBeginDrag')
     this.props.onBeginDrag && this.props.onBeginDrag()
   }
   _onDragEnd = params => {
-    log(params, 'params in _onDragEnd')
+    // log(params, 'params in _onDragEnd')
     //   let { data } = params
     //   let { onDragEnd } = this.props
     //   onDragEnd && onDragEnd(params)
@@ -483,15 +483,15 @@ export class List extends React.PureComponent {
   }
 }
 
-class SearchBar extends React.PureComponent {
+export class SearchBar extends React.PureComponent {
   render() {
     return (
-      <Row padding={rwd(5)} backgroundColor="rgb(255,255,255)">
+      <Row padding={SIZE.n} backgroundColor__="rgb(255,255,255)">
         <Row
           borderRadius={rwd(3)}
           paddingVertical={rwd(5)}
           paddingHorizontal={rwd(10)}
-          backgroundColor="rgb(242,240,240)"
+          backgroundColor="rgba(255,255,255,.59)"
         >
           <TextInput
             placeholder="type keyword to search..."
@@ -499,6 +499,8 @@ class SearchBar extends React.PureComponent {
             clearButtonMode="always"
             autoCapitalize="none"
             onChange={this.props.onChange}
+            onChangeText={value => this.props.onChange(value)}
+            onSubmitEditing={this.props.onSubmit}
           />
         </Row>
       </Row>

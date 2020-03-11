@@ -27,6 +27,17 @@ export const Media = props => {
   }
 
   switch (item.mime) {
+    case 'audio/mp3':
+      return (
+        <T.Mp3
+          data={item}
+          url={item.url || item.path || item.data || item.file_url}
+        />
+      )
+      {
+        /* <T.Video url={item.url || item.path || item.data || item.file_url} /> */
+      }
+      return
     case 'video/mp4':
       return <T.Video url={item.path || item.data || item.file_url} />
       break

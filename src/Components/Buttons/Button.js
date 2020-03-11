@@ -73,7 +73,7 @@ export class Button extends React.PureComponent {
       style,
       beep,
       // color,
-      color = disabled ? 'rgba(0,0,0,1)' : BCOLOR,
+      color,
       titleColor = color,
       rightIcon,
       leftIcon,
@@ -84,10 +84,12 @@ export class Button extends React.PureComponent {
       fontSize = titleStyle?.fontSize || BASE_SIZE * 1.2,
       padding = fontSize * 0.5,
       disabled = false,
-      backgroundColor = disabled ? 'rgba(113,112,112,1)' : BFCOLOR,
+      backgroundColor,
       // backgroundColor,
       ...props
     } = this.props
+    color = disabled ? 'rgba(0,0,0,1)' : color
+    backgroundColor = disabled ? 'rgba(113,112,112,1)' : backgroundColor
     // let borderColor = 'rgba(255,255,255,.4)'
     // let {
     //   borderColor = backgroundColor
