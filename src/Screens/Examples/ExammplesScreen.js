@@ -7,7 +7,7 @@ export class ExammplesScreen extends React.PureComponent {
     _navigation = navigation
     return {
       title: navigation.state.params?.title || 'Exammples Screen',
-      headerLeft: drawerToggler(navigation),
+      headerLeft: () =>  drawerToggler(navigation),
     }
   }
   state = {

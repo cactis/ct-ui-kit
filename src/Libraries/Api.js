@@ -1,3 +1,5 @@
+log('!!! Api.js#UIKIT')
+import '../Constants'
 import React, { Component } from 'react'
 
 global.AppConfig = {
@@ -89,10 +91,11 @@ export class Api {
       build: DEVICE_INFO?.ReadableVersion,
       tokens: accessTokens,
       appName: AppConfig.appName,
+      timeZoneOffset: window.timeZoneOffset(),
     }
-
+    // log(headers, 'headers'
     // log(headers, 'headers')
-    // log(deviceInfo, 'deviceInfo')
+    // log(DEVICE_INFO, 'DEVICE_INFO')
     // alert(_url)
     switch (method) {
       case 'DELETE':

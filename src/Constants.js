@@ -1,4 +1,4 @@
-log('Constant.js')
+log('!!! Constant.js#UIKIT')
 
 window.TColor = require('tinycolor2')
 
@@ -24,7 +24,7 @@ window.SCREEN_WIDTH = Dimensions.get('window').width
 window.SCREEN_HEIGHT = Dimensions.get('window').height
 
 // OVERWRITE
-window.BCOLOR = 'rgb(59,9,66)'
+window.BCOLOR = 'rgba(9,51,74,1)'
 window.BCOLOR_DEV = 'rgb(108,108,108)'
 window.FCOLOR = 'rgb(219,219,219)'
 window.ICON_COLOR = 'rgba(55,47,66,1)'
@@ -34,7 +34,7 @@ window.STRONG_COLOR = 'rgba(133,15,15,1)'
 window.SCREEN_BACKGROUNDCOLOR = BCOLOR
 window.BUTTON_COLOR = 'rgba(217,76,111,0.8)'
 window.BUTTON_COLOR1 = 'rgba(0,111,182,.87)'
-window.BUTTON_COLOR = 'rgba(1,64,122,.20)'
+window.BUTTON_COLOR = 'rgba(29,220,238,1)'
 
 window.iOS = Platform.OS === 'ios'
 window.isTablet = SCREEN_WIDTH > 500
@@ -96,80 +96,14 @@ window.isSimulator = () => {
   return D.isEmulator()
 }
 
-window.deviceName = () => {
-  return global.deviceInfo?.deviceName
-}
-
-window._deviceInfo = async () => {
-  let { currentUser } = global
-  return {
-    is__DEV__: __DEV__,
-    Brand: await D.getBrand(),
-    Manufacturer: await D.getManufacturer(),
-    APILevel: await D.getApiLevel(),
-    Model: await D.getModel(),
-    ReadableVersion: await D.getReadableVersion(),
-    SystemVersion: await D.getSystemVersion(),
-    SystemName: await D.getSystemName(),
-    ApplicationName: await D.getApplicationName(),
-    // getBatteryLevel: await D.getBatteryLevel(),
-    BuildNumber: await D.getBuildNumber(),
-    BundleId: await D.getBundleId(),
-    // getCarrier: await D.getCarrier(),
-    DeviceCountry: 'NAN', //D.getDeviceCountry(),
-    // DeviceId: await D.getDeviceId(),
-    DeviceLocale: 'NAN', //D.getDeviceLocale(),
-    DeviceName: await D.getDeviceName(),
-    FirstInstallTime: await D.getFirstInstallTime(),
-    FontScale: await D.getFontScale(),
-    FreeDiskStorage: await D.getFreeDiskStorage(),
-    InstallReferrer: await D.getInstallReferrer(),
-    InstanceID: 'NAN', //D.getInstanceID(),
-    LastUpdateTime: await D.getLastUpdateTime(),
-    MaxMemory: await D.getMaxMemory(),
-    PhoneNumber: await D.getPhoneNumber(),
-    Timezone: 'NAN', //D.getTimezone(),
-    TotalDiskCapacity: await D.getTotalDiskCapacity(),
-    TotalMemory: await D.getTotalMemory(),
-    UserAgent: await D.getUserAgent(),
-    Version: await D.getVersion(),
-    is24Hour: 'NAN', //D.is24Hour(),
-    isEmulator: await D.isEmulator(),
-    isPinOrFingerprintSet: await D.isPinOrFingerprintSet(),
-    isTablet: await D.isTablet(),
-    hasNotch: await D.hasNotch(),
-    isLandscape: await D.isLandscape(),
-    getIPAddress: 'NAN', //D.getIPAddress(),
-    getMACAddress: 'NAN', //D.getMACAddress(),
-    SerialNumber: await D.getSerialNumber(),
-    UniqueID: 'NAN', // D.getUniqueID(),
-    // isAirPlaneMode: D.isAirPlaneMode(),
-    userId: currentUser?.id,
-    userName: currentUser?.name,
-  }
-}
-
-window.setDeviceInfo = async () => {
-  let _info = await _deviceInfo()
-  // log(_info, '_info')
-  global.deviceInfo = _info
-  global.DEVICE_INFO = _info
-  // window.isSimulator = _info.isSimulator
-  window.iPhoneX =
-    iOS &&
-    (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||
-      DEVICE_INFO.Model?.indexOf('iPhone 1') == 0)
-}
-setDeviceInfo()
-
-window.deviceInfo = () => {
-  return global.deviceInfo
-}
-
-window.iPhoneX =
-  iOS &&
-  (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
-    deviceInfo.Model?.indexOf('iPhone 1') == 0)
+// window.DEVICE_INFO = () => {
+//   return window.DEVICE_INFO
+// }
+//
+// window.iPhoneX =
+//   iOS &&
+//   (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||
+//     DEVICE_INFO.Model?.indexOf('iPhone 1') == 0)
 
 window.pad = SCREEN_WIDTH > 800
 export const size = {
@@ -210,8 +144,8 @@ window.DARK_COLOR = '#333'
 window.initConstant = () => {
   // window.iPhoneX =
   //   iOS &&
-  //   (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
-  //     deviceInfo.Model?.indexOf('iPhone 11') == 0)
+  //   (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||
+  //     DEVICE_INFO.Model?.indexOf('iPhone 11') == 0)
 
   window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
   window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
@@ -228,10 +162,10 @@ window.initConstant = () => {
 // setDeviceInfo() run in SplashScreen
 // initConstant() run in SplashScreen
 
-window.iPhoneX =
-  iOS &&
-  (deviceInfo.Model?.indexOf('iPhone X') == 0 ||
-    deviceInfo.Model?.indexOf('iPhone 11') == 0)
+// window.iPhoneX =
+//   iOS &&
+//   (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||
+//     DEVICE_INFO.Model?.indexOf('iPhone 11') == 0)
 
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
@@ -251,3 +185,9 @@ window.SIZE = {
 }
 
 window.language = 'en'
+
+window.timeZoneOffset = () => {
+  let date = new Date()
+  let hour = date.getTimezoneOffset() / 60
+  return hour
+}

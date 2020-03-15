@@ -18,13 +18,14 @@ let _navigation
 export class DatePicker extends React.PureComponent {
   state = {
     data: toDate(new Date()),
+    // data: toDate(new Date(new Date().toISOString())),
   }
 
   setDate = data => {
     log(data, 'data')
     let { mode = 'date' } = this.props
     this.setState({ data: toDate(data, mode) })
-    this.props.onUpdated && this.props.onUpdated(toDate(data, mode))
+    this.props.onUpdated && this.props.onUpdated(this.state.data)
   }
 
   show = () => {
@@ -40,6 +41,8 @@ export class DatePicker extends React.PureComponent {
   }
 
   render() {
+    // alert(new Date(new Date().toISOString()))
+    // alert(new Date())
     let { data } = this.state
     log(data, 'data in DatePicker render()')
     // if (!data) return null
@@ -60,9 +63,10 @@ export class DatePicker extends React.PureComponent {
     let { data } = this.props
     this.mounted &&
       data &&
-      this.setState({ data }, () => {
+      this.setState({ data: data }, () => {
         onComplete && onComplete()
       })
+    this.props.onUpdated && this.props.onUpdated(this.state.data)
   }
 
   componentDidMount() {

@@ -81,7 +81,7 @@ export const IconLabel = props => {
       yAlign="center"
       style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
     >
-      <Col flex={0} xAlign="center" height_={size} borderWidth_={1}>
+      <Col flex={0} align="center" height_={size} borderWidth_={1}>
         {_icon}
         {image}
       </Col>

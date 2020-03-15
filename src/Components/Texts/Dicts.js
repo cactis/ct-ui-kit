@@ -65,9 +65,11 @@ export class Dicts extends React.PureComponent {
               ...(window.keywords == t ? _CHECKSTYLE : {}),
             }}
             onPress={() => {
+              beep()
               if (iOS) {
                 // t = dict.checkWord(t)
                 t = t.replace(/\.|,/g, '')
+
                 NativeModules.ReferenceLibraryManager?.showDefinitionForTerm(
                   t,
                   hasDefinition => {

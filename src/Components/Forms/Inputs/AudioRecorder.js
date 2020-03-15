@@ -20,7 +20,7 @@ import {
 import Sound from 'react-native-sound'
 import { AudioRecorder, AudioUtils } from 'react-native-audio'
 
-export class AudioRecorder1 extends React.PureComponent {
+class AudioRecorder1 extends React.PureComponent {
   state = {
     uploadable: false,
     currentTime: 0.0,
@@ -259,8 +259,9 @@ export class AudioRecorder1 extends React.PureComponent {
   reset = () => {
     this.setState({ currentTime: 0, readyToPlay: false, uploadable: false })
   }
-  upload = () => {
-    let { data } = this.props
+  uploadAudio = () => {
+    let { data, options = {} } = this.props
+    let { onCreated } = options
     let { item = data } = data
     let url = `${item.routes}/recordings/new`
     T.Api.get(url, {}, res => {
@@ -273,6 +274,7 @@ export class AudioRecorder1 extends React.PureComponent {
         T.Api.post(data.routes, { resource: data }, res => {
           let { data } = res
           log(data, 'data')
+          onCreated && onCreated(data)
         })
       })
     })
@@ -313,7 +315,7 @@ export class AudioRecorder1 extends React.PureComponent {
               size={SIZE.l * 2}
               name="clouduploado"
               iconSet="AntDesign"
-              onPress={this.upload}
+              onPress={this.uploadAudio}
               // disabled={!uploadable}
             />
           </T.Row>
@@ -437,3 +439,5 @@ export class AudioRecorder2 extends React.PureComponent {
   autoRun = () => {}
 }
 var styles = StyleSheet.create({})
+
+export { AudioRecorder1 as AudioRecorder }

@@ -22,6 +22,7 @@ export class CardList extends React.PureComponent {
     return (
       <T.Center>
         <Carousel
+          ref={c => (this.list = c)}
           url={url}
           onSnapToItem={this.onSnapToItem}
           // borderWidth={1}
@@ -41,6 +42,18 @@ export class CardList extends React.PureComponent {
     if (index > this.state.data.length - 5) this.fetchData()
     this.props.onScrollTo &&
       this.props.onScrollTo(index, this.state.data[index])
+  }
+
+  reloadData = () => {
+    this.setState({ page: 0 }, () => this.fetchData())
+    this.scrollToTop()
+  }
+  scrollToTop = (delay = 500) => {
+    // log('scrollToTop in List')
+    // delayed(() => {
+    this.list.snapToItem(0, true)
+    this.setState({ toTop: 0 })
+    // }, delay)
   }
   loading = false
 

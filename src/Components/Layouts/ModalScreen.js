@@ -94,7 +94,7 @@ export class ModalScreen extends ModalBase {
                 onPress={this.close}
                 name="close-a"
                 size={rwd(16)}
-                iconSet="Fontisto"
+                iconSet="AntDesign"
                 // color="rgb(131,131,131)"
                 // color={BFCOLOR}
                 theme="H1"

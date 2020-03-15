@@ -3,7 +3,7 @@ import { View, Icon } from '../'
 
 export class BarItem extends React.Component {
   render() {
-    let { size = rwd(20), badge, beep = false } = this.props
+    let { size = rwd(18), badge, beep = false } = this.props
     // alert(beep)
     return (
       <Icon

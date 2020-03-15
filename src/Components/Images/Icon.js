@@ -53,7 +53,7 @@ export class Icon extends React.Component {
       pad = padding || iconSize * (this.props.backgroundColor ? 0.3 : 0.3),
       // paddingTop = 0, //iOS ? pad + 2 : pad,
       disabled,
-      color = disabled ? '#ddd' : BFCOLOR,
+      color = disabled ? '#ddd' : ICON_COLOR,
       backgroundColor = 'transparent',
       width = 3 * pad + iconSize,
       height = width,
@@ -124,6 +124,7 @@ export class Icon extends React.Component {
       const PATTERN = [1000, 2000, 3000]
       // Vibration.vibrate(DURATION)
     }
+    beep()
     this.props.onPress && this.props.onPress()
     // this.props.onPressIn && this.props.onPressIn()
     // this.props.onPressOut && this.props.onPressOut()

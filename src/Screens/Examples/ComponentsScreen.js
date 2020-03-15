@@ -7,7 +7,7 @@ export class ComponentsScreen extends React.PureComponent {
     _navigation = navigation
     return {
       title: navigation.state.params?.title || '預設標題',
-      // headerLeft: null,
+      // headerLeft: () =>  null,
     }
   }
   state = {

@@ -1,5 +1,10 @@
+window.log = (...message) => {
+  console.log(message)
+}
+log('!!! Library.js#UIKIT')
+
 import React from 'react'
-if (__DEV__) console.log('Library.js')
+
 import I from 'react-native-device-info'
 import _ from 'lodash'
 import { PermissionsAndroid, Platform } from 'react-native'
@@ -7,6 +12,69 @@ window._ = _
 
 window.Dev = {}
 
+window._DEVICE_INFO = async () => {
+  let { currentUser } = global
+  return {
+    is__DEV__: __DEV__,
+    Brand: await D.getBrand(),
+    Manufacturer: await D.getManufacturer(),
+    APILevel: await D.getApiLevel(),
+    Model: await D.getModel(),
+    ReadableVersion: await D.getReadableVersion(),
+    SystemVersion: await D.getSystemVersion(),
+    SystemName: await D.getSystemName(),
+    ApplicationName: await D.getApplicationName(),
+    // getBatteryLevel: await D.getBatteryLevel(),
+    BuildNumber: await D.getBuildNumber(),
+    BundleId: await D.getBundleId(),
+    // getCarrier: await D.getCarrier(),
+    // DeviceId: await D.getDeviceId(),
+    DeviceName: await D.getDeviceName(),
+    FirstInstallTime: await D.getFirstInstallTime(),
+    FontScale: await D.getFontScale(),
+    FreeDiskStorage: await D.getFreeDiskStorage(),
+    // InstallReferrer: await D.getInstallReferrer(),
+    InstanceID: 'NAN', //D.getInstanceID(),
+    // LastUpdateTime: await D.getLastUpdateTime(),
+    MaxMemory: await D.getMaxMemory(),
+    PhoneNumber: await D.getPhoneNumber(),
+    Timezone: 'NAN', //D.getTimezone(),
+    TotalDiskCapacity: await D.getTotalDiskCapacity(),
+    TotalMemory: await D.getTotalMemory(),
+    UserAgent: await D.getUserAgent(),
+    Version: await D.getVersion(),
+    is24Hour: 'NAN', //D.is24Hour(),
+    isEmulator: await D.isEmulator(),
+    isPinOrFingerprintSet: await D.isPinOrFingerprintSet(),
+    isTablet: await D.isTablet(),
+    hasNotch: await D.hasNotch(),
+    isLandscape: await D.isLandscape(),
+    getIPAddress: 'NAN', //D.getIPAddress(),
+    getMACAddress: 'NAN', //D.getMACAddress(),
+    SerialNumber: await D.getSerialNumber(),
+    UniqueID: 'NAN', // D.getUniqueID(),
+    // isAirPlaneMode: D.isAirPlaneMode(),
+    userId: currentUser?.id,
+    userName: currentUser?.name,
+  }
+}
+window.iPhoneX = false
+window.setDeviceInfo = async () => {
+  let _info = await _DEVICE_INFO
+  // log(_info, '_info')
+  window.DEVICE_INFO = _info
+  // window.isSimulator = _info.isSimulator
+  window.iPhoneX =
+    iOS &&
+    (_info.Model?.indexOf('iPhone X') == 0 ||
+      _info.Model?.indexOf('iPhone 1') == 0)
+
+  window.deviceName = () => {
+    return _info.deviceName
+  }
+}
+
+setDeviceInfo()
 window.log = (...message) => {
   if (!Dev.disableLog) {
     let [m, ...ms] = message
@@ -310,14 +378,14 @@ window.requestPermissions = async () => {
   return true
 }
 
-window.audioRecording = item => {
+window.audioRecording = (item, options = {}) => {
   flexPopup.open(
     <T.Div borderRadius_={30} backgroundColor__={BFCOLOR}>
       <T.Row flex={0} padding={SIZE.l * 2}>
         <T.Text text={item.text} size={SIZE.l} numberOfLines={0} />
       </T.Row>
       <T.Center flex={0} padding={SIZE.l}>
-        <T.AudioRecorder1 data={item} />
+        <T.AudioRecorder data={item} options={options} />
       </T.Center>
       <T.Space />
     </T.Div>,

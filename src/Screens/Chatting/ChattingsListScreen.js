@@ -6,7 +6,7 @@ export class ChattingsListScreen extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     return {
       // title: navigation.state.params?.title || 'Chatting List',
-      // headerLeft: () => null,
+      // headerLeft: () =>  () => null,
     }
   }
   state = {

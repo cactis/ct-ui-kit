@@ -121,7 +121,7 @@ export class List extends React.PureComponent {
   scrollToTop = (delay = 500) => {
     // log('scrollToTop in List')
     // delayed(() => {
-    this.flatList.scrollToOffset({ offset: 0, animated: true })
+    this.flatList?.scrollToOffset({ offset: 0, animated: true })
     this.mounted && this.setState({ toTop: 0 })
     // }, delay)
   }
