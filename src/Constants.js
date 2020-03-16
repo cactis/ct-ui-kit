@@ -1,5 +1,5 @@
 log('!!! Constant.js#UIKIT')
-
+require('./Libraries/Library.js')
 window.TColor = require('tinycolor2')
 
 setDeviceName = () => {
@@ -150,7 +150,6 @@ window.initConstant = () => {
   window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
   window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
 
-  window.LIGHT_COLOR = 'white'
   window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
   window.SEGMENT_COLOR = LIGHT_COLOR
   window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR

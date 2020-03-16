@@ -92,7 +92,7 @@ export class ModalScreen extends ModalBase {
             /> */}
               <T.Icon
                 onPress={this.close}
-                name="close-a"
+                name="close"
                 size={rwd(16)}
                 iconSet="AntDesign"
                 // color="rgb(131,131,131)"

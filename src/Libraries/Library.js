@@ -5,7 +5,7 @@ log('!!! Library.js#UIKIT')
 
 import React from 'react'
 
-import I from 'react-native-device-info'
+import D from 'react-native-device-info'
 import _ from 'lodash'
 import { PermissionsAndroid, Platform } from 'react-native'
 window._ = _
@@ -60,7 +60,7 @@ window._DEVICE_INFO = async () => {
 }
 window.iPhoneX = false
 window.setDeviceInfo = async () => {
-  let _info = await _DEVICE_INFO
+  let _info = await _DEVICE_INFO()
   // log(_info, '_info')
   window.DEVICE_INFO = _info
   // window.isSimulator = _info.isSimulator
@@ -81,7 +81,7 @@ window.log = (...message) => {
     console.log('')
     // console.log('<------------------------------------------------------')
     console.log(m)
-    console.log(`'${ms} from ${I.getModel()}'`)
+    console.log(`'${ms} from ${D.getModel()}'`)
     // console.log('------------------------------------------------------>')
     // console.log('')
   }

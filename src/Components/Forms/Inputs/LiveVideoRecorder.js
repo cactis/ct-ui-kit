@@ -145,25 +145,26 @@ export class LiveVideoRecorder extends React.PureComponent {
   open = (options = {}) => {
     // alert(options.appName)
     log(options, 'options')
-    let { appName = 'app', streamName = 'stream' } = options
+    let { appName = 'app', streamName = 'stream', data } = options
+    let { item = data } = data
     this.setState({ appName, streamName })
-    T.Api.get('/streamings/new', {}, res => {
-      let { data } = res
-      T.Api.post(data.routes, { resource: data }, res => {})
-      let outputUrl = `rtmp://${
-        AppConfig.domain
-      }:1935/${appName}/${streamName}?filename=${data.filename}`
-      log(outputUrl, 'outputUrl')
-      this.setState(
-        {
-          data,
-          outputUrl,
-        },
-        () => {
-          this.modal.open()
-        }
-      )
-    })
+    // T.Api.get('/streamings/new', {}, res => {
+    //   let { data } = res
+    //   T.Api.post(data.routes, { resource: data }, res => {})
+    let outputUrl = `rtmp://${
+      AppConfig.domain
+    }:1935/${appName}/${streamName}?filename=${item.filename}`
+    log(outputUrl, 'outputUrl')
+    this.setState(
+      {
+        data,
+        outputUrl,
+      },
+      () => {
+        this.modal.open()
+      }
+    )
+    // })
   }
   onClose = () => {
     this.modal.close()

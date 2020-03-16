@@ -35,6 +35,7 @@ export class ChooseMenu extends React.PureComponent {
         {menu}
       </T.Cell>
     ))
+    // alert(iPhoneX)
     return (
       <T.FlexModal padding={0} ref={c => (this.modal = c)}>
         {_title}
