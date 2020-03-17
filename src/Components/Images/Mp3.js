@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import Sound from 'react-native-sound'
+// import Sound from 'react-native-sound'
 import SoundPlayer from 'react-native-sound-player'
 
 let _navigation

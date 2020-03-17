@@ -44,6 +44,9 @@ export class Api {
   }
 
   static request = async (method, url, params = {}, onSuccess, onError) => {
+    let { HttpHeader } = params
+    log(HttpHeader, 'HttpHeader')
+    params['HttpHeader'] = null
     if (Dev.logResponse)
       log(method, url, params, '(method, url, params in request')
     if (!url) return log('no url be setted in Api#request')
@@ -92,8 +95,11 @@ export class Api {
       tokens: accessTokens,
       appName: AppConfig.appName,
       timeZoneOffset: window.timeZoneOffset(),
+      ...HttpHeader,
     }
-    // log(headers, 'headers'
+    // headers = _.merge(headers, HttpHeader)
+    log(headers, 'headers')
+    // alert('uiapi')
     // log(headers, 'headers')
     // log(DEVICE_INFO, 'DEVICE_INFO')
     // alert(_url)

@@ -137,6 +137,7 @@ export class List extends React.PureComponent {
 
   fetchData = async onSuccess => {
     // log('fetchData')
+    let { prettyPage = true } = this.props
     if (this.state.isPageLoading) {
       // log('isPageLoading')
       return
@@ -170,15 +171,32 @@ export class List extends React.PureComponent {
     }
 
     if (urls.length > 1) {
-      url = `${urls[0]}/page/${page}?${urls[1]}`
+      if (prettyPage) {
+        url = `${urls[0]}/page/${page}?${urls[1]}`
+      } else {
+        url = `${urls[0]}?${urls[1]}&page=${page}`
+      }
       // url = `${urls[0]}/?page=${page}&${urls[1]}`
       if (keyword) url = `${url}&${keywordStr}`
     } else {
-      url = `${urls[0]}/page/${page}`
+      if (prettyPage) {
+        url = `${urls[0]}/page/${page}`
+      } else {
+        url = `${urls[0]}?page=${page}`
+      }
       // url = `${urls[0]}?page=${page}`
       if (keyword) url = `${url}?${keywordStr}`
     }
-    // if (!pagination) url = url.split('/page')[0]
+    // if (urls.length > 1) {
+    //   url = `${urls[0]}/page/${page}?${urls[1]}`
+    //   // url = `${urls[0]}/?page=${page}&${urls[1]}`
+    //   if (keyword) url = `${url}&${keywordStr}`
+    // } else {
+    //   url = `${urls[0]}/page/${page}`
+    //   // url = `${urls[0]}?page=${page}`
+    //   if (keyword) url = `${url}?${keywordStr}`
+    // }
+    // // if (!pagination) url = url.split('/page')[0]
 
     let json
     let { graphql } = this.props
@@ -195,7 +213,9 @@ export class List extends React.PureComponent {
       json = { data: items }
       // log(json, 'json')
     } else {
-      json = await Api.get(url)
+      // json = await Api.get(url)
+      // alert('ddd')
+      json = await Api.get(url, { HttpHeader: this.props.HttpHeader })
     }
 
     // log(json, 'json in List')

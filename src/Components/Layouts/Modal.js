@@ -113,22 +113,25 @@ export class Modal extends ModalBase {
             </T.Div>
           </T.Row>
         )}
-        {scrollable ? (
-          <T.List
-            quoteable={quoteable}
-            ListHeaderComponent={children}
-            contentContainerStyle={{ padding: rwd(10) }}
-          />
-        ) : (
-          <T.Screen
-            padding={padding}
-            backgroundColor={backgroundColor}
-            keyboardAware={keyboardAware}
-            safeAreaDisabled={!safeArea}
-          >
-            {children}
-          </T.Screen>
-        )}
+        {/* {scrollable ? (
+          // <T.List
+          //   quoteable={quoteable}
+          //   ListHeaderComponent={children}
+          //   contentContainerStyle={{ padding: rwd(10) }}
+          // />
+          <T.Screen scrollable>{children}</T.Screen>
+        ) : ( */}
+        <T.Screen
+          scrollable={scrollable}
+          borderWidth__={3}
+          padding={padding}
+          backgroundColor={backgroundColor}
+          keyboardAware={keyboardAware}
+          safeAreaDisabled={!safeArea}
+        >
+          {children}
+        </T.Screen>
+        {/* )} */}
         {noHeader ? (
           <T.Float marginTop={SAFEAREA_TOP} right={SIZE.m} top={SIZE.m}>
             <T.Icon
