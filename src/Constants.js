@@ -39,7 +39,7 @@ window.BUTTON_COLOR = 'rgba(29,220,238,1)'
 window.iOS = Platform.OS === 'ios'
 window.isTablet = SCREEN_WIDTH > 500
 
-window.BASE_SIZE = rwd(iOS ? 12 : 12)
+window.BASE_SIZE = () => rwd(iOS ? 12 : 12)
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height

@@ -18,6 +18,7 @@ export class NavigationService {
     let key = `${routeName}_${params.data?.id}`
     if (global.currentKey == key) return log('duplicate click')
     log(key, 'key from NavigationService navigate()')
+    log(_navigator, '_navigator')
     _navigator.dispatch(
       NavigationActions.navigate({
         routeName,

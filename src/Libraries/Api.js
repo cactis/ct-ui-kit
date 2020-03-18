@@ -1,5 +1,5 @@
 log('!!! Api.js#UIKIT')
-import '../Constants'
+// import '../Constants'
 import React, { Component } from 'react'
 
 global.AppConfig = {

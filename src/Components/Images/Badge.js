@@ -39,7 +39,7 @@ export class Badge extends React.PureComponent {
     return num ? (
       <T.Float
         right={((-1 * text.length) / 2) * 4}
-        left="40%"
+        left="60%"
         // right={0}
         top={0}
         zIndex={10000}

@@ -1,3 +1,4 @@
+log('!!! Label#UIKIT')
 import React from 'react'
 
 import { Text } from './Text'

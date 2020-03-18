@@ -1,3 +1,4 @@
+log('!!! Text.js#UIKit')
 import React from 'react'
 import { Text as RNText, Platform } from 'react-native'
 // import Constants from '../../Constants.js'
@@ -82,7 +83,7 @@ export class Text extends React.Component {
   }
 }
 
-const baseSize = BASE_SIZE //iOS ? (isTablet ? 10 : 8) : 9
+// const BASE_SIZE() = BASE_SIZE() //iOS ? (isTablet ? 10 : 8) : 9
 
 const textShadow = {
   textShadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -110,51 +111,51 @@ const HAND_FONT = iOS ? ['Verdana', 'Helvetica'][0] : ['Noto_Serif_Bold'][0]
 
 const styles = {
   H0: {
-    fontSize: baseSize + 8,
+    fontSize: BASE_SIZE() + 8,
     fontFamily: HEADER_FONT,
     // fontWeight: 'bold',
     color: 'rgba(0,0,0,.93)',
   },
   H10: {
-    fontSize: baseSize + 8,
+    fontSize: BASE_SIZE() + 8,
     fontFamily: HEADER_FONT,
     // fontWeight: 'bold',
     color: 'rgba(0,0,0,.93)',
   },
   H1: {
-    fontSize: baseSize + 11,
+    fontSize: BASE_SIZE() + 11,
     fontFamily: HEADER_FONT,
     fontWeight: '700',
     color: 'rgba(0,0,0,.93)',
   },
   H2: {
-    fontSize: baseSize + 8,
+    fontSize: BASE_SIZE() + 8,
     fontFamily: HEADER_FONT,
     fontWeight: '700',
     color: 'rgba(0,0,0,1)',
   },
   H3: {
     fontFamily: HEADER_FONT,
-    fontSize: baseSize + 6,
+    fontSize: BASE_SIZE() + 6,
     fontWeight: '600',
     color: 'rgba(0,0,0,.95)',
   },
   H4: {
     fontFamily: HEADER_FONT,
-    fontSize: baseSize + 5,
+    fontSize: BASE_SIZE() + 5,
     fontWeight: '500',
     color: 'rgba(0,0,0,.90)',
   },
   H5: {
     fontFamily: BODY_FONT,
-    fontSize: baseSize + 4,
+    fontSize: BASE_SIZE() + 4,
     fontWeight: '400',
     color: 'rgba(0,0,0,.85)',
   },
   P: {
     fontFamily: BODY_FONT,
     // fontFamily: iOS ? 'GillSans' : 'sourcesanspro_regular',
-    fontSize: baseSize + (iOS ? 3 : 2),
+    fontSize: BASE_SIZE() + (iOS ? 3 : 2),
     fontWeight: iOS ? '300' : '200',
     color: 'rgba(0,0,0,.8)',
   },
@@ -164,7 +165,7 @@ const styles = {
     // fontFamily: iOS ? 'GillSans' : 'Carrois Gothic SC',
     // fontFamily: iOS ? 'GillSans' : 'sourcesanspro_regular',
     // fontFamily: iOS ? 'GillSans' : 'Carrois Gothic SC',
-    fontSize: baseSize + (iOS ? 1.5 : 1.5),
+    fontSize: BASE_SIZE() + (iOS ? 1.5 : 1.5),
     fontWeight: iOS ? '200' : '200',
     // fontStyle: 'italic',
     color: 'rgba(0,0,0,.8)',
@@ -172,22 +173,22 @@ const styles = {
   H6: {
     fontFamily: BODY_FONT,
     // fontFamily: iOS ? 'GillSans' : 'sourcesanspro_regular',
-    fontSize: baseSize + (iOS ? 2 : 2),
+    fontSize: BASE_SIZE() + (iOS ? 2 : 2),
     fontWeight: iOS ? '300' : '200',
     color: 'rgba(0,0,0,.8)',
   },
   H7: {
-    fontSize: baseSize + (iOS ? 1 : 1),
+    fontSize: BASE_SIZE() + (iOS ? 1 : 1),
     fontWeight: iOS ? '400' : '200',
     color: 'rgba(0,0,0,.70)',
   },
   H8: {
-    fontSize: baseSize + 0,
+    fontSize: BASE_SIZE() + 0,
     fontWeight: '400',
     color: 'rgba(0,0,0,.60)',
   },
   H9: {
-    fontSize: baseSize,
+    fontSize: BASE_SIZE(),
     fontWeight: '400',
     color: 'rgba(0,0,0,.50)',
   },

@@ -1,3 +1,4 @@
+log('!!! List#UIKIT')
 import React from 'react'
 import { FlatList as RNList, View, TextInput } from 'react-native'
 import { Api } from '../../Libraries/Api.js'

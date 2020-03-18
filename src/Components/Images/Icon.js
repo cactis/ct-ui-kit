@@ -64,7 +64,7 @@ export class Icon extends React.Component {
       text,
       ...props
     } = this.props
-    log(`0000000${color}`)
+    // log(`0000000${color}`)
     let key = (this.props.iconSet || 'FontAwesome').replace(/icons/gi, '')
     // log(key, 'key')
     const TagName = this.iconSets[key]

@@ -28,7 +28,7 @@ export class Image extends Component {
     // log(_source, '_source')
     aspectRatio = aspectRatio ? { aspectRatio: aspectRatio } : {}
     // _log(uri)
-    return (
+    return !uri ? null : (
       <T.Div {...this.props}>
         <FastImage
           {...this.props}

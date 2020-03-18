@@ -1,3 +1,4 @@
+log('!!! index#UIKIT/Texts')
 export * from './Text'
 export * from './Label'
 export * from './TextView'

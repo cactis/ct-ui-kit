@@ -36,7 +36,17 @@ export class ModalScreen extends ModalBase {
     // alert([fullScreen, modalHeight])
     modalHeight = SCREEN_HEIGHT
     let rowHeight = SCREEN_HEIGHT - keyboardHeight - (iOS ? rwd(-10) : rwd(10))
-
+    let close = (
+      <T.Icon
+        onPress={this.close}
+        name="close"
+        size={rwd(30)}
+        iconSet="AntDesign"
+        // color="rgb(131,131,131)"
+        // color={BFCOLOR}
+        theme="H1"
+      />
+    )
     return (
       <ModalBox
         ref={c => (this.modal = c)}
@@ -90,15 +100,7 @@ export class ModalScreen extends ModalBase {
               iconSet="AntDesign"
               // color="rgb(131,131,131)"
             /> */}
-              <T.Icon
-                onPress={this.close}
-                name="close"
-                size={rwd(16)}
-                iconSet="AntDesign"
-                // color="rgb(131,131,131)"
-                // color={BFCOLOR}
-                theme="H1"
-              />
+              {button ? close : null}
             </T.Space>
             <T.Col borderWidth={0} align="center" paddingHorizontal={SIZE.m}>
               {title && (
@@ -106,7 +108,8 @@ export class ModalScreen extends ModalBase {
                   // theme="H0"
                   // marginTop={0}
                   theme="H1"
-                  size={rwd(16)}
+                  color={BFCOLOR}
+                  size={rwd(20)}
                   // numberOfLines={1}
                   marginBottom={0}
                   // color={BCOLOR}
@@ -120,7 +123,7 @@ export class ModalScreen extends ModalBase {
               align="center"
               paddingRight={SIZE.s}
             >
-              <T.Div width={SIZE.l * 3}>{button}</T.Div>
+              <T.Div width={SIZE.l * 3}>{button ? button : close}</T.Div>
             </T.Space>
           </T.Row>
           <T.Row>
@@ -143,7 +146,7 @@ export class ModalScreen extends ModalBase {
             )}
           </T.Row>
           {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_BOTTOM : 0} /> */}
-          <T.SafeArea flex={0} backgroundColor="white" />
+          <T.SafeArea flex={0} backgroundColor={BCOLOR} />
         </T.Row>
       </ModalBox>
     )
