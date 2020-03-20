@@ -37,7 +37,11 @@ export class ChooseMenu extends React.PureComponent {
     ))
     // alert(iPhoneX)
     return (
-      <T.FlexModal padding={0} ref={c => (this.modal = c)}>
+      <T.FlexModal
+        padding={0}
+        ref={c => (this.modal = c)}
+        backgroundColor={CHOOSEMENU_BACKGROUND}
+      >
         {_title}
         {_menu}
         <T.Space size={SAFEAREA_BOTTOM} />

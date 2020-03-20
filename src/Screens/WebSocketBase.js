@@ -13,6 +13,7 @@ export class WebSocketBase extends React.PureComponent {
     ws = new WebSocket(AppConfig.webSocket, '', {
       headers: {
         Accesstokens: accessTokens,
+        appName: AppConfig.appName,
       },
     })
     log(ws, 'ws')
