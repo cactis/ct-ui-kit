@@ -36,6 +36,61 @@ export class CardList extends React.PureComponent {
       </T.Center>
     )
   }
+  itemEvent = {
+    onDeleted: item => {
+      // this.flatList._reload()
+      // log(item, 'item - in itemDeleted#List')
+      let { data } = this.state
+      // log(data, 'data - in List#onItemDeleted')
+      data.splice(item.index, 1)
+      // data = data.filter(d => d.id !== item.id)
+      // log(data, 'data - in List#onItemDeleted')
+      this.setState({ data: [] }, () => {
+        this.setState({ data: [...data], extraData: randId() })
+      })
+      // this.forceUpdate()
+    },
+    onCreated: item => {
+      // this._reload()
+      // return
+      // let { item = newItem } = newItem
+      log(item, 'item in List#itemEvent#onCreated')
+      // // log(item, 'item - in List#itemCreated')
+      let { data } = this.state
+      data = [item, ...data]
+      // // // log(data, 'data - in ')
+      // alert('update')
+      this.setState({ data: [] }, () => {
+        delayed(() => {
+          this.scrollToTop()
+        })
+        this.setState({ data: [...data], extraData: randId() })
+      })
+      // // this.setState({ data: [...newData] })
+      // // log(newData, 'newData - in ')
+      // this.flatList.forceUpdate()
+      // this.forceUpdate()
+    },
+    onUpdated: (item, callback) => {
+      log(item, 'item - in itemChanged#List')
+      let { data } = this.state
+      data[item.index] = item.item
+      log(data, 'data in onUpdated')
+      this.setState({ data: [] }, () => {
+        this.setState(
+          {
+            data: [...data],
+            extraData: randId(),
+          },
+          () => {
+            callback && callback()
+          }
+        )
+      })
+      // this.forceUpdate()
+      // this._reload()
+    },
+  }
 
   onSnapToItem = index => {
     log(index, 'index')
@@ -48,6 +103,12 @@ export class CardList extends React.PureComponent {
     this.setState({ page: 0 }, () => this.fetchData())
     this.scrollToTop()
   }
+  scrollTo = (index, delay = 500) => {
+    // delayed(() => {
+    this.list.snapToItem(index, true)
+    // }, delay)
+  }
+
   scrollToTop = (delay = 500) => {
     // log('scrollToTop in List')
     // delayed(() => {

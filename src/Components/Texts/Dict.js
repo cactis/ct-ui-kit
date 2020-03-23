@@ -143,30 +143,47 @@ export class Dict extends React.PureComponent {
               ) : null}
             </T.Col>
           </T.Row>
-          <T.Segment
-            ref={c => (this.segment = c)}
-            onIndexChanged={this.onIndexChanged}
-            tabs={[{ title: 'Dictionary' }, ...this.props.titles]}
-            views={[
-              <T.Div flex={1}>
-                <T.List
-                  data={defs}
-                  contentContainerStyle={{ padding: rwd(10) }}
-                  renderItem={item => (
-                    <T.Row key={randId()} flow="row" flex={0}>
-                      <T.Col yAlign="center" flex={0}>
-                        <T.Icon name="dot-single" iconSet="Entypo" />
-                      </T.Col>
-                      <T.Col padding={rwd(4)}>
-                        <T.Dicts data={item} />
-                      </T.Col>
-                    </T.Row>
-                  )}
-                />
-              </T.Div>,
-              ...this.props.views,
-            ]}
-          />
+          {this.props.views ? (
+            <T.Segment
+              ref={c => (this.segment = c)}
+              onIndexChanged={this.onIndexChanged}
+              tabs={[{ title: 'Dictionary' }, ...this.props.titles]}
+              views={[
+                <T.Div flex={1}>
+                  <T.List
+                    data={defs}
+                    contentContainerStyle={{ padding: rwd(10) }}
+                    renderItem={item => (
+                      <T.Row key={randId()} flow="row" flex={0}>
+                        <T.Col yAlign="center" flex={0}>
+                          <T.Icon name="dot-single" iconSet="Entypo" />
+                        </T.Col>
+                        <T.Col padding={rwd(4)}>
+                          <T.Dicts data={item} />
+                        </T.Col>
+                      </T.Row>
+                    )}
+                  />
+                </T.Div>,
+                // ...this.props.views,
+              ]}
+            />
+          ) : (
+            <T.List
+              data={defs}
+              contentContainerStyle={{ padding: rwd(10) }}
+              renderItem={item => (
+                <T.Row key={randId()} flow="row" flex={0}>
+                  <T.Col yAlign="center" flex={0}>
+                    <T.Icon name="dot-single" iconSet="Entypo" />
+                  </T.Col>
+                  <T.Col padding={rwd(4)}>
+                    <T.Dicts data={item} />
+                  </T.Col>
+                </T.Row>
+              )}
+            />
+          )}
         </T.SafeArea>
       </Modal>
     )

@@ -1,27 +1,18 @@
 log('!!! Constant.js#UIKIT')
-require('./Libraries/Library.js')
-window.TColor = require('tinycolor2')
-
-setDeviceName = () => {
-  D.getDeviceName().then(res => {
-    global.DeviceName = res
-  })
-}
-setDeviceName()
-
-// import { AsyncStorage } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 
 import { StatusBar } from 'react-native'
 
 import { Dimensions, Platform } from 'react-native'
-// const { StatusBarManager } = NativeModules
+require('./Libraries/Library.js')
+
+window.TColor = require('tinycolor2')
+
 window.SCREEN_WIDTH = Dimensions.get('window').width
-// window.SCREEN_HEIGHT = Dimensions.get('window').height
-// window.SCREEN_HEIGHT = !iOS
-//   ? Dimensions.get('window').height - StatusBar.currentHeight
-//   : Dimensions.get('window').height
 window.SCREEN_HEIGHT = Dimensions.get('window').height
+
+window.iOS = Platform.OS === 'ios'
+window.isTablet = SCREEN_WIDTH > 500
 
 // OVERWRITE
 window.BCOLOR = 'rgba(9,51,74,1)'
@@ -37,21 +28,18 @@ window.BUTTON_COLOR1 = 'rgba(0,111,182,.87)'
 window.BUTTON_COLOR = 'rgba(29,220,238,1)'
 
 window.CHOOSEMENU_BACKGROUND = 'white'
-
-window.iOS = Platform.OS === 'ios'
-window.isTablet = SCREEN_WIDTH > 500
-
 window.BASE_SIZE = rwd(iOS ? 12 : 12)
+//////////////////////////
 
-const screenWidth = Dimensions.get('window').width
-const screenHeight = Dimensions.get('window').height
+require('../../../Constants.js')
 
-// window.ICON_COLOR = 'rgba(111,81,143,.5)'
-let mainBGColor = 'rgb(196,104,37)'
-// let mainBGColor = 'transparent'
-// window.ICON_COLOR = 'rgba(150,44,30,.57)' //'#D6CC4A'
+setDeviceName = () => {
+  D.getDeviceName().then(res => {
+    global.DeviceName = res
+  })
+}
+setDeviceName()
 
-// console.log(1111111111111111111)
 initAppFontSize = async () => {
   try {
     const value = await AsyncStorage.getItem('appBaseSize')
@@ -75,9 +63,9 @@ let headerHeight = iOS ? BASE_SIZE * 3 : BASE_SIZE * 4
 let footerHeight = BASE_SIZE * 6
 let normalSize = BASE_SIZE * 3 + 3
 
-// let mainBGColor = 'hsla(261,12%,31%,1)'
-// let mainBGColor = 'rgb(168,105,231)'
-// let mainBGColor = 'rgb(231,105,105)'
+// let BCOLOR = 'hsla(261,12%,31%,1)'
+// let BCOLOR = 'rgb(168,105,231)'
+// let BCOLOR = 'rgb(231,105,105)'
 let mainColor = '#fff'
 // let mainColor = LIGHT_COLOR
 let padding = 8
@@ -91,8 +79,8 @@ window.STATUSBAR_HEIGHT = statusBarHeight
 
 // window.iPhoneX =
 //   iOS &&
-//   ((screenHeight === X_HEIGHT && screenWidth === X_WIDTH) ||
-//     (screenHeight === X_WIDTH && screenWidth === X_HEIGHT))
+//   ((SCREEN_HEIGHT === X_HEIGHT && SCREEN_WIDTH === X_WIDTH) ||
+//     (SCREEN_HEIGHT === X_WIDTH && SCREEN_WIDTH === X_HEIGHT))
 import D from 'react-native-device-info'
 window.isSimulator = () => {
   return D.isEmulator()
@@ -114,13 +102,13 @@ export const size = {
   statusBarHeight: statusBarHeight,
   headerHeight: headerHeight,
   footerHeight: footerHeight,
-  viewHeight: screenHeight - headerHeight,
-  sideMenuWidth: (screenWidth / 3) * 2,
+  viewHeight: SCREEN_HEIGHT - headerHeight,
+  sideMenuWidth: (SCREEN_WIDTH / 3) * 2,
   viewPadding: rwd(15),
   defaultSpacer: rwd(15),
-  screenHeight: screenHeight,
-  screenWidth: screenWidth,
-  helfScreenWidth: screenWidth / 2,
+  screenHeight: SCREEN_HEIGHT,
+  screenWidth: SCREEN_WIDTH,
+  helfScreenWidth: SCREEN_WIDTH / 2,
   // divider: {backgroundColor: colors.smoke},
   safeAreaPaddingTop: iPhoneX ? rwd(30) : 0,
   safeAreaPaddingBottom: iPhoneX ? rwd(15) : 0,
@@ -128,9 +116,9 @@ export const size = {
 }
 
 export const color = {
-  navigationColor: mainBGColor,
+  navigationColor: BCOLOR,
   titleColor: mainColor,
-  tabColor: mainBGColor,
+  tabColor: BCOLOR,
   tabActiveColor: '#21201F',
   tabInactiveColor: '#FFF',
   indicatorColor: 'rgb(255,255,255)',
@@ -171,12 +159,27 @@ window.initConstant = () => {
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
 
+const b = BASE_SIZE
 window.SIZE = {
-  h: rwd(32),
-  l: rwd(24),
-  m: rwd(16),
-  s: rwd(8),
-  t: rwd(4),
+  h3: rwd(38),
+  h2: rwd(36),
+  h1: rwd(34),
+  h: rwd(b + 20),
+  l3: rwd(b + 18),
+  l2: rwd(b + 16),
+  l1: rwd(b + 14),
+  l: rwd(b + 12),
+  m3: rwd(b + 10),
+  m2: rwd(b + 8),
+  m1: rwd(b + 6),
+  m: rwd(b + 4),
+  s3: rwd(b + 2),
+  s2: rwd(b),
+  s1: rwd(b - 2),
+  s: rwd(b - 4),
+  t1: rwd(b - 6),
+  t: rwd(b - 8),
+  n1: rwd(b - 10),
   n: rwd(0),
   // h: SCREEN_WIDTH * 0.06,
   // l: SCREEN_WIDTH * 0.05,

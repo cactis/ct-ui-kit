@@ -22,9 +22,9 @@ window.beep = () => {
       'notificationSuccess',
       'notificationWarning',
       'notificationError',
-    ].sample()
+    ][0]
     ReactNativeHapticFeedback.trigger(effect, options)
-    if (__DEV__) alert(effect)
+    _alert(effect)
   }
 }
 export class Touch extends Component {
@@ -38,6 +38,8 @@ export class Touch extends Component {
     log('onLongPress in Touch')
     this._beep(true)
     let { disabled = false, onLongPress } = this.props
+    log(onLongPress, 'onLongPress')
+    log(!disabled, '!disabled')
     if (!disabled) onLongPress && onLongPress()
   }
 

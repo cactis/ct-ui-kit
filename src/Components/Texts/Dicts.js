@@ -29,7 +29,7 @@ export class Dicts extends React.PureComponent {
     let { data, fontSize, fontTheme } = this.state
     let {
       color = 'rgb(70,69,69)',
-      size,
+      size = 0.5,
       num,
       height,
       theme,
@@ -69,7 +69,6 @@ export class Dicts extends React.PureComponent {
               if (iOS) {
                 // t = dict.checkWord(t)
                 t = t.replace(/\.|,/g, '')
-
                 NativeModules.ReferenceLibraryManager?.showDefinitionForTerm(
                   t,
                   hasDefinition => {
@@ -78,6 +77,7 @@ export class Dicts extends React.PureComponent {
                     }
                   }
                 )
+                window.dict.checkWord(t)
               } else {
                 this.onTapped(t, size)
               }
@@ -105,9 +105,10 @@ export class Dicts extends React.PureComponent {
     )
   }
   onTapped = (t, size = 0.5) => {
-    // dict.checkWord(t)
-    // dict.open(size)
-    // this.props.onCheckWord && this.props.onCheckWord()
+    log(window.dict, 'window.dict')
+    window.dict.checkWord(t)
+    window.dict.open(size)
+    this.props.onCheckWord && this.props.onCheckWord()
   }
 
   initStateData = onComplete => {

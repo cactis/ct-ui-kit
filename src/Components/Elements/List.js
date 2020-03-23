@@ -162,7 +162,7 @@ export class List extends React.PureComponent {
 
     let urls = url.split('?')
 
-    let { keyword } = this.state
+    let { keyword = this.props.keyword } = this.state
     let keywordStr = ''
     if (keyword) {
       window.keyword = keyword
@@ -491,6 +491,17 @@ export class List extends React.PureComponent {
         )
       // this.fetchData()
     }
+    // if (prevProps.keyword !== this.props.keyword) {
+    //   this.mounted &&
+    //     this.setState(
+    //       {
+    //         keyword: this.props.keyword,
+    //       },
+    //       () => {
+    //         this.reloadData()
+    //       }
+    //     )
+    // }
   }
 
   // componentDidUpdate(prevProps) {
@@ -501,31 +512,6 @@ export class List extends React.PureComponent {
 
   componentWillUnmount() {
     this.mounted = false
-  }
-}
-
-export class SearchBar extends React.PureComponent {
-  render() {
-    return (
-      <Row padding={SIZE.n} backgroundColor__="rgb(255,255,255)">
-        <Row
-          borderRadius={rwd(3)}
-          paddingVertical={rwd(5)}
-          paddingHorizontal={rwd(10)}
-          backgroundColor="rgba(255,255,255,.59)"
-        >
-          <TextInput
-            placeholder="type keyword to search..."
-            padding={rwd(4)}
-            clearButtonMode="always"
-            autoCapitalize="none"
-            onChange={this.props.onChange}
-            onChangeText={value => this.props.onChange(value)}
-            onSubmitEditing={this.props.onSubmit}
-          />
-        </Row>
-      </Row>
-    )
   }
 }
 

@@ -392,3 +392,26 @@ window.audioRecording = (item, options = {}) => {
     { backdropOpacity: 0.8, backgroundColor_: 'transparent' }
   )
 }
+
+window.drawerToggler = navigation => {
+  window.navigation = navigation
+  return (
+    <T.Div paddingRight={10}>
+      <T.BarItem
+        name="user"
+        iconSet="EvilIcons"
+        color={BFCOLOR}
+        size={rwd(35)}
+        onPress={() => navigation.openDrawer()}
+      />
+    </T.Div>
+  )
+}
+
+window.openDrawer = navigation => {
+  window.navigation?.openDrawer()
+}
+
+window.closeDrawer = () => {
+  window.navigation?.closeDrawer()
+}

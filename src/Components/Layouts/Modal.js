@@ -96,7 +96,7 @@ export class Modal extends ModalBase {
                 <T.Label
                   theme="H0"
                   marginTop={0}
-                  numberOfLines={0}
+                  // numberOfLines={0}
                   marginBottom={0}
                   text={title}
                 />
