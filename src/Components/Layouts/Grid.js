@@ -28,7 +28,12 @@ export class Grid extends React.PureComponent {
     let _styleWithBordered = { ..._style, ...borderStyle }
 
     return !disabled && props.onPress ? (
-      <Touch onPress={props.onPress} style={_styleWithBordered} {...props}>
+      <Touch
+        onPress={props.onPress}
+        onLongPress={props.onLongPress}
+        style={_styleWithBordered}
+        {...props}
+      >
         <View style={_style} {...props} />
       </Touch>
     ) : (

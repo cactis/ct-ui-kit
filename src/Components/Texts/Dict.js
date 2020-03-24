@@ -125,7 +125,8 @@ export class Dict extends React.PureComponent {
                     onPress={() => {
                       if (iOS) {
                         beep()
-                        data = data.replace(/\.|,/g, '')
+                        data = data.replace(/'|"|;|\[|\]|\.|,/g, '')
+                        // alert(data)
                         NativeModules.ReferenceLibraryManager?.showDefinitionForTerm(
                           data,
                           hasDefinition => {
@@ -174,7 +175,7 @@ export class Dict extends React.PureComponent {
               contentContainerStyle={{ padding: rwd(10) }}
               renderItem={item => (
                 <T.Row key={randId()} flow="row" flex={0}>
-                  <T.Col yAlign="center" flex={0}>
+                  <T.Col yAlign="center" flex={0} borderWidth_={1}>
                     <T.Icon name="dot-single" iconSet="Entypo" />
                   </T.Col>
                   <T.Col padding={rwd(4)}>

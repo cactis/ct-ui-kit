@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 
 let _this, _navigation
-export class ListScreen extends React.PureComponent {
+export class ListScreenExample extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     _navigation = navigation
     return {

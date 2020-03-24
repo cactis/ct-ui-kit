@@ -6,7 +6,7 @@ import { Label } from '..'
 import { Div, Row, Grid, Col, RowLine, Cell, Space, Float, Hr } from '../'
 import { Avatar, Image, Icon } from '..'
 import DraggableFlatList from 'react-native-draggable-flatlist'
-
+import { SearchBar } from './SearchBar'
 export { RNList }
 
 export class List extends React.PureComponent {
@@ -154,7 +154,7 @@ export class List extends React.PureComponent {
     }
     // let url = this.state.url
     let { url, dataPath = 'data' } = this.state
-    // log(url, 'url in List')
+    log(url, 'url in List')
     if (!url) return
     let { meta, pagination } = this.state
     let page = this.state.page + 1
@@ -382,8 +382,9 @@ export class List extends React.PureComponent {
               searchable ? (
                 <Div>
                   <SearchBar
-                    onChange={e => {
-                      let keyword = e.nativeEvent.text
+                    onChange={keyword => {
+                      // log(e, 'e')
+                      // let keyword = e.nativeEvent.text
                       log(keyword, 'keyword')
                       runLast(() => {
                         this.mounted && this.setState({ keyword })

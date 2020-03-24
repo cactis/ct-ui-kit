@@ -18,7 +18,7 @@ window.isTablet = SCREEN_WIDTH > 500
 window.BCOLOR = 'rgba(9,51,74,1)'
 window.BCOLOR_DEV = 'rgb(108,108,108)'
 window.FCOLOR = 'rgb(219,219,219)'
-window.ICON_COLOR = 'rgba(55,47,66,1)'
+// window.ICON_COLOR = 'rgba(55,47,66,1)'
 window.SUBMIT_COLOR = BCOLOR //'rgb(241,220,148)'
 window.STRONG_COLOR = 'rgba(133,15,15,1)'
 
@@ -29,7 +29,106 @@ window.BUTTON_COLOR = 'rgba(29,220,238,1)'
 
 window.CHOOSEMENU_BACKGROUND = 'white'
 window.BASE_SIZE = rwd(iOS ? 12 : 12)
+
+window.LIGHT_COLOR = 'white'
+window.DARK_COLOR = '#333'
+
+window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
+window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+
+window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
+window.SEGMENT_COLOR = LIGHT_COLOR
+window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR
+window.SEGMENT_ACTIVE_BGCOLOR = TColor(BCOLOR)
+window.SEGMENT_BORDER_COLOR = 'transparent'
+window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
+window.WARNING_COLOR = 'rgba(208,35,35,1)'
 //////////////////////////
+
+window.IOS_FONTS = [
+  'AcademyEngravedLetPlain',
+  'AlNile',
+  'AmericanTypewriter',
+  'Arial',
+  'Avenir-Book',
+  'AvenirNext-Regular',
+  'AvenirNextCondensed-Regular',
+  'Baskerville',
+  'BradleyHandITCTT-Bold',
+  'ChalkboardSE-Regular',
+  'Chalkduster', //黑板字
+  'Cochin',
+  'Copperplate',
+  'Courier',
+  'DINAlternate-Bold',
+  'DINCondensed-Bold',
+  'Damascus',
+  'DevanagariSangamMN',
+  'Didot',
+  'DiwanMishafi',
+  'EuphemiaUCAS',
+  'Farah',
+  'Futura-Bold',
+  'GeezaPro',
+  'Georgia',
+  'GillSans',
+  'GujaratiSangamMN',
+  'GurmukhiMN',
+  'Helvetica',
+  'HoeflerText-Regular',
+  'Kailasa',
+  'KannadaSangamMN',
+  'Kefa-Regular',
+  'KhmerSangamMN',
+  'KohinoorTelugu-Regular',
+  'LaoSangamMN',
+  'MalayalamSangamMN',
+  'MarkerFelt-Thin',
+  'MarkerFelt-Wide',
+  'Menlo-Regular',
+  'MyanmarSangamMN',
+  'Noteworthy-Light',
+  'NotoNastaliqUrdu',
+  'Optima-Regular',
+  'OriyaSangamMN',
+  'Palatino-Bold',
+  'Palatino-Roman',
+  'Papyrus',
+  'PartyLetPlain',
+  'PingFangHK-Regular',
+  'Rockwell-Regular',
+  'SavoyeLetPlain',
+  'SinhalaSangamMN',
+  'SnellRoundhand',
+  'TamilSangamMN',
+  'Thonburi',
+  'TimesNewRomanPSMT',
+  'TrebuchetMS',
+  'Verdana',
+  'ZapfDingbatsITC',
+  'Zapfino',
+]
+
+window.ANDROID_FONTS = [
+  'Roboto Thin',
+  'Roboto Light',
+  'Roboto Regular',
+  'Roboto Bold',
+  'Roboto Medium',
+  'Roboto Black',
+  'Roboto Condensed Light',
+  'Roboto Condensed Regular',
+  'Roboto Condensed Medium',
+  'Roboto Condensed Bold',
+  'Noto Serif',
+  'Noto Serif Bold',
+  'Droid Sans Mono',
+  'Cutive Mono',
+  'Coming Soon',
+  'Dancing Script',
+  'Dancing Script Bold',
+  'Carrois Gothic SC',
+]
 
 require('../../../Constants.js')
 
@@ -129,24 +228,21 @@ export const Const = {
   size: size,
 }
 
-window.LIGHT_COLOR = 'white'
-window.DARK_COLOR = '#333'
 window.initConstant = () => {
   // window.iPhoneX =
   //   iOS &&
   //   (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||
   //     DEVICE_INFO.Model?.indexOf('iPhone 11') == 0)
-
-  window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
-  window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
-
-  window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
-  window.SEGMENT_COLOR = LIGHT_COLOR
-  window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR
-  window.SEGMENT_ACTIVE_BGCOLOR = TColor(BCOLOR)
-  window.SEGMENT_BORDER_COLOR = 'transparent'
-  window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
-  window.WARNING_COLOR = 'rgba(208,35,35,1)'
+  // window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
+  // window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+  //
+  // window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
+  // window.SEGMENT_COLOR = LIGHT_COLOR
+  // window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR
+  // window.SEGMENT_ACTIVE_BGCOLOR = TColor(BCOLOR)
+  // window.SEGMENT_BORDER_COLOR = 'transparent'
+  // window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
+  // window.WARNING_COLOR = 'rgba(208,35,35,1)'
 }
 // setDeviceInfo() run in SplashScreen
 // initConstant() run in SplashScreen

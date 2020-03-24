@@ -68,7 +68,7 @@ export class Dicts extends React.PureComponent {
               beep()
               if (iOS) {
                 // t = dict.checkWord(t)
-                t = t.replace(/\.|,/g, '')
+                t = t.replace(/'|"|;|\[|\]|\.|,/g, '')
                 NativeModules.ReferenceLibraryManager?.showDefinitionForTerm(
                   t,
                   hasDefinition => {
