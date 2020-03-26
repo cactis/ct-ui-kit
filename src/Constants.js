@@ -35,7 +35,7 @@ window.DARK_COLOR = '#333'
 
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
-
+// alert(iPhoneX)
 window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
 window.SEGMENT_COLOR = LIGHT_COLOR
 window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR

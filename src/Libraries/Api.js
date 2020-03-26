@@ -1,5 +1,6 @@
 log('!!! Api.js#UIKIT')
 // import '../Constants'
+require('./Library')
 import React, { Component } from 'react'
 
 global.AppConfig = {
@@ -90,8 +91,8 @@ export class Api {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'User-Agent': '',
-      modal: DEVICE_INFO?.Model,
-      build: DEVICE_INFO?.ReadableVersion,
+      modal: window.DEVICE_INFO?.Model,
+      build: window.DEVICE_INFO?.ReadableVersion,
       tokens: accessTokens,
       appName: AppConfig.appName,
       timeZoneOffset: window.timeZoneOffset(),

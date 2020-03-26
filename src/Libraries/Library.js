@@ -1,7 +1,4 @@
-window.log = (...message) => {
-  console.log(message)
-}
-log('!!! Library.js#UIKIT')
+if (__DEV__) console.log('!!! Library.js#UIKIT')
 
 import React from 'react'
 
@@ -58,6 +55,7 @@ window._DEVICE_INFO = async () => {
     userName: currentUser?.name,
   }
 }
+window.DEVICE_INFO = {}
 window.iPhoneX = false
 window.setDeviceInfo = async () => {
   let _info = await _DEVICE_INFO()
@@ -90,7 +88,9 @@ window.log = (...message) => {
 
 window.__log = (message, title = '') => {
   log(message, title)
-  T.Api.post('/log', { '----- what to logged -----': title, logged: message })
+  T.Api.post('/logs', {
+    log: { title: title, logged: message },
+  })
 }
 
 window.error = (...message) => {

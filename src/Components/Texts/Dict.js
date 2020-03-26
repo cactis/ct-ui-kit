@@ -100,7 +100,7 @@ export class Dict extends React.PureComponent {
               <T.Space
                 height={rwd(20)}
                 size={rwd(2)}
-                backgroundColor={T.color.navigationColor}
+                backgroundColor={BCOLOR}
                 marginRight={rwd(5)}
               />
             </T.Col>
