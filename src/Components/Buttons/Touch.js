@@ -24,7 +24,7 @@ window.beep = () => {
       'notificationError',
     ][0]
     ReactNativeHapticFeedback.trigger(effect, options)
-    _alert(effect)
+    // _alert(effect)
   }
 }
 export class Touch extends Component {

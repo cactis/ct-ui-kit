@@ -24,6 +24,7 @@ export class ModalScreen extends ModalBase {
       scrollable = false,
       swipeToClose,
       title = propTitle,
+      titleColor = '#333', //BFCOLOR,
       quoteable,
       fullScreen = true,
       keyboardAware = false,
@@ -116,7 +117,7 @@ export class ModalScreen extends ModalBase {
                     // theme="H0"
                     // marginTop={0}
                     theme="H1"
-                    color={BFCOLOR}
+                    color={titleColor}
                     size={rwd(20)}
                     // numberOfLines={1}
                     marginBottom={0}

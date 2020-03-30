@@ -10,8 +10,6 @@ import Rate, { AndroidMarket } from 'react-native-rate'
 
 window._ = _
 
-window.Dev = {}
-
 window.share = (content, options) => {
   RNShare.share(content, options)
 }
@@ -104,6 +102,9 @@ window.error = (...message) => {
   log(`___ ${message} ___`)
 }
 
+window.Dev = {}
+require('../../../../Dev.js')
+
 window._autoRun = (action, run, always = false) => {
   let DoString = Dev.do //?.split('-').slice(0, i)
   // log(action, 'action')
@@ -127,7 +128,10 @@ window._autoRun = (action, run, always = false) => {
 
 window._trace = (key = randId()) => {
   _runOnce(key, () => {
-    if (Dev?.logTrace || Dev?.componentTrace) console.log(new Error().stack)
+    if (Dev?.logTrace || Dev?.componentTrace) {
+      console.log('======= component trace ==========')
+      console.log(new Error().stack)
+    }
   })
 }
 

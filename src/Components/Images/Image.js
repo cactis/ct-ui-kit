@@ -29,7 +29,7 @@ export class Image extends Component {
     aspectRatio = aspectRatio ? { aspectRatio: aspectRatio } : {}
     // _log(uri)
     return !uri ? null : (
-      <T.Div borderWidth={__DEV__ ? 0.5 : 0} {...this.props}>
+      <T.Div borderWidth__={__DEV__ ? 0.5 : 0} {...this.props}>
         <FastImage
           {...this.props}
           style={{
