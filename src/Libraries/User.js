@@ -77,10 +77,12 @@ export class User extends Component {
 
   static tokens = async () => {
     // log(Dev.accessTokens, 'Dev.accessTokens in User#tokens')
+    log(Dev.accessTokens, 'Dev.accessTokens')
+    log(global.accessTokens, 'global.accessTokens')
     if (Dev.accessTokens) return Dev.accessTokens
     if (global.accessTokens) return global.accessTokens
     let userToken = await Storage.get('userToken')
-    // log(userToken, 'userToken')
+    log(userToken, 'userToken')
     // let memberToken = await Storage.get('memberToken')
     if (userToken == undefined) {
       return undefined
@@ -104,22 +106,23 @@ export class User extends Component {
   }
 
   static logout = async onSuccess => {
-    // log('logout')
+    log('logout')
     // let { currentUser } = global
     // log(currentUser, 'currentUser')
     await Storage.clearAll()
-    // log(Dev, 'Dev 1111111111111111')
+
+    // alert('logout after clearAll')
     Dev.accessTokens = null
     global.accessTokens = undefined
     // log(Dev, 'Dev 2222222222222222')
     // let remembered = await Storage.get('remembered')
     // log(phone, remembered, 'phone, remembered')
-
-    onSuccess && onSuccess()
-    // if (remembered) await Storage.set('remembered', remembered)
-
     global.isLogged = undefined
     global.currentUser = undefined
+    // log(global, 'global')
+    log(global.accessTokens, global.isLogged, global.currentUser)
+    onSuccess && onSuccess()
+    // if (remembered) await Storage.set('remembered', remembered)
   }
 
   static setCurrentUser = async (data, onSuccess) => {

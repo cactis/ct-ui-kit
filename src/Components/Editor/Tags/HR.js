@@ -58,3 +58,5 @@ export class HR extends TagBase {
   autoRun = () => {}
 }
 var styles = StyleSheet.create({})
+
+export { HR as Hr }

@@ -97,7 +97,7 @@ export class Tab extends Component {
             {/* {icon && title ? <T.Space size={SIZE.t} /> : null} */}
             {title ? (
               <T.Label
-                theme="H4"
+                // theme="H5"
                 style={
                   {
                     // fontSize: rwd(14),

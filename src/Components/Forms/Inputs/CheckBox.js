@@ -15,9 +15,15 @@ export class CheckBox extends React.PureComponent {
     let name = checked ? 'ios-checkmark-circle' : 'ios-checkmark-circle-outline'
     let color = checked ? '#333' : '#999'
     return (
-      <T.Center onPress={this._onChecked}>
-        <T.Icon name={name} color={color} iconSet="Ionicons" size={rwd(25)} />
-      </T.Center>
+      // <T.Row flex={0} onPress={this._onChecked}>
+      <T.Icon
+        name={name}
+        color={color}
+        iconSet="Ionicons"
+        size={rwd(25)}
+        onPress={this._onChecked}
+      />
+      // </T.Row>
     )
   }
 

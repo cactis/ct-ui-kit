@@ -34,7 +34,7 @@ export class Full extends React.PureComponent {
     // log(data, 'data in Full render()')
     // if (!data) return null
     // let { item } = data
-
+    // alert(STATUSBAR_HEIGHT)
     return (
       <T.Grid {...props}>
         {children}
@@ -87,7 +87,12 @@ export class Full extends React.PureComponent {
   close = () => {
     // log(this.props.navigation, '111')
     // log(_navigation, '222')
-    _navigation.goBack()
+    let { onClose } = this.props
+    if (onClose) {
+      onClose()
+    } else {
+      _navigation.goBack()
+    }
   }
 
   initStateData = onComplete => {

@@ -7,11 +7,11 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios'
 let _navigation
 export const PushNotification = (navigation, options) => {
   _navigation = navigation
-  __log(_navigation, '_navigation1')
+  // __log(_navigation, '_navigation1')
   RNPushNotification.configure({
     // (optional) Called when Token is generated (iOS and Android)
     onRegister: function(token) {
-      __log(token, 'token')
+      // __log(token, 'token')
       let params = {
         device: {
           uuid: token.token,
@@ -21,14 +21,14 @@ export const PushNotification = (navigation, options) => {
           kind: token.os,
         },
       }
-      __log(params, 'params')
+      // __log(params, 'params')
       T.Api.post('/devices', params)
       T.Storage.set('uuid', token.token)
     },
 
     // (required) Called when a remote or local notification is opened or received
     onNotification: function(notification) {
-      __log(notification, 'notification')
+      // __log(notification, 'notification')
 
       // process the notification
       processNotification(notification)

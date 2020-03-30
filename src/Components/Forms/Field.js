@@ -59,10 +59,17 @@ export class Field extends Component {
             <T.Space size={rwd(2)} />
           </T.Row>
         ) : null}
-        <T.Row flow="row" __xAlign="center" padding={rwd(1)} flex={0}>
+        <T.Row
+          flow="row"
+          // __xAlign="center"
+          padding={rwd(1)}
+          flex={0}
+          // borderWidth={1}
+        >
           <T.Col align="center" flex={0}>
             {preIconTag}
           </T.Col>
+
           <InputTag
             ref="input"
             // height={height}

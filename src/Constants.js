@@ -170,8 +170,10 @@ let mainColor = '#fff'
 let padding = 8
 
 // let statusBarHeight = iOS ? 20 : StatusBarManager.HEIGHT
+// log(StatusBar, 'StatusBar')
 let statusBarHeight = StatusBar.currentHeight
 window.STATUSBAR_HEIGHT = statusBarHeight
+// alert(STATUSBAR_HEIGHT)
 // iPhoneX
 // const X_WIDTH = 375
 // const X_HEIGHT = 812
@@ -229,6 +231,11 @@ export const Const = {
 }
 
 window.initConstant = () => {
+  window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
+  window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+  // log(StatusBar, 'StatusBar')
+  window.STATUSBAR_HEIGHT = 0
+  // alert(STATUSBAR_HEIGHT)
   // window.iPhoneX =
   //   iOS &&
   //   (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||

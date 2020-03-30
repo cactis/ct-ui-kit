@@ -4,10 +4,17 @@ import React from 'react'
 
 import D from 'react-native-device-info'
 import _ from 'lodash'
-import { PermissionsAndroid, Platform } from 'react-native'
+import { PermissionsAndroid, Platform, Share as RNShare } from 'react-native'
+
+import Rate, { AndroidMarket } from 'react-native-rate'
+
 window._ = _
 
 window.Dev = {}
+
+window.share = (content, options) => {
+  RNShare.share(content, options)
+}
 
 window._DEVICE_INFO = async () => {
   let { currentUser } = global
@@ -223,6 +230,22 @@ window.pushTo = (navigation, route, params = {}) => {
   // }
 }
 
+String.prototype.remove = function(str) {
+  if (this) {
+    return this.replace(str, '')
+  } else {
+    return this
+  }
+}
+
+Array.prototype.sample = function(num) {
+  let items = this
+  // log(items, 'items - in sample')
+  let item = items[Math.floor(Math.random() * items.length)]
+  // log(item, 'item - in sample')
+  return item
+}
+
 window.columnsNumber = (padding = 0) => {
   // alert(SCREEN_WIDTH)
   let s = SCREEN_WIDTH
@@ -414,4 +437,61 @@ window.openDrawer = navigation => {
 
 window.closeDrawer = () => {
   window.navigation?.closeDrawer()
+}
+
+window.requestRating = async (force: false) => {
+  let key = 'requestedReview'
+
+  let requested = await T.Storage.get(key)
+  if (requested && !force) return
+
+  let { currentUser } = global
+  log(currentUser, 'currentUser')
+  let { reading = {}, lookings, searching } = currentUser
+  log(reading, 'reading')
+  let times = _.keys(reading).length
+  log(times, 'times')
+  if (!(times > 5 && searching && lookings) && !force) return
+  await T.Storage.set(key, 'true')
+  if (iOS) {
+    doRating()
+  } else {
+    Alert.alert(
+      'Enjoying Readus?',
+      'Rate it on Google Play?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            doRating()
+          },
+        },
+      ],
+      { cancelable: false }
+    )
+  }
+}
+
+doRating = () => {
+  let options = {
+    AppleAppID: '1451449522',
+    GooglePackageName: 'net.fiterl.readus',
+    preferredAndroidMarket: AndroidMarket.Google,
+    preferInApp: true,
+    openAppStoreIfInAppFails: true,
+    fallbackPlatformURL: 'https://readus.org/rating_callback',
+  }
+  // delayed(() => {
+  Rate.rate(options, success => {
+    if (success) {
+      // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
+      // this.setState({ rated: true })
+    }
+  })
+  // })
 }
