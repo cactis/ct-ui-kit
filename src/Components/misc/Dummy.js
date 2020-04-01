@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
 
 export const Dummy = props => {
-  return <T.Label text="dummy" />
+  return <T.Label text={`${new Date()}`} />
 }

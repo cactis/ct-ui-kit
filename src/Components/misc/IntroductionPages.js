@@ -46,7 +46,7 @@ const SLIDES = [
 ]
 export class IntroductionPages extends React.PureComponent {
   state = {
-    data: null,
+    slides: SLIDES,
   }
 
   _renderItem = ({ item }) => {
@@ -85,20 +85,55 @@ export class IntroductionPages extends React.PureComponent {
     // navigateTo(_navigation, 'WelcomeScreen')
     this.props.onDone && this.props.onDone()
   }
+
   render() {
-    let { data, slides } = this.state
+    let { slides } = this.state
     // let { slides = {} } = this.props
-    log(data, 'data in IntroductionPages render()')
+    log(slides, 'slides in IntroductionPages render()')
     if (!slides) return null
     // let { item = data} = data
     return (
       <AppIntroSlider
+        // borderWidth={1}
+        ref={c => (this.slider = c)}
         renderItem={this._renderItem}
         slides={slides}
         onDone={this._onDone}
+        dotStyle={{ backgroundColor: BCOLOR }}
+        activeDotStyle={{ backgroundColor: '#aaa' }}
+        renderDoneButton={this._renderDoneButton}
+        renderNextButton={this._renderNextButton}
       />
     )
   }
+
+  _renderNextButton = () => {
+    return (
+      <T.Div style={styles.buttonCircle__}>
+        <T.Label
+          text="Next"
+          name="md-arrow-round-forward"
+          color="#333"
+          theme="H2"
+          style={{ backgroundColor: 'transparent' }}
+        />
+      </T.Div>
+    )
+  }
+  _renderDoneButton = () => {
+    return (
+      <T.Div style={styles.buttonCircle__}>
+        <T.Label
+          text="Done"
+          name="md-checkmark"
+          color="#333"
+          theme="H2"
+          style={{ backgroundColor: 'transparent' }}
+        />
+      </T.Div>
+    )
+  }
+
   onPress = () => {
     if (this.props.onPress) {
       this.props.onPress()
@@ -133,4 +168,17 @@ export class IntroductionPages extends React.PureComponent {
   }
   autoRun = () => {}
 }
-var styles = StyleSheet.create({})
+var styles = StyleSheet.create({
+  buttonCircle: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'rgba(0, 0, 0, .2)',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 320,
+    height: 320,
+  },
+})
