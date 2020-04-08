@@ -69,7 +69,7 @@ export class Segment extends Component {
       wrapper: {
         // marginTop: rwd(1),
         backgroundColor: SEGMENT_BGCOLOR,
-        padding: rwd(1),
+        padding: SIZE.n,
         // paddingTop: rwd(1),
       },
       backgroundColor: SEGMENT_BGCOLOR,

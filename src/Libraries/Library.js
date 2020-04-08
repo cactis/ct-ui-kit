@@ -126,7 +126,9 @@ window._autoRun = (action, run, always = false) => {
   }
 }
 
-window._trace = (key = randId()) => {
+window._trace = key => {
+  if (key) log(key, 'tracing ----')
+  key = key ? key : randId()
   _runOnce(key, () => {
     if (Dev?.logTrace || Dev?.componentTrace) {
       console.log('======= component trace ==========')

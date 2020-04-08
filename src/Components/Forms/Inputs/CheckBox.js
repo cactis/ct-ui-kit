@@ -26,6 +26,10 @@ export class CheckBox extends React.PureComponent {
       // </T.Row>
     )
   }
+  toggle = () => {
+    log('toggle')
+    this._onChecked()
+  }
 
   _onChecked = () => {
     let { checked } = this.state

@@ -40,12 +40,12 @@ export class ModalScreen extends ModalBase {
     // alert([fullScreen, modalHeight])
     modalHeight = SCREEN_HEIGHT
     let rowHeight = SCREEN_HEIGHT - keyboardHeight - (iOS ? rwd(-10) : rwd(10))
-    let close = (
+    let closeIcon = (
       <T.Icon
         onPress={this.close}
-        name="close"
-        size={rwd(30)}
-        iconSet="AntDesign"
+        name={CLOSE_ICON_NAME}
+        size={SIZE.l}
+        iconSet={CLOSE_ICON_SET}
         // color="rgb(131,131,131)"
         // color={BFCOLOR}
         theme="H1"
@@ -109,7 +109,7 @@ export class ModalScreen extends ModalBase {
               iconSet="AntDesign"
               // color="rgb(131,131,131)"
             /> */}
-                {button ? close : null}
+                {button ? closeIcon : null}
               </T.Space>
               <T.Col borderWidth={0} align="center" paddingHorizontal={SIZE.m}>
                 {title && (
@@ -118,7 +118,7 @@ export class ModalScreen extends ModalBase {
                     // marginTop={0}
                     theme="H1"
                     color={titleColor}
-                    size={rwd(20)}
+                    size={rwd(17)}
                     // numberOfLines={1}
                     marginBottom={0}
                     // color={BCOLOR}
@@ -127,12 +127,12 @@ export class ModalScreen extends ModalBase {
                 )}
               </T.Col>
               <T.Space
-                borderWidth={0}
+                borderWidth_={1}
                 flex={0}
-                align="center"
+                xAlign="center"
                 paddingRight={SIZE.n}
               >
-                <T.Div width={SIZE.l * 3}>{button ? button : close}</T.Div>
+                {button ? button : closeIcon}
               </T.Space>
             </T.Row>
             <T.Row>

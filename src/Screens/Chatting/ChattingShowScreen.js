@@ -9,7 +9,37 @@ export class ChattingShowScreen extends ChattingBase {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.state.params?.title,
+      headerRight: () => (
+        <T.Div paddingRight={SIZE.n}>
+          <T.BarItem
+            name="md-person-add"
+            iconSet="Ionicons"
+            color={LIGHT_COLOR}
+            onPress={() => _this.inviteFriend()}
+          />
+        </T.Div>
+      ),
     }
+  }
+  inviteFriend = () => {
+    let { channel } = this.state
+    log(channel, 'channel')
+    popupScreen.open(
+      <T.FriendsListScreen
+        data={this.state.channel}
+        submitTitle="Invite"
+        onSubmit={data => {
+          log(data, 'data')
+          T.Api.post(`${channel.routes}/group_talks`, data, res => {
+            let { data } = res
+            log(data, 'data')
+          })
+        }}
+      />,
+      {
+        title: 'Add friends to chat',
+      }
+    )
   }
   state = {
     channel: null,
@@ -99,6 +129,10 @@ export class ChattingShowScreen extends ChattingBase {
     this.mounted = false
     ws && ws.close()
   }
-  autoRun = () => {}
+  autoRun = () => {
+    _autoRun('inviteFriend', () => {
+      this.inviteFriend()
+    })
+  }
 }
 var styles = StyleSheet.create({})

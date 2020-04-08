@@ -10,7 +10,7 @@ export class Center extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Center')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

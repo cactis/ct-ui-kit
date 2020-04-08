@@ -1,6 +1,6 @@
 log('!!! Constant.js#UIKIT')
 import AsyncStorage from '@react-native-community/async-storage'
-
+import React from 'react'
 import { StatusBar } from 'react-native'
 
 import { Dimensions, Platform } from 'react-native'
@@ -8,11 +8,42 @@ require('./Libraries/Library.js')
 
 window.TColor = require('tinycolor2')
 
+window.iOS = Platform.OS === 'ios'
 window.SCREEN_WIDTH = Dimensions.get('window').width
 window.SCREEN_HEIGHT = Dimensions.get('window').height
 
-window.iOS = Platform.OS === 'ios'
 window.isTablet = SCREEN_WIDTH > 500
+
+window.BASE_SIZE = rwd(iOS ? 12 : 12)
+
+const b = BASE_SIZE
+window.SIZE = {
+  h3: rwd(38),
+  h2: rwd(36),
+  h1: rwd(34),
+  h: rwd(b + 20),
+  l3: rwd(b + 18),
+  l2: rwd(b + 16),
+  l1: rwd(b + 14),
+  l: rwd(b + 12),
+  m3: rwd(b + 10),
+  m2: rwd(b + 8),
+  m1: rwd(b + 6),
+  m: rwd(b + 4),
+  s3: rwd(b + 2),
+  s2: rwd(b),
+  s1: rwd(b - 2),
+  s: rwd(b - 4),
+  t1: rwd(b - 6),
+  t: rwd(b - 8),
+  n1: rwd(b - 10),
+  n: rwd(0),
+  // h: SCREEN_WIDTH * 0.06,
+  // l: SCREEN_WIDTH * 0.05,
+  // m: SCREEN_WIDTH * 0.04,
+  // s: SCREEN_WIDTH * 0.03,
+  // t: SCREEN_WIDTH * 0.02,
+}
 
 // OVERWRITE
 window.BCOLOR = 'rgba(9,51,74,1)'
@@ -28,13 +59,12 @@ window.BUTTON_COLOR1 = 'rgba(0,111,182,.87)'
 window.BUTTON_COLOR = 'rgba(29,220,238,1)'
 
 window.CHOOSEMENU_BACKGROUND = 'white'
-window.BASE_SIZE = rwd(iOS ? 12 : 12)
 
 window.LIGHT_COLOR = 'white'
 window.DARK_COLOR = '#333'
 
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
-window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.s
 // alert(iPhoneX)
 window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
 window.SEGMENT_COLOR = LIGHT_COLOR
@@ -44,6 +74,9 @@ window.SEGMENT_BORDER_COLOR = 'transparent'
 window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
 window.WARNING_COLOR = 'rgba(208,35,35,1)'
 //////////////////////////
+
+window.CLOSE_ICON_NAME = 'close'
+window.CLOSE_ICON_SET = 'AntDesign'
 
 window.IOS_FONTS = [
   'AcademyEngravedLetPlain',
@@ -232,7 +265,7 @@ export const Const = {
 
 window.initConstant = () => {
   window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
-  window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+  window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.t
   // log(StatusBar, 'StatusBar')
   window.STATUSBAR_HEIGHT = 0
   // alert(STATUSBAR_HEIGHT)
@@ -241,7 +274,7 @@ window.initConstant = () => {
   //   (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||
   //     DEVICE_INFO.Model?.indexOf('iPhone 11') == 0)
   // window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
-  // window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
+  // window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.t
   //
   // window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
   // window.SEGMENT_COLOR = LIGHT_COLOR
@@ -260,36 +293,7 @@ window.initConstant = () => {
 //     DEVICE_INFO.Model?.indexOf('iPhone 11') == 0)
 
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
-window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : 0
-
-const b = BASE_SIZE
-window.SIZE = {
-  h3: rwd(38),
-  h2: rwd(36),
-  h1: rwd(34),
-  h: rwd(b + 20),
-  l3: rwd(b + 18),
-  l2: rwd(b + 16),
-  l1: rwd(b + 14),
-  l: rwd(b + 12),
-  m3: rwd(b + 10),
-  m2: rwd(b + 8),
-  m1: rwd(b + 6),
-  m: rwd(b + 4),
-  s3: rwd(b + 2),
-  s2: rwd(b),
-  s1: rwd(b - 2),
-  s: rwd(b - 4),
-  t1: rwd(b - 6),
-  t: rwd(b - 8),
-  n1: rwd(b - 10),
-  n: rwd(0),
-  // h: SCREEN_WIDTH * 0.06,
-  // l: SCREEN_WIDTH * 0.05,
-  // m: SCREEN_WIDTH * 0.04,
-  // s: SCREEN_WIDTH * 0.03,
-  // t: SCREEN_WIDTH * 0.02,
-}
+window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.t
 
 window.language = 'en'
 

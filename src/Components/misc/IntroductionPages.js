@@ -50,6 +50,7 @@ export class IntroductionPages extends React.PureComponent {
   }
 
   _renderItem = ({ item }) => {
+    log(item, 'item')
     return (
       <T.Screen backgroundColor={item.backgroundColor} safeAreaDisabled>
         <T.Center flex={0} marginTop={SAFEAREA_TOP + 3 * SIZE.l}>
@@ -97,7 +98,7 @@ export class IntroductionPages extends React.PureComponent {
         // borderWidth={1}
         ref={c => (this.slider = c)}
         renderItem={this._renderItem}
-        slides={slides}
+        data={slides}
         onDone={this._onDone}
         dotStyle={{ backgroundColor: BCOLOR }}
         activeDotStyle={{ backgroundColor: '#aaa' }}

@@ -8,7 +8,7 @@ export class Tab extends Component {
       badge: { position: 'absolute', left: '65%', top: '25%' },
       isSelected: {
         false: {
-          padding: rwd(20),
+          // padding: rwd(20),
           padding: rwd(10),
           paddingHorizontal: rwd(20),
           color: '#111',
@@ -24,10 +24,10 @@ export class Tab extends Component {
           backgroundColor: SEGMENT_ACTIVE_BGCOLOR,
           // fontWeight: '900',
           // fontSize: rwd(15),
-          height: rwd(32),
+          // height: rwd(32),
         },
         false: {
-          height: rwd(32),
+          // height: rwd(32),
           paddingVertical: SIZE.t,
           color: SEGMENT_COLOR,
           // fontWeight: '300',

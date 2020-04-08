@@ -9,7 +9,7 @@ export class BarLine extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('BarLine')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

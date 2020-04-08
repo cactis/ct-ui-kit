@@ -9,7 +9,7 @@ export class Badge extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Badge')
+    _trace()
     _navigation = this.props.navigation
     this.initStateData(() => {
       this.autoRun()
