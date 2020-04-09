@@ -13,7 +13,7 @@ export class Photo extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Photo')
+    _trace()
     _navigation = this.props.navigation
     // let { uri, url, aspectRatio, data, title, preview, size = 50 } = this.props
     // this.setState({ uri, url, data, title, preview, size })

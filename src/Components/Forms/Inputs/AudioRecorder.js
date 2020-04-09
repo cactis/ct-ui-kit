@@ -421,7 +421,7 @@ export class AudioRecorder2 extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('AudioRecorder')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

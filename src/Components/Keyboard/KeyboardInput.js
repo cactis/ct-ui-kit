@@ -12,7 +12,7 @@ export class KeyboardInput extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('KeyboardInput')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

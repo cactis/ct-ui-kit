@@ -119,7 +119,7 @@ export class MediasInput extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('MediasInput')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

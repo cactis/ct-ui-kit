@@ -6,7 +6,7 @@ let _navigation
 import { ModalBase } from './ModalBase'
 export class FlexModal extends ModalBase {
   componentDidMount() {
-    _trace('FlexModal')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

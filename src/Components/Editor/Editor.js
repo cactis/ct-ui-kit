@@ -154,7 +154,7 @@ export class Editor extends KeyboardAware {
   }
 
   componentDidMount() {
-    _trace('Editor')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

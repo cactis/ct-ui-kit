@@ -10,7 +10,7 @@ export class DropdownAlert extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('DropdownAlert')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

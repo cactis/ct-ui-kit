@@ -16,7 +16,7 @@ export class KeyboardToolbar extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('KeyboardToolbar')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

@@ -9,7 +9,7 @@ export class Full extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Full')
+    _trace()
     _navigation = this.props.navigation
     // log(_navigation, '_navigation 0000000')
     this.initStateData(() => {

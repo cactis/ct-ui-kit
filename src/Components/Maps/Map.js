@@ -17,7 +17,7 @@ export class Map extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Map')
+    _trace()
     navigator = this.props.navigation
     this.initStateData(() => {
       delayed(() => {

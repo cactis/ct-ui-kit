@@ -7,11 +7,12 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios'
 let _navigation
 export const PushNotification = (navigation, options) => {
   _navigation = navigation
-  // __log(_navigation, '_navigation1')
+  log(_navigation, '_navigation in PushNotification')
   RNPushNotification.configure({
     // (optional) Called when Token is generated (iOS and Android)
     onRegister: function(token) {
-      // __log(token, 'token')
+      alert(token)
+      log(token, 'token in PushNotification#onRegister')
       let params = {
         device: {
           uuid: token.token,
@@ -22,6 +23,7 @@ export const PushNotification = (navigation, options) => {
         },
       }
       // __log(params, 'params')
+      alert(token.token)
       T.Api.post('/devices', params)
       T.Storage.set('uuid', token.token)
     },

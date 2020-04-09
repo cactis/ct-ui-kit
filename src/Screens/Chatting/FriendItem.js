@@ -56,7 +56,7 @@ export class FriendItem extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('FriendItem')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

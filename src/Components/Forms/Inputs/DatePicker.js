@@ -70,7 +70,7 @@ export class DatePicker extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('DatePicker')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

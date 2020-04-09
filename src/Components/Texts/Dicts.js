@@ -17,7 +17,7 @@ export class Dicts extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Dicts')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

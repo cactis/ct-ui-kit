@@ -45,7 +45,7 @@ export class Share extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Share')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

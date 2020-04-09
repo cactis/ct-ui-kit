@@ -101,7 +101,7 @@ export class TagsToolbar extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('TagsToolbar')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     // this.initStateData(() => {

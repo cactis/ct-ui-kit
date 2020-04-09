@@ -9,7 +9,7 @@ export class Title extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Title')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

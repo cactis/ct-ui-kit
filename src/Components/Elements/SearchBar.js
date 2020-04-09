@@ -52,7 +52,7 @@ export class SearchBar extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('SearchBar')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

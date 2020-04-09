@@ -16,7 +16,7 @@ guard :shell do
       p app
       # ['writus', 'ctnews'].each do |app|
       target = "/Volumes/RamDisk/#{app}/node_modules/ct-ui-kit"
-
+      p target
       if Dir.exists?(target)
         # `open #{target}/node_modules/ct-rn-kit/`
         command = copy_commend("#{target}/")

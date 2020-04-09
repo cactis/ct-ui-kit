@@ -61,7 +61,7 @@ export class Lists extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Lists')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

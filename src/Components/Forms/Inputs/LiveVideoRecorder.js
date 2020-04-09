@@ -191,7 +191,7 @@ export class LiveVideoRecorder extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('LiveVideoRecorder')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

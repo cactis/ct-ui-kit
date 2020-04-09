@@ -15,7 +15,7 @@ export class Texts extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Texts')
+    _trace()
     _navigation = this.props.navigation
     let { data } = this.props
     this.setState({ data }, () => {})

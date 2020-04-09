@@ -71,7 +71,7 @@ export class FriendsListScreen extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('FriendsListScreen')
+    _trace()
     this.mounted = true
     _this = this
     _navigation = this.props.navigation

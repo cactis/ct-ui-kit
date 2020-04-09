@@ -88,7 +88,7 @@ window.log = (...message) => {
     // console.log('------------------------------------------------------>')
     // console.log('')
   }
-  // _trace('log')
+  // _trace()
 }
 
 window.__log = (message, title = '') => {

@@ -10,7 +10,7 @@ export class A extends TagBase {
   }
 
   componentDidMount() {
-    _trace('A')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

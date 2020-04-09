@@ -8,7 +8,7 @@ export class Submit extends React.Component {
   }
 
   componentDidMount() {
-    _trace('Submit')
+    _trace()
     _this = this
     this.autoRun()
   }

@@ -12,7 +12,7 @@ import { TagBase } from './TagBase'
 let _navigation
 export class P extends TagBase {
   componentDidMount() {
-    _trace('P')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

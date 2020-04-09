@@ -48,7 +48,7 @@ export class CheckBox extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('CheckBox')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

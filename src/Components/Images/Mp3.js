@@ -60,7 +60,7 @@ export class Mp3 extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Mp3')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

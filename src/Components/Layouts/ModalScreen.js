@@ -164,7 +164,7 @@ export class ModalScreen extends ModalBase {
 
   componentDidMount() {
     this.mounted = true
-    _trace('Modal')
+    _trace()
     _navigation = this.props.navigation
     this.initStateData(() => {
       this.autoRun()

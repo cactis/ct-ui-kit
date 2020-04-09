@@ -31,7 +31,7 @@ export class Copy extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('Copy')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

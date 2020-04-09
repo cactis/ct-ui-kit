@@ -10,7 +10,7 @@ export class HR extends TagBase {
   }
 
   componentDidMount() {
-    _trace('HR')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {

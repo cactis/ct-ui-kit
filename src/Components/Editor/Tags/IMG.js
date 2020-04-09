@@ -6,7 +6,7 @@ import { TagBase } from './TagBase'
 let _navigation
 export class IMG extends TagBase {
   componentDidMount() {
-    _trace('IMG')
+    _trace()
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {
