@@ -110,7 +110,7 @@ export class Button extends React.PureComponent {
             backgroundColor: backgroundColor,
             // borderColor: borderColor,
             flexDirection: 'row',
-            paddingHorizontal: padding * 2,
+            paddingHorizontal: padding * 1,
             paddingVertical: padding,
             // ...Styles.shadow,
 

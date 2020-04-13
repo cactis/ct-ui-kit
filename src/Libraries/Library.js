@@ -93,7 +93,7 @@ window.log = (...message) => {
 
 window.__log = (message, title = '') => {
   log(message, title)
-  T.Api.post('/logs', {
+  T.Api.post('/log', {
     log: { title: title, logged: message },
   })
 }
@@ -324,18 +324,22 @@ _.insert = function(arr, index, item) {
   return arr
 }
 
-String.prototype.asJSON = function() {
+window.asJSON = data => {
   try {
-    log(this, 'this')
-    var json = JSON.parse(this)
+    log(data, 'data')
+    var json = JSON.parse(data)
     if (typeof json === 'object') {
       return json
     } else {
-      return this
+      return data
     }
   } catch (e) {
-    return this
+    return data
   }
+}
+
+String.prototype.asJSON = function() {
+  window.asJSON(this)
 }
 
 window.openURL = (url, options = {}) => {
@@ -500,4 +504,49 @@ doRating = () => {
     }
   })
   // })
+}
+
+// alert functions
+
+// window.alert = (message, type, onClose) => {
+//   prompt(message, type, onClose)
+// }
+
+// window._alert = (message, type, onClose) => {
+//   if (__DEV__) prompt(`__DEV__: ${message}`, type, onClose)
+// }
+
+// window.onDropdownClosed = () => {}
+// window.prompt = (message = 'Comming Soon!', type, onClose) => {
+//   log(onClose, 'onClose')
+//   let title = { error: 'Error' }[type] || ''
+//   let _type = type || 'success'
+//   if (onClose) {
+//     window.onDropdownClosed = onClose
+//   } else {
+//     window.onDropdownClosed = () => {}
+//   }
+//   // console.log(message, title)
+//   window.dropdown.alertWithType(_type, title, message)
+// }
+
+/////////////////////////
+window.alert = (message, type, options = {}) => {
+  prompt(message, type, options)
+}
+
+window._alert = (message, type, options = {}) => {
+  if (__DEV__) prompt(`__DEV__: ${message}`, type, options)
+}
+
+window.prompt = (message = 'Coming soon~', type, options = {}) => {
+  let title = { error: '錯誤' }[type] || ''
+  let _type = type || 'success'
+  log(_type, '_type in prompt')
+
+  dropdown.open(message, type, options)
+}
+
+window.__warning__ = (message, type = 'error', onClose) => {
+  prompt(message, type, onClose)
 }

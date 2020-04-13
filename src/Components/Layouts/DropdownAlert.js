@@ -24,29 +24,38 @@ export class DropdownAlert extends React.PureComponent {
 
   _onDropdownAlertTapped = () => {}
 
-  open = (content, onTap = () => {}, options = {}) => {
+  open = (content, type, options = {}) => {
     // log(options, 'options')
-    let { title, type = 'success' } = options
+    // let { title, type = 'success' } = options
+    let { title, onTapped = () => {}, onClose = () => {} } = options
     this.mounted &&
       this.setState({
         type,
         title,
         content,
+        options,
       })
     // log(this.state, 'this.state')
     this.modal.open()
+    delayed(() => {
+      this.close()
+    }, 3000)
     // log(onTap, 'onTap')
     // log(typeof onTap == 'function')
-    if (typeof onTap == 'function') this._onDropdownAlertTapped = onTap
+    this.onTapped = onTapped
   }
   close = () => {
+    let { onClose = () => {} } = this.state.options
+
     this.modal.close()
+    onClose()
   }
 
   render() {
     let { title, content, type } = this.state
     log(type, 'type')
-    let backgroundColor = type == 'success' ? DROPDOWNALERT_COLOR : STRONG_COLOR
+    let backgroundColor =
+      type == 'success' ? DROPDOWNALERT_COLOR : DROPDOWNALERT_COLOR_INFO
     log(backgroundColor, 'backgroundColor')
     return (
       <ModalBox
@@ -77,8 +86,10 @@ export class DropdownAlert extends React.PureComponent {
           }}
           activeOpacity={1}
           onPress={() => {
-            this._onDropdownAlertTapped()
-            this.modal.close()
+            // this._onDropdownAlertTapped()
+            // this.modal.close()
+            this.onTapped()
+            this.close()
           }}
         >
           <T.Center flex={0}>

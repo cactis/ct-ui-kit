@@ -9,6 +9,7 @@ export class ChattingBase extends WebSocketBase {
 
   convertMessage = message => {
     // log(message, 'mesage in convertMessage')
+    if (!message) return {}
     const user = message.user
     return {
       _id: message.id,

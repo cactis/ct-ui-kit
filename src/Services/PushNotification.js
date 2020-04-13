@@ -5,14 +5,19 @@ import RNPushNotification from 'react-native-push-notification'
 import PushNotificationIOS from '@react-native-community/push-notification-ios'
 // log(PushNotificationIOS.FetchResult, 'PushNotificationIOS')
 let _navigation
-export const PushNotification = (navigation, options) => {
+export const PushNotification = (navigation, options = {}) => {
   _navigation = navigation
-  log(_navigation, '_navigation in PushNotification')
+  // alert(AppConfig.androidPushSenderId)
+  // alert('PushNotification')
+  // log(_navigation, '_navigation in PushNotification')
   RNPushNotification.configure({
     // (optional) Called when Token is generated (iOS and Android)
+    // onRegistrationError: function(err) {
+    //   alert(err)
+    // },
     onRegister: function(token) {
-      alert(token)
-      log(token, 'token in PushNotification#onRegister')
+      // alert(token)
+      // log(token, 'token in PushNotification#onRegister')
       let params = {
         device: {
           uuid: token.token,
@@ -23,7 +28,7 @@ export const PushNotification = (navigation, options) => {
         },
       }
       // __log(params, 'params')
-      alert(token.token)
+      // alert(token.token)
       T.Api.post('/devices', params)
       T.Storage.set('uuid', token.token)
     },
@@ -31,7 +36,6 @@ export const PushNotification = (navigation, options) => {
     // (required) Called when a remote or local notification is opened or received
     onNotification: function(notification) {
       // __log(notification, 'notification')
-
       // process the notification
       processNotification(notification)
       // alert('got it')
@@ -41,7 +45,7 @@ export const PushNotification = (navigation, options) => {
     },
 
     // ANDROID ONLY: GCM or FCM Sender ID (product_number) (optional - not required for local notifications, but is need to receive remote push notifications)
-    senderID: 'YOUR GCM (OR FCM) SENDER ID',
+    senderID: AppConfig.androidPushSenderId,
 
     // IOS ONLY (optional): default: all - Permissions to register.
     permissions: {
@@ -115,16 +119,31 @@ const push = {
   sound: 'default',
 }
 window.processNotification = (notification = push) => {
+  __log(notification, 'notification')
   // notification =
   // __log(notification, 'notification')
   // let { alert } = notification
-  let { title, body, record } = notification.alert
-  title, body, record
-  alert(`${title}\n${body}`, 'info', data => {
-    log(data, 'data')
-    let { action } = data
-    if (action == 'tap') {
-      navigateToObject(record, _navigation)
-    }
+  let { title, body, payload } = notification.alert || notification
+  let { record } = asJSON(payload) || notification
+  log(record, 'record')
+  record = asJSON(record)
+  log(_navigation.state.routeName, 'current route name')
+  log(window.currentRoom, record?.id)
+  if (window.currentRoom && window.currentRoom == record?.id) {
+    _alert('no need alert')
+    return
+  }
+  alert(`${title}\n${body}`, 'info', {
+    onTapped: () => {
+      // log(data, 'data')
+      // let { action } = data
+      // log(action, 'action')
+      // if (action == 'tap') {
+      log(_navigation, '_navigation')
+      navigateToRecord(record, _navigation)
+      // }
+    },
   })
 }
+
+// https://dev.tapjoy.com/faq/how-to-find-sender-id-and-api-key-for-gcm/

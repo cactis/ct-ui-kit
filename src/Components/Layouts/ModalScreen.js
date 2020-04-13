@@ -95,8 +95,8 @@ export class ModalScreen extends ModalBase {
               // zIndex={1000}
             >
               <T.Space
-                width={SIZE.l * 3}
-                borderWidth__={1}
+                width={SIZE.l * 4}
+                borderWidth_={1}
                 // paddingLeft={SIZE.t}
                 flex={0}
                 xAlign="center"
@@ -111,7 +111,7 @@ export class ModalScreen extends ModalBase {
             /> */}
                 {button ? closeIcon : null}
               </T.Space>
-              <T.Col borderWidth={0} align="center" paddingHorizontal={SIZE.m}>
+              <T.Col borderWidth_={0} align="center" paddingHorizontal={SIZE.m}>
                 {title && (
                   <T.Label
                     // theme="H0"
@@ -127,6 +127,7 @@ export class ModalScreen extends ModalBase {
                 )}
               </T.Col>
               <T.Space
+                width={SIZE.l * 4}
                 borderWidth_={1}
                 flex={0}
                 xAlign="center"

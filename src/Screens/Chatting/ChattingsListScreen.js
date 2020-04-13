@@ -30,7 +30,7 @@ export class ChattingsListScreen extends React.PureComponent {
           renderItem={item => (
             <T.ChattingItem
               navigation={_navigation}
-              onPress={() => navigateToRecord(item?.item?.target, _navigation)}
+              onPress={() => showRecord(item?.item?.target)}
               data={item}
             />
           )}

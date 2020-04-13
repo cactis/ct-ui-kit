@@ -21,6 +21,7 @@ export const IconLabel = props => {
     text,
     disabled = false,
     onPress,
+    space = SIZE.n,
     ...extra
   } = props
 
@@ -81,10 +82,18 @@ export const IconLabel = props => {
       yAlign="center"
       style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
     >
-      <Col flex={0} align="center" height_={size} borderWidth_={1}>
+      <Col
+        flex={0}
+        align="center"
+        height_={size}
+        borderWidth_={1}
+        paddingRight={space}
+      >
         {_icon}
         {image}
+        {/* <T.Space width={space} /> */}
       </Col>
+
       <Col borderWidth_={1} flex={0} align="center" height_={size} flow="row">
         {label}
       </Col>

@@ -4,6 +4,9 @@ import { GiftedChat } from 'react-native-gifted-chat'
 import { ChattingBase } from '.'
 let _this, _navigation
 
+export { ChattingShowScreen as GroupTalkShowScreen }
+export { ChattingShowScreen as TalkShowScreen }
+
 var ws = null
 export class ChattingShowScreen extends ChattingBase {
   static navigationOptions = ({ navigation }) => {
@@ -30,9 +33,12 @@ export class ChattingShowScreen extends ChattingBase {
         submitTitle="Invite"
         onSubmit={data => {
           log(data, 'data')
-          T.Api.post(`${channel.routes}/group_talks`, data, res => {
+          data = data.filter(u => u.checked)
+          T.Api.post(`${channel.routes}/group_talks`, { users: data }, res => {
             let { data } = res
             log(data, 'data')
+            popupScreen.close()
+            goBack()
           })
         }}
       />,
@@ -75,12 +81,24 @@ export class ChattingShowScreen extends ChattingBase {
             _id: currentUser.id,
           }}
         />
+        <T.NavEvent
+          onWillFocus={payload => {
+            let { data } = payload.state.params
+            log(data, 'data')
+            _alert('you enter')
+            window.currentRoom = data.id
+            log(window.currentRoom, 'window.currentRoom')
+          }}
+          onDidBlur={payload => {
+            _alert('you will blur')
+          }}
+        />
       </T.Screen>
     )
   }
 
   processMessage = data => {
-    const message = this.convertMessage(data.message.message)
+    const message = this.convertMessage(data?.message?.message)
     this.mounted &&
       this.setState(previousState => ({
         messages: GiftedChat.append(previousState.messages, [message]),

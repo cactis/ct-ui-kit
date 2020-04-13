@@ -72,6 +72,7 @@ window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR
 window.SEGMENT_ACTIVE_BGCOLOR = TColor(BCOLOR)
 window.SEGMENT_BORDER_COLOR = 'transparent'
 window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
+window.DROPDOWNALERT_COLOR_INFO = 'rgba(1,159,186,1)'
 window.WARNING_COLOR = 'rgba(208,35,35,1)'
 //////////////////////////
 
