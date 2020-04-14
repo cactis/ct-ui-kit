@@ -121,29 +121,31 @@ const push = {
 window.processNotification = (notification = push) => {
   __log(notification, 'notification')
   // notification =
-  // __log(notification, 'notification')
   // let { alert } = notification
-  let { title, body, payload } = notification.alert || notification
+  // let { title, body} = notification
+  let { title, body, payload = notification.alert } = notification
   let { record } = asJSON(payload) || notification
   log(record, 'record')
   record = asJSON(record)
-  log(_navigation.state.routeName, 'current route name')
+  // log(_navigation.state.routeName, 'current route name')
   log(window.currentRoom, record?.id)
   if (window.currentRoom && window.currentRoom == record?.id) {
     _alert('no need alert')
     return
   }
-  alert(`${title}\n${body}`, 'info', {
-    onTapped: () => {
-      // log(data, 'data')
-      // let { action } = data
-      // log(action, 'action')
-      // if (action == 'tap') {
-      log(_navigation, '_navigation')
-      navigateToRecord(record, _navigation)
-      // }
-    },
-  })
+  if (title) {
+    alert(`${title}\n${body}`, 'info', {
+      onTapped: () => {
+        // log(data, 'data')
+        // let { action } = data
+        // log(action, 'action')
+        // if (action == 'tap') {
+        log(_navigation, '_navigation')
+        navigateToRecord(record, _navigation)
+        // }
+      },
+    })
+  }
 }
 
 // https://dev.tapjoy.com/faq/how-to-find-sender-id-and-api-key-for-gcm/

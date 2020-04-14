@@ -39,6 +39,7 @@ export class ChattingShowScreen extends ChattingBase {
             log(data, 'data')
             popupScreen.close()
             goBack()
+            navigateToRecord(data, _navigation)
           })
         }}
       />,
@@ -85,12 +86,12 @@ export class ChattingShowScreen extends ChattingBase {
           onWillFocus={payload => {
             let { data } = payload.state.params
             log(data, 'data')
-            _alert('you enter')
+            // _alert('you enter')
             window.currentRoom = data.id
             log(window.currentRoom, 'window.currentRoom')
           }}
           onDidBlur={payload => {
-            _alert('you will blur')
+            // _alert('you will blur')
           }}
         />
       </T.Screen>
