@@ -21,12 +21,12 @@
     ]
   },
   "dependencies": {
-    "react-native-dropdownalert": "^4.2.1",
-    "react-native-nodemediaclient": "^0.1.6",
     "@react-native-community/push-notification-ios": "^1.1.1",
-    "react-native-modalbox": "2.0.0",
     "npm-check-updates": "latest",
+    "react-native-dropdownalert": "^4.2.1",
     "react-native-image-view": "2.1.9",
+    "react-native-modalbox": "2.0.0",
+    "react-native-nodemediaclient": "^0.1.6",
     "tinycolor2": "1.4.1"
   }
 }
