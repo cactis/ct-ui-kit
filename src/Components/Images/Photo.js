@@ -132,7 +132,7 @@ export class Photo extends React.PureComponent {
 
         includeBase64: true,
       }).then(image => {
-        log(image, 'image 11111')
+        // log(image, 'image 11111')
         this.setState({ thumbUri: image.path })
         onChange(image)
       })

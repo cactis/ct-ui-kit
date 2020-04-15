@@ -123,14 +123,29 @@ window.processNotification = (notification = push) => {
   // notification =
   // let { alert } = notification
   // let { title, body} = notification
-  let { title, body, payload = notification.alert } = notification
-  let { record } = asJSON(payload) || notification
-  log(record, 'record')
+
+  let title, body, payload, record
+  if (iOS) {
+    // log(record, 'record')
+
+    // let { title, body, payload = notification.alert } = notification
+    // let { record } = asJSON(payload) || notification
+
+    // log(_navigation.state.routeName, 'current route name')
+    let { alert } = notification
+    title = alert.title
+    body = alert.body
+    record = alert.record
+  } else {
+    title = notification.title
+    body = notification.body
+    payload = notification.payload
+    record = asJSON(payload).record
+  }
   record = asJSON(record)
-  // log(_navigation.state.routeName, 'current route name')
   log(window.currentRoom, record?.id)
   if (window.currentRoom && window.currentRoom == record?.id) {
-    _alert('no need alert')
+    // _alert('no need alert')
     return
   }
   if (title) {
@@ -149,3 +164,54 @@ window.processNotification = (notification = push) => {
 }
 
 // https://dev.tapjoy.com/faq/how-to-find-sender-id-and-api-key-for-gcm/
+
+const android = {
+  foreground: true,
+  'google.delivered_priority': 'normal',
+  'google.sent_time': 1586853508813,
+  'google.ttl': 2419200,
+  'google.original_priority': 'normal',
+  payload:
+    '{"badge_sets":{"chattings_count":10,"notifications_count":19},"record":"{\\"type\\":\\"Article\\",\\"routes\\":\\"\\/articles\\/f5a7670e-9158-4862-83b7-8297c52137a0\\",\\"id\\":\\"f5a7670e-9158-4862-83b7-8297c52137a0\\",\\"state\\":null,\\"created_at\\":\\"2020-04-12T03:00:12.005Z\\",\\"updated_at\\":\\"2020-04-14T08:38:27.802Z\\",\\"cover\\":null}"}',
+  userInteraction: false,
+  id: '705506622',
+  body: '[n5] ... ...',
+  badge: '2',
+  title: 'chitsung liked your article ',
+  'google.message_id': '0:1586853508826714%37ccf4b2f9fd7ecd',
+  message: '[n5] ... ...',
+}
+
+// iOS
+const ios = {
+  foreground: true,
+  userInteraction: false,
+  message: {
+    title:
+      'Barton liked your article Imagine you are writing an email. You are in front of the computer. You are operating the computer, clicking a mouse and typing on a keyboard, but the message will be sent to a human over the internet. So you are working before the computer, but with a human behind the computer.',
+    record:
+      '{"type":"Article","routes":"/articles/249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","id":"249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","state":null,"created_at":"2020-04-12T03:13:51.063Z","updated_at":"2020-04-14T08:39:39.053Z","cover":null}',
+    body: '[n5] ... ...',
+  },
+  data: {
+    remote: true,
+    payload: {
+      badge_sets: {
+        notifications_count: 15,
+        chattings_count: 7,
+      },
+      record:
+        '{"type":"Article","routes":"/articles/249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","id":"249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","state":null,"created_at":"2020-04-12T03:13:51.063Z","updated_at":"2020-04-14T08:39:39.053Z","cover":null}',
+    },
+    notificationId: '55248FAB-4E50-4ED1-82A7-BC021384910F',
+  },
+  badge: 22,
+  alert: {
+    title:
+      'Barton liked your article Imagine you are writing an email. You are in front of the computer. You are operating the computer, clicking a mouse and typing on a keyboard, but the message will be sent to a human over the internet. So you are working before the computer, but with a human behind the computer.',
+    record:
+      '{"type":"Article","routes":"/articles/249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","id":"249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","state":null,"created_at":"2020-04-12T03:13:51.063Z","updated_at":"2020-04-14T08:39:39.053Z","cover":null}',
+    body: '[n5] ... ...',
+  },
+  sound: 'default',
+}

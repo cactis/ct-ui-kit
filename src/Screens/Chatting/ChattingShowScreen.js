@@ -54,23 +54,6 @@ export class ChattingShowScreen extends ChattingBase {
     messages: [],
   }
 
-  componentDidMount() {
-    _trace()
-    this.mounted = true
-    _this = this
-    _navigation = this.props.navigation
-    this.connectSocket()
-    this.initStateData(() => {
-      // this.fetchMessages()
-      this.autoRun()
-    })
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
-      _navigation = this.props.navigation
-  }
-
   render() {
     let { currentUser } = global
     return (
@@ -78,6 +61,7 @@ export class ChattingShowScreen extends ChattingBase {
         <GiftedChat
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
+          renderUsernameOnMessage={true}
           user={{
             _id: currentUser.id,
           }}
@@ -142,6 +126,23 @@ export class ChattingShowScreen extends ChattingBase {
         },
       },
     ]
+  }
+
+  componentDidMount() {
+    _trace()
+    this.mounted = true
+    _this = this
+    _navigation = this.props.navigation
+    this.connectSocket()
+    this.initStateData(() => {
+      // this.fetchMessages()
+      this.autoRun()
+    })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.navigation !== this.props.navigation)
+      _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
