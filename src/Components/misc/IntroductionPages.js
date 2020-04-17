@@ -99,6 +99,7 @@ export class IntroductionPages extends React.PureComponent {
         ref={c => (this.slider = c)}
         renderItem={this._renderItem}
         data={slides}
+        slides={slides}
         onDone={this._onDone}
         dotStyle={{ backgroundColor: BCOLOR }}
         activeDotStyle={{ backgroundColor: '#aaa' }}
