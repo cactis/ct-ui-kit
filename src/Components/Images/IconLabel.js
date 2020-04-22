@@ -6,7 +6,7 @@ import { Div, Row, Grid, Col } from '..'
 import { Avatar, Icon } from '..'
 import { Touch } from '..'
 
-export const IconLabel = props => {
+export const IconLabel = (props) => {
   let {
     name,
     icon = name,

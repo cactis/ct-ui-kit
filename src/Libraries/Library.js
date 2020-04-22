@@ -326,7 +326,7 @@ _.insert = function(arr, index, item) {
 
 window.asJSON = data => {
   try {
-    log(data, 'data')
+  // log(data,  'data')
     var json = JSON.parse(data)
     if (typeof json === 'object') {
       return json

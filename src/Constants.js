@@ -167,7 +167,7 @@ window.ANDROID_FONTS = [
 require('../../../Constants.js')
 
 setDeviceName = () => {
-  D.getDeviceName().then(res => {
+  D.getDeviceName().then((res) => {
     global.DeviceName = res
   })
 }
@@ -187,7 +187,7 @@ initAppFontSize = async () => {
     }
   } catch (error) {}
 }
-initAppFontSize().then(value => {
+initAppFontSize().then((value) => {
   // window.BASE_SIZE = value
 })
 
@@ -301,5 +301,6 @@ window.language = 'en'
 window.timeZoneOffset = () => {
   let date = new Date()
   let hour = date.getTimezoneOffset() / 60
+  // alert(hour)
   return hour
 }

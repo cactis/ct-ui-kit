@@ -39,10 +39,10 @@ export class WebSocketBase extends React.PureComponent {
         case 'welcome':
         case 'confirm_subscription':
           // log('confirmation_subscription')
-          log(data, 'data system message')
+        // log(data,  'data system message')
           break
         default:
-          log(data, 'data 需要處理')
+        // log(data,  'data 需要處理')
           this.processMessage(data)
       }
     }

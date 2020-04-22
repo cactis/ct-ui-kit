@@ -22,7 +22,7 @@ export class DatePicker extends React.PureComponent {
   }
 
   setDate = data => {
-    log(data, 'data')
+  // log(data,  'data')
     let { mode = 'date' } = this.props
     this.setState({ data: toDate(data, mode) })
     this.props.onUpdated && this.props.onUpdated(this.state.data)
@@ -44,7 +44,7 @@ export class DatePicker extends React.PureComponent {
     // alert(new Date(new Date().toISOString()))
     // alert(new Date())
     let { data } = this.state
-    log(data, 'data in DatePicker render()')
+  // log(data,  'data in DatePicker render()')
     // if (!data) return null
     // let { item = data } = data
     return (

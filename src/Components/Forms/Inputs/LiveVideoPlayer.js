@@ -14,7 +14,7 @@ export class LiveVideoPlayer extends React.PureComponent {
 
   render() {
     let { data, url } = this.state
-    log(data, 'data in LiveVideoPlayer render()')
+  // log(data,  'data in LiveVideoPlayer render()')
     // let { item = data } = data
     return (
       <T.ModalBox

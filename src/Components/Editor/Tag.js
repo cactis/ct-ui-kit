@@ -106,7 +106,7 @@ export class Tag extends React.PureComponent {
             // style={styles.leftAction}
             onPress={() => {
               alert()
-              log(data, 'data')
+            // log(data,  'data')
               // this.props.onRemoveItem(data.index)
             }}
             color="#888"

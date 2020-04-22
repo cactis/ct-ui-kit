@@ -56,7 +56,7 @@ export class List extends React.PureComponent {
       // this._reload()
       // return
       // let { item = newItem } = newItem
-      log(item, 'item in List#itemEvent#onCreated')
+    // log(item, 'item in List#itemEvent#onCreated')
       // // log(item, 'item - in List#itemCreated')
       let { data } = this.state
       data = [item, ...data]
@@ -74,10 +74,10 @@ export class List extends React.PureComponent {
       // this.forceUpdate()
     },
     onUpdated: item => {
-      log(item, 'item - in itemChanged#List')
+    // log(item, 'item - in itemChanged#List')
       let { data } = this.state
       data[item.index] = item.item
-      log(data, 'data')
+    // log(data,  'data')
       // this.setState({ data: [] }, () => {
       this.setState({
         data: [...data],

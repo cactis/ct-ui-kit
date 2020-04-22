@@ -17,7 +17,7 @@ export class ListScreenExample extends React.PureComponent {
   render() {
     let { data } = this.state
     // if (!data) return null
-    log(data, 'data in ListScreen render() ')
+  // log(data,  'data in ListScreen render() ')
     return (
       <T.Screen>
         <T.Label text="ListScreen Screen" theme="H1" />

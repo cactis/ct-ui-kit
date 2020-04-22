@@ -266,14 +266,14 @@ class AudioRecorder1 extends React.PureComponent {
     let url = `${item.routes}/recordings/new`
     T.Api.get(url, {}, res => {
       let { data } = res
-      log(data, 'data')
+    // log(data,  'data')
       data.mime = 'mp4'
       data.path = this.state.audioPath
       base64Image(data).then(data => {
-        log(data, 'data')
+      // log(data,  'data')
         T.Api.post(data.routes, { resource: data }, res => {
           let { data } = res
-          log(data, 'data')
+        // log(data,  'data')
           onCreated && onCreated(data)
         })
       })
@@ -372,7 +372,7 @@ export class AudioRecorder2 extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in AudioRecorder render()')
+  // log(data,  'data in AudioRecorder render()')
 
     // if (!data) return null
     // let { item = data} = data

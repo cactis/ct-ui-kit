@@ -11,7 +11,7 @@ export class Mp3 extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Mp3 render()')
+  // log(data,  'data in Mp3 render()')
     // if (!data) return null
     // let { item = data } = data
     return (

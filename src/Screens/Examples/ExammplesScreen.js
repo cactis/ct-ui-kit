@@ -18,7 +18,7 @@ export class ExammplesScreen extends React.PureComponent {
   render() {
     let { data } = this.state
     // if (!data) return null
-    log(data, 'data in ExammplesScreen render() ')
+  // log(data,  'data in ExammplesScreen render() ')
     return (
       <T.Screen>
         <T.Center>

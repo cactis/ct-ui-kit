@@ -94,9 +94,9 @@ export class MediasInput extends React.PureComponent {
       // setData(image)
       // onChanged(image)
       let { data } = this.state
-      log(data, 'data 4444444')
+    // log(data,  'data 4444444')
       data.uploads.push(...photos)
-      log(data, 'data 55555')
+    // log(data,  'data 55555')
       // data.photos = photos
       this.setState({ data: { ...data } })
       // return photos

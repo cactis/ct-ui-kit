@@ -9,7 +9,7 @@ export class Lists extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Lists render()')
+  // log(data,  'data in Lists render()')
     if (!data) return null
     // let { item = data} = data
     return (

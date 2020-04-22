@@ -23,7 +23,7 @@ export class TextView extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in TextView render()')
+  // log(data,  'data in TextView render()')
     if (!data) return null
     let { item = data } = data
     return (

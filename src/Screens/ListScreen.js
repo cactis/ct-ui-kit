@@ -32,7 +32,7 @@ export class ListScreen extends React.PureComponent {
     // if (!data) return null
     if (!url) return null
     log(url, 'url')
-    log(data, 'data in ListScreen render() ')
+  // log(data,  'data in ListScreen render() ')
     return (
       <T.Screen padding={0}>
         <T.List

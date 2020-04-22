@@ -18,7 +18,7 @@ export class ComponentsScreen extends React.PureComponent {
   render() {
     let { data } = this.state
     // if (!data) return null
-    log(data, 'data in ComponentsScreen render() ')
+  // log(data,  'data in ComponentsScreen render() ')
 
     return (
       <T.Screen>

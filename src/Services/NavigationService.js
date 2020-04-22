@@ -3,7 +3,7 @@ import { NavigationActions } from 'react-navigation'
 let _navigator
 
 export class NavigationService {
-  static setTopLevelNavigator = navigatorRef => {
+  static setTopLevelNavigator = (navigatorRef) => {
     _navigator = navigatorRef
   }
 
@@ -15,6 +15,7 @@ export class NavigationService {
   }
 
   static navigate = (routeName, params = {}) => {
+    log(`||| ${routeName} ||| screen -- 2`)
     let key = `${routeName}_${params.data?.id}`
     if (global.currentKey == key) return log('duplicate click')
     // log(key, 'key from NavigationService navigate()')

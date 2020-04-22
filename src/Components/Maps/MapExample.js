@@ -18,7 +18,7 @@ export class MapExample extends React.PureComponent {
     let { data } = this.state
     let { navigation } = this.props
     // if (!data) return null
-    log(data, 'data in MapExample render() ')
+  // log(data,  'data in MapExample render() ')
     return (
       <T.Screen padding={0}>
         <T.Map navigation={navigation} />

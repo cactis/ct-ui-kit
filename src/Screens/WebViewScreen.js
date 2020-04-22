@@ -29,7 +29,7 @@ export class WebViewScreen extends WebSocketBase {
     let { data, uri, fullScreen } = this.state
     // if (!data) return null
     // __DEV__ && alert(uri)
-    log(data, 'data in WebViewScreen render() ')
+    // log(data,  'data in WebViewScreen render() ')
     let padding = fullScreen ? SIZE.s : SIZE.n
     return (
       <>
@@ -55,7 +55,7 @@ export class WebViewScreen extends WebSocketBase {
     )
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     if (_navigation.state.params) {
       let { data, uri, fullScreen = true } = _navigation.state.params
       // _navigation.setParams({ title: '改為新標題' })

@@ -12,6 +12,7 @@ export class ChattingShowScreen extends ChattingBase {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.state.params?.title,
+      headerTitle__: () => <T.HTML html={navigation.state.params?.title} />,
       headerRight: () => (
         <T.Div paddingRight={SIZE.n}>
           <T.BarItem
@@ -31,16 +32,20 @@ export class ChattingShowScreen extends ChattingBase {
       <T.FriendsListScreen
         data={this.state.channel}
         submitTitle="Invite"
-        onSubmit={data => {
-          log(data, 'data')
-          data = data.filter(u => u.checked)
-          T.Api.post(`${channel.routes}/group_talks`, { users: data }, res => {
-            let { data } = res
-            log(data, 'data')
-            popupScreen.close()
-            goBack()
-            navigateToRecord(data, _navigation)
-          })
+        onSubmit={(data) => {
+          // log(data,  'data')
+          data = data.filter((u) => u.checked)
+          T.Api.post(
+            `${channel.routes}/group_talks`,
+            { users: data },
+            (res) => {
+              let { data } = res
+              // log(data,  'data')
+              popupScreen.close()
+              goBack()
+              navigateToRecord(data, _navigation)
+            }
+          )
         }}
       />,
       {
@@ -60,21 +65,21 @@ export class ChattingShowScreen extends ChattingBase {
       <T.Screen padding={0}>
         <GiftedChat
           messages={this.state.messages}
-          onSend={messages => this.onSend(messages)}
+          onSend={(messages) => this.onSend(messages)}
           renderUsernameOnMessage={true}
           user={{
             _id: currentUser.id,
           }}
         />
         <T.NavEvent
-          onWillFocus={payload => {
+          onWillFocus={(payload) => {
             let { data } = payload.state.params
-            log(data, 'data')
+            // log(data,  'data')
             // _alert('you enter')
             window.currentRoom = data.id
             log(window.currentRoom, 'window.currentRoom')
           }}
-          onDidBlur={payload => {
+          onDidBlur={(payload) => {
             // _alert('you will blur')
           }}
         />
@@ -82,19 +87,19 @@ export class ChattingShowScreen extends ChattingBase {
     )
   }
 
-  processMessage = data => {
+  processMessage = (data) => {
     const message = this.convertMessage(data?.message?.message)
     this.mounted &&
-      this.setState(previousState => ({
+      this.setState((previousState) => ({
         messages: GiftedChat.append(previousState.messages, [message]),
       }))
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     if (_navigation.state.params) {
       let { data: channel } = _navigation.state.params
       log(channel, 'channel in initStateData')
-      let messages = channel.messages.map(item => {
+      let messages = channel.messages.map((item) => {
         return this.convertMessage(item)
       })
       // .reverse()

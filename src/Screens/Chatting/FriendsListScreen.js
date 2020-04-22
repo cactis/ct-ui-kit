@@ -16,7 +16,7 @@ export class FriendsListScreen extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in FriendsListScreen render() ')
+  // log(data,  'data in FriendsListScreen render() ')
     if (!data) return null
     let { item = data } = data
     return (

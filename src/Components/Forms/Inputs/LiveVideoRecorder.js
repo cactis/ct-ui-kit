@@ -14,7 +14,7 @@ export class LiveVideoRecorder extends React.PureComponent {
 
   render() {
     let { outputUrl, data, recording = false, appName, streamName } = this.state
-    log(data, 'data in LiveVideoRecorder render()')
+  // log(data,  'data in LiveVideoRecorder render()')
     log(outputUrl, 'outputUrl')
     // if (!data) return null
     return (

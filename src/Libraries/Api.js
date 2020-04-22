@@ -46,7 +46,7 @@ export class Api {
 
   static request = async (method, url, params = {}, onSuccess, onError) => {
     let { HttpHeader } = params
-    log(HttpHeader, 'HttpHeader')
+    // log(HttpHeader, 'HttpHeader')
     params['HttpHeader'] = null
     if (Dev.logResponse)
       log(method, url, params, '(method, url, params in request')
@@ -99,7 +99,7 @@ export class Api {
       ...HttpHeader,
     }
     // headers = _.merge(headers, HttpHeader)
-    log(headers, 'headers')
+    // log(headers, 'headers')
     // alert('uiapi')
     // log(headers, 'headers')
     // log(DEVICE_INFO, 'DEVICE_INFO')
@@ -137,7 +137,7 @@ export class Api {
         let { errors } = json
         if (errors) {
           if (__DEV__) {
-            alert(errors.map(e => e.message).join('\n'))
+            alert(errors.map((e) => e.message).join('\n'))
           }
           return onError && onError(errors)
         }
@@ -172,7 +172,7 @@ export class Api {
   }
 }
 
-window.objToQueryString = obj => {
+window.objToQueryString = (obj) => {
   const keyValuePairs = []
   for (const key in obj) {
     keyValuePairs.push(

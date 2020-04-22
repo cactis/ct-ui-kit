@@ -10,7 +10,7 @@ export class SearchBar extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in SearchBar render()')
+  // log(data,  'data in SearchBar render()')
     // if (!data) return null
     // let { item = data} = data
     return (

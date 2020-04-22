@@ -23,7 +23,7 @@ export class StyleToolbar extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in StyleToolbar render()')
+  // log(data,  'data in StyleToolbar render()')
     if (!data) return null
     let { item = data } = data
     return (

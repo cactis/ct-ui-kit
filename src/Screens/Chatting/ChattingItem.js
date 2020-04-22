@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const ChattingItem = props => {
+export const ChattingItem = (props) => {
   let [data, setData] = useState(props.data)
   if (!data) return null
   let { item = data } = data
@@ -21,7 +21,8 @@ export const ChattingItem = props => {
         <T.Label text={`${message?.user?.name}`} theme="H5" />
         <T.Text text={message?.content} />
         <T.Space />
-        <T.Label text={item.title} theme="H8" />
+        <T.Label text={item.title} theme="H7" />
+        {/* <T.HTML html={item.title} /> */}
         <T.Space />
         <R.TimeAgo align="flex-end" data={message?.created_at} />
       </T.Col>

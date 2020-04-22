@@ -9,7 +9,7 @@ export class Copy extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Copy render()')
+  // log(data,  'data in Copy render()')
     // if (!data) return null
     // let { item = data} = data
     return <T.Icon name="share" iconSet="Feather" onPress={this.onPress} />

@@ -21,7 +21,7 @@ export class ChattingsListScreen extends React.PureComponent {
   render() {
     let { data } = this.state
     // if (!data) return null
-    log(data, 'data in ChattingsListScreen render() ')
+  // log(data,  'data in ChattingsListScreen render() ')
     return (
       <T.Screen padding={0}>
         <T.List

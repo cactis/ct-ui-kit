@@ -131,7 +131,7 @@ export class Editor extends KeyboardAware {
   }
 
   updateItem = item => {
-    log(item, 'item in Editor#updateItem')
+  // log(item, 'item in Editor#updateItem')
     let { data } = this.state
     // _log(data, 'data1111')
     data[item.index] = item.item

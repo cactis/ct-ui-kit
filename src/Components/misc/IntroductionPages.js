@@ -50,7 +50,7 @@ export class IntroductionPages extends React.PureComponent {
   }
 
   _renderItem = ({ item }) => {
-    log(item, 'item')
+    // log(item, 'item')
     return (
       <T.Screen backgroundColor={item.backgroundColor} safeAreaDisabled>
         <T.Center flex={0} marginTop={SAFEAREA_TOP + 3 * SIZE.l}>
@@ -96,7 +96,7 @@ export class IntroductionPages extends React.PureComponent {
     return (
       <AppIntroSlider
         // borderWidth={1}
-        ref={c => (this.slider = c)}
+        ref={(c) => (this.slider = c)}
         renderItem={this._renderItem}
         data={slides}
         slides={slides}
@@ -144,7 +144,7 @@ export class IntroductionPages extends React.PureComponent {
     }
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data, slides = SLIDES } = this.props
     this.mounted &&
       this.setState({ data, slides }, () => {

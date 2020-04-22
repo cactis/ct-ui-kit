@@ -11,7 +11,7 @@ export class CardList extends React.PureComponent {
 
   render() {
     let { data, url } = this.state
-    log(data, 'data in CardList render()')
+  // log(data,  'data in CardList render()')
     // if (!data) return null
     // let { item = data} = data
     let {
@@ -54,7 +54,7 @@ export class CardList extends React.PureComponent {
       // this._reload()
       // return
       // let { item = newItem } = newItem
-      log(item, 'item in List#itemEvent#onCreated')
+    // log(item, 'item in List#itemEvent#onCreated')
       // // log(item, 'item - in List#itemCreated')
       let { data } = this.state
       data = [item, ...data]
@@ -72,10 +72,10 @@ export class CardList extends React.PureComponent {
       // this.forceUpdate()
     },
     onUpdated: (item, callback) => {
-      log(item, 'item - in itemChanged#List')
+    // log(item, 'item - in itemChanged#List')
       let { data } = this.state
       data[item.index] = item.item
-      log(data, 'data in onUpdated')
+    // log(data,  'data in onUpdated')
       this.setState({ data: [] }, () => {
         this.setState(
           {

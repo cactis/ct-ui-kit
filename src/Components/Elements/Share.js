@@ -9,7 +9,7 @@ export class Share extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Share render()')
+  // log(data,  'data in Share render()')
     // if (!data) return null
     // let { item = data} = data
     return (

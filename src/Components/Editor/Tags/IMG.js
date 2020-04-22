@@ -23,7 +23,7 @@ export class IMG extends TagBase {
     // log(data, 'data in IMG render()')
     if (!data) return null
     let { item = data } = data
-    log(item, 'item in IMG#render')
+  // log(item, 'item in IMG#render')
     // log(data.index, 'data.index')
     return (
       <T.Row

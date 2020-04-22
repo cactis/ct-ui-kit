@@ -9,7 +9,7 @@ export class Switch extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Switch render()')
+  // log(data,  'data in Switch render()')
     // if (!data) return null
     // let { item = data} = data
     return <RNSwitch {...this.props} />

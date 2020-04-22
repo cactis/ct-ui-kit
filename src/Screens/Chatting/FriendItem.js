@@ -9,7 +9,7 @@ export class FriendItem extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in FriendItem render()')
+    // log(data,  'data in FriendItem render()')
     if (!data) return null
     let { item = data } = data
     return (
@@ -17,7 +17,7 @@ export class FriendItem extends React.PureComponent {
         <T.Center flex={0} borderWidth_={1} padding={0}>
           <T.CheckBox
             ref="checkbox"
-            onChecked={checked => this.onChecked(checked)}
+            onChecked={(checked) => this.onChecked(checked)}
           />
         </T.Center>
         <T.Col xAlign="center">
@@ -31,7 +31,7 @@ export class FriendItem extends React.PureComponent {
     )
   }
 
-  onChecked = checked => {
+  onChecked = (checked) => {
     let { data } = this.state
     let { item = data } = data
     item.checked = checked
@@ -47,7 +47,7 @@ export class FriendItem extends React.PureComponent {
     }
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

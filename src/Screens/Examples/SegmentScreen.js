@@ -17,7 +17,7 @@ export class SegmentScreen extends React.PureComponent {
   render() {
     let { data } = this.state
     // if (!data) return null
-    log(data, 'data in SegmentScreen render() ')
+  // log(data,  'data in SegmentScreen render() ')
     return (
       <T.Screen padding={SIZE.n} backgroundColor__="red">
         <T.Segment

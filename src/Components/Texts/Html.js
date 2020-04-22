@@ -1,3 +1,3 @@
 import HTML from 'react-native-render-html'
 
-export { HTML }
+export { HTML, HTML as Html }

@@ -9,7 +9,7 @@ export class ChooseMenu extends React.PureComponent {
 
   render() {
     let { data, title, menus } = this.state
-    log(data, 'data in ChooseMenu render()')
+  // log(data,  'data in ChooseMenu render()')
     if (!menus) return null
     // let { item = data} = data
     let _title = (
