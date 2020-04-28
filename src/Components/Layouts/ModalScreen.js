@@ -22,14 +22,14 @@ export class ModalScreen extends ModalBase {
       safeArea = true,
       direction = 'bottom',
       scrollable = false,
-      swipeToClose,
+      swipeToClose = false,
       title = propTitle,
       titleColor = '#333', //BFCOLOR,
       quoteable,
       fullScreen = true,
       keyboardAware = false,
-      paddable = true,
-      padding = 2 * SIZE.s,
+      // paddable = true,
+      padding = SIZE.n,
       safeAreaColor = BCOLOR,
       nowrap = false,
       button,
@@ -52,9 +52,10 @@ export class ModalScreen extends ModalBase {
       />
     )
     // alert(SAFEAREA_TOP)
+    // alert(swipeToClose)
     return (
       <ModalBox
-        ref={c => (this.modal = c)}
+        ref={(c) => (this.modal = c)}
         swipeToClose={swipeToClose}
         position={direction}
         entry={direction}
@@ -68,6 +69,7 @@ export class ModalScreen extends ModalBase {
           borderRadius: 0,
           backgroundColor: backgroundColor,
           // backgroundColor: 'red',
+          paddingTop: iPhoneX ? SIZE.n : SIZE.m,
         }}
         {...opts}
         {...this.props}
@@ -131,7 +133,8 @@ export class ModalScreen extends ModalBase {
                 borderWidth_={1}
                 flex={0}
                 xAlign="center"
-                paddingRight={SIZE.n}
+                yAlign="flex-end"
+                paddingRight={SIZE.s}
               >
                 {button ? button : closeIcon}
               </T.Space>
@@ -176,7 +179,7 @@ export class ModalScreen extends ModalBase {
       _navigation = this.props.navigation
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

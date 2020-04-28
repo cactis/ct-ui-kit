@@ -57,12 +57,15 @@ window.SCREEN_BACKGROUNDCOLOR = BCOLOR
 window.BUTTON_COLOR = 'rgba(217,76,111,0.8)'
 window.BUTTON_COLOR1 = 'rgba(0,111,182,.87)'
 window.BUTTON_COLOR = 'rgba(29,220,238,1)'
+window.BUTTON_RADIUS = SIZE.m
 
 window.CHOOSEMENU_BACKGROUND = 'white'
 
 window.LIGHT_COLOR = 'white'
 window.DARK_COLOR = '#333'
 
+window.TAG_BCOLOR = 'rgba(200,199,199,1)'
+window.TAG_COLOR = '#333'
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.s
 // alert(iPhoneX)

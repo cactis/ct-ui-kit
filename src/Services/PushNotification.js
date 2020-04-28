@@ -15,7 +15,7 @@ export const PushNotification = (navigation, options = {}) => {
     // onRegistrationError: function(err) {
     //   alert(err)
     // },
-    onRegister: function(token) {
+    onRegister: function (token) {
       // alert(token)
       // log(token, 'token in PushNotification#onRegister')
       let params = {
@@ -34,7 +34,7 @@ export const PushNotification = (navigation, options = {}) => {
     },
 
     // (required) Called when a remote or local notification is opened or received
-    onNotification: function(notification) {
+    onNotification: function (notification) {
       // __log(notification, 'notification')
       // process the notification
       processNotification(notification)
@@ -148,8 +148,10 @@ window.processNotification = (notification = push) => {
     // _alert('no need alert')
     return
   }
+  log(title, 'title')
+  log(body, 'body')
   if (title) {
-    alert(`${title}\n${body}`, 'info', {
+    alert({ title: title, body: body }, 'info', {
       onTapped: () => {
         // log(data, 'data')
         // let { action } = data

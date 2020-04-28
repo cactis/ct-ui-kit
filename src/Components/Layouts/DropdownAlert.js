@@ -27,11 +27,21 @@ export class DropdownAlert extends React.PureComponent {
   open = (content, type, options = {}) => {
     // log(options, 'options')
     // let { title, type = 'success' } = options
-    let { title, onTapped = () => {}, onClose = () => {} } = options
+    let title, body
+    log(typeof content, '----')
+    if (typeof content == 'string') {
+      log('content is String')
+      body = content
+    } else {
+      title = content.title
+      body = content.body
+    }
+    let { onTapped = () => {}, onClose = () => {} } = options
     this.mounted &&
       this.setState({
         type,
         title,
+        body,
         content,
         options,
       })
@@ -52,14 +62,14 @@ export class DropdownAlert extends React.PureComponent {
   }
 
   render() {
-    let { title, content, type } = this.state
+    let { title, body, type } = this.state
     log(type, 'type')
     let backgroundColor =
       type == 'success' ? DROPDOWNALERT_COLOR : DROPDOWNALERT_COLOR_INFO
     log(backgroundColor, 'backgroundColor')
     return (
       <ModalBox
-        ref={c => (this.modal = c)}
+        ref={(c) => (this.modal = c)}
         flex={0}
         position="top"
         entry="top"
@@ -81,7 +91,7 @@ export class DropdownAlert extends React.PureComponent {
           width={SCREEN_WIDTH - rwd(30) * 2}
           flow="row"
           style={{
-            borderRadius: rwd(40),
+            borderRadius: rwd(50),
             backgroundColor: backgroundColor,
           }}
           activeOpacity={1}
@@ -94,23 +104,24 @@ export class DropdownAlert extends React.PureComponent {
         >
           <T.Center flex={0}>
             <T.Icon
-              size={rwd(30)}
+              size={rwd(25)}
               name="sun"
               color="#efefef"
               iconSet="Feather"
             />
           </T.Center>
-          <T.Space />
           <T.Col xAlign="center">
-            <T.Label color="#fff" text={title} theme="H2" />
-            <T.Text color="#fff" text={content} numberOfLines={0} />
+            <T.Label color="#fff" text={title} text_="title" theme="H2" />
+            <T.Space>
+              <T.Text color="#fff" text={body} text_="body" numberOfLines={0} />
+            </T.Space>
           </T.Col>
         </T.Grid>
       </ModalBox>
     )
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

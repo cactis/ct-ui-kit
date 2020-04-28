@@ -4,7 +4,12 @@ import React from 'react'
 
 import D from 'react-native-device-info'
 import _ from 'lodash'
-import { PermissionsAndroid, Platform, Share as RNShare } from 'react-native'
+import {
+  Alert,
+  PermissionsAndroid,
+  Platform,
+  Share as RNShare,
+} from 'react-native'
 
 import Rate, { AndroidMarket } from 'react-native-rate'
 
@@ -126,7 +131,7 @@ window._autoRun = (action, run, always = false) => {
   }
 }
 
-window._trace = key => {
+window._trace = (key) => {
   if (key) log(key, 'tracing ----')
   key = key ? key : randId()
   _runOnce(key, () => {
@@ -149,7 +154,7 @@ window.rwd = (num, weight = 1) => {
 window._runLast = undefined
 window.runLast = (func, wait = 1000, ...args) => {
   clearTimeout(_runLast)
-  _runLast = setTimeout(args => {
+  _runLast = setTimeout((args) => {
     func.apply(null, args)
   }, wait)
 }
@@ -165,16 +170,16 @@ window._runOnce = (key, run) => {
 window.delayedTimer = undefined
 window.delayed = (func, wait = 1000, ...args) => {
   clearTimeout(delayedTimer)
-  delayedTimer = setTimeout(args => {
+  delayedTimer = setTimeout((args) => {
     func.apply(null, args)
   }, wait)
 }
 
 window.navigateTo = (navigation, route, params = {}) => {
   // log(navigation, 'navigation in Library#navigateTo----------------')
-  let nextKey = `${route}_${params?.data?.item?.id ||
-    params?.data?.id ||
-    params?.url}_${randId()}`
+  let nextKey = `${route}_${
+    params?.data?.item?.id || params?.data?.id || params?.url
+  }_${randId()}`
 
   if (!navigation) return
   // log(params, 'params - in Library navigateTo')
@@ -218,9 +223,9 @@ window.pushTo = (navigation, route, params = {}) => {
     // log(navigation, 'navigation pushTo called')
     if (!navigation) return
     // log(params, 'params - in Library pushTo')
-    let nextKey = `${route}_${params?.data?.item?.id ||
-      params?.data?.id ||
-      randId()}`
+    let nextKey = `${route}_${
+      params?.data?.item?.id || params?.data?.id || randId()
+    }`
     // log(nextKey, 'nextKey - in Library pushTo')
 
     // log(navigation, 'navigation - in ')
@@ -236,7 +241,7 @@ window.pushTo = (navigation, route, params = {}) => {
   // }
 }
 
-String.prototype.remove = function(str) {
+String.prototype.remove = function (str) {
   if (this) {
     return this.replace(str, '')
   } else {
@@ -244,7 +249,7 @@ String.prototype.remove = function(str) {
   }
 }
 
-Array.prototype.sample = function(num) {
+Array.prototype.sample = function (num) {
   let items = this
   // log(items, 'items - in sample')
   let item = items[Math.floor(Math.random() * items.length)]
@@ -313,20 +318,20 @@ window.timeAgo = (date, locale = 'en') => {
   return moment(date).fromNow()
 }
 
-Array.prototype.insert = function(index, item) {
+Array.prototype.insert = function (index, item) {
   log(this, 'this')
   return [...this.slice(0, index), item, ...this.slice(index)]
 }
 
-_.insert = function(arr, index, item) {
+_.insert = function (arr, index, item) {
   arr.splice(index, 0, item)
   log(arr, 'arr')
   return arr
 }
 
-window.asJSON = data => {
+window.asJSON = (data) => {
   try {
-  // log(data,  'data')
+    // log(data,  'data')
     var json = JSON.parse(data)
     if (typeof json === 'object') {
       return json
@@ -338,7 +343,7 @@ window.asJSON = data => {
   }
 }
 
-String.prototype.asJSON = function() {
+String.prototype.asJSON = function () {
   window.asJSON(this)
 }
 
@@ -373,7 +378,7 @@ window.openURL = (url, options = {}) => {
   // })
 }
 
-RegExp.prototype.indexOf = function(str, startIndex) {
+RegExp.prototype.indexOf = function (str, startIndex) {
   var re = new RegExp(
     this.source,
     'g' + (this.ignoreCase ? 'i' : '') + (this.multiLine ? 'm' : '')
@@ -384,7 +389,7 @@ RegExp.prototype.indexOf = function(str, startIndex) {
   return re.lastIndex - res[0].length
 }
 
-window.asCurrency = function(num, dollar = '') {
+window.asCurrency = function (num, dollar = '') {
   if (num == null) {
     return ''
   }
@@ -397,7 +402,7 @@ window.asCurrency = function(num, dollar = '') {
   return `${dollar} ${r}`
 }
 
-Number.prototype.asCurrency = function(dollar = '') {
+Number.prototype.asCurrency = function (dollar = '') {
   return asCurrency(this)
 }
 
@@ -426,7 +431,7 @@ window.audioRecording = (item, options = {}) => {
   )
 }
 
-window.drawerToggler = navigation => {
+window.drawerToggler = (navigation) => {
   window.navigation = navigation
   return (
     <T.Div paddingRight={10}>
@@ -441,7 +446,7 @@ window.drawerToggler = navigation => {
   )
 }
 
-window.openDrawer = navigation => {
+window.openDrawer = (navigation) => {
   window.navigation?.openDrawer()
 }
 
@@ -497,7 +502,7 @@ doRating = () => {
     fallbackPlatformURL: 'https://readus.org/rating_callback',
   }
   // delayed(() => {
-  Rate.rate(options, success => {
+  Rate.rate(options, (success) => {
     if (success) {
       // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
       // this.setState({ rated: true })
@@ -505,30 +510,6 @@ doRating = () => {
   })
   // })
 }
-
-// alert functions
-
-// window.alert = (message, type, onClose) => {
-//   prompt(message, type, onClose)
-// }
-
-// window._alert = (message, type, onClose) => {
-//   if (__DEV__) prompt(`__DEV__: ${message}`, type, onClose)
-// }
-
-// window.onDropdownClosed = () => {}
-// window.prompt = (message = 'Comming Soon!', type, onClose) => {
-//   log(onClose, 'onClose')
-//   let title = { error: 'Error' }[type] || ''
-//   let _type = type || 'success'
-//   if (onClose) {
-//     window.onDropdownClosed = onClose
-//   } else {
-//     window.onDropdownClosed = () => {}
-//   }
-//   // console.log(message, title)
-//   window.dropdown.alertWithType(_type, title, message)
-// }
 
 /////////////////////////
 window.alert = (message, type, options = {}) => {
@@ -540,11 +521,14 @@ window._alert = (message, type, options = {}) => {
 }
 
 window.prompt = (message = 'Coming soon~', type, options = {}) => {
-  let title = { error: '錯誤' }[type] || ''
-  let _type = type || 'success'
-  log(_type, '_type in prompt')
-
-  dropdown.open(message, type, options)
+  if (window.dropdown) {
+    let title = { error: '錯誤' }[type] || ''
+    let _type = type || 'success'
+    log(_type, '_type in prompt')
+    window.dropdown.open(message, type, options)
+  } else {
+    Alert.alert(`${message}`)
+  }
 }
 
 window.__warning__ = (message, type = 'error', onClose) => {

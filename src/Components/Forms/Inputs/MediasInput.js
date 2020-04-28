@@ -18,10 +18,10 @@ export class MediasInput extends React.PureComponent {
       <T.Row borderWidth={0} borderColor="rgb(221,221,221)" padding={SIZE.s}>
         <T.Row>
           <T.Label
-            text={`${_.reject(item.uploads, i => i._destroy).length} photos`}
+            text={`${_.reject(item.uploads, (i) => i._destroy).length} photos`}
           />
           <T.List
-            ref={c => (this.list = c)}
+            ref={(c) => (this.list = c)}
             horizontal
             data={item.uploads}
             renderItem={({ item, index }) =>
@@ -83,20 +83,20 @@ export class MediasInput extends React.PureComponent {
       // cropping: false,
       // cicular: true,
       includeBase64: true,
-    }).then(async images => {
+    }).then(async (images) => {
       let photos = await Promise.all(
-        images.map(async image => {
+        images.map(async (image) => {
           return await base64Image(image)
         })
       )
       // let photos = images
-      log(photos, 'photos 3333333')
+      // log(photos, 'photos 3333333')
       // setData(image)
       // onChanged(image)
       let { data } = this.state
-    // log(data,  'data 4444444')
+      // log(data,  'data 4444444')
       data.uploads.push(...photos)
-    // log(data,  'data 55555')
+      // log(data,  'data 55555')
       // data.photos = photos
       this.setState({ data: { ...data } })
       // return photos
@@ -110,7 +110,7 @@ export class MediasInput extends React.PureComponent {
     }
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

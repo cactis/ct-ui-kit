@@ -8,7 +8,7 @@ import { Icon } from '../Images'
 
 import { Linking } from 'react-native'
 
-export const Button1 = props => {
+export const Button1 = (props) => {
   let { color = 'white', backgroundColor = BUTTON_COLOR1, ...prop } = props
   return <Button color={color} backgroundColor={backgroundColor} {...prop} />
 }
@@ -56,7 +56,7 @@ export class Button extends React.PureComponent {
         title: 'abc',
       })
     } else {
-      Linking.canOpenURL(url).then(supported => {
+      Linking.canOpenURL(url).then((supported) => {
         if (supported) {
           Linking.openURL(url)
         } else {
@@ -74,11 +74,12 @@ export class Button extends React.PureComponent {
       beep,
       // color,
       color,
+      bordered = false,
       titleColor = color,
       rightIcon,
       leftIcon,
       titleStyle,
-      labelTheme = 'H5',
+      labelTheme = 'H6',
       link,
       onPress,
       fontSize = titleStyle?.fontSize || BASE_SIZE * 1.2,
@@ -98,6 +99,7 @@ export class Button extends React.PureComponent {
     //         .toString()
     //     : 'white',
     // } = props
+    let _bordered = bordered ? { borderWidth: 0.5, borderColor: '#111' } : {}
     let negtive = this.props.negtive ? styles.negtive : {}
     // log(negtive, 'negtive')
     return (
@@ -110,12 +112,13 @@ export class Button extends React.PureComponent {
             backgroundColor: backgroundColor,
             // borderColor: borderColor,
             flexDirection: 'row',
-            paddingHorizontal: padding * 1,
-            paddingVertical: padding,
+            // paddingHorizontal: padding * 1,
+            // paddingVertical: padding,
             // ...Styles.shadow,
 
             ...style,
           }}
+          {..._bordered}
           {...props}
         >
           {leftIcon}
@@ -143,21 +146,22 @@ export class Button extends React.PureComponent {
 
 const styles = {
   pill: {
-    borderRadius: rwd(5),
+    borderRadius: BUTTON_RADIUS,
     borderWidth: 0.5,
     borderColor: 'rgba(138,210,205,.66)',
     // padding: 6,
     lineHeight: 1.8,
-    paddingHorizontal: 20,
+    paddingHorizontal: BUTTON_RADIUS,
+    paddingVertical: BUTTON_RADIUS / 2,
     // backgroundColor: 'rgb(93,12,142)',
     // ...Styles.shadow,
     label: {},
   },
   normal: {
-    borderRadius: 5,
+    borderRadius: BUTTON_RADIUS,
     // lineHeight: 2.5,
-    paddingHorizontal: rwd(10),
-    paddingVertical: rwd(5),
+    paddingHorizontal: BUTTON_RADIUS,
+    paddingVertical: BUTTON_RADIUS / 2,
     borderWidth: 0.5,
     backgroundColor: 'transparent',
     borderColor: 'rgba(255,255,255,1)',

@@ -9,17 +9,23 @@ export class CheckBox extends React.PureComponent {
 
   render() {
     let { checked } = this.state
+    let {
+      checkedIconName = 'ios-checkmark-circle',
+      unCheckedIconName = 'ios-checkmark-circle-outline',
+      iconSet = 'Ionicons',
+    } = this.props
     // log(checked, 'checked in CheckBox render()')
     // if (!checked) return null
     // let { item = checked } = checked
-    let name = checked ? 'ios-checkmark-circle' : 'ios-checkmark-circle-outline'
+
+    let name = checked ? checkedIconName : unCheckedIconName
     let color = checked ? '#333' : '#999'
     return (
       // <T.Row flex={0} onPress={this._onChecked}>
       <T.Icon
         name={name}
         color={color}
-        iconSet="Ionicons"
+        iconSet={iconSet}
         size={rwd(25)}
         onPress={this._onChecked}
       />
@@ -39,7 +45,7 @@ export class CheckBox extends React.PureComponent {
     onChecked && onChecked(checked)
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { checked = false } = this.props
     this.mounted &&
       this.setState({ checked }, () => {
