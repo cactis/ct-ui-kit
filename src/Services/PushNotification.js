@@ -119,7 +119,7 @@ const push = {
   sound: 'default',
 }
 window.processNotification = (notification = push) => {
-  __log(notification, 'notification')
+  // __log(notification, 'notification')
   // notification =
   // let { alert } = notification
   // let { title, body} = notification
@@ -148,9 +148,9 @@ window.processNotification = (notification = push) => {
     // _alert('no need alert')
     return
   }
-  log(title, 'title')
-  log(body, 'body')
-  if (title) {
+  // log(title, 'title')
+  // log(body, 'body')
+  if (title || body) {
     alert({ title: title, body: body }, 'info', {
       onTapped: () => {
         // log(data, 'data')

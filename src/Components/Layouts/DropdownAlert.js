@@ -111,7 +111,13 @@ export class DropdownAlert extends React.PureComponent {
             />
           </T.Center>
           <T.Col xAlign="center">
-            <T.Label color="#fff" text={title} text_="title" theme="H2" />
+            <T.Label
+              color="#fff"
+              text={title}
+              text_="title"
+              theme="H2"
+              numberOfLines={3}
+            />
             <T.Space>
               <T.Text color="#fff" text={body} text_="body" numberOfLines={0} />
             </T.Space>
