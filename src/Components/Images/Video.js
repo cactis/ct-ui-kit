@@ -3,8 +3,9 @@ import RNVideo from 'react-native-video'
 
 // import { Thumbnail } from 'react-native-thumbnail-video'
 
-export const Video = props => {
+export const Video = (props) => {
   let { navigation, url } = props
+  log(url, 'url')
   let [paused = false, setPaused] = useState(null)
   let [color = 'rgba(38,38,38,.78)', setColor] = useState(null)
   // if (!data) return null
@@ -47,7 +48,7 @@ export const Video = props => {
       }
     )
   }
-  videoError = err => {
+  videoError = (err) => {
     log(err, 'err')
   }
   log(url, 'url')
@@ -55,7 +56,7 @@ export const Video = props => {
     <T.Grid>
       <RNVideo
         flex={1}
-        ref={c => (player = c)}
+        ref={(c) => (player = c)}
         // flex={1}
         allowsFullscreenVideo={true}
         // originWhitelist={['*']}

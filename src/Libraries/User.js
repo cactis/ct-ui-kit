@@ -3,7 +3,7 @@ import { Api } from './'
 import { Linking } from 'react-native'
 
 export class User extends Component {
-  static validateToken = async onSuccess => {
+  static validateToken = async (onSuccess) => {
     log('validateToken called')
 
     let accessTokens = await User.tokens()
@@ -18,6 +18,7 @@ export class User extends Component {
     // log(url, 'url')
     let res = await Api.get(url)
     let { data: user = res } = res
+    log(res, 'res')
     // log(user, 'user in validateToken')
     if (user !== undefined && user.id !== undefined) {
       // runLast(() => {
@@ -105,7 +106,7 @@ export class User extends Component {
     return await Storage.get('phone')
   }
 
-  static logout = async onSuccess => {
+  static logout = async (onSuccess) => {
     log('logout')
     // let { currentUser } = global
     // log(currentUser, 'currentUser')
@@ -170,12 +171,12 @@ export default User
 import AsyncStorage from '@react-native-community/async-storage'
 
 export class Storage {
-  static clearAll = async callback => {
+  static clearAll = async (callback) => {
     // alert('clear all')
     AsyncStorage.clear(() => {
       // alert('clear done')
       // log('clear all AsyncStorage')
-      AsyncStorage.getAllKeys().then(keys => {
+      AsyncStorage.getAllKeys().then((keys) => {
         log(keys, 'keys - in Storage clearAll')
         callback && callback()
       })

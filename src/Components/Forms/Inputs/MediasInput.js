@@ -46,9 +46,14 @@ export class MediasInput extends React.PureComponent {
                         backgroundColor="rgba(255,255,255,.87)"
                         onPress={() => {
                           this.setState({ data: { ...data } }, () => {
-                            data.uploads[index]._destroy = true
-                            this.setState({ data: { ...data } })
-                            this.props.onUpdate && this.props.onUpdate(data)
+                            confirm(
+                              () => {
+                                data.uploads[index]._destroy = true
+                                this.setState({ data: { ...data } })
+                                this.props.onUpdate && this.props.onUpdate(data)
+                              },
+                              { title: `Confirm to delete?` }
+                            )
                           })
                         }}
                       />
