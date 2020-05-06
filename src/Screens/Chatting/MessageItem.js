@@ -75,7 +75,7 @@ export class MessageItem extends React.PureComponent {
             ref="list"
             url={url}
             extraData={url}
-            renderItem={item => (
+            renderItem={(item) => (
               <T.MessageItem data={item} parent={this.props.parent} />
             )}
           />
@@ -84,21 +84,21 @@ export class MessageItem extends React.PureComponent {
     )
   }
 
-  loadList = url => {
-    log(url, 'url')
+  loadList = (url) => {
+    // log(url, 'url')
     this.setState({ url }, () => {
       this.refs.list?.reloadData()
     })
   }
 
-  reply = item => {
+  reply = (item) => {
     log(this.props.parent.messageRefs, 'this.props.parent.messageRefs')
     // log(item, 'item')
     // global.currentThread = this
     this.props.parent.replyTo(item)
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

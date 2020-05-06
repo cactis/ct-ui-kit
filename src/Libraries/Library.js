@@ -351,7 +351,7 @@ window.openURL = (url, options = {}) => {
   // alert(url)
   // let { url, title } = options
   let { title } = options
-  log(url, 'url')
+  // log(url, 'url')
   // navigateTo(navigation, 'WebViewScreen', {
   //   uri: url,
   //   title: url,

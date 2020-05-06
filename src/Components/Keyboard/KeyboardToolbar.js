@@ -70,7 +70,8 @@ export class KeyboardToolbar extends React.PureComponent {
     // alert(modalHeight)
     return (
       <ModalBox
-        ref={c => (this.modal = c)}
+        useNativeDriver={true}
+        ref={(c) => (this.modal = c)}
         // flex={0}
         borderWidth={1}
         position="bottom"
@@ -116,7 +117,7 @@ export class KeyboardToolbar extends React.PureComponent {
   //   this.forceUpdate()
   // }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

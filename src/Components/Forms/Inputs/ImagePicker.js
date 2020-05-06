@@ -37,23 +37,23 @@ window.base64Image = async (image) => {
   // log(image, 'image in base64Image')
   let { mime, path } = image
   // log(path, 'path')
-  if (mime.search(/mp4/) > -1) {
-    // log('read mp4')
-    let base64 = await RNFS.readFile(path, 'base64')
-    image.data = base64
-    // .then(async base64 => {
-    //   // log(base64, 'base64 222222222222')
-    //   image.data = await base64
-    // log(image, 'image')
-    //   // onGetImage(image)
-    //   return image
-    // })
-    // .catch(err => {
-    //   log(err, 'err')
-    // })
-    return image
-  } else {
-    // onGetImage(image)
-    return image
-  }
+  // if (mime.search(/mp4/) > -1) {
+  // log('read mp4')
+  let base64 = await RNFS.readFile(path, 'base64')
+  image.data = base64
+  // .then(async base64 => {
+  //   // log(base64, 'base64 222222222222')
+  //   image.data = await base64
+  // log(image, 'image')
+  //   // onGetImage(image)
+  //   return image
+  // })
+  // .catch(err => {
+  //   log(err, 'err')
+  // })
+  return image
+  // } else {
+  //   // onGetImage(image)
+  //   return image
+  // }
 }

@@ -11,7 +11,7 @@ export class CardList extends React.PureComponent {
 
   render() {
     let { data, url } = this.state
-  // log(data,  'data in CardList render()')
+    // log(data,  'data in CardList render()')
     // if (!data) return null
     // let { item = data} = data
     let {
@@ -22,7 +22,7 @@ export class CardList extends React.PureComponent {
     return (
       <T.Center>
         <Carousel
-          ref={c => (this.list = c)}
+          ref={(c) => (this.list = c)}
           url={url}
           onSnapToItem={this.onSnapToItem}
           // borderWidth={1}
@@ -37,7 +37,7 @@ export class CardList extends React.PureComponent {
     )
   }
   itemEvent = {
-    onDeleted: item => {
+    onDeleted: (item) => {
       // this.flatList._reload()
       // log(item, 'item - in itemDeleted#List')
       let { data } = this.state
@@ -50,11 +50,11 @@ export class CardList extends React.PureComponent {
       })
       // this.forceUpdate()
     },
-    onCreated: item => {
+    onCreated: (item) => {
       // this._reload()
       // return
       // let { item = newItem } = newItem
-    // log(item, 'item in List#itemEvent#onCreated')
+      // log(item, 'item in List#itemEvent#onCreated')
       // // log(item, 'item - in List#itemCreated')
       let { data } = this.state
       data = [item, ...data]
@@ -72,10 +72,10 @@ export class CardList extends React.PureComponent {
       // this.forceUpdate()
     },
     onUpdated: (item, callback) => {
-    // log(item, 'item - in itemChanged#List')
+      // log(item, 'item - in itemChanged#List')
       let { data } = this.state
       data[item.index] = item.item
-    // log(data,  'data in onUpdated')
+      // log(data,  'data in onUpdated')
       this.setState({ data: [] }, () => {
         this.setState(
           {
@@ -92,7 +92,7 @@ export class CardList extends React.PureComponent {
     },
   }
 
-  onSnapToItem = index => {
+  onSnapToItem = (index) => {
     log(index, 'index')
     if (index > this.state.data.length - 5) this.fetchData()
     this.props.onScrollTo &&
@@ -127,8 +127,8 @@ export class CardList extends React.PureComponent {
     page = page + 1
     url = `${url}/page/${page}`
     if (keyword) url = `${url}?keyword=${keyword}`
-    log(url, 'url')
-    T.Api.get(url, {}, res => {
+    // log(url, 'url')
+    T.Api.get(url, {}, (res) => {
       this.loading = false
       let { data } = res
       if (page == 1) {
@@ -142,7 +142,7 @@ export class CardList extends React.PureComponent {
       // })
     })
   }
-  _renderItem = item => (
+  _renderItem = (item) => (
     <T.Row flex={0}>
       <T.Image />
       <T.Label text={item.index} />
@@ -156,7 +156,7 @@ export class CardList extends React.PureComponent {
     }
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data, url } = this.props
     this.mounted &&
       this.setState({ data, url }, () => {

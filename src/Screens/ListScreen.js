@@ -31,8 +31,8 @@ export class ListScreen extends React.PureComponent {
     let { data, url, renderItem, title } = this.state
     // if (!data) return null
     if (!url) return null
-    log(url, 'url')
-  // log(data,  'data in ListScreen render() ')
+    // log(url, 'url')
+    // log(data,  'data in ListScreen render() ')
     return (
       <T.Screen padding={0}>
         <T.List
@@ -54,11 +54,11 @@ export class ListScreen extends React.PureComponent {
     )
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     if (_navigation.state.params) {
       let { data, url, renderItem, title } = _navigation.state.params
       // _navigation.setParams({ title: '改為新標題' })
-      log(url, 'url -22222222222222222222')
+      // log(url, 'url -22222222222222222222')
       this.mounted &&
         this.setState({ data, url, renderItem, title }, () => {
           this.forceUpdate()

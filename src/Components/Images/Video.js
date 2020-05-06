@@ -5,7 +5,7 @@ import RNVideo from 'react-native-video'
 
 export const Video = (props) => {
   let { navigation, url } = props
-  log(url, 'url')
+  // log(url, 'url')
   let [paused = false, setPaused] = useState(null)
   let [color = 'rgba(38,38,38,.78)', setColor] = useState(null)
   // if (!data) return null
@@ -51,7 +51,7 @@ export const Video = (props) => {
   videoError = (err) => {
     log(err, 'err')
   }
-  log(url, 'url')
+  // log(url, 'url')
   return (
     <T.Grid>
       <RNVideo

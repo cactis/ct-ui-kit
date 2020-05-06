@@ -20,7 +20,7 @@ export class List extends React.PureComponent {
     ddd__: Array(15)
       .join()
       .split(',')
-      .map(_ => 1),
+      .map((_) => 1),
     url: this.props.url,
     refresh: true,
     page: 0,
@@ -33,13 +33,13 @@ export class List extends React.PureComponent {
   indexChanged = (index, checked) => {
     // log(index, checked, 'index, checked - in indexChanged in List')
     let { data } = this.state
-    data.forEach(i => (i._checked = false))
+    data.forEach((i) => (i._checked = false))
     data[index]._checked = checked
     this.mounted && this.setState({ data: [...data] })
   }
 
   itemEvent = {
-    onDeleted: item => {
+    onDeleted: (item) => {
       // this.flatList._reload()
       // log(item, 'item - in itemDeleted#List')
       let { data } = this.state
@@ -52,11 +52,11 @@ export class List extends React.PureComponent {
       })
       // this.forceUpdate()
     },
-    onCreated: item => {
+    onCreated: (item) => {
       // this._reload()
       // return
       // let { item = newItem } = newItem
-    // log(item, 'item in List#itemEvent#onCreated')
+      // log(item, 'item in List#itemEvent#onCreated')
       // // log(item, 'item - in List#itemCreated')
       let { data } = this.state
       data = [item, ...data]
@@ -73,11 +73,11 @@ export class List extends React.PureComponent {
       // this.flatList.forceUpdate()
       // this.forceUpdate()
     },
-    onUpdated: item => {
-    // log(item, 'item - in itemChanged#List')
+    onUpdated: (item) => {
+      // log(item, 'item - in itemChanged#List')
       let { data } = this.state
       data[item.index] = item.item
-    // log(data,  'data')
+      // log(data,  'data')
       // this.setState({ data: [] }, () => {
       this.setState({
         data: [...data],
@@ -94,14 +94,14 @@ export class List extends React.PureComponent {
     this._reload()
   }
 
-  clearData = onComplete => {
+  clearData = (onComplete) => {
     this.mounted &&
       this.setState({ data: [] }, () => {
         onComplete && onComplete()
       })
   }
 
-  _reload = onSuccess => {
+  _reload = (onSuccess) => {
     // log('_reload in List')
     this.mounted &&
       this.setState(
@@ -127,7 +127,7 @@ export class List extends React.PureComponent {
     // }, delay)
   }
 
-  scrollToIndex = index => {
+  scrollToIndex = (index) => {
     // alert(index)
     this.flatList.scrollToIndex({ index: index })
   }
@@ -136,7 +136,7 @@ export class List extends React.PureComponent {
     this.mounted && this.setState({ refresh: !this.state.refresh })
   }
 
-  fetchData = async onSuccess => {
+  fetchData = async (onSuccess) => {
     // log('fetchData')
     let { prettyPage = true } = this.props
     if (this.state.isPageLoading) {
@@ -275,7 +275,7 @@ export class List extends React.PureComponent {
     <ListItem data={item} navigation={this.props.navigation} />
   )
 
-  onViewableItemsChanged = info => {
+  onViewableItemsChanged = (info) => {
     // log(info, 'info in List onViewableItemsChanged()')
     let last = _.last(info.viewableItems)
     let first = _.first(info.viewableItems)
@@ -285,11 +285,11 @@ export class List extends React.PureComponent {
     // this.props.onScroll && this.props.onScroll()
   }
 
-  _onBeginDrag = params => {
+  _onBeginDrag = (params) => {
     // log(params, 'params in _onBeginDrag')
     this.props.onBeginDrag && this.props.onBeginDrag()
   }
-  _onDragEnd = params => {
+  _onDragEnd = (params) => {
     // log(params, 'params in _onDragEnd')
     //   let { data } = params
     //   let { onDragEnd } = this.props
@@ -340,6 +340,7 @@ export class List extends React.PureComponent {
       ListHeaderComponent
     )
     let ListTagType = draggable ? DraggableFlatList : RNList
+    log(ListTagType, 'ListTagType')
     return (
       <Grid>
         {data ? (
@@ -347,11 +348,11 @@ export class List extends React.PureComponent {
             // key={`randId()`}
             // listKey={`randId()`}
             // keyExtractor={(item, index) => index.toString()}
-            onDragBegin={index => log(index, 'index')}
-            onRelease={index => log(index, 'index')}
+            onDragBegin={(index) => log(index, 'index')}
+            onRelease={(index) => log(index, 'index')}
             onScrollBeginDrag={this._onBeginDrag}
             onScrollEndDrag={this._onDragEnd}
-            ref={c => (this.flatList = c)}
+            ref={(c) => (this.flatList = c)}
             data={data}
             onScroll={this._onScroll}
             onViewableItemsChanged={this.onViewableItemsChanged}
@@ -382,7 +383,7 @@ export class List extends React.PureComponent {
               searchable ? (
                 <Div>
                   <SearchBar
-                    onChange={keyword => {
+                    onChange={(keyword) => {
                       // log(e, 'e')
                       // let keyword = e.nativeEvent.text
                       log(keyword, 'keyword')

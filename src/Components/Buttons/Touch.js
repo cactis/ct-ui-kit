@@ -28,7 +28,7 @@ window.beep = () => {
   }
 }
 export class Touch extends Component {
-  _beep = beep => {
+  _beep = (beep) => {
     log(beep, 'beep')
     // let { beep = false } = this.props
     if (beep) window.beep()

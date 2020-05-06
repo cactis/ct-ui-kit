@@ -16,7 +16,7 @@ export const PushNotification = (navigation, options = {}) => {
     //   alert(err)
     // },
     onRegister: function (token) {
-      // alert(token)
+      // _alert(token)
       // log(token, 'token in PushNotification#onRegister')
       let params = {
         device: {
@@ -35,7 +35,7 @@ export const PushNotification = (navigation, options = {}) => {
 
     // (required) Called when a remote or local notification is opened or received
     onNotification: function (notification) {
-      // __log(notification, 'notification')
+      __log(notification, 'notification')
       // process the notification
       processNotification(notification)
       // alert('got it')
