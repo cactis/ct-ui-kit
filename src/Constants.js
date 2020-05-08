@@ -219,6 +219,7 @@ window.STATUSBAR_HEIGHT = statusBarHeight
 //   iOS &&
 //   ((SCREEN_HEIGHT === X_HEIGHT && SCREEN_WIDTH === X_WIDTH) ||
 //     (SCREEN_HEIGHT === X_WIDTH && SCREEN_WIDTH === X_HEIGHT))
+window.CONTENT_HEIGHT = SCREEN_HEIGHT - headerHeight - rwd(100)
 import D from 'react-native-device-info'
 window.isSimulator = () => {
   return D.isEmulator()

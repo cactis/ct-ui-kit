@@ -83,7 +83,13 @@ export class FileInput extends React.PureComponent {
       const res = await DocumentPicker.pick({
         type: [DocumentPicker.types.pdf],
       })
-      let file = { path: res.uri, mime: res.type }
+      let file = {
+        path: res.uri,
+        mime: res.type,
+        filename: res.name,
+        size: res.size,
+        info: res,
+      }
       file = await base64Image(file)
       let { data } = this.state
       data.uploads.push(file)

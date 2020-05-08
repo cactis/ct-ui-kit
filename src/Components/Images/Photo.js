@@ -1,9 +1,10 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Modal } from 'react-native'
 import * as T from '../../'
 import ImageView from 'react-native-image-view'
 import FastImage from 'react-native-fast-image'
 import ImagePicker from 'react-native-image-crop-picker'
+import ImageViewer from 'react-native-image-zoom-viewer'
 
 let _navigation
 export class Photo extends React.PureComponent {
@@ -32,16 +33,37 @@ export class Photo extends React.PureComponent {
       ...props
     } = this.props
     this.setState({ thumbUri })
-    this.images = [
-      {
+    log(this.props.images, 'this.props.images')
+    this.images = this.props.images
+      ? this.getImages(this.props.images)
+      : [
+          {
+            source: {
+              uri: uri,
+            },
+            title: title,
+            width: SCREEN_WIDTH,
+            height: SCREEN_HEIGHT,
+          },
+        ]
+    log(this.images, 'this.images')
+  }
+
+  getImages = (images) => {
+    log(images, 'images')
+    images = _.filter(images, { type: 'Photo' })
+    return _.map(images, (img) => {
+      return {
         source: {
-          uri: uri,
-          title: title,
-          width: SCREEN_WIDTH,
-          height: SCREEN_HEIGHT,
+          uri: img.file_url,
         },
-      },
-    ]
+        title: img.title,
+        width: SCREEN_WIDTH,
+        height: SCREEN_HEIGHT,
+        // next: true,
+        // prev: true,
+      }
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -52,6 +74,10 @@ export class Photo extends React.PureComponent {
   //   if (prevProps.aspectRatio !== this.props.aspectRatio)
   //     this.setState({ aspectRatio: this.props.aspectRatio })
   // }
+
+  preview = () => {
+    this.setState({ preview: true })
+  }
 
   render() {
     let {
@@ -78,7 +104,7 @@ export class Photo extends React.PureComponent {
         onPress={() => {
           // _log(uri, 'uri')
           // alert(uri)
-          this.setState({ preview: true })
+          this.preview()
         }}
       >
         <T.Image
@@ -88,14 +114,22 @@ export class Photo extends React.PureComponent {
           uri={thumbUri}
           {...props}
         />
+        {/* <Modal visible={preview} transparent={true}> */}
         <ImageView
           images={this.images}
-          imageIndex={0}
+          imageUrls={this.images}
+          imageIndex={this.props.index || 0}
+          index={this.props.index || 0}
+          enablePreload={true}
+          enableSwipeDown={true}
           isVisible={preview}
           onClose={() => {
             this.setState({ preview: false })
           }}
-          renderFooter={currentImage => (
+          onCancel={() => {
+            this.setState({ preview: false })
+          }}
+          renderFooter={(currentImage) => (
             <T.Grid padding={SAFEAREA_BOTTOM + rwd(10)}>
               <T.Text theme="H7" color="white">
                 {title}
@@ -103,6 +137,7 @@ export class Photo extends React.PureComponent {
             </T.Grid>
           )}
         />
+        {/* </Modal> */}
         {onChange ? (
           <T.Float right={-5} bottom={0}>
             <T.Center
@@ -131,7 +166,7 @@ export class Photo extends React.PureComponent {
         mediaType: 'photo',
 
         includeBase64: true,
-      }).then(image => {
+      }).then((image) => {
         // log(image, 'image 11111')
         this.setState({ thumbUri: image.path })
         onChange(image)

@@ -12,7 +12,7 @@ export const Video = (props) => {
   let player = React.forwardRef()
   _onPress = () => {
     // alert(url)
-    popup.open(
+    popupScreen.open(
       <RNVideo
         source={{ uri: url }}
         {...props}
@@ -52,6 +52,7 @@ export const Video = (props) => {
     log(err, 'err')
   }
   // log(url, 'url')
+  log(props.style, 'ssssss')
   return (
     <T.Grid>
       <RNVideo
@@ -77,8 +78,10 @@ export const Video = (props) => {
           // flex: 1,
           width: '100%',
           height: SCREEN_WIDTH / 1.5,
+          height: '100%',
           // height: 300,
           // height: T.size.contentHeight,
+          ...props.style,
         }}
       />
       <T.Float

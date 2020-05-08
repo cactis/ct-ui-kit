@@ -28,7 +28,8 @@ export class Image extends Component {
     //   let _source = source //{ ...source, priority: FastImage.priority.normal }
     // }
     // log(_source, '_source')
-    aspectRatio = aspectRatio ? { aspectRatio: aspectRatio } : {}
+    aspectRatio =
+      aspectRatio && !this.props.style ? { aspectRatio: aspectRatio } : {}
     // _log(uri)
     let Tag = iOS ? FastImage : RNImage
     return !uri ? null : (

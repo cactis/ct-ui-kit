@@ -25,7 +25,7 @@ export class KeyboardInput extends React.PureComponent {
   }
 
   _onKeyboardTapped = () => {}
-  replyTo = replyTo => {
+  replyTo = (replyTo) => {
     this.setState({ replyTo })
   }
   open = (text, options = {}) => {
@@ -57,7 +57,7 @@ export class KeyboardInput extends React.PureComponent {
     let modalHeight = textInputHeight + rwd(5) + (iPhoneX ? rwd(10) : rwd(5))
     // alert(modalHeight)
     return (
-      <T.KeyboardToolbar ref={c => (this.toolbar = c)}>
+      <T.KeyboardToolbar ref={(c) => (this.toolbar = c)}>
         <T.Grid
           flex={0}
           width="100%"
@@ -66,6 +66,7 @@ export class KeyboardInput extends React.PureComponent {
             height: textInputHeight,
             padding: rwd(5),
           }}
+          backgroundColor_="red"
           activeOpacity={1}
         >
           <T.Center flex={0}>
@@ -112,10 +113,10 @@ export class KeyboardInput extends React.PureComponent {
                 </T.Row>
               ) : null}
               <TextInput
-                ref={c => (window.input = c)}
+                ref={(c) => (window.input = c)}
                 value={text}
-                onChangeText={text => this.setState({ text })}
-                onContentSizeChange={e =>
+                onChangeText={(text) => this.setState({ text })}
+                onContentSizeChange={(e) =>
                   this.updateSize(e.nativeEvent.contentSize.height)
                 }
                 multiline={true}
@@ -151,7 +152,7 @@ export class KeyboardInput extends React.PureComponent {
     RNKeyboard.dismiss()
   }
 
-  updateSize = textInputHeight => {
+  updateSize = (textInputHeight) => {
     if (textInputHeight <= this.state.textInputHeight) return
     log(textInputHeight, 'textInputHeight')
     this.setState({
@@ -160,7 +161,7 @@ export class KeyboardInput extends React.PureComponent {
     this.forceUpdate()
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

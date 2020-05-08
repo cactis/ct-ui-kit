@@ -82,6 +82,7 @@ export class MediasInput extends React.PureComponent {
     RNImagePicker.openPicker({
       compressImageQuality: 1,
       multiple: true,
+      maxFiles: 10,
       // useFrontCamera: true,
       // width: 300,
       // height: 400,

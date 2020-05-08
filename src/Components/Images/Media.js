@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-export const Media = props => {
+export const Media = (props) => {
   // let _ref = React.forwardRef()
   let { navigation, image } = props
   let [data, setData] = useState(props.data)
@@ -12,6 +12,7 @@ export const Media = props => {
   // })
 
   // let Tag
+
   switch (item.type) {
     case 'Video':
       return <T.Video url={item.path || item.data || item.file_url} />
@@ -21,9 +22,13 @@ export const Media = props => {
       return (
         <T.Photo
           uri={item.path || item.data || item.small_file_url || item.file_url}
+          ref={(c) => (this.photo = c)}
           {...props}
         />
       )
+      break
+    case 'Pdf':
+      return <T.Pdf data={item} {...props} />
   }
 
   switch (item.mime) {
@@ -39,7 +44,9 @@ export const Media = props => {
       }
       return
     case 'video/mp4':
-      return <T.Video url={item.path || item.data || item.file_url} />
+      return (
+        <T.Video {...props} url={item.path || item.data || item.file_url} />
+      )
       break
     default:
       return (

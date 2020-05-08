@@ -101,6 +101,11 @@ export class List extends React.PureComponent {
       })
   }
 
+  onRefresh = () => {
+    this.props.onRefresh && this.props.onRefresh()
+    this._reload()
+  }
+
   _reload = (onSuccess) => {
     // log('_reload in List')
     this.mounted &&
@@ -125,6 +130,10 @@ export class List extends React.PureComponent {
     this.flatList?.scrollToOffset({ offset: 0, animated: true })
     this.mounted && this.setState({ toTop: 0 })
     // }, delay)
+  }
+
+  scrollToBottom = (delay = 500) => {
+    this.flatList?.scrollToEnd()
   }
 
   scrollToIndex = (index) => {
@@ -358,7 +367,7 @@ export class List extends React.PureComponent {
             onViewableItemsChanged={this.onViewableItemsChanged}
             // refreshing={isRefreshing}
             refreshing={false}
-            onRefresh={this._reload}
+            onRefresh={this.onRefresh}
             // onEndReached={this.fetchData}
             // onEndThreshold={500}
             // numColumns={data.length > 1 ? numColumns : 1}
