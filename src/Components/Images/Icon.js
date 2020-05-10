@@ -44,7 +44,7 @@ export class Icon extends React.Component {
   render() {
     let {
       name = 'angle-right',
-      size = rwd(18),
+      size = SIZE.l,
       ratio = this.props.backgroundColor || this.props.style?.backgroundColor
         ? 1.2
         : 1,

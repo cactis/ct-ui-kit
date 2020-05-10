@@ -18,7 +18,7 @@ export class User extends Component {
     // log(url, 'url')
     let res = await Api.get(url)
     let { data: user = res } = res
-    log(res, 'res')
+    // log(res, 'res')
     // log(user, 'user in validateToken')
     if (user !== undefined && user.id !== undefined) {
       // runLast(() => {
@@ -146,7 +146,7 @@ export class User extends Component {
   static signUp = async (params, onSuccess) => {
     // log(1111)
     let response = await Api.post('/users', { user: params })
-    log(response, 'response')
+    // log(response, 'response')
     // log(222)
     User.setCurrentUser(response, onSuccess)
   }

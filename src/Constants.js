@@ -12,6 +12,8 @@ window.iOS = Platform.OS === 'ios'
 window.SCREEN_WIDTH = Dimensions.get('window').width
 window.SCREEN_HEIGHT = Dimensions.get('window').height
 
+// alert(SCREEN_WIDTH)
+
 window.isTablet = SCREEN_WIDTH > 500
 
 window.BASE_SIZE = rwd(iOS ? 12 : 12)
@@ -66,6 +68,7 @@ window.DARK_COLOR = '#333'
 
 window.TAG_BCOLOR = 'rgba(200,199,199,1)'
 window.TAG_COLOR = '#333'
+// alert(iPhoneX)
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.s
 // alert(iPhoneX)
@@ -210,29 +213,12 @@ let padding = 8
 // log(StatusBar, 'StatusBar')
 let statusBarHeight = StatusBar.currentHeight
 window.STATUSBAR_HEIGHT = statusBarHeight
-// alert(STATUSBAR_HEIGHT)
-// iPhoneX
-// const X_WIDTH = 375
-// const X_HEIGHT = 812
 
-// window.iPhoneX =
-//   iOS &&
-//   ((SCREEN_HEIGHT === X_HEIGHT && SCREEN_WIDTH === X_WIDTH) ||
-//     (SCREEN_HEIGHT === X_WIDTH && SCREEN_WIDTH === X_HEIGHT))
 window.CONTENT_HEIGHT = SCREEN_HEIGHT - headerHeight - rwd(100)
 import D from 'react-native-device-info'
 window.isSimulator = () => {
   return D.isEmulator()
 }
-
-// window.DEVICE_INFO = () => {
-//   return window.DEVICE_INFO
-// }
-//
-// window.iPhoneX =
-//   iOS &&
-//   (DEVICE_INFO.Model?.indexOf('iPhone X') == 0 ||
-//     DEVICE_INFO.Model?.indexOf('iPhone 1') == 0)
 
 window.pad = SCREEN_WIDTH > 800
 export const size = {
@@ -269,6 +255,7 @@ export const Const = {
 }
 
 window.initConstant = () => {
+  // alert(iPhoneX)
   window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
   window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.t
   // log(StatusBar, 'StatusBar')

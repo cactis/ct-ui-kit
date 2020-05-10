@@ -157,7 +157,7 @@ window.processNotification = (notification = push) => {
         // let { action } = data
         // log(action, 'action')
         // if (action == 'tap') {
-        log(_navigation, '_navigation')
+      //  log(_navigation, '_navigation')
         navigateToRecord(record, _navigation)
         // }
       },

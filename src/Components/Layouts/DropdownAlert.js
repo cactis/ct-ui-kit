@@ -29,12 +29,12 @@ export class DropdownAlert extends React.PureComponent {
     // let { title, type = 'success' } = options
     let title, body
     log(typeof content, '----')
-    if (typeof content == 'string') {
-      log('content is String')
-      body = content
-    } else {
+    if (typeof content == 'object') {
       title = content.title
       body = content.body
+    } else {
+      log('content is String')
+      body = `${content}`
     }
     let { onTapped = () => {}, onClose = () => {} } = options
     this.mounted &&

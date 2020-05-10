@@ -66,7 +66,7 @@ window._DEVICE_INFO = async () => {
   }
 }
 window.DEVICE_INFO = {}
-window.iPhoneX = false
+window.iPhoneX = null
 window.setDeviceInfo = async () => {
   let _info = await _DEVICE_INFO()
   // log(_info, '_info')
@@ -533,4 +533,8 @@ window.prompt = (message = 'Coming soon~', type, options = {}) => {
 
 window.__warning__ = (message, type = 'error', onClose) => {
   prompt(message, type, onClose)
+}
+
+String.prototype.stripTags = function () {
+  return this.replace(/<\/?[^>]+(>|$)/g, '')
 }

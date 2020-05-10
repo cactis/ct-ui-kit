@@ -213,7 +213,7 @@ export class List extends React.PureComponent {
     if (graphql) {
       // log(this.props.url, 'this.props.url')
       let key = this.props.url.replace('/', '')
-      log(key, 'key')
+      // log(key, 'key')
       let res = await Api.graphql({
         query: `{${key} (page: ${page}) ${graphql}}`,
       })
@@ -349,7 +349,7 @@ export class List extends React.PureComponent {
       ListHeaderComponent
     )
     let ListTagType = draggable ? DraggableFlatList : RNList
-    log(ListTagType, 'ListTagType')
+    // log(ListTagType, 'ListTagType')
     return (
       <Grid>
         {data ? (

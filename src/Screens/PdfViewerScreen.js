@@ -59,7 +59,7 @@ export class PdfViewerScreen extends React.PureComponent {
   }
 
   componentDidMount() {
-    _trace('PdfViewerScreen')
+    _trace()
     this.mounted = true
     _this = this
     _navigation = this.props.navigation
