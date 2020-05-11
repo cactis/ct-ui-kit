@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native'
 import * as T from '..'
 
 import MapView, { Marker } from 'react-native-maps'
-// import Geolocation from 'react-native-geolocation-service'
 import Geolocation from '@react-native-community/geolocation'
 
 export { Marker }
@@ -45,7 +44,7 @@ export class Map extends React.PureComponent {
     return (
       <T.Grid>
         <MapView
-          ref={c => (this.mapView = c)}
+          ref={(c) => (this.mapView = c)}
           // provider="google"
           initialRegion={userRegion}
           flex={1}
@@ -62,7 +61,7 @@ export class Map extends React.PureComponent {
           style={{ flex: 1, ...StyleSheet.absoluteFillObject }}
           {...this.props}
         >
-          {markers.map(item =>
+          {markers.map((item) =>
             !item ? null : (
               <Marker
                 key={randId()}
@@ -127,7 +126,7 @@ export class Map extends React.PureComponent {
     }
   }
 
-  onRegionChange = region => {
+  onRegionChange = (region) => {
     runLast(() => {
       // log(region, 'region')
       this.setState({ currentRegion: region })
@@ -141,8 +140,8 @@ export class Map extends React.PureComponent {
       //   log(locaiton, 'location in Map#getCurrentLocation')
       // )
       Geolocation.getCurrentPosition(
-        position => resolve(position),
-        e => reject(e)
+        (position) => resolve(position),
+        (e) => reject(e)
       )
     })
   }
@@ -150,7 +149,7 @@ export class Map extends React.PureComponent {
   getUserLocation = () => {
     // alert('getUserLocation')
     let { markers } = this.state
-    this.getCurrentLocation().then(position => {
+    this.getCurrentLocation().then((position) => {
       log(position, 'position')
       if (position) {
         let region = {
@@ -178,7 +177,7 @@ export class Map extends React.PureComponent {
   //     this.setState({ markers: this.props.markers })
   // }
 
-  initStateData = onComp => {
+  initStateData = (onComp) => {
     let { data, markers = [], onComplete } = this.props
     // log(markers, 'markers')
     this.setState({ data, markers, onComplete }, () => {

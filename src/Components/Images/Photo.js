@@ -100,13 +100,7 @@ export class Photo extends React.PureComponent {
     // let { item } = data
     // log(uri, 'uri - in Photo.js#uri')
     return (
-      <T.Touch
-        onPress={() => {
-          // _log(uri, 'uri')
-          // alert(uri)
-          this.preview()
-        }}
-      >
+      <T.Touch onPress={this.props.onPress || this.preview}>
         <T.Image
           // borderWidth={1}
           // size={size}

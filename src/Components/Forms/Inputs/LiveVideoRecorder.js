@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native'
 // import { RNCamera, FaceDetector } from 'react-native-camera'
 import ModalBox from 'react-native-modalbox'
 import { NodeCameraView } from 'react-native-nodemediaclient'
-import { NodePlayerView } from 'react-native-nodemediaclient'
+// import { NodePlayerView } from 'react-native-nodemediaclient'
 
 let _navigation
 export class LiveVideoRecorder extends React.PureComponent {
@@ -14,12 +14,12 @@ export class LiveVideoRecorder extends React.PureComponent {
 
   render() {
     let { outputUrl, data, recording = false, appName, streamName } = this.state
-  // log(data,  'data in LiveVideoRecorder render()')
+    // log(data,  'data in LiveVideoRecorder render()')
     log(outputUrl, 'outputUrl')
     // if (!data) return null
     return (
       <T.ModalBox
-        ref={c => (this.modal = c)}
+        ref={(c) => (this.modal = c)}
         padding={SIZE.l}
         height={SCREEN_HEIGHT}
         style={{ height: SCREEN_HEIGHT }}
@@ -34,7 +34,7 @@ export class LiveVideoRecorder extends React.PureComponent {
             // borderWidth: 10,
             // borderColor: 'rgba(25,143,182,1)',
           }}
-          ref={vb => {
+          ref={(vb) => {
             this.vb = vb
           }}
           outputUrl={outputUrl}
@@ -151,9 +151,7 @@ export class LiveVideoRecorder extends React.PureComponent {
     // T.Api.get('/streamings/new', {}, res => {
     //   let { data } = res
     //   T.Api.post(data.routes, { resource: data }, res => {})
-    let outputUrl = `rtmp://${
-      AppConfig.domain
-    }:1935/${appName}/${streamName}?filename=${item.filename}`
+    let outputUrl = `rtmp://${AppConfig.domain}:1935/${appName}/${streamName}?filename=${item.filename}`
     log(outputUrl, 'outputUrl')
     this.setState(
       {
@@ -182,7 +180,7 @@ export class LiveVideoRecorder extends React.PureComponent {
     }
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

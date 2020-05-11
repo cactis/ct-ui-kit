@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 
 // import { RNCamera, FaceDetector } from 'react-native-camera'
 import ModalBox from 'react-native-modalbox'
-import { NodeCameraView } from 'react-native-nodemediaclient'
+// import { NodeCameraView } from 'react-native-nodemediaclient'
 import { NodePlayerView } from 'react-native-nodemediaclient'
 
 let _navigation
@@ -14,18 +14,18 @@ export class LiveVideoPlayer extends React.PureComponent {
 
   render() {
     let { data, url } = this.state
-  // log(data,  'data in LiveVideoPlayer render()')
+    // log(data,  'data in LiveVideoPlayer render()')
     // let { item = data } = data
     return (
       <T.ModalBox
-        ref={c => (this.modal = c)}
+        ref={(c) => (this.modal = c)}
         padding={SIZE.n}
         height={SCREEN_HEIGHT}
         style={{ height: SCREEN_HEIGHT }}
       >
         <NodePlayerView
           style={{ height: SCREEN_HEIGHT }}
-          ref={vp => {
+          ref={(vp) => {
             this.vp = vp
           }}
           inputUrl={url}
@@ -49,12 +49,12 @@ export class LiveVideoPlayer extends React.PureComponent {
       </T.ModalBox>
     )
   }
-  onStatus = status => {
+  onStatus = (status) => {
     alert('status changed')
     log(status, 'status')
   }
 
-  open = url => {
+  open = (url) => {
     if (url) {
       this.setState({ url })
 
@@ -75,7 +75,7 @@ export class LiveVideoPlayer extends React.PureComponent {
     }
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

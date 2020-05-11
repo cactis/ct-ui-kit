@@ -9,7 +9,7 @@ export class Medias extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Medias render()')
+    // log(data, 'data in Medias render()')
     if (!data) return null
     let { item = data } = data
     if (item.length == 0) return null

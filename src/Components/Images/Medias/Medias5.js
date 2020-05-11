@@ -14,6 +14,7 @@ export class Medias5 extends React.PureComponent {
     let { item = data } = data
     let size = SCREEN_HEIGHT / 3
     let aspectRatio = 0.65
+    this.lastMedia = React.forwardRef()
     return (
       <T.Row height={SCREEN_HEIGHT / 2.5}>
         <T.Row flow="row" flex={2}>
@@ -62,7 +63,7 @@ export class Medias5 extends React.PureComponent {
               index={4}
               data={item[4]}
               style={{ width: '100%', height: '100%' }}
-              ref={(c) => (this.last = c)}
+              ref={(c) => (this.lastMedia = c)}
             />
             {item.length - 5 > 0 ? (
               <T.Float
@@ -91,7 +92,7 @@ export class Medias5 extends React.PureComponent {
   }
 
   preview = () => {
-    this.last?.photo?.preview()
+    this.lastMedia?.photo?.preview()
     // alert()
   }
   onPress = () => {
@@ -112,6 +113,7 @@ export class Medias5 extends React.PureComponent {
 
   componentDidMount() {
     _trace()
+
     this.mounted = true
     _navigation = this.props.navigation
     this.initStateData(() => {
