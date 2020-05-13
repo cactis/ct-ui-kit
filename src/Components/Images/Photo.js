@@ -42,8 +42,8 @@ export class Photo extends React.PureComponent {
               uri: uri,
             },
             title: title,
-            width: SCREEN_WIDTH,
-            height: SCREEN_HEIGHT,
+            // width: SCREEN_WIDTH,
+            // height: SCREEN_HEIGHT,
           },
         ]
     log(this.images, 'this.images')
@@ -58,8 +58,8 @@ export class Photo extends React.PureComponent {
           uri: img.file_url,
         },
         title: img.title,
-        width: SCREEN_WIDTH,
-        height: SCREEN_HEIGHT,
+        // width: SCREEN_WIDTH,
+        // height: SCREEN_HEIGHT,
         // next: true,
         // prev: true,
       }

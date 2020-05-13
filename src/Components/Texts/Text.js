@@ -39,7 +39,7 @@ export class Text extends React.Component {
     size && themeStyle && (themeStyle.fontSize = size)
     let lineHeightStyle =
       numberOfLines && numberOfLines != 1
-        ? { lineHeight: themeStyle.fontSize * 1.5 }
+        ? { lineHeight: themeStyle.fontSize * 1.2 }
         : {}
 
     let tag = !children ? null : ( // <T.View />

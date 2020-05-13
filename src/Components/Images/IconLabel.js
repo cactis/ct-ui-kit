@@ -13,7 +13,8 @@ export const IconLabel = (props) => {
     iconSize = rwd(20),
     labelSize = iconSize * 0.8,
     color = ICON_COLOR,
-    iconColor = ICON_COLOR,
+    iconColor = color || ICON_COLOR,
+    labelColor = iconColor,
     bordered,
     theme = 'H3',
     pill,
@@ -57,11 +58,12 @@ export const IconLabel = (props) => {
 
   let label = (
     <Label
-      color={color}
+      color={labelColor}
       text={text}
+      // theme={theme}
       size={labelSize}
-      theme={theme}
       disabled={disabled}
+      // backgroundColor="blue"
       {...extra}
     />
   )
@@ -76,33 +78,38 @@ export const IconLabel = (props) => {
   }
 
   let button = (
-    <Div
+    <Row
       flow="row"
-      flex={0}
       yAlign="center"
-      style={{ ...borderStyle, ...pillStyle, backgroundColor_: 'red' }}
+      style={{ ...borderStyle, ...pillStyle }}
+      // borderWidth={3}
+      // backgroundColor="yellow"
+      // xAlign="flex-end"
+      {...extra}
+      flex={0}
     >
-      <Col
+      {/* <Col
         flex={0}
-        align="center"
+        yAlign="center"
         height_={size}
-        borderWidth_={1}
+        borderWidth={1}
         paddingRight={space}
-      >
-        {_icon}
-        {image}
-        {/* <T.Space width={space} /> */}
-      </Col>
+      > */}
+      {_icon}
+      {image}
+      {/* <T.Space width={space} /> */}
+      {/* </Col> */}
 
-      <Col borderWidth_={1} flex={0} align="center" height_={size} flow="row">
-        {label}
-      </Col>
-      <Col>{props.rightIcon}</Col>
-    </Div>
+      {/* <Col borderWidth={1} flex={0} yAlign="center"> */}
+      {label}
+      {/* </Col> */}
+      {/* <Col flex={0}>{props.rightIcon}</Col> */}
+      {props.rightIcon}
+    </Row>
   )
   return onPress ? (
     <Touch onPress={disabled ? null : _onPress}>{button}</Touch>
   ) : (
-    <T.Center flex={0}>{button}</T.Center>
+    button
   )
 }

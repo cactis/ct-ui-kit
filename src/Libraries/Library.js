@@ -418,16 +418,49 @@ window.requestPermissions = async () => {
 
 window.audioRecording = (item, options = {}) => {
   flexPopup.open(
-    <T.Div borderRadius_={30} backgroundColor__={BFCOLOR}>
-      <T.Row flex={0} padding={SIZE.l * 2}>
+    <T.Div borderRadius={5} backgroundColor__={BFCOLOR}>
+      <T.Row
+        flex={0}
+        height={SCREEN_HEIGHT / 2}
+        paddingHorizontal={SIZE.l * 1.5}
+        paddingTop={SIZE.l * 1.5}
+      >
         <T.Text text={item.text} size={SIZE.l} numberOfLines={0} />
+        <T.Space />
+        <T.List
+          // borderWidth={1}
+          height={200}
+          ref={(c) => (this.recordings_list = c)}
+          url={item.recordings_url}
+          // meta={true}
+          // ListHeaderComponent=<T.Label
+          //   text={this.recordings_list?.state?.data?.length}
+          // />
+          renderItem={(item) => (
+            <R.RecordingItem
+              // navigation={_navigation}
+              // onPress={() => navigateToRecord(item, _navigation)}
+              reloadData={() => this.recordings_list.reloadData()}
+              data={item}
+              parent={this}
+            />
+          )}
+        />
       </T.Row>
-      <T.Center flex={0} padding={SIZE.l}>
-        <T.AudioRecorder data={item} options={options} />
+      <T.Center flex={0} paddingTop={SIZE.m}>
+        <T.AudioRecorder
+          data={item}
+          options={options}
+          onCreated={(data) => this.recordings_list?.reloadData()}
+        />
       </T.Center>
       <T.Space />
     </T.Div>,
-    { backdropOpacity: 0.8, backgroundColor_: 'transparent' }
+    {
+      backdropOpacity: 0.8,
+      backgroundColor_: 'transparent',
+      swipeToClose: false,
+    }
   )
 }
 
@@ -524,7 +557,7 @@ window.prompt = (message = 'Coming soon~', type, options = {}) => {
   if (window.dropdown) {
     let title = { error: '錯誤' }[type] || ''
     let _type = type || 'success'
-    log(_type, '_type in prompt')
+    // log(_type, '_type in prompt')
     window.dropdown.open(message, type, options)
   } else {
     Alert.alert(`${message}`)

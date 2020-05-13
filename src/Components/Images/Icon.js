@@ -42,6 +42,7 @@ export class Icon extends React.Component {
     Zocial: Zocial,
   }
   render() {
+    // log(ICON_COLOR, 'ICON_COLOR')
     let {
       name = 'angle-right',
       size = SIZE.l,

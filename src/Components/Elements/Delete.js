@@ -2,37 +2,45 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 
 let _navigation
-export class Medias1 extends React.PureComponent {
+export class Delete extends React.PureComponent {
   state = {
     data: null,
   }
 
   render() {
     let { data } = this.state
-    log(data, 'data in Medias1 render()')
+    log(data, 'data in Delete render()')
     if (!data) return null
     let { item = data } = data
-    return (
-      <T.Row height={SCREEN_HEIGHT / 3}>
-        <T.Media
-          data={item[0]}
-          images={item}
-          // uri={item[0].small_file_url}
-          // aspectRatio={1.5}
-          style={{ width: '100%', height: '100%' }}
-          // thumbUri={item[0].small_file_url}
-          // height={SCREEN_HEIGHT / 3}
-          // paddingTop={SIZE.s}
-        />
-      </T.Row>
-    )
+    log(item.user.id, 'item.user_id')
+    return item.user.id == global.currentUser.id ? (
+      <T.Icon
+        onPress={this.onPress}
+        name="minuscircleo"
+        iconSet="AntDesign"
+        size={SIZE.m - 2}
+        color={STRONG_COLOR}
+      />
+    ) : null
   }
   onPress = () => {
-    if (this.props.onPress) {
-      this.props.onPress()
-    } else {
-      log('need to set onPress on item')
-    }
+    let { data } = this.state
+    let { item = data } = data
+    let { onDeleted } = this.props
+    confirm(
+      () => {
+        T.Api.delete(item.routes, (res) => {
+          onDeleted && onDeleted()
+        })
+      },
+      { title: `Confirm to delete this recording?` }
+    )
+
+    // if (this.props.onPress) {
+    //   this.props.onPress()
+    // } else {
+    //   log('need to set onPress on item')
+    // }
   }
 
   initStateData = (onComplete) => {

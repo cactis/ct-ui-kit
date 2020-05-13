@@ -43,18 +43,18 @@ class AudioRecorder1 extends React.PureComponent {
   }
 
   componentDidMount() {
-    AudioRecorder.requestAuthorization().then(isAuthorised => {
+    AudioRecorder.requestAuthorization().then((isAuthorised) => {
       this.setState({ hasPermission: isAuthorised })
 
       if (!isAuthorised) return
 
       this.prepareRecordingPath(this.state.audioPath)
 
-      AudioRecorder.onProgress = data => {
+      AudioRecorder.onProgress = (data) => {
         this.setState({ currentTime: Math.floor(data.currentTime) })
       }
 
-      AudioRecorder.onFinished = data => {
+      AudioRecorder.onFinished = (data) => {
         // Android callback comes in the form of a promise instead.
         if (Platform.OS === 'ios') {
           this._finishRecording(
@@ -139,14 +139,14 @@ class AudioRecorder1 extends React.PureComponent {
     // These timeouts are a hacky workaround for some issues with react-native-sound.
     // See https://github.com/zmxv/react-native-sound/issues/89.
     setTimeout(() => {
-      var sound = new Sound(this.state.audioPath, '', error => {
+      var sound = new Sound(this.state.audioPath, '', (error) => {
         if (error) {
           console.log('failed to load the sound', error)
         }
       })
 
       setTimeout(() => {
-        sound.play(success => {
+        sound.play((success) => {
           if (success) {
             this.setState({ playing: false, uploadable: true })
             console.log('successfully finished playing')
@@ -196,7 +196,8 @@ class AudioRecorder1 extends React.PureComponent {
     let { recording, playing, currentTime } = this.state
     // var style = active ? styles.activeButtonText : styles.buttonText
     let name, iconSet, title
-    let color = BFCOLOR
+    let color = SEGMENT_ACTIVE_BGCOLOR
+    // alert(BFCOLOR)
     let size = SIZE.l * 3
     if (this.state.currentTime > 0) {
       if (recording) {
@@ -226,13 +227,14 @@ class AudioRecorder1 extends React.PureComponent {
         break
       default:
     }
-    size = SIZE.l * 3
+    size = SIZE.l * 2
     return (
       <T.Icon
         name={name}
         iconSet={iconSet}
         size={size}
         onPress={() => this.action()}
+        // backgroundColor="red"
         color={color}
       />
     )
@@ -261,19 +263,19 @@ class AudioRecorder1 extends React.PureComponent {
   }
   uploadAudio = () => {
     let { data, options = {} } = this.props
-    let { onCreated } = options
+    let { onCreated } = this.props
     let { item = data } = data
     let url = `${item.routes}/recordings/new`
-    T.Api.get(url, {}, res => {
+    T.Api.get(url, {}, (res) => {
       let { data } = res
-    // log(data,  'data')
+      // log(data,  'data')
       data.mime = 'mp4'
       data.path = this.state.audioPath
-      base64Image(data).then(data => {
-      // log(data,  'data')
-        T.Api.post(data.routes, { resource: data }, res => {
-          let { data } = res
+      base64Image(data).then((data) => {
         // log(data,  'data')
+        T.Api.post(data.routes, { resource: data }, (res) => {
+          let { data } = res
+          // log(data,  'data')
           onCreated && onCreated(data)
         })
       })
@@ -283,7 +285,7 @@ class AudioRecorder1 extends React.PureComponent {
   render() {
     let { currentTime, uploadable } = this.state
     return (
-      <T.Row flex={0} width="100%">
+      <T.Row flex={0} width="100%" borderWidth_={1}>
         {/* <T.Float flex={0} right={0} top={0} padding={SIZE.m} yAlign="center">
           {this._renderButton('PLAY', () => {
             this._play()
@@ -291,7 +293,7 @@ class AudioRecorder1 extends React.PureComponent {
         </T.Float> */}
         <T.Row flex={0} yAlign="center">
           {this._renderButton()}
-          <T.Text color={BCOLOR}>{currentTime} s</T.Text>
+          <T.Text color={TColor(BCOLOR).darken()}>{currentTime} s</T.Text>
           <T.Space />
           <T.Row
             flex={0}
@@ -300,20 +302,25 @@ class AudioRecorder1 extends React.PureComponent {
             yAlign="center"
             width="100%"
             borderTopWidth={0.5}
-            borderColor={BCOLOR}
+            borderColor={TColor(BCOLOR).darken()}
             paddingTop={SIZE.s}
+            paddingHorizontal={SIZE.l}
+            paddingBottom={SAFEAREA_BOTTOM + SIZE.m}
           >
             <T.IconLabel
-              // text="RESET"
-              size={SIZE.l}
+              text="Reset"
+              // size={SIZE.}
               name="replay"
-              // color={BFCOLOR}
+              iconColor="rgba(179,176,176,1)"
+              color="rgba(179,176,176,1)"
               iconSet="MaterialCommunityIcons"
               onPress={this.reset}
             />
-            <T.Icon
-              size={SIZE.l * 2}
+            <T.IconLabel
+              iconSize={SIZE.l * 2}
+              labelSize={SIZE.m}
               name="clouduploado"
+              text="Upload"
               iconSet="AntDesign"
               onPress={this.uploadAudio}
               // disabled={!uploadable}
@@ -372,7 +379,7 @@ export class AudioRecorder2 extends React.PureComponent {
 
   render() {
     let { data } = this.state
-  // log(data,  'data in AudioRecorder render()')
+    // log(data,  'data in AudioRecorder render()')
 
     // if (!data) return null
     // let { item = data} = data
@@ -412,7 +419,7 @@ export class AudioRecorder2 extends React.PureComponent {
     // }
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {
