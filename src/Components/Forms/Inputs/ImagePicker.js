@@ -8,30 +8,30 @@ export const ImagePicker = (props) => {
   let [data, setData] = useState(props.data)
   log(data, 'data')
   // if (!data) return null
-  // getImage = async () => {
-  //   RNImagePicker.openPicker({
-  //     compressImageQuality: 1,
-  //     // width: 300,
-  //     // height: 400,
-  //     // cropping: false,
-  //     // cicular: true,
-  //     includeBase64: true,
-  //   }).then((image) => {
-  //     // log(image, 'image')
-  //     // let a = {}
-  //     // Object.assign(a, image)
-  //     // log(a, 'a')
-  //     // a.data = '[filter]'
-  //     // log(a, 'a')
-  //     image = base64Image(image)
-  //     // log(image, 'image ====')
-  //     data = { ...data, ...image }
-  //     log(data, 'data')
-  //     setData({ data: { ...data } })
-  //     onChanged({ ...data, ...image })
-  //     return { data: { ...data } }
-  //   })
-  // }
+  getImage = async () => {
+    RNImagePicker.openPicker({
+      compressImageQuality: 1,
+      // width: 300,
+      // height: 400,
+      // cropping: false,
+      // cicular: true,
+      includeBase64: true,
+    }).then((image) => {
+      // log(image, 'image')
+      // let a = {}
+      // Object.assign(a, image)
+      // log(a, 'a')
+      // a.data = '[filter]'
+      // log(a, 'a')
+      image = base64Image(image)
+      // log(image, 'image ====')
+      data = { ...data, ...image }
+      // log(data, 'data')
+      setData({ data: { ...data } })
+      onChanged({ ...data, ...image })
+      return { data: { ...data } }
+    })
+  }
   return data ? (
     <T.Photo
       uri={data.path || data.small_file_url || data.thumb_file_url}

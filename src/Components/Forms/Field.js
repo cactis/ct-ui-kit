@@ -13,7 +13,7 @@ export class Field extends Component {
       // height = rwd(32),
       // backgroundColor = 'white',
       padding = rwd(5),
-      theme = 'H5',
+      theme = 'H6',
       type = 'TextInput',
       children,
       color = 'rgb(92,92,92)',
@@ -53,9 +53,9 @@ export class Field extends Component {
       >
         {title ? (
           <T.Row flex={0}>
-            <T.Label theme={theme} style={styles.label} color={color}>
+            <T.Text theme_={theme} style_={styles.label} color={color}>
               {title}
-            </T.Label>
+            </T.Text>
             <T.Space size={rwd(2)} />
           </T.Row>
         ) : null}
@@ -66,9 +66,7 @@ export class Field extends Component {
           flex={0}
           // borderWidth={1}
         >
-          <T.Col align="center" flex={0}>
-            {preIconTag}
-          </T.Col>
+          <T.Center flex={0}>{preIconTag}</T.Center>
 
           <InputTag
             ref="input"

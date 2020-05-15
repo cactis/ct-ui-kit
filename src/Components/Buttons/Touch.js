@@ -1,5 +1,7 @@
 import React, { PureComponent as Component } from 'react'
-import { TouchableOpacity } from 'react-native'
+// import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+
 // import { Vibration } from 'react-native'
 
 import ReactNativeHaptic from 'react-native-haptic'
@@ -44,9 +46,11 @@ export class Touch extends Component {
   }
 
   onPress = () => {
-    let { disabled = false, onPress, beep } = this.props
-    this._beep(beep)
-    if (!disabled) onPress && onPress()
+    runLast(() => {
+      let { disabled = false, onPress, beep } = this.props
+      this._beep(beep)
+      if (!disabled) onPress && onPress()
+    }, 300)
   }
 
   render() {

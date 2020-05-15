@@ -1,23 +1,31 @@
 import React from 'react'
-import { StyleSheet, Share as RNShare } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 let _navigation
-export class Share extends React.PureComponent {
+export class Back extends React.PureComponent {
   state = {
     data: null,
   }
 
   render() {
     let { data } = this.state
-    // log(data,  'data in Share render()')
+    // log(data, 'data in Back render()')
     // if (!data) return null
     // let { item = data} = data
     return (
-      <T.Icon
-        name="share"
-        iconSet="Feather"
-        {...this.props}
-        onPress={this.onPress}
+      <T.BarItem
+        name="angle-left"
+        iconSet="Fontisto"
+        size={rwd(14)}
+        color="white"
+        beep={true}
+        paddingRight={0}
+        onPress={() => {
+          // window.currentRoom = null
+          T.NavigationService.goBack()
+          // window.keyboardInput.close()
+          // log(window.currentRoom, 'window.currentRoom')
+        }}
       />
     )
   }
@@ -25,14 +33,7 @@ export class Share extends React.PureComponent {
     if (this.props.onPress) {
       this.props.onPress()
     } else {
-      let { title, message, options } = this.props
-      copyToClipboard(message)
-      let content = {
-        title: title,
-        message: message,
-      }
-
-      RNShare.share(content, options)
+      log('need to set onPress on item')
     }
   }
 

@@ -33,7 +33,7 @@ export class Photo extends React.PureComponent {
       ...props
     } = this.props
     this.setState({ thumbUri })
-    log(this.props.images, 'this.props.images')
+    // log(this.props.images, 'this.props.images')
     this.images = this.props.images
       ? this.getImages(this.props.images)
       : [
@@ -46,11 +46,11 @@ export class Photo extends React.PureComponent {
             // height: SCREEN_HEIGHT,
           },
         ]
-    log(this.images, 'this.images')
+    // log(this.images, 'this.images')
   }
 
   getImages = (images) => {
-    log(images, 'images')
+    // log(images, 'images')
     images = _.filter(images, { type: 'Photo' })
     return _.map(images, (img) => {
       return {

@@ -56,7 +56,7 @@ export class Dicts extends React.PureComponent {
     if (length < o_length) words = [...words, '...']
     return (
       <T.Row flow="row" flexWrap="wrap" {...props}>
-        {words.map(t => (
+        {words.map((t) => (
           <T.Col
             flex={0}
             key={randId()}
@@ -71,7 +71,7 @@ export class Dicts extends React.PureComponent {
                 t = t.replace(/'|"|;|\[|\]|\.|,/g, '')
                 NativeModules.ReferenceLibraryManager?.showDefinitionForTerm(
                   t,
-                  hasDefinition => {
+                  (hasDefinition) => {
                     if (!hasDefinition) {
                       alert(`'${t}' definition not found!`)
                     }
@@ -84,7 +84,7 @@ export class Dicts extends React.PureComponent {
             }}
             // paddingHorizontal={rwd(4)}
             paddingHorizontal={rwd(2)}
-            paddingVertical={rwd(2.5)}
+            paddingVertical={SIZE.t / 3}
             onLongPress={() => {
               this.onTapped(t, size)
             }}
@@ -111,7 +111,7 @@ export class Dicts extends React.PureComponent {
     this.props.onCheckWord && this.props.onCheckWord()
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data, text, fontSize, fontTheme } = this.props
     data = data || text
     this.mounted &&

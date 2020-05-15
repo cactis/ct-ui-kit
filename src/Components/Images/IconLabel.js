@@ -10,7 +10,9 @@ export const IconLabel = (props) => {
   let {
     name,
     icon = name,
-    iconSize = rwd(20),
+    smaller = 0,
+    larger = 0,
+    iconSize = SIZE.m + rwd(larger) - rwd(smaller),
     labelSize = iconSize * 0.8,
     color = ICON_COLOR,
     iconColor = color || ICON_COLOR,

@@ -18,7 +18,7 @@ export class Delete extends React.PureComponent {
         onPress={this.onPress}
         name="minuscircleo"
         iconSet="AntDesign"
-        size={SIZE.m - 2}
+        // size={SIZE.m - 2}
         color={STRONG_COLOR}
       />
     ) : null

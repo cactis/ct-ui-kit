@@ -5,18 +5,17 @@ import { StatusBar } from 'react-native'
 
 import { Dimensions, Platform } from 'react-native'
 require('./Libraries/Library.js')
-
 window.TColor = require('tinycolor2')
 
-window.iOS = Platform.OS === 'ios'
 window.SCREEN_WIDTH = Dimensions.get('window').width
 window.SCREEN_HEIGHT = Dimensions.get('window').height
 
-// alert(SCREEN_WIDTH)
-
+window.iOS = Platform.OS === 'ios'
 window.isTablet = SCREEN_WIDTH > 500
 
-window.BASE_SIZE = rwd(iOS ? 12 : 12)
+// alert(SCREEN_WIDTH)
+
+window.BASE_SIZE = rwd(iOS ? (isTablet ? 10 : 11) : 11)
 
 const b = BASE_SIZE
 window.SIZE = {
@@ -48,7 +47,7 @@ window.SIZE = {
 }
 
 // OVERWRITE
-window.BCOLOR = 'rgba(9,51,74,1)'
+window.BCOLOR = 'rgba(103,156,236,1)'
 window.BCOLOR_DEV = 'rgb(108,108,108)'
 window.FCOLOR = 'rgb(219,219,219)'
 // window.ICON_COLOR = 'rgba(55,47,66,1)'
@@ -84,6 +83,8 @@ window.WARNING_COLOR = 'rgba(208,35,35,1)'
 
 window.CLOSE_ICON_NAME = 'close'
 window.CLOSE_ICON_SET = 'AntDesign'
+window.CLOSE_ICON_NAME = 'chevron-down'
+window.CLOSE_ICON_SET = 'Entypo'
 
 window.IOS_FONTS = [
   'AcademyEngravedLetPlain',

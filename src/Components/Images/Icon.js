@@ -45,7 +45,9 @@ export class Icon extends React.Component {
     // log(ICON_COLOR, 'ICON_COLOR')
     let {
       name = 'angle-right',
-      size = SIZE.l,
+      larger = 0,
+      smaller = 0,
+      size = SIZE.m * (isTablet ? 1 : 1) + rwd(larger) - rwd(smaller),
       ratio = this.props.backgroundColor || this.props.style?.backgroundColor
         ? 1.2
         : 1,

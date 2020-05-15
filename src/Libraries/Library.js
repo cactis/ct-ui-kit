@@ -261,10 +261,12 @@ Array.prototype.sample = function (num) {
 window.columnsNumber = (padding = 0) => {
   // alert(SCREEN_WIDTH)
   let s = SCREEN_WIDTH
+  // alert(s)
   let gutter = s * 0.01
-  let columnWidth = s > 1000 ? 160 : s > 600 ? 150 : s > 400 ? 120 : 100
+  let columnWidth = s > 1000 ? 200 : s > 600 ? 160 : s > 400 ? 120 : 100
   let numColumns = Math.floor(s / columnWidth)
-  columnWidth = (s - (numColumns - 1) * gutter - 2 * padding) / numColumns
+  // columnWidth = (s - (numColumns - 1) * gutter - 2 * padding) / numColumns
+  columnWidth = (s - numColumns * gutter) / numColumns
   return { gutter: gutter, numColumns: numColumns, columnWidth: columnWidth }
 }
 
@@ -433,6 +435,9 @@ window.audioRecording = (item, options = {}) => {
           height={200}
           ref={(c) => (this.recordings_list = c)}
           url={item.recordings_url}
+          ListEmptyComponent=<T.Center padding={SIZE.l}>
+            <T.Label text="Hi! Become the first to provide voice?" />
+          </T.Center>
           // meta={true}
           // ListHeaderComponent=<T.Label
           //   text={this.recordings_list?.state?.data?.length}
@@ -571,4 +576,14 @@ window.__warning__ = (message, type = 'error', onClose) => {
 
 String.prototype.stripTags = function () {
   return this.replace(/<\/?[^>]+(>|$)/g, '')
+}
+
+window.objectToQuerystring = (obj) => {
+  return Object.keys(obj).reduce(function (str, key, i) {
+    var delimiter, val
+    delimiter = i === 0 ? '?' : '&'
+    key = encodeURIComponent(key)
+    val = encodeURIComponent(obj[key])
+    return [str, delimiter, key, '=', val].join('')
+  }, '')
 }

@@ -9,7 +9,7 @@ export class Tab extends Component {
       isSelected: {
         false: {
           // padding: rwd(20),
-          padding: rwd(10),
+          padding: SIZE.s,
           paddingHorizontal: rwd(20),
           color: '#111',
         },
@@ -37,18 +37,18 @@ export class Tab extends Component {
     },
     child: {
       badge: { position: 'absolute', left: '30%', top: '25%' },
-      paddingVertical: 30,
-      paddingHorizontal: 25,
+      paddingVertical: SIZE.l,
+      paddingHorizontal: SIZE.l,
       isSelected: {
         true: {
-          paddingVertical: 10,
+          paddingVertical: SIZE.s,
           color: '#333',
           // fontWeight: '900',
           borderColor: 'white',
           borderBottomWidth: 2,
         },
         false: {
-          paddingVertical: 10,
+          paddingVertical: SIZE.s,
           color: 'white',
         },
       },
@@ -69,7 +69,7 @@ export class Tab extends Component {
     let color = style.isSelected[selected].color
     return (
       <T.Div flex={1} borderWidth={0.3} borderColor={SEGMENT_BORDER_COLOR}>
-        <T.Touch onPress={e => this.props.onPress(this.props.index, e)}>
+        <T.Touch onPress={(e) => this.props.onPress(this.props.index, e)}>
           <T.Row
             flex={0}
             // flexDirection={theme == 'parent' ? 'row' : 'column'}
@@ -91,7 +91,7 @@ export class Tab extends Component {
                 // name={icon}
                 {...icon}
                 color={color}
-                onPress={e => this.props.onPress(this.props.index, e)}
+                onPress={(e) => this.props.onPress(this.props.index, e)}
               />
             ) : null}
             {/* {icon && title ? <T.Space size={SIZE.t} /> : null} */}
@@ -108,7 +108,7 @@ export class Tab extends Component {
                   }
                 }
                 color={color}
-                onPress={e => this.props.onPress(this.props.index, e)}
+                onPress={(e) => this.props.onPress(this.props.index, e)}
               >
                 {title}
               </T.Label>

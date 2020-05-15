@@ -5,7 +5,15 @@ import { StyleSheet } from 'react-native'
 let _navigation
 
 export const Avatar0 = (props) => {
-  let { size = 80, navigation, onChange, flow = 'column', title } = props
+  let {
+    size = 80,
+    navigation,
+    noName = false,
+    noTitle = false,
+    onChange,
+    flow = 'column',
+    title,
+  } = props
   let [data, setData] = useState(props.data)
   // log(data, 'data 000000000000')
   if (!data) return null
@@ -23,10 +31,16 @@ export const Avatar0 = (props) => {
       <T.Div align="center" flow={flow}>
         <T.Photo rounded uri={uri} size={size} onChange={onChange} />
         <T.Space />
-        <T.Col>
-          <T.Label text={item.name} theme="H3" size={size / 2} />
-          <T.Text text={title || item.title} size={size / 3} />
-        </T.Col>
+        {noName && noTitle ? null : (
+          <T.Col>
+            {noName ? null : (
+              <T.Label text={item.name} theme="H3" size={size / 2} />
+            )}
+            {noTitle ? null : (
+              <T.Text text={title || item.title} size={size / 3} />
+            )}
+          </T.Col>
+        )}
         {/* <T.Space /> */}
       </T.Div>
     </T.Row>

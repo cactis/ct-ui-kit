@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 // import Sound from 'react-native-sound'
 import SoundPlayer from 'react-native-sound-player'
+export { SoundPlayer }
 
 let _navigation
 export class Mp3 extends React.PureComponent {
@@ -25,6 +26,7 @@ export class Mp3 extends React.PureComponent {
       </T.Div>
     )
   }
+
   onPress = () => {
     let { data } = this.state
     let { item = data } = data

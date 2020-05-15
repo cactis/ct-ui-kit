@@ -36,7 +36,7 @@ class AudioRecorder1 extends React.PureComponent {
     AudioRecorder.prepareRecordingAtPath(audioPath, {
       SampleRate: 22050,
       Channels: 1,
-      AudioQuality: 'Low',
+      AudioQuality: 'High',
       AudioEncoding: 'aac',
       AudioEncodingBitRate: 32000,
     })
