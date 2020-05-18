@@ -33,7 +33,7 @@ export class Input extends React.PureComponent {
     // this.input?.setNativeProps({ selection: { start: 0, end: 0 } })
     // this.inputRef.setNativeProps({ selection:{ start:1, end:1 } })
   }
-  onSelectionChange = e => {
+  onSelectionChange = (e) => {
     // if (!this.props.multiline) setPosition = true
     // if (setPosition) {
     //   let { selection } = e.nativeEvent
@@ -43,7 +43,7 @@ export class Input extends React.PureComponent {
     //   setPosition = true
     // }
   }
-  keyboardDidShow = e => {
+  keyboardDidShow = (e) => {
     log(e, 'e - in keyboardDidShow')
     this.mounted &&
       this.props.multiline &&
@@ -55,7 +55,7 @@ export class Input extends React.PureComponent {
           SAFEAREA_TOP,
       })
 
-    keyboardDidHide = e => {
+    keyboardDidHide = (e) => {
       log(e, 'e - in keyboardDidShow')
       this.mounted &&
         this.props.multiline &&
@@ -102,7 +102,7 @@ export class Input extends React.PureComponent {
         >
           {/* <T.Scroll> */}
           <RNTextInput
-            ref={c => (this.input = c)}
+            ref={(c) => (this.input = c)}
             // selection={this.state.selection}
             // onSelectionChange={this.onSelectionChange}
             flex={1}
@@ -116,7 +116,7 @@ export class Input extends React.PureComponent {
             }}
             autoFocus={true}
             value={value}
-            onChangeText={text => this.setState({ value: text })}
+            onChangeText={(text) => this.setState({ value: text })}
             multiline={multiline}
             // height={height}
             // {...this.props}
@@ -141,7 +141,7 @@ export class Input extends React.PureComponent {
     )
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { value } = this.props
     this.mounted &&
       this.setState({ value }, () => {

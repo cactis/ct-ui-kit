@@ -31,17 +31,8 @@ export const Avatar0 = (props) => {
       <T.Div align="center" flow={flow}>
         <T.Photo rounded uri={uri} size={size} onChange={onChange} />
         <T.Space />
-        {noName && noTitle ? null : (
-          <T.Col>
-            {noName ? null : (
-              <T.Label text={item.name} theme="H3" size={size / 2} />
-            )}
-            {noTitle ? null : (
-              <T.Text text={title || item.title} size={size / 3} />
-            )}
-          </T.Col>
-        )}
-        {/* <T.Space /> */}
+        {noName ? null : <T.Label text={item.name} theme="H7" />}
+        {noTitle ? null : <T.Text text={title || item.title} size={size / 3} />}
       </T.Div>
     </T.Row>
   )

@@ -24,9 +24,10 @@ export class Scroll extends React.Component {
   render() {
     return (
       <ScrollView
-        ref={c => (this.scroll = c)}
-        {...this.props}
+        ref={(c) => (this.scroll = c)}
         style={{ flex: 1 }}
+        {...this.props}
+        onResponderRelease={this.props.onPress}
         onContentSizeChange={(w, h) => {
           this.currHeight = h
           // log(this.currHeight, 'this.currHeight')

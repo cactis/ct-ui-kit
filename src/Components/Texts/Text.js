@@ -47,7 +47,7 @@ export class Text extends React.Component {
         // flex={1}
         numberOfLines={numberOfLines}
         allowFontScaling={true}
-        selectable={selectable}
+        // selectable={selectable} !!!!!!!!!! 會導致 母層的 onPress 失效
         style={{
           // alignSelf: 'flex-start',
           textAlign: align,
@@ -64,6 +64,7 @@ export class Text extends React.Component {
         {children}
       </RNText>
     )
+    // return <RNText>{children}</RNText>
     return backgroundColor ? (
       <T.Div
         borderWidth={1}
@@ -74,6 +75,7 @@ export class Text extends React.Component {
         paddingHorizontal={SIZE.s}
         paddingVertical={SIZE.t}
         align="center"
+        // backgroundColor="red"
       >
         {tag}
       </T.Div>

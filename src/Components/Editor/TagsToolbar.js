@@ -95,7 +95,7 @@ export class TagsToolbar extends React.PureComponent {
   //     })
   // }
 
-  setCurrentTag = currentTag => {
+  setCurrentTag = (currentTag) => {
     log(currentTag, 'currentTag')
     this.setState({ currentTag })
   }
@@ -122,7 +122,7 @@ export class TagsToolbar extends React.PureComponent {
 var styles = StyleSheet.create({})
 
 import { useState } from 'react'
-const Icon = props => {
+const Icon = (props) => {
   let { navigation, currentTag, tagName } = props
   let [data, setData] = useState(props.data)
 
@@ -142,8 +142,8 @@ const Icon = props => {
           // cropping: false,
           // cicular: true,
           includeBase64: true,
-        }).then(image => {
-          log(image, 'image 11111')
+        }).then((image) => {
+          // log(image, 'image 11111')
           // base64Image(image).then(image => {
           //   window.tag.setTag(tagName, { image })
           // })
@@ -151,13 +151,13 @@ const Icon = props => {
           if (mime.search(/mp4/) > -1) {
             log('read mp4')
             RNFS.readFile(path, 'base64')
-              .then(base64 => {
+              .then((base64) => {
                 log(base64, 'base64')
                 image.data = base64
                 log(image, 'image 22222')
                 window.tag.setTag(tagName, { image })
               })
-              .catch(err => {
+              .catch((err) => {
                 log(err, 'err')
               })
           } else {
@@ -206,7 +206,7 @@ const Icon = props => {
   )
 }
 
-export const Divider = props => {
+export const Divider = (props) => {
   let { navigation } = props
   let [data, setData] = useState(props.data)
   // if (!data) return null

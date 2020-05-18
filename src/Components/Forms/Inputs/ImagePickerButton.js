@@ -17,7 +17,7 @@ export class ImagePickerButton extends React.PureComponent {
   }
   onPress = () => {
     if (this.props.onPress) {
-      this.openAlbums(this.props.type, image => {
+      this.openAlbums(this.props.type, (image) => {
         // log(image, 'image 2222 in ImagePickerButton#onPress')
         this.props.onPress(image)
       })
@@ -35,13 +35,13 @@ export class ImagePickerButton extends React.PureComponent {
         // cropping: false,
         // cicular: true,
         includeBase64: true,
-      }).then(image => {
+      }).then((image) => {
         // log(image, 'image 00000')
-        base64Image(image).then(image => {
-          log(
-            image,
-            'image 1111 after base64Image in ImagePickerButton#openAlbums'
-          )
+        base64Image(image).then((image) => {
+          // log(
+          //   image,
+          //   'image 1111 after base64Image in ImagePickerButton#openAlbums'
+          // )
           // setData(image)
           // onChanged(image)
           callback(image)
@@ -56,13 +56,13 @@ export class ImagePickerButton extends React.PureComponent {
         // cropping: false,
         // cicular: true,
         includeBase64: true,
-      }).then(image => {
+      }).then((image) => {
         // log(image, 'image 00000')
-        base64Image(image).then(image => {
-          log(
-            image,
-            'image 1111 after base64Image in ImagePickerButton#openAlbums'
-          )
+        base64Image(image).then((image) => {
+          // log(
+          //   image,
+          //   'image 1111 after base64Image in ImagePickerButton#openAlbums'
+          // )
           // setData(image)
           // onChanged(image)
           callback(image)
@@ -71,7 +71,7 @@ export class ImagePickerButton extends React.PureComponent {
     }
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

@@ -64,7 +64,8 @@ export const IconLabel = (props) => {
       text={text}
       // theme={theme}
       size={labelSize}
-      disabled={disabled}
+      // disabled={disabled}
+      // onPress={!disabled ? onPress : null}
       // backgroundColor="blue"
       {...extra}
     />

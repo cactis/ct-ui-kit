@@ -30,6 +30,7 @@ window.beep = () => {
   }
 }
 export class Touch extends Component {
+  state = { disabled: false }
   _beep = (beep) => {
     // log(beep, 'beep')
     // let { beep = false } = this.props
@@ -55,12 +56,14 @@ export class Touch extends Component {
 
   render() {
     let {
-      disabled = false,
+      // disabled = false,
       onPress,
       onLongPress,
       children,
       ...props
     } = this.props
+
+    let { disabled } = this.state
 
     return (
       <TouchableOpacity
@@ -72,6 +75,18 @@ export class Touch extends Component {
         {children}
       </TouchableOpacity>
     )
+  }
+  componentDidMount() {
+    _trace()
+    this.mounted = true
+    this.setState({ disabled: this.props.disabled })
+  }
+  componentDidUpdate(prevProps) {
+    // log(this.props.disabled, 'this.props.disabled')
+    if (prevProps.navigation !== this.props.navigation)
+      _navigation = this.props.navigation
+    if (prevProps.disabled !== this.props.disabled)
+      this.setState({ disabled: this.props.disabled })
   }
 }
 

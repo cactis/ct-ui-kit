@@ -23,6 +23,14 @@ export class Field extends Component {
       ...props
     } = this.props
     // let titleTag = title ? <GLabel color='#aaa'>{title}</GLabel> : null
+    let borderStyle = this.props.bordered
+      ? {
+          padding: rwd(8),
+          borderWidth: 0.5,
+          borderColor: '#666',
+          borderRadius: rwd(3),
+        }
+      : {}
     let InputTag = Inputs[type]
     let heightStyle = title && height ? { height: height - rwd(60) } : {}
     let preIconTag = preIcon ? (
@@ -64,7 +72,7 @@ export class Field extends Component {
           // __xAlign="center"
           padding={rwd(1)}
           flex={0}
-          // borderWidth={1}
+          {...borderStyle}
         >
           <T.Center flex={0}>{preIconTag}</T.Center>
 

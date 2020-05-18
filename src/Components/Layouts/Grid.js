@@ -31,7 +31,7 @@ export class Grid extends React.PureComponent {
       <Touch
         onPress={props.onPress}
         onLongPress={props.onLongPress}
-        style={_styleWithBordered}
+        style={(_styleWithBordered, style)}
         {...props}
       >
         <View style={_style} {...props} />

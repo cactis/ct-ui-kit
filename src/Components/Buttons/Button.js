@@ -14,11 +14,10 @@ export const Button1 = (props) => {
 }
 
 let _this, _navigation
+
 export class Button extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    _navigation = props.navigation
-  }
+  state = { disabled: false }
+
   onPress = () => {
     let { url, onPress } = this.props
     // if (disabled) return
@@ -36,11 +35,15 @@ export class Button extends React.PureComponent {
     _this = this
     // _navigation = this.props.navigation
     // log(_navigation, '_navigation 22222')
+    this.setState({ disabled: this.props.disabled })
   }
 
   componentDidUpdate(prevProps) {
+    // log(this.props.disabled, 'this.props.disabled')
     if (prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
+    if (prevProps.disabled !== this.props.disabled)
+      this.setState({ disabled: this.props.disabled })
   }
 
   handleClick = () => {
@@ -84,11 +87,12 @@ export class Button extends React.PureComponent {
       onPress,
       fontSize = titleStyle?.fontSize || BASE_SIZE * 1.2,
       padding = fontSize * 0.5,
-      disabled = false,
+      // disabled = false,
       backgroundColor,
       // backgroundColor,
       ...props
     } = this.props
+    let { disabled } = this.state
     color = disabled ? 'rgba(0,0,0,1)' : color
     backgroundColor = disabled ? 'rgba(113,112,112,1)' : backgroundColor
     // let borderColor = 'rgba(255,255,255,.4)'
@@ -102,6 +106,7 @@ export class Button extends React.PureComponent {
     let _bordered = bordered ? { borderWidth: 0.5, borderColor: '#111' } : {}
     let negtive = this.props.negtive ? styles.negtive : {}
     // log(negtive, 'negtive')
+    // alert(disabled)
     return (
       <Touch disabled={disabled} beep={beep} onPress={this.onPress}>
         <Center
@@ -124,6 +129,8 @@ export class Button extends React.PureComponent {
           {leftIcon}
           <Label
             theme={labelTheme}
+            // disabled={disabled}
+            onPress={!disabled ? this.onPress : null}
             style={{
               // fontSize: fontSize,
               ...styles[theme]['label'],

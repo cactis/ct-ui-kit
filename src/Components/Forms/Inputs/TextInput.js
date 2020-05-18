@@ -25,12 +25,13 @@ export class TextInput extends React.PureComponent {
   }
 
   openInput = () => {
+    // alert()
     let { multiline = false, onChangeText, ...props } = this.props
     editor.open(
       <Input
         multiline={multiline}
         value={this.state.value}
-        onChangeText={value => {
+        onChangeText={(value) => {
           // alert(value, 'value')
           this.setState({ value: value })
           this.forceUpdate()
@@ -52,20 +53,44 @@ export class TextInput extends React.PureComponent {
     let { value } = this.state
     let { multiline, height = multiline ? rwd(150) : rwd(40) } = this.props
     // log(height, 'height')
+
     return (
       <T.Row
-        theme="bordered"
+        // theme="bordered"
         onPress={this.openInput}
         // height={height}
+        // backgroundColor="red"
         style={{ height: height }}
-        xAlign="center"
+        // xAlign="center"
       >
-        {multiline ? (
-          <T.Scroll>
-            <T.Text numberOfLines={0} text={value} backgroundColor_="white" />
+        {multiline && false ? (
+          <T.Scroll
+            onPress={this.openInput}
+            borderWidth={3}
+            // width="100%"
+            style={{
+              width: '100%',
+              flex: 1,
+              height: '100%',
+              padding: 10,
+              borderWidth: 3,
+              backgroundColor: 'green',
+            }}
+          >
+            <T.Text
+              onPress={this.openInput}
+              numberOfLines={0}
+              text={value}
+              height="100%"
+              style={{ backgroundColor: 'red', height: '100%' }}
+              // onPress={this.openInput}
+              // backgroundColor="white"
+            >
+              {value}
+            </T.Text>
           </T.Scroll>
         ) : (
-          <T.Label text={value} />
+          <T.Label text={value} numberOfLines={0} />
         )}
       </T.Row>
     )
@@ -86,7 +111,7 @@ export class TextInput extends React.PureComponent {
     //   </T.Row>
     // )
   }
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { value } = this.props
     this.mounted &&
       this.setState({ value }, () => {
@@ -115,7 +140,7 @@ export class TextInput1 extends Component {
       this.onChangeText()
     }
   }
-  onChangeText = text => {
+  onChangeText = (text) => {
     __warning__('TextInput: 請設定 onChangeText 回呼屬性')
   }
   render() {
@@ -208,8 +233,8 @@ export class TextInput1 extends Component {
           clearButtonMode={editable ? 'always' : ''}
           // height={rwd(30)}
           multiline={multiline}
-          ref={el => (this.input = el)}
-          onChange={event => {
+          ref={(el) => (this.input = el)}
+          onChange={(event) => {
             let text = event.nativeEvent.text
             // log(text, 'text')
             // this.onChangeText(text)
