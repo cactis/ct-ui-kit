@@ -17,7 +17,7 @@ export class Segment extends Component {
 
   onIndexChanged = () => {}
 
-  tappedAtIndex = index => {
+  tappedAtIndex = (index) => {
     this.onTappedAt(index)
   }
 
@@ -52,7 +52,7 @@ export class Segment extends Component {
     })
   }
 
-  _onLayout = e => {
+  _onLayout = (e) => {
     if (this.state.width == e.nativeEvent.layout.width) return
     this.setState({
       width: e.nativeEvent.layout.width,
@@ -116,7 +116,7 @@ export class Segment extends Component {
             // borderWidth={1}
             data={tabs}
             horizontal
-            ref={c => (this.tabs_scroll = c)}
+            ref={(c) => (this.tabs_scroll = c)}
             renderItem={({ item, index }) => (
               <Tab
                 theme={theme}
@@ -129,18 +129,6 @@ export class Segment extends Component {
               />
             )}
           />
-          {/* {tabs.map((tab, index) => ( */}
-          {/* <Tab
-                theme={theme}
-                key={index}
-                index={index}
-                onPress={this.onTappedAt}
-                selected={this.state.selectIndex === index}
-                tab={tab}
-                badge={tab.badge}
-              /> */}
-          {/* ))} */}
-          {/* </T.list> */}
         </T.Row>
         <T.Row>
           <T.Scroll
@@ -150,7 +138,7 @@ export class Segment extends Component {
             scrollEnabled={global.state?.onScrollEndDrag}
             onScroll={this._onScroll}
             scrollEventThrottle={16}
-            ref={ref => (this._scroll = ref)}
+            ref={(ref) => (this._scroll = ref)}
             pagingEnabled={true}
             horizontal={true}
             vertical={false}
@@ -170,7 +158,7 @@ export class Segment extends Component {
     )
   }
 
-  _onScroll = e => {
+  _onScroll = (e) => {
     // log('onScroll in Segment')
     if (this.state.userScrolling) return
     let x = e.nativeEvent.contentOffset.x

@@ -12,7 +12,7 @@ export const IconLabel = (props) => {
     icon = name,
     smaller = 0,
     larger = 0,
-    iconSize = SIZE.m + rwd(larger) - rwd(smaller),
+    iconSize = SIZE.l + rwd(larger) - rwd(smaller),
     labelSize = iconSize * 0.8,
     color = ICON_COLOR,
     iconColor = color || ICON_COLOR,

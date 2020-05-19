@@ -59,11 +59,12 @@ export class Tab extends Component {
     let {
       theme,
       badge,
+
       selected = false,
       size = BASE_SIZE * 2,
       tab,
     } = this.props
-    let { title, icon, titleComponent } = tab
+    let { title, withIcon, icon, titleComponent } = tab
 
     let style = this.THEMES[theme]
     let color = style.isSelected[selected].color
@@ -74,14 +75,17 @@ export class Tab extends Component {
             flex={0}
             // flexDirection={theme == 'parent' ? 'row' : 'column'}
             flow="row"
+            // xAlign="center"
             style={{
               ...this.props.style,
               margin: SIZE.t,
+
               ...style.isSelected[selected],
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: 3,
               paddingHorizontal: SIZE.l,
+              height: SIZE.l * 1.3,
             }}
           >
             {icon ? (
@@ -95,24 +99,28 @@ export class Tab extends Component {
               />
             ) : null}
             {/* {icon && title ? <T.Space size={SIZE.t} /> : null} */}
+
             {title ? (
               <T.Label
                 // theme="H5"
-                style={
-                  {
-                    // fontSize: rwd(14),
-                    // fontWeight: '400',
-                    // textAlign: 'center',
-                    // ...style.isSelected[selected],
-                    // paddingHorizontal: SIZE.l,
-                  }
-                }
+                style={{
+                  fontWeight: '300',
+                  // fontSize: rwd(14),
+                  // fontWeight: '400',
+                  // textAlign: 'center',
+                  // ...style.isSelected[selected],
+                  // paddingHorizontal: SIZE.l,
+                }}
+                // theme="H1"
+                // smaller={30}
+                // size={rwd(19)}
                 color={color}
                 onPress={(e) => this.props.onPress(this.props.index, e)}
               >
                 {title}
               </T.Label>
             ) : null}
+            {withIcon}
             {titleComponent}
             {/* <T.Float right="40%" top="0%"> */}
             <T.Badge style={style.badge} num={badge} />
