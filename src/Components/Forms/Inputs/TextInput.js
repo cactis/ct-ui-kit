@@ -4,6 +4,7 @@ import { Grid, Row } from '../../'
 
 import * as T from '../..'
 import { Input } from './Input'
+import { size } from '../../../Constants'
 
 let _navigation
 export class TextInput extends React.PureComponent {
@@ -60,7 +61,7 @@ export class TextInput extends React.PureComponent {
         onPress={this.openInput}
         // height={height}
         // backgroundColor="red"
-        style={{ height: height }}
+        style={{ height: height, padding_: SIZE.t }}
         // xAlign="center"
       >
         {multiline && false ? (
@@ -72,7 +73,7 @@ export class TextInput extends React.PureComponent {
               width: '100%',
               flex: 1,
               height: '100%',
-              padding: 10,
+
               borderWidth: 3,
               backgroundColor: 'green',
             }}
@@ -155,7 +156,7 @@ export class TextInput1 extends Component {
       ...props
     } = this.props
     let borderStyle =
-      bordered && editable
+      false && bordered && editable
         ? {
             borderWidth: 0.5,
             borderColor: 'rgba(1,1,1,0.4)',
@@ -169,16 +170,16 @@ export class TextInput1 extends Component {
       : { height: fontSize * (iOS ? 2.5 : 2) }
     return (
       <Grid
-        paddingVertical={rwd(5)}
+        // paddingVertical={rwd(5)}
         backgroundColor="rgb(255,255,255)"
         // width="100%"
         // style={{ ...heightStyle }}
         style={{
           ...borderStyle,
           ...heightStyle,
-          paddingVertical: rwd(10),
+          // paddingVertical: rwd(10),
         }}
-        xAlign="center"
+        // xAlign="center"
       >
         {/* <Row
         // borderColor="rgb(203,201,196)"
@@ -197,9 +198,8 @@ export class TextInput1 extends Component {
 
         <PureRNTextInput
           // borderWidth={0.5}
-
           padding={iOS ? rwd(5) : 0}
-          paddingHorizontal={bordered ? rwd(5) : 0}
+          // paddingHorizontal={bordered ? rwd(5) : 0}
           editable={editable}
           // flex={1}
           // style={{

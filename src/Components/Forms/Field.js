@@ -19,18 +19,12 @@ export class Field extends Component {
       color = 'rgb(92,92,92)',
       height,
       preIcon,
+      backgroundColor,
       fieldStyle,
       ...props
     } = this.props
     // let titleTag = title ? <GLabel color='#aaa'>{title}</GLabel> : null
-    let borderStyle = this.props.bordered
-      ? {
-          padding: rwd(8),
-          borderWidth: 0.5,
-          borderColor: '#666',
-          borderRadius: rwd(3),
-        }
-      : {}
+    let borderStyle = this.props.bordered ? STYLES.bordered : {}
     let InputTag = Inputs[type]
     let heightStyle = title && height ? { height: height - rwd(60) } : {}
     let preIconTag = preIcon ? (
@@ -48,11 +42,14 @@ export class Field extends Component {
       <T.Row
         flex={0}
         style={{
-          padding: padding,
+          // padding: padding,
+
           ...styles.field,
           ...fieldStyle,
           // backgroundColor: backgroundColor,
         }}
+        backgroundColor={backgroundColor}
+        padding={backgroundColor ? SIZE.s : SIZE.n}
         {...props}
         onFocus={(event: Event) => {
           // if (!form) return
@@ -70,7 +67,10 @@ export class Field extends Component {
         <T.Row
           flow="row"
           // __xAlign="center"
-          padding={rwd(1)}
+          padding={SIZE.n}
+          paddingVertical={iOS ? SIZE.n : SIZE.t}
+          paddingTop={iOS ? SIZE.t * 1 : SIZE.t * 2}
+          paddingHorizontal={iOS ? SIZE.t * 1.5 : SIZE.t}
           flex={0}
           {...borderStyle}
         >
@@ -86,7 +86,7 @@ export class Field extends Component {
             {...props}
           />
           {children ? (
-            <T.Div flex={0} paddingLeft={rwd(10)}>
+            <T.Div flex={0} paddingLeft_={rwd(10)}>
               {children}
             </T.Div>
           ) : null}
@@ -96,6 +96,7 @@ export class Field extends Component {
             <T.Text theme="H8" numberOfLines={0} text={`* ${this.props.tip}`} />
           </T.Div>
         ) : null}
+        <T.Space size={SIZE.s} />
       </T.Row>
     )
   }

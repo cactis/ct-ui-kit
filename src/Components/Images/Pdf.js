@@ -9,26 +9,32 @@ export class Pdf extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    // log(data, 'data in Pdf render()')
+    log(data, 'data in Pdf render()')
     if (!data) return null
     let { item = data } = data
+    log(item, 'item Pdf#render')
     return (
       <T.Row
         onPress={() =>
-          popupScreen.open(<T.PdfViewerScreen data={item} />, {
+          pdfScreen.open(<T.PdfViewerScreen data={item} />, {
             swipeToClose: false,
           })
         }
+        borderWidth_={3}
+        {...this.props}
       >
         <T.Center backgroundColor="rgba(40,36,37,.82)" padding={SIZE.m}>
+          {/* <T.Dummy /> */}
           <T.Image
-            onPress={() => alert()}
-            uri={item.thumb_file_url}
+            // onPress={() => alert()}
+            uri={item.thumb_file_url || item.path || item.uri}
             // size={3 * SIZE.l}
             size="50%"
+            // size={100}
             // margin={SIZE.t}
           />
-          <T.Label text={item.title} color="#eee" />
+
+          <T.Label text={item.title} theme="H8" color="#eee" />
         </T.Center>
       </T.Row>
     )

@@ -9,47 +9,51 @@ export class Medias4 extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Medias4 render()')
+    // log(data, 'data in Medias4 render()')
     if (!data) return null
     let { item = data } = data
     let size = SCREEN_HEIGHT / 3
     let aspectRatio = 0.65
+    let space = <T.Space size={SIZE.t / 5} />
+    let photos = item.filter((r) => r.type == 'Photo').map((r) => r.id)
+    log(photos, 'photos')
+    // alert()
     return (
       <T.Row flow="row" height={SCREEN_HEIGHT / 3}>
         <T.Col>
-          <T.Col>
+          <T.Col borderWidth_={1}>
             <T.Media
               images={item}
-              index={0}
+              index={photos.indexOf(item[0].id)}
               data={item[0]}
               style={{ width: '100%', height: '100%' }}
             />
           </T.Col>
-          <T.Space size={SIZE.t / 4} />
+          {space}
           <T.Col>
             <T.Media
               images={item}
-              index={1}
+              index={photos.indexOf(item[1].id)}
               data={item[1]}
               style={{ width: '100%', height: '100%' }}
             />
           </T.Col>
         </T.Col>
-        <T.Space size={SIZE.t / 4} />
+        {space}
         <T.Col xAlign="space-between">
           <T.Col>
             <T.Media
               images={item}
-              index={2}
+              index={photos.indexOf(item[2].id)}
               data={item[2]}
               style={{ width: '100%', height: '100%' }}
             />
           </T.Col>
-          <T.Space size={SIZE.t / 4} />
+          {space}
           <T.Col>
             <T.Media
               images={item}
-              index={3}
+              index={photos.indexOf(item[3].id)}
               data={item[3]}
               style={{ width: '100%', height: '100%' }}
             />

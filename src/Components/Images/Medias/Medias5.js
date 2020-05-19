@@ -9,7 +9,7 @@ export class Medias5 extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Medias4 render()')
+    // log(data, 'data in Medias4 render()')
     if (!data) return null
     let { item = data } = data
     let size = SCREEN_HEIGHT / 3

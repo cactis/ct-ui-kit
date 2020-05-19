@@ -12,11 +12,10 @@ export const Media = (props) => {
   // })
 
   // let Tag
-
+  log(item.type, 'item.type')
   switch (item.type) {
     case 'Video':
       return <T.Video url={item.path || item.data || item.file_url} />
-
       break
     case 'Photo':
       return (
@@ -29,8 +28,9 @@ export const Media = (props) => {
       break
     case 'Pdf':
       return <T.Pdf data={item} {...props} />
+      return
   }
-
+  // alert(item.mime)
   switch (item.mime) {
     case 'audio/mp3':
       return (
@@ -47,6 +47,9 @@ export const Media = (props) => {
       return (
         <T.Video {...props} url={item.path || item.data || item.file_url} />
       )
+      break
+    case 'application/pdf':
+      return <T.Pdf data={item} {...props} />
       break
     default:
       return (

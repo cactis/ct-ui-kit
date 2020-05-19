@@ -12,8 +12,7 @@ export class Delete extends React.PureComponent {
     log(data, 'data in Delete render()')
     if (!data) return null
     let { item = data } = data
-    log(item.user.id, 'item.user_id')
-    return item.user.id == global.currentUser.id ? (
+    return item.editable ? (
       <T.Icon
         onPress={this.onPress}
         name="minuscircleo"

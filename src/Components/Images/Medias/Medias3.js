@@ -9,7 +9,7 @@ export class Medias3 extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Medias3 render()')
+    // log(data, 'data in Medias3 render()')
     if (!data) return null
     let { item = data } = data
     let space = SIZE.s / 4
@@ -17,6 +17,7 @@ export class Medias3 extends React.PureComponent {
     let w = SCREEN_WIDTH - space
     let aspectRatio1 = w / 2 / h
     let aspectRatio2 = w / 2 / (h - space)
+    log(item, 'item')
     return (
       <T.Row flow="row" height={SCREEN_HEIGHT / 3}>
         <T.Col backgroundColor_="red" flex={2}>
@@ -41,7 +42,7 @@ export class Medias3 extends React.PureComponent {
             />
           </T.Col>
           <T.Space size={space} />
-          <T.Col backgroundColor_="red">
+          <T.Col backgroundColor="red">
             <T.Media
               images={item}
               index={2}
