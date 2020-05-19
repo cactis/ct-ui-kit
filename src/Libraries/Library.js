@@ -19,6 +19,12 @@ window.share = (content, options) => {
   RNShare.share(content, options)
 }
 
+window.bounce = (target, callback = () => {}) =>
+  target.zoomOutLeft(600).then((endState) =>
+    // console.log(endState.finished ? 'bounce finished' : 'bounce cancelled')
+    callback()
+  )
+
 window._DEVICE_INFO = async () => {
   let { currentUser } = global
   return {
