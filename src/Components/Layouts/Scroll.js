@@ -27,6 +27,7 @@ export class Scroll extends React.Component {
         ref={(c) => (this.scroll = c)}
         style={{ flex: 1 }}
         {...this.props}
+        onStartShouldSetResponder={() => true}
         onResponderRelease={this.props.onPress}
         onContentSizeChange={(w, h) => {
           this.currHeight = h

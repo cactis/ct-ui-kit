@@ -60,30 +60,35 @@ export class TextInput extends React.PureComponent {
         // theme="bordered"
         onPress={this.openInput}
         // height={height}
-        // backgroundColor="red"
-        style={{ height: height, padding_: SIZE.t }}
+        // backgroundColor="green"
+        // borderWidth={3}
+        // padding={SIZE.l}
+        style={{ height: height, flex: 1, width: '100%', padding_: SIZE.t }}
         // xAlign="center"
       >
         {multiline && false ? (
           <T.Scroll
             onPress={this.openInput}
-            borderWidth={3}
+            // borderWidth={13}
+            padding={SIZE.s}
             // width="100%"
-            style={{
-              width: '100%',
-              flex: 1,
-              height: '100%',
-
-              borderWidth: 3,
-              backgroundColor: 'green',
-            }}
+            // flex={1}
+            style={
+              {
+                // width: '100%',
+                // flex: 1,
+                // height: height,
+                // borderWidth: 3,
+                // backgroundColor: 'red',
+              }
+            }
           >
             <T.Text
-              onPress={this.openInput}
+              // onPress={this.openInput}
               numberOfLines={0}
               text={value}
-              height="100%"
-              style={{ backgroundColor: 'red', height: '100%' }}
+              // height="100%"
+              // style={{ backgroundColor__: 'red', height: '100%' }}
               // onPress={this.openInput}
               // backgroundColor="white"
             >
@@ -91,7 +96,7 @@ export class TextInput extends React.PureComponent {
             </T.Text>
           </T.Scroll>
         ) : (
-          <T.Label text={value} numberOfLines={0} />
+          <T.Text text={value} numberOfLines={10} backgroundColor_="red" />
         )}
       </T.Row>
     )

@@ -75,21 +75,22 @@ export class Field extends Component {
           {...borderStyle}
         >
           <T.Center flex={0}>{preIconTag}</T.Center>
-
-          <InputTag
-            ref="input"
-            // height={height}
-            // backgroundColor={backgroundColor}
-            // lineHeight={rwd(20)}
-            {...heightStyle}
-            placeholder={true || iOS ? placeholder : null}
-            {...props}
-          />
-          {children ? (
-            <T.Div flex={0} paddingLeft_={rwd(10)}>
-              {children}
-            </T.Div>
-          ) : null}
+          <T.Col>
+            <InputTag
+              ref="input"
+              // height={height}
+              // backgroundColor={backgroundColor}
+              // lineHeight={rwd(20)}
+              {...heightStyle}
+              placeholder={true || iOS ? placeholder : null}
+              {...props}
+            />
+            {children ? (
+              <T.Div flex={0} paddingLeft_={rwd(10)}>
+                {children}
+              </T.Div>
+            ) : null}
+          </T.Col>
         </T.Row>
         {this.props.tip ? (
           <T.Div padding={rwd(8)}>
