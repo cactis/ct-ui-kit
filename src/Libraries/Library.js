@@ -24,6 +24,20 @@ window.Effect = {
     target?.zoomOutLeft(600).then((endState) => callback()),
   appear: (target, callback = () => {}) =>
     target?.bounceIn(2000).then((endState) => callback()),
+  bounce: (target, callback = () => {}) => {
+    // log(target, 'target')
+    target
+      ?.bounceOut(300)
+      .then((e) => {
+        delayed(() => {
+          target.bounceIn(1000).then((e) => {
+            callback()
+          })
+        }, 100)
+      })
+
+      .then((endState) => callback())
+  },
   zoomOut: {
     0: {
       opacity: 1,

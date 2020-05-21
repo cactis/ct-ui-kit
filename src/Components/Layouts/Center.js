@@ -8,6 +8,21 @@ export class Center extends React.PureComponent {
     data: null,
     mounted: false,
   }
+  disappear = (callback) => {
+    this.view.disappear(callback)
+  }
+
+  render() {
+    return <Grid ref={(c) => (this.view = c)} align="center" {...this.props} />
+  }
+
+  initStateData = (onComplete) => {
+    let { data } = this.props
+    this.mounted &&
+      this.setState({ data }, () => {
+        onComplete && onComplete()
+      })
+  }
 
   componentDidMount() {
     _trace()
@@ -22,17 +37,6 @@ export class Center extends React.PureComponent {
       _navigation = this.props.navigation
   }
 
-  render() {
-    return <Grid align="center" {...this.props} />
-  }
-
-  initStateData = onComplete => {
-    let { data } = this.props
-    this.mounted &&
-      this.setState({ data }, () => {
-        onComplete && onComplete()
-      })
-  }
   componentWillUnmount() {
     this.mounted = false
   }

@@ -64,6 +64,7 @@ export class Icon extends React.Component {
       onPressIn,
       onPressOut,
       badge,
+      animation,
       text,
       ...props
     } = this.props
@@ -74,6 +75,7 @@ export class Icon extends React.Component {
     const child = (
       <T.Center
         flex={0}
+        animation={animation}
         // align="center"
         backgroundColor={backgroundColor}
         borderRadius={backgroundColor ? width / 2 : 2}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View as RNView } from 'react-native'
 import * as Animatable from 'react-native-animatable'
+export { Animatable }
 // import { Example } from './'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 export { RNView }

@@ -49,7 +49,7 @@ export class Field extends Component {
           // backgroundColor: backgroundColor,
         }}
         backgroundColor={backgroundColor}
-        padding={backgroundColor ? SIZE.s : SIZE.n}
+        padding={backgroundColor ? SIZE.l * 1.2 : SIZE.n}
         {...props}
         onFocus={(event: Event) => {
           // if (!form) return
