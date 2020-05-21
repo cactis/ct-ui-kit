@@ -35,7 +35,7 @@ export class FilesInput extends React.PureComponent {
                 xAlign="flex-end"
                 yAlign="center"
               >
-                {/* <T.Icon name="plus" color="#aaa" /> */}
+                <T.Icon name="plus" color="#aaa" iconSet="AntDesign" pad={0} />
                 <T.Icon
                   name="camerao"
                   onPress={this.getImage}

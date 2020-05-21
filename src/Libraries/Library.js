@@ -19,11 +19,26 @@ window.share = (content, options) => {
   RNShare.share(content, options)
 }
 
-window.bounce = (target, callback = () => {}) =>
-  target.zoomOutLeft(600).then((endState) =>
-    // console.log(endState.finished ? 'bounce finished' : 'bounce cancelled')
-    callback()
-  )
+window.Effect = {
+  disappear: (target, callback = () => {}) =>
+    target?.zoomOutLeft(600).then((endState) => callback()),
+  appear: (target, callback = () => {}) =>
+    target?.bounceIn(2000).then((endState) => callback()),
+  zoomOut: {
+    0: {
+      opacity: 1,
+      scale: 1,
+    },
+    0.5: {
+      opacity: 1,
+      scale: 0.3,
+    },
+    1: {
+      opacity: 0,
+      scale: 0,
+    },
+  },
+}
 
 window._DEVICE_INFO = async () => {
   let { currentUser } = global
@@ -166,6 +181,31 @@ window.runLast = (func, wait = 1000, ...args) => {
   }, wait)
 }
 
+window._runOnly = undefined
+window.runOnly = (func, wait = 1000, ...args) => {
+  runLast(() => {
+    window._runOnly = undefined
+    log(window._runOnly, 'window._runOnly 2')
+  }, 500)
+  if (window._runOnly && new Date().getUTCSeconds() - window._runOnly < 2) {
+    log(window._runOnly, 'window._runOnly 1')
+    log('no run')
+  } else {
+    log('run')
+    window._runOnly = new Date().getUTCSeconds()
+    log(window._runOnly, 'window._runOnly 3')
+    // runLast(() => {
+    //   window._runOnly = undefined
+    //   log(window._runOnly, 'window._runOnly 2')
+    // })
+    func.apply(null, args)
+  }
+
+  // log(func, 'func')
+  // log(args, 'args')
+  // clearTimeout(_runOnly)
+}
+
 window._runOnce = (key, run) => {
   let _runOnce = global._runOnce || {}
   if (!_runOnce[key]) {
@@ -174,12 +214,14 @@ window._runOnce = (key, run) => {
   }
 }
 
-window.delayedTimer = undefined
+// window.delayedTimer = undefined
 window.delayed = (func, wait = 1000, ...args) => {
-  clearTimeout(delayedTimer)
-  delayedTimer = setTimeout((args) => {
+  // clearTimeout(delayedTimer)
+  // delayedTimer =
+  setTimeout((args) => {
     func.apply(null, args)
   }, wait)
+  // log(delayedTimer, 'delayedtimer')
 }
 
 window.navigateTo = (navigation, route, params = {}) => {
@@ -517,7 +559,7 @@ window.requestRating = async (force: false) => {
     doRating()
   } else {
     Alert.alert(
-      'Enjoying Readus?',
+      `Enjoying ${Appconfig.appName}`,
       'Rate it on Google Play?',
       [
         {
@@ -540,11 +582,11 @@ window.requestRating = async (force: false) => {
 doRating = () => {
   let options = {
     AppleAppID: '1451449522',
-    GooglePackageName: 'net.fiterl.readus',
+    GooglePackageName: AppConfig.GooglePackageName,
     preferredAndroidMarket: AndroidMarket.Google,
     preferInApp: true,
     openAppStoreIfInAppFails: true,
-    fallbackPlatformURL: 'https://readus.org/rating_callback',
+    fallbackPlatformURL: AppConfig.ratingCallback,
   }
   // delayed(() => {
   Rate.rate(options, (success) => {

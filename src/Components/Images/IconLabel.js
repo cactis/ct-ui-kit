@@ -12,7 +12,7 @@ export const IconLabel = (props) => {
     icon = name,
     smaller = 0,
     larger = 0,
-    iconSize = SIZE.l + rwd(larger) - rwd(smaller),
+    iconSize = SIZE.m * 1.2 + rwd(larger) - rwd(smaller),
     labelSize = iconSize * 0.8,
     color = ICON_COLOR,
     iconColor = color || ICON_COLOR,
@@ -74,6 +74,7 @@ export const IconLabel = (props) => {
 
   _onPress = () => {
     if (onPress) {
+      // _alert()
       onPress()
     } else {
       // if (__DEV__) alert()
@@ -85,7 +86,7 @@ export const IconLabel = (props) => {
       flow="row"
       yAlign="center"
       style={{ ...borderStyle, ...pillStyle }}
-      // borderWidth={3}
+      // borderWidth={1}
       // backgroundColor="yellow"
       // xAlign="flex-end"
       {...extra}

@@ -149,6 +149,7 @@ export class TextInput1 extends Component {
   onChangeText = (text) => {
     __warning__('TextInput: 請設定 onChangeText 回呼屬性')
   }
+
   render() {
     let {
       multiline = false,
@@ -203,7 +204,8 @@ export class TextInput1 extends Component {
 
         <PureRNTextInput
           // borderWidth={0.5}
-          padding={iOS ? rwd(5) : 0}
+          padding={iOS ? SIZE.s / 2 : SIZE.s}
+          paddingTop={iOS ? SIZE.s / 6 : SIZE.n}
           // paddingHorizontal={bordered ? rwd(5) : 0}
           editable={editable}
           // flex={1}

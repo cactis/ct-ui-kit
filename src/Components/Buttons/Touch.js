@@ -1,6 +1,6 @@
 import React, { PureComponent as Component } from 'react'
 // import { TouchableOpacity } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableOpacity } from 'react-native-gesture-handler' // TODO: 這裡 Android 有點選問題
 
 // import { Vibration } from 'react-native'
 
@@ -47,7 +47,7 @@ export class Touch extends Component {
   }
 
   onPress = () => {
-    runLast(() => {
+    runOnly(() => {
       let { disabled = false, onPress, beep } = this.props
       this._beep(beep)
       if (!disabled) onPress && onPress()

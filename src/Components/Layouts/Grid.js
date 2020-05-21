@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Touch, View } from '../'
 
 export class Grid extends React.PureComponent {
+  disappear = (callback) => {
+    this.view.disappear(callback)
+  }
   render() {
     let {
       layout = 'column',
@@ -30,14 +33,18 @@ export class Grid extends React.PureComponent {
     return !disabled && (props.onPress || props.onLongPress) ? (
       <Touch
         onPress={props.onPress}
-        onLongPress={props.onLongPress}
+        // onLongPress={props.onLongPress}
         style={(_styleWithBordered, style)}
         {...props}
       >
-        <View style={_style} {...props} />
+        <View ref={(c) => (this.view = c)} style={_style} {...props} />
       </Touch>
     ) : (
-      <View style={_styleWithBordered} {...props} />
+      <View
+        ref={(c) => (this.view = c)}
+        style={_styleWithBordered}
+        {...props}
+      />
     )
   }
 

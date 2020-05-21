@@ -128,13 +128,14 @@ export class Button extends React.PureComponent {
         >
           {leftIcon}
           <Label
-            theme={labelTheme}
+            // theme={labelTheme}
             // disabled={disabled}
             onPress={!disabled ? this.onPress : null}
             style={{
               // fontSize: fontSize,
               ...styles[theme]['label'],
               color: titleColor,
+              fontWeight: '600',
               ...titleStyle,
 
               // fontWeight: '400',
@@ -154,7 +155,7 @@ export class Button extends React.PureComponent {
 const styles = {
   pill: {
     borderRadius: BUTTON_RADIUS,
-    borderWidth: 0.5,
+    // borderWidth: 0.5,
     borderColor: 'rgba(138,210,205,.66)',
     // padding: 6,
     lineHeight: 1.8,
@@ -169,9 +170,9 @@ const styles = {
     // lineHeight: 2.5,
     paddingHorizontal: BUTTON_RADIUS,
     paddingVertical: BUTTON_RADIUS / 2,
-    borderWidth: 0.5,
+    // borderWidth: 0.5,
     backgroundColor: 'transparent',
-    borderColor: 'rgba(255,255,255,1)',
+    borderColor: BUTTON_BORDER_COLOR,
     label: {
       // color: 'rgba(#666,.75)',
       color: 'white',

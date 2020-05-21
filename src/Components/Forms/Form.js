@@ -32,7 +32,7 @@ export class Form extends Component {
         // flex={1}
         enableOnAndroid={true}
         backgroundColor={backgroundColor}
-        ref={ref => (this.scroll = ref)}
+        ref={(ref) => (this.scroll = ref)}
         {...this.props}
       >
         <T.Grid

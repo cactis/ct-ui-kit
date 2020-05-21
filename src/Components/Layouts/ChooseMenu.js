@@ -9,7 +9,7 @@ export class ChooseMenu extends React.PureComponent {
 
   render() {
     let { data, title, menus } = this.state
-  // log(data,  'data in ChooseMenu render()')
+    // log(data,  'data in ChooseMenu render()')
     if (!menus) return null
     // let { item = data} = data
     let _title = (
@@ -24,22 +24,25 @@ export class ChooseMenu extends React.PureComponent {
         <T.Label text={title} color="#333" theme="H3" />
       </T.Cell>
     )
-    let _menu = menus.map((menu, index) => (
+    let _menu = menus.map((m, index) => (
       <T.Cell
         key={index}
         flex={0}
-        padding={SIZE.m}
-        paddingHorizontal={SIZE.s}
+        padding={SIZE.l}
+        height={SIZE.l * 3}
+        // paddingHorizontal={SIZE.s}
+        backgroundColor="red"
         onPress={() => this.onPress(index)}
       >
-        {menu}
+        {/* <T.Touch onPress={() => this.onPress(index)}>{m}</T.Touch> */}
+        {m}
       </T.Cell>
     ))
     // alert(iPhoneX)
     return (
       <T.FlexModal
         padding={0}
-        ref={c => (this.modal = c)}
+        ref={(c) => (this.modal = c)}
         backgroundColor={CHOOSEMENU_BACKGROUND}
       >
         {_title}
@@ -48,7 +51,7 @@ export class ChooseMenu extends React.PureComponent {
       </T.FlexModal>
     )
   }
-  open = options => {
+  open = (options) => {
     this.setState({ ...options }, () => {
       this.modal.open()
     })
@@ -56,12 +59,13 @@ export class ChooseMenu extends React.PureComponent {
   close = () => {
     this.modal.close()
   }
-  onPress = index => {
+  onPress = (index) => {
+    log(index, 'index')
     let { onPress } = this.state
     onPress && onPress(index)
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

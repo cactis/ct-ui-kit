@@ -58,6 +58,11 @@ export class List extends React.PureComponent {
       // let { item = newItem } = newItem
       // log(item, 'item in List#itemEvent#onCreated')
       // // log(item, 'item - in List#itemCreated')
+      // item = { index: 0, item: item }
+      item.animation = window.Effect.zoomOut //'shake'
+      item.animation = 'bounceInDown'
+      item.animation = 'shake'
+      item.animation = true
       let { data } = this.state
       data = [item, ...data]
       // // // log(data, 'data - in ')
