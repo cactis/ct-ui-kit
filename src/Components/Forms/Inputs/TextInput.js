@@ -178,6 +178,7 @@ export class TextInput1 extends Component {
       <Grid
         // paddingVertical={rwd(5)}
         backgroundColor="rgb(255,255,255)"
+        // backgroundColor="red"
         // width="100%"
         // style={{ ...heightStyle }}
         style={{
@@ -201,11 +202,12 @@ export class TextInput1 extends Component {
             autoCapitalize="none"
             onChange={this.props.onChange}
           /> */}
-
         <PureRNTextInput
           // borderWidth={0.5}
-          padding={iOS ? SIZE.s / 2 : SIZE.s}
-          paddingTop={iOS ? SIZE.s / 6 : SIZE.n}
+          padding={bordered ? (iOS ? SIZE.s / 2 : SIZE.s) : SIZE.n}
+          paddingTop={iOS ? SIZE.s / 5 : SIZE.n}
+          paddingLeft={0}
+          // marginBottom={10}
           // paddingHorizontal={bordered ? rwd(5) : 0}
           editable={editable}
           // flex={1}
@@ -232,7 +234,8 @@ export class TextInput1 extends Component {
             // lineHeight: iOS ? 0 : rwd(10), //!!!!!!ANDROID!
             fontWeight: '600',
             // flex: 1,
-            width: '100%',
+            // width: '100%',
+            // borderWidth: 1,
             color: '#333',
             // borderWidth: 1,
             // textAlignVertical: 'top',

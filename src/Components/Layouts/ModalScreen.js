@@ -12,11 +12,12 @@ export class ModalScreen extends ModalBase {
   //   this.setState({ keyboardHeight: this.keyboardHeight })
   // }
   render() {
-    let { content, options, keyboardHeight = 0 } = this.state
+    // alert(modalHeight)
+    let { content, options, modalHeight, keyboardHeight = 0 } = this.state
     log(keyboardHeight, 'keyboardHeight')
     let { children = content, title: propTitle, height } = this.props
     let {
-      height: modalHeight = height,
+      // height: modalHeight = height,
       backgroundColor = SCREEN_BACKGROUNDCOLOR, // 'rgba(255,255,255,1)',
       // backgroundColor = 'rgba(204,57,57,.98)',
       safeArea = true,
@@ -36,9 +37,9 @@ export class ModalScreen extends ModalBase {
       ...opts
     } = options
     if ((scrollable || fullScreen) && !swipeToClose) swipeToClose = false
-    modalHeight = fullScreen ? SCREEN_HEIGHT : modalHeight
+    // modalHeight = fullScreen ? SCREEN_HEIGHT : modalHeight
     // alert([fullScreen, modalHeight])
-    modalHeight = SCREEN_HEIGHT
+    // modalHeight = SCREEN_HEIGHT
     let rowHeight = SCREEN_HEIGHT - keyboardHeight - (iOS ? rwd(-10) : rwd(10))
     let closeIcon = (
       <T.Icon
@@ -57,11 +58,13 @@ export class ModalScreen extends ModalBase {
       <ModalBox
         ref={(c) => (this.modal = c)}
         swipeToClose={swipeToClose}
+        swipeToClose={false}
         position={direction}
         entry={direction}
         keyboardTopOffset={0}
         onClosed={() => this.setState({ myTitle: null })}
         // coverScreen={true}
+        // borderWidth={3}
         style={{
           height: modalHeight,
           zIndex: 10000,
@@ -70,6 +73,8 @@ export class ModalScreen extends ModalBase {
           backgroundColor: backgroundColor,
           // backgroundColor: 'red',
           paddingTop: iPhoneX ? SIZE.n : SIZE.m,
+          // borderWidth: 10,
+          // borderColor: 'blue',
         }}
         {...opts}
         {...this.props}
@@ -78,7 +83,13 @@ export class ModalScreen extends ModalBase {
         {nowrap ? (
           children
         ) : (
-          <T.Row flex={0} height={rowHeight} borderWidth_={3} borderColor="red">
+          <T.Row
+            flex={1}
+            // height={rowHeight}
+            // height={modalHeight}
+            borderWidth_={3}
+            borderColor_="red"
+          >
             <T.Row
               flex={0}
               padding={padding / 2}
@@ -158,8 +169,8 @@ export class ModalScreen extends ModalBase {
                 </T.Grid>
               )}
             </T.Row>
-            <T.Space size={fullScreen && safeArea ? SAFEAREA_BOTTOM : 0} />
-            {/* <T.SafeArea flex={0} backgroundColor={safeAreaColor} /> */}
+            <T.Space size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0} />
+            <T.SafeArea flex={0} backgroundColor={safeAreaColor} />
           </T.Row>
         )}
       </ModalBox>

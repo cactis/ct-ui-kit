@@ -28,6 +28,13 @@ export class View extends React.Component {
     let emptyStyle = !children ? EMPTYSTYLE : {}
     // alert(animation)
     let Tag = animation ? Animatable.View : RNView
+    let drawBorderedStyle = Dev.drawBorder
+      ? { borderWidth: 0.5, borderColor: '#a8a8a8' }
+      : {}
+    drawBorderedStyle =
+      __DEV__ && props.__borderWidth
+        ? { ...drawBorderedStyle, borderWidth: 0.5, borderColor: 'red' }
+        : drawBorderedStyle
     let content = (
       <Tag
         ref={(c) => {
@@ -36,9 +43,9 @@ export class View extends React.Component {
         // delay={3000}
         // animation={animation}
         // animation="shake"
+
         flexDirection={flow}
-        borderWidth={Dev.drawBorder ? 0.5 : 0}
-        style={{ ...emptyStyle, ...style }}
+        style={{ ...emptyStyle, ...style, ...drawBorderedStyle }}
         {...props}
       >
         {children}

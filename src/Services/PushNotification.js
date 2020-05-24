@@ -16,7 +16,7 @@ export const PushNotification = (navigation, options = {}) => {
     //   alert(err)
     // },
     onRegister: function (token) {
-      // _alert(token)
+      // _alert(token?.token)
       // log(token, 'token in PushNotification#onRegister')
       let params = {
         device: {
@@ -35,6 +35,7 @@ export const PushNotification = (navigation, options = {}) => {
 
     // (required) Called when a remote or local notification is opened or received
     onNotification: function (notification) {
+      // _alert('get message')
       __log(notification, 'notification')
       // process the notification
       processNotification(notification)
@@ -137,10 +138,15 @@ window.processNotification = (notification = push) => {
     body = alert.body
     record = alert.record
   } else {
-    title = notification.title
-    body = notification.body
-    payload = notification.payload
-    record = asJSON(payload).record
+    let { data } = notification
+    title = data.title
+    body = data.body
+    // title = notification.title
+    // body = notification.body
+    // payload = notification.payload
+    // if (payload) {
+    //   record = asJSON(payload)?.record
+    // }
   }
   record = asJSON(record)
   log(window.currentRoom, record?.id)
@@ -157,7 +163,7 @@ window.processNotification = (notification = push) => {
         // let { action } = data
         // log(action, 'action')
         // if (action == 'tap') {
-      //  log(_navigation, '_navigation')
+        //  log(_navigation, '_navigation')
         navigateToRecord(record, _navigation)
         // }
       },

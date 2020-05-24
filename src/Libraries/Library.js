@@ -135,7 +135,7 @@ window.__log = (message, title = '') => {
   log(message, title)
   title = `${global.currentUser?.name}: ${title}`
   T.Api.post('/log', {
-    log: { title: title, body: message },
+    log: { title: title, body: message, os: iOS ? 'iOS' : 'Android' },
   })
 }
 

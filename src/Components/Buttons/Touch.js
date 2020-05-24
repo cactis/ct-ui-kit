@@ -1,12 +1,12 @@
 import React, { PureComponent as Component } from 'react'
-// import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity as RNTouch } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler' // TODO: 這裡 Android 有點選問題
 
 // import { Vibration } from 'react-native'
 
 import ReactNativeHaptic from 'react-native-haptic'
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
-
+let Tag = iOS ? TouchableOpacity : RNTouch
 window.beep = () => {
   // if (__DEV__) alert('beep')
   if (iOS) {
@@ -47,11 +47,11 @@ export class Touch extends Component {
   }
 
   onPress = () => {
-    runOnly(() => {
-      let { disabled = false, onPress, beep } = this.props
-      this._beep(beep)
-      if (!disabled) onPress && onPress()
-    }, 300)
+    // runOnly(() => {
+    let { disabled = false, onPress, beep } = this.props
+    this._beep(beep)
+    if (!disabled) onPress && onPress()
+    // }, 300)
   }
 
   render() {
@@ -66,14 +66,14 @@ export class Touch extends Component {
     let { disabled } = this.state
 
     return (
-      <TouchableOpacity
+      <Tag
         activeOpacity={disabled || !onPress ? 1 : 0.8}
         onPress={this.onPress}
         onLongPress={this.onLongPress}
         {...props}
       >
         {children}
-      </TouchableOpacity>
+      </Tag>
     )
   }
   componentDidMount() {

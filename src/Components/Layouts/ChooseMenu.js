@@ -28,11 +28,12 @@ export class ChooseMenu extends React.PureComponent {
       <T.Cell
         key={index}
         flex={0}
-        padding={SIZE.l}
-        height={SIZE.l * 3}
+        padding={SIZE.l / 2}
+        // height={SIZE.l * 5}
         // paddingHorizontal={SIZE.s}
-        backgroundColor="red"
+        // backgroundColor="red"
         onPress={() => this.onPress(index)}
+        // onPress={alert}
       >
         {/* <T.Touch onPress={() => this.onPress(index)}>{m}</T.Touch> */}
         {m}
@@ -41,12 +42,15 @@ export class ChooseMenu extends React.PureComponent {
     // alert(iPhoneX)
     return (
       <T.FlexModal
-        padding={0}
+        // padding={0}
         ref={(c) => (this.modal = c)}
         backgroundColor={CHOOSEMENU_BACKGROUND}
+        backgroundColor="red"
       >
-        {_title}
-        {_menu}
+        <T.Row flex={0}>
+          {_title}
+          {_menu}
+        </T.Row>
         <T.Space size={SAFEAREA_BOTTOM} />
       </T.FlexModal>
     )

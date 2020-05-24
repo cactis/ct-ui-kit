@@ -42,7 +42,7 @@ export class Medias3 extends React.PureComponent {
             />
           </T.Col>
           <T.Space size={space} />
-          <T.Col backgroundColor="red">
+          <T.Col backgroundColor_="red">
             <T.Media
               images={item}
               index={2}

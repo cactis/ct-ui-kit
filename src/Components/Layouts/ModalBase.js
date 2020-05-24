@@ -10,6 +10,7 @@ export class ModalBase extends KeyboardAware {
     data: null,
     content: null,
     keyboardHeight: 0,
+    modalHeight: SCREEN_HEIGHT,
     // title: null,
     options: {},
     _options: {
@@ -21,10 +22,16 @@ export class ModalBase extends KeyboardAware {
   }
 
   updateHeight = () => {}
-  onKeyboardChanged = height => {
+  onKeyboardChanged = (height) => {
+    // alert('onKeyboardChanged')
+    // alert(height)
     // alert('hhh')
     // this.keyboardHeight = height
-    this.setState({ keyboardHeight: height })
+    this.setState({
+      keyboardHeight: height,
+      modalHeight: SCREEN_HEIGHT - height - (iOS ? 0 : 20),
+    })
+
     // this.updateHeight()
   }
 

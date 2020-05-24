@@ -306,5 +306,7 @@ window.STYLES = {
     borderWidth: 0.5,
     borderColor: '#a8a8a8',
     borderRadius: SIZE.t,
+    // borderWidth: 5,
+    // borderColor: '#222',
   },
 }

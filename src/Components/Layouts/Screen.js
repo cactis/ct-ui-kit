@@ -31,7 +31,7 @@ export class Screen extends React.Component {
       this.onOpen(this)
     })
   }
-  onLayout = e => {
+  onLayout = (e) => {
     // window.SCREEN_WIDTH = e.nativeEvent.layout.width
     // window.SCREEN_HEIGHT = e.nativeEvent.layout.height
     // alert(window.SCREEN_WIDTH)
@@ -46,7 +46,7 @@ export class Screen extends React.Component {
     } = this.props
     let content = scrollable ? (
       <Scroll
-        ref={c => (this.scroll = c)}
+        ref={(c) => (this.scroll = c)}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} />
         }
@@ -59,8 +59,8 @@ export class Screen extends React.Component {
     content = keyboardAware ? (
       <KeyboardAwareScrollView
         enableOnAndroid={true}
-        // backgroundColor={backgroundColor}
-        ref={ref => (this.scroll = ref)}
+        backgroundColor={SCREEN_BACKGROUNDCOLOR}
+        ref={(ref) => (this.scroll = ref)}
         {...this.props}
       >
         <Grid padding={padding} {...this.props} />
@@ -72,14 +72,26 @@ export class Screen extends React.Component {
     const body = safeAreaDisabled ? (
       content
     ) : (
-      <SafeArea flex={1} backgroundColor={SCREEN_BACKGROUNDCOLOR}>
+      <SafeArea
+        flex={1}
+        // backgroundColor={SCREEN_BACKGROUNDCOLOR}
+        backgroundColor={BCOLOR}
+      >
         {content}
       </SafeArea>
     )
-    return <Grid onLayout={this.onLayout}>{body}</Grid>
+    return (
+      <Grid
+        // borderWidth={3}
+        onLayout={this.onLayout}
+        backgroundColor={SCREEN_BACKGROUNDCOLOR}
+      >
+        {body}
+      </Grid>
+    )
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     if (_navigation?.state?.params) {
       let { data, options } = _navigation.state.params
       if (options) {

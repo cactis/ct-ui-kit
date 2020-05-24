@@ -16,7 +16,7 @@ export class KeyboardAware extends React.PureComponent {
 
   state = {}
 
-  onKeyboardChanged = height => {
+  onKeyboardChanged = (height) => {
     // alert('_onKeyboardTapped')
     log(
       height,
@@ -26,15 +26,16 @@ export class KeyboardAware extends React.PureComponent {
     // this.onKeyboardChanged && this.onKeyboardChanged(height)
   }
 
-  keyboardDidShow = e => {
+  keyboardDidShow = (e) => {
     let keyboardHeight = e.endCoordinates.height
+    // alert(keyboardHeight)
     // runLast(() => {
     // log(e, 'e keyboardDidShow')
     this.onKeyboardChanged(keyboardHeight)
     // }, 100)
   }
 
-  keyboardDidHide = e => {
+  keyboardDidHide = (e) => {
     // let keyboardHeight = SCREEN_HEIGHT - rwd(125) - SAFEAREA_TOP
     // runLast(() => {
     this.onKeyboardChanged(0)

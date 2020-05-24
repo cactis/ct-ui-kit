@@ -49,10 +49,10 @@ export const Video = (props) => {
     )
   }
   videoError = (err) => {
-    log(err, 'err')
+    // log(err, 'err')
   }
   // log(url, 'url')
-  log(props.style, 'ssssss')
+  // log(props.style, 'ssssss')
   return (
     <T.Grid>
       <RNVideo

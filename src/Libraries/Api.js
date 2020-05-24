@@ -1,9 +1,10 @@
 log('!!! Api.js#UIKIT')
 // import '../Constants'
 require('./Library')
+require('../../../../AppConfig')
 import React, { Component } from 'react'
 
-global.AppConfig = {
+let AppConfig = {
   appName: '(need to set by project)',
   // host: __DEV__ ? 'api' : 'api',
   apiVersion: '',
@@ -11,8 +12,12 @@ global.AppConfig = {
   Hosts: {
     example: 'http://example.com',
   },
+  ...window.AppConfig,
 }
 
+window.AppConfig = AppConfig
+
+// alert(AppConfig.appName)
 export class Api {
   static get = async (url, params = {}, onSuccess, onError) => {
     // log(url, 'url in get')
@@ -90,7 +95,7 @@ export class Api {
     const headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'User-Agent': '',
+      'User-Agent': AppConfig.appName,
       modal: window.DEVICE_INFO?.Model,
       build: window.DEVICE_INFO?.ReadableVersion,
       tokens: accessTokens,
@@ -98,6 +103,7 @@ export class Api {
       timeZoneOffset: window.timeZoneOffset(),
       ...HttpHeader,
     }
+    log(headers, 'headers')
     // headers = _.merge(headers, HttpHeader)
     // log(headers, 'headers')
     // alert('uiapi')
@@ -131,7 +137,7 @@ export class Api {
     // log(Dev.logResponse, 'Dev.logResponse')
     if (contentType && contentType.indexOf('application/json') !== -1) {
       const json = await response.json()
-      if (Dev.logResponse) log(json, 'json in Api.js')
+      if (Dev.logResponse) log(json, `json in Api.js ${_url}`)
       if (json) {
         let { meta } = json
         let { errors } = json

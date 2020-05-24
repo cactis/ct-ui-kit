@@ -21,7 +21,7 @@ export class FlexModal extends ModalBase {
   render() {
     let { content, options } = this.state
     let { backgroundColor = LIGHT_COLOR } = options
-    let { padding = options.padding || SIZE.l } = this.props
+    let { padding = options.padding || SIZE.l, ...props } = this.props
     // log(content, '000000')
     let { children = content, title: propTitle, height } = this.props
     // log(children, 'children')
@@ -30,11 +30,13 @@ export class FlexModal extends ModalBase {
         style={{
           height: 'auto',
           backgroundColor: backgroundColor,
+          backgroundColor: 'red',
         }}
         {...options}
         position="bottom"
         entry="bottom"
-        ref={c => (this.modal = c)}
+        ref={(c) => (this.modal = c)}
+        {...props}
       >
         <T.Grid
           flex={0}
@@ -50,7 +52,7 @@ export class FlexModal extends ModalBase {
     )
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {
