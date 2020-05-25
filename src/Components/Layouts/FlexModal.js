@@ -27,6 +27,7 @@ export class FlexModal extends ModalBase {
     // log(children, 'children')
     return (
       <ModalBox
+        useNativeDriver={true}
         style={{
           height: 'auto',
           backgroundColor: backgroundColor,

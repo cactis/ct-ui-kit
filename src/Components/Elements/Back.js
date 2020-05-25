@@ -23,7 +23,7 @@ export class Back extends React.PureComponent {
         onPress={() => {
           // window.currentRoom = null
           T.NavigationService.goBack()
-          // window.keyboardInput.close()
+          // //
           // log(window.currentRoom, 'window.currentRoom')
         }}
       />

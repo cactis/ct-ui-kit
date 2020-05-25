@@ -44,7 +44,7 @@ export class EditorBase extends KeyboardAware {
     this.richText.blurContentEditor()
   }
 
-  onKeyboardChanged = height => {
+  onKeyboardChanged = (height) => {
     // log(height, 'height')
     this.mounted &&
       this.setState({ paddingBottom: height, toolbarHeight: height })
@@ -70,14 +70,15 @@ export class EditorBase extends KeyboardAware {
         >
           <T.Scroll flex={1}>
             <RichEditor
-              ref={rf => (that.richText = rf)}
+              ref={(rf) => (that.richText = rf)}
               initialContentHTML={initHTML}
               style={styles.rich}
             />
           </T.Scroll>
         </T.Screen>
         <ModalBox
-          ref={c => (this.modal = c)}
+          useNativeDriver={true}
+          ref={(c) => (this.modal = c)}
           flex={0}
           position="bottom"
           entry="bottom"

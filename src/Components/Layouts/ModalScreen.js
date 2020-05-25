@@ -16,6 +16,7 @@ export class ModalScreen extends ModalBase {
     let { content, options, modalHeight, keyboardHeight = 0 } = this.state
     log(keyboardHeight, 'keyboardHeight')
     let { children = content, title: propTitle, height } = this.props
+
     let {
       // height: modalHeight = height,
       backgroundColor = SCREEN_BACKGROUNDCOLOR, // 'rgba(255,255,255,1)',
@@ -31,7 +32,7 @@ export class ModalScreen extends ModalBase {
       keyboardAware = false,
       // paddable = true,
       padding = SIZE.n,
-      safeAreaColor = BCOLOR,
+      safeAreaColor = backgroundColor, //BCOLOR,
       nowrap = false,
       button,
       ...opts
@@ -56,6 +57,7 @@ export class ModalScreen extends ModalBase {
     // alert(swipeToClose)
     return (
       <ModalBox
+        useNativeDriver={true}
         ref={(c) => (this.modal = c)}
         swipeToClose={swipeToClose}
         swipeToClose={false}
@@ -63,6 +65,7 @@ export class ModalScreen extends ModalBase {
         entry={direction}
         keyboardTopOffset={0}
         onClosed={() => this.setState({ myTitle: null })}
+        // backgroundColor={backgroundColor}
         // coverScreen={true}
         // borderWidth={3}
         style={{

@@ -57,7 +57,8 @@ export class Modal extends ModalBase {
     // alert([fullScreen, modalHeight])
     return (
       <ModalBox
-        ref={c => (this.modal = c)}
+        useNativeDriver={true}
+        ref={(c) => (this.modal = c)}
         swipeToClose={swipeToClose}
         position={direction}
         entry={direction}
@@ -147,7 +148,7 @@ export class Modal extends ModalBase {
     )
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

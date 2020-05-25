@@ -69,6 +69,7 @@ export class DropdownAlert extends React.PureComponent {
     log(backgroundColor, 'backgroundColor')
     return (
       <ModalBox
+        useNativeDriver={true}
         ref={(c) => (this.modal = c)}
         flex={0}
         position="top"

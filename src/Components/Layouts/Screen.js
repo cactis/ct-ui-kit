@@ -43,23 +43,34 @@ export class Screen extends React.Component {
       keyboardAware = false,
       safeAreaDisabled = false,
       scrollable = false,
+      backgroundColor = SCREEN_BACKGROUNDCOLOR,
     } = this.props
+    // alert(backgroundColor)
     let content = scrollable ? (
       <Scroll
+        backgroundColor={backgroundColor}
         ref={(c) => (this.scroll = c)}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} />
         }
       >
-        <Grid padding={padding} {...this.props} />
+        <Grid
+          backgroundColor={backgroundColor}
+          padding={padding}
+          {...this.props}
+        />
       </Scroll>
     ) : (
-      <Grid padding={padding} {...this.props} />
+      <Grid
+        backgroundColor={backgroundColor}
+        padding={padding}
+        {...this.props}
+      />
     )
     content = keyboardAware ? (
       <KeyboardAwareScrollView
         enableOnAndroid={true}
-        backgroundColor={SCREEN_BACKGROUNDCOLOR}
+        // backgroundColor={backgroundColor}
         ref={(ref) => (this.scroll = ref)}
         {...this.props}
       >
@@ -74,8 +85,8 @@ export class Screen extends React.Component {
     ) : (
       <SafeArea
         flex={1}
-        // backgroundColor={SCREEN_BACKGROUNDCOLOR}
-        backgroundColor={BCOLOR}
+        backgroundColor={backgroundColor}
+        // backgroundColor={BCOLOR}
       >
         {content}
       </SafeArea>
@@ -84,7 +95,8 @@ export class Screen extends React.Component {
       <Grid
         // borderWidth={3}
         onLayout={this.onLayout}
-        backgroundColor={SCREEN_BACKGROUNDCOLOR}
+        backgroundColor={backgroundColor}
+        backgroundColor="black"
       >
         {body}
       </Grid>

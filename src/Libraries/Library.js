@@ -3,6 +3,8 @@ if (__DEV__) console.log('!!! Library.js#UIKIT')
 import React from 'react'
 
 import D from 'react-native-device-info'
+import RNViewShot from 'react-native-view-shot'
+
 import _ from 'lodash'
 import {
   Alert,
@@ -648,4 +650,19 @@ window.objectToQuerystring = (obj) => {
     val = encodeURIComponent(obj[key])
     return [str, delimiter, key, '=', val].join('')
   }, '')
+}
+
+window.takeShot = (ref) => {
+  RNViewShot.takeSnapshot(ref, {
+    format: 'jpeg',
+    quality: 0.8,
+  }).then(
+    (uri) => {
+      T.Api.post('/reports', { image: urk }, (res) => {
+        let { data } = res
+        log(data, 'data')
+      })
+    },
+    (error) => console.error('Oops, snapshot failed', error)
+  )
 }
