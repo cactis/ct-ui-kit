@@ -49,7 +49,7 @@ export class DropdownAlert extends React.PureComponent {
     this.modal.open()
     delayed(() => {
       this.close()
-    }, 3000)
+    }, 5000)
     // log(onTap, 'onTap')
     // log(typeof onTap == 'function')
     this.onTapped = onTapped
@@ -78,8 +78,8 @@ export class DropdownAlert extends React.PureComponent {
         style={{
           backgroundColor: 'transparent',
           // marginTop: -1 * (iOS ? 0 : STATUSBAR_HEIGHT),
-          paddingHorizontal: rwd(20),
-          paddingTop: SAFEAREA_TOP + rwd(10),
+          paddingHorizontal: SIZE.l,
+          paddingTop: SAFEAREA_TOP + SIZE.s,
           // flex: 0,
           height: 'auto',
         }}
@@ -87,12 +87,13 @@ export class DropdownAlert extends React.PureComponent {
         <T.Grid
           // margin={rwd(20)}
           flex={0}
-          paddingHorizontal={rwd(15)}
-          paddingVertical={rwd(15)}
-          width={SCREEN_WIDTH - rwd(30) * 2}
+          paddingLeft={SIZE.s}
+          paddingVertical={SIZE.m}
+          paddingRight={SIZE.n}
+          width={SCREEN_WIDTH - SIZE.l * 2}
           flow="row"
           style={{
-            borderRadius: rwd(50),
+            borderRadius: SIZE.m,
             backgroundColor: backgroundColor,
           }}
           activeOpacity={1}
@@ -116,13 +117,18 @@ export class DropdownAlert extends React.PureComponent {
               color="#fff"
               text={title}
               text_="title"
-              theme="H2"
-              numberOfLines={3}
+              // theme="H5"
+              numberOfLines={2}
             />
             <T.Space>
-              <T.Text color="#fff" text={body} text_="body" numberOfLines={0} />
+              <T.Text color="#fff" text={body} text_="body" numberOfLines={5} />
             </T.Space>
           </T.Col>
+          {this.state?.options?.onTapped ? (
+            <T.Center flex={0}>
+              <T.Icon size={SIZE.m} color="white" />
+            </T.Center>
+          ) : null}
         </T.Grid>
       </ModalBox>
     )
