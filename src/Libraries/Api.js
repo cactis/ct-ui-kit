@@ -98,6 +98,7 @@ export class Api {
       'User-Agent': AppConfig.appName,
       modal: window.DEVICE_INFO?.Model,
       build: window.DEVICE_INFO?.ReadableVersion,
+      os: iOS ? 'iOS' : 'Android',
       tokens: accessTokens,
       appName: AppConfig.appName,
       timeZoneOffset: window.timeZoneOffset(),

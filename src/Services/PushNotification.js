@@ -138,15 +138,17 @@ window.processNotification = (notification = push) => {
     body = alert.body
     record = alert.record
   } else {
-    let { data } = notification
+    let { data = notification } = notification
     title = data.title
     body = data.body
+    payload = data.payload
     // title = notification.title
     // body = notification.body
     // payload = notification.payload
-    // if (payload) {
-    //   record = asJSON(payload)?.record
-    // }
+    log(payload, 'payload')
+    if (payload) {
+      record = asJSON(payload)?.record
+    }
   }
   record = asJSON(record)
   log(window.currentRoom, record?.id)
@@ -154,8 +156,8 @@ window.processNotification = (notification = push) => {
     // _alert('no need alert')
     return
   }
-  // log(title, 'title')
-  // log(body, 'body')
+  log(title, 'title')
+  log(body, 'body')
   if (title || body) {
     alert({ title: title, body: body }, 'info', {
       onTapped: () => {
