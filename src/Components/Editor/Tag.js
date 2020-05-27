@@ -63,8 +63,8 @@ export class Tag extends React.PureComponent {
     )
   }
 
-  updateData = data => {
-    log('updateData in Tag')
+  updateData = (data) => {
+    // log('updateData in Tag')
     // log(data, 'data in Tag00000')
     this.mounted && this.setState({ ...data })
     this.forceUpdate()
@@ -106,7 +106,7 @@ export class Tag extends React.PureComponent {
             // style={styles.leftAction}
             onPress={() => {
               alert()
-            // log(data,  'data')
+              // log(data,  'data')
               // this.props.onRemoveItem(data.index)
             }}
             color="#888"
@@ -122,7 +122,7 @@ export class Tag extends React.PureComponent {
     this.refs.swipeable.openRight()
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

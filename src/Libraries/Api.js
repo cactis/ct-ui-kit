@@ -104,7 +104,7 @@ export class Api {
       timeZoneOffset: window.timeZoneOffset(),
       ...HttpHeader,
     }
-    log(headers, 'headers')
+    // log(headers, 'headers')
     // headers = _.merge(headers, HttpHeader)
     // log(headers, 'headers')
     // alert('uiapi')

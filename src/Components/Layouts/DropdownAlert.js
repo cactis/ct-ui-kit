@@ -28,12 +28,12 @@ export class DropdownAlert extends React.PureComponent {
     // log(options, 'options')
     // let { title, type = 'success' } = options
     let title, body
-    log(typeof content, '----')
+    // log(typeof content, '----')
     if (typeof content == 'object') {
       title = content.title
       body = content.body
     } else {
-      log('content is String')
+      // log('content is String')
       body = `${content}`
     }
     let { onTapped = () => {}, onClose = () => {} } = options
@@ -63,10 +63,10 @@ export class DropdownAlert extends React.PureComponent {
 
   render() {
     let { title, body, type } = this.state
-    log(type, 'type')
+    // log(type, 'type')
     let backgroundColor =
       type == 'success' ? DROPDOWNALERT_COLOR : DROPDOWNALERT_COLOR_INFO
-    log(backgroundColor, 'backgroundColor')
+    // log(backgroundColor, 'backgroundColor')
     return (
       <ModalBox
         useNativeDriver={true}

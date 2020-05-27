@@ -41,10 +41,11 @@ export class Field extends Component {
     ) : null
     return (
       <T.Row
-        flex={0}
+        // flex={0}
         // height={130}
         // borderWidth={1}
         marginTop={SIZE.s}
+        __
         style={{
           // padding: padding,
 
@@ -72,6 +73,8 @@ export class Field extends Component {
         ) : null}
         <T.Row
           flow="row"
+          // __
+          // flex={0}
           // borderWidth={3}
           // __xAlign="center"
           padding={SIZE.n}

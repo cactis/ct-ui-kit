@@ -52,7 +52,7 @@ export class Photo extends React.PureComponent {
   getImages = (images) => {
     // log(images, 'images')
     images = _.filter(images, { type: 'Photo' })
-    log(images.length, 'images.length')
+    // log(images.length, 'images.length')
     return _.map(images, (img) => {
       return {
         source: {

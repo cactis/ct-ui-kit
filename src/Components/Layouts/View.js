@@ -10,6 +10,7 @@ export class View extends React.Component {
   render() {
     // Tag = Animatable.View
     if (this.props.__hidden__) return null
+    let __color__ = __DEV__ && this.props.__ ? { backgroundColor: 'red' } : {}
     let {
       align,
       yAlign,
@@ -45,7 +46,12 @@ export class View extends React.Component {
         // animation="shake"
 
         flexDirection={flow}
-        style={{ ...emptyStyle, ...style, ...drawBorderedStyle }}
+        style={{
+          ...emptyStyle,
+          ...style,
+          ...drawBorderedStyle,
+          ...__color__,
+        }}
         {...props}
       >
         {children}

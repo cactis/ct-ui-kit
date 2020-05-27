@@ -16,7 +16,7 @@ export class Medias4 extends React.PureComponent {
     let aspectRatio = 0.65
     let space = <T.Space size={SIZE.t / 5} />
     let photos = item.filter((r) => r.type == 'Photo').map((r) => r.id)
-    log(photos, 'photos')
+    // log(photos, 'photos')
     // alert()
     return (
       <T.Row flow="row" height={SCREEN_HEIGHT / 3}>

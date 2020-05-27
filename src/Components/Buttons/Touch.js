@@ -6,7 +6,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler' // TODO: 這裡 
 
 import ReactNativeHaptic from 'react-native-haptic'
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
-let Tag = iOS ? TouchableOpacity : RNTouch
+// let Tag = iOS ? TouchableOpacity : RNTouch
+let Tag = TouchableOpacity
 window.beep = () => {
   // if (__DEV__) alert('beep')
   if (iOS) {
@@ -49,8 +50,8 @@ export class Touch extends Component {
   onPress = () => {
     // runOnly(() => {
     let { disabled = false, onPress, beep } = this.props
-    this._beep(beep)
     if (!disabled) onPress && onPress()
+    this._beep(beep)
     // }, 300)
   }
 
@@ -72,7 +73,7 @@ export class Touch extends Component {
         onLongPress={this.onLongPress}
         {...props}
       >
-        {children}
+        <T.View __color>{children}</T.View>
       </Tag>
     )
   }

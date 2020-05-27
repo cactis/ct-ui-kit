@@ -32,20 +32,27 @@ export class ChooseMenu extends React.PureComponent {
         // height={SIZE.l * 5}
         // paddingHorizontal={SIZE.s}
         // backgroundColor="red"
-        onPress={() => this.onPress(index)}
+        // onPress={() => this.onPress(index)}
         // onPress={alert}
       >
-        {/* <T.Touch onPress={() => this.onPress(index)}>{m}</T.Touch> */}
-        {m}
+        <T.Touch
+          onPress={() => {
+            // alert()
+            this.onPress(index)
+          }}
+        >
+          {m}
+        </T.Touch>
       </T.Cell>
     ))
     // alert(iPhoneX)
     return (
       <T.FlexModal
+        useNativeDriver={true}
         // padding={0}
         ref={(c) => (this.modal = c)}
         backgroundColor={CHOOSEMENU_BACKGROUND}
-        backgroundColor="red"
+        // backgroundColor="red"
       >
         <T.Row flex={0}>
           {_title}
@@ -64,7 +71,7 @@ export class ChooseMenu extends React.PureComponent {
     this.modal.close()
   }
   onPress = (index) => {
-    log(index, 'index')
+    // log(index, 'index')
     let { onPress } = this.state
     onPress && onPress(index)
   }

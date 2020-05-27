@@ -12,7 +12,7 @@ export const Media = (props) => {
   // })
 
   // let Tag
-  log(item.type, 'item.type')
+  // log(item.type, 'item.type')
   switch (item.type) {
     case 'Video':
       return <T.Video url={item.path || item.data || item.file_url} />

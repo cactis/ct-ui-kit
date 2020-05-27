@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Space, Touch, Text, Float, Badge } from '../'
+import { Touch, Text, Float, Badge } from '../'
 
 import { Vibration } from 'react-native'
 

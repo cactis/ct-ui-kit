@@ -111,6 +111,7 @@ export const IconLabel = (props) => {
       {props.rightIcon}
     </Row>
   )
+  // alert(onPress ? 1 : 2)
   return onPress ? (
     <Touch onPress={disabled ? null : _onPress}>{button}</Touch>
   ) : (

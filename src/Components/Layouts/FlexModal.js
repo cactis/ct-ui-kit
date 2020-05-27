@@ -31,7 +31,7 @@ export class FlexModal extends ModalBase {
         style={{
           height: 'auto',
           backgroundColor: backgroundColor,
-          backgroundColor: 'red',
+          // backgroundColor: 'red',
         }}
         {...options}
         position="bottom"
