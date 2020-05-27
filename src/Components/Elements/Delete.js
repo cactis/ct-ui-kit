@@ -9,30 +9,38 @@ export class Delete extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Delete render()')
+    let { title } = this.props
+    // log(data, 'data in Delete render()')
     if (!data) return null
     let { item = data } = data
     return item.editable ? (
-      <T.Icon
-        onPress={this.onPress}
-        name="minuscircleo"
-        iconSet="AntDesign"
-        // size={SIZE.m - 2}
-        color={STRONG_COLOR}
-      />
+      title ? (
+        <T.Center flex={0} {...this.props} style_={{ ...STYLES.bordered }}>
+          <T.Label text={title} onPress={this.onPress} color_="#999" />
+        </T.Center>
+      ) : (
+        <T.Icon
+          onPress={this.onPress}
+          name="minuscircleo"
+          iconSet="AntDesign"
+          // size={SIZE.m - 2}
+          color={STRONG_COLOR}
+        />
+      )
     ) : null
   }
   onPress = () => {
     let { data } = this.state
     let { item = data } = data
-    let { onDeleted } = this.props
+    let { onDeleted = () => {} } = this.props
     confirm(
       () => {
         T.Api.delete(item.routes, (res) => {
-          onDeleted && onDeleted()
+          log(item, 'item in delete#res')
+          onDeleted(data)
         })
       },
-      { title: `Confirm to delete this recording?` }
+      { title: `Confirm to delete this item?` }
     )
 
     // if (this.props.onPress) {

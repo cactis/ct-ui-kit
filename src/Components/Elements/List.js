@@ -40,6 +40,7 @@ export class List extends React.PureComponent {
 
   itemEvent = {
     onDeleted: (item) => {
+      log(item, 'item in List#itemEvent#onDeleted')
       // this.flatList._reload()
       // log(item, 'item - in itemDeleted#List')
       let { data } = this.state
