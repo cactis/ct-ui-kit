@@ -10,7 +10,8 @@ export class View extends React.Component {
   render() {
     // Tag = Animatable.View
     if (this.props.__hidden__) return null
-    let __color__ = __DEV__ && this.props.__ ? { backgroundColor: 'red' } : {}
+    let __color__ =
+      __DEV__ && this.props.__c__ ? { backgroundColor: 'red' } : {}
     let {
       align,
       yAlign,
@@ -33,7 +34,7 @@ export class View extends React.Component {
       ? { borderWidth: 0.5, borderColor: '#a8a8a8' }
       : {}
     drawBorderedStyle =
-      __DEV__ && props.__borderWidth
+      __DEV__ && props.__b__
         ? { ...drawBorderedStyle, borderWidth: 0.5, borderColor: 'red' }
         : drawBorderedStyle
     let content = (
