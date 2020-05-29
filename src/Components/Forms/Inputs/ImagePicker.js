@@ -46,7 +46,7 @@ export const ImagePicker = (props) => {
 window.base64Image = async (image) => {
   // log(image, 'image in base64Image')
   let { mime, path } = image
-  log(path, 'path')
+  // log(path, 'path')
   // if (mime.search(/mp4/) > -1) {
   // log('read mp4')
   let base64 = await RNFS.readFile(path, 'base64')

@@ -52,6 +52,7 @@ window.BCOLOR_DEV = 'rgb(108,108,108)'
 window.FCOLOR = 'rgb(219,219,219)'
 // window.ICON_COLOR = 'rgba(55,47,66,1)'
 window.SUBMIT_COLOR = BCOLOR //'rgb(241,220,148)'
+window.SUBMIT_BACKGROUND_COLOR = BCOLOR
 window.STRONG_COLOR = 'rgba(133,15,15,1)'
 
 window.SCREEN_BACKGROUNDCOLOR = BCOLOR
@@ -87,6 +88,8 @@ window.CLOSE_ICON_NAME = 'close'
 window.CLOSE_ICON_SET = 'AntDesign'
 window.CLOSE_ICON_NAME = 'chevron-down'
 window.CLOSE_ICON_SET = 'Entypo'
+
+require('../../../Constants.js')
 
 window.IOS_FONTS = [
   'AcademyEngravedLetPlain',
@@ -172,8 +175,6 @@ window.ANDROID_FONTS = [
   'Dancing Script Bold',
   'Carrois Gothic SC',
 ]
-
-require('../../../Constants.js')
 
 setDeviceName = () => {
   D.getDeviceName().then((res) => {

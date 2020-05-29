@@ -39,6 +39,7 @@ export class TextInput extends React.PureComponent {
           onChangeText && onChangeText(value)
         }}
         {...props}
+        // value="aa"
       />,
       {
         title: 'Edit',

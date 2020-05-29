@@ -45,7 +45,7 @@ export const Media = (props) => {
       return
     case 'video/mp4':
       return (
-        <T.Video {...props} url={item.path || item.data || item.file_url} />
+        <T.Video url={item.path || item.data || item.file_url} {...props} />
       )
       break
     case 'application/pdf':

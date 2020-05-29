@@ -19,6 +19,7 @@ export class View extends React.Component {
       xAlign,
       style = {},
       children,
+      bordered,
       animation,
       // keyboardAware = false,
       ...props
@@ -30,9 +31,10 @@ export class View extends React.Component {
     let emptyStyle = !children ? EMPTYSTYLE : {}
     // alert(animation)
     let Tag = animation ? Animatable.View : RNView
-    let drawBorderedStyle = Dev.drawBorder
-      ? { borderWidth: 0.5, borderColor: '#a8a8a8' }
-      : {}
+    let drawBorderedStyle =
+      Dev.drawBorder || bordered
+        ? { borderWidth: 0.5, borderColor: '#a8a8a8' }
+        : {}
     drawBorderedStyle =
       __DEV__ && props.__b__
         ? { ...drawBorderedStyle, borderWidth: 0.5, borderColor: 'red' }

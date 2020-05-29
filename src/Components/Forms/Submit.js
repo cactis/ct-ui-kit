@@ -17,11 +17,11 @@ export class Submit extends React.Component {
     let { data } = this.state
     let backgroundColor = this.props.disabled
       ? 'rgb(210,210,210)'
-      : SUBMIT_COLOR
+      : SUBMIT_BACKGROUND_COLOR
     return (
       <T.Row margin={20} flex={0}>
         <T.Button
-          color="white"
+          color={SUBMIT_COLOR}
           backgroundColor={backgroundColor}
           // theme="H3"
           {...this.props}

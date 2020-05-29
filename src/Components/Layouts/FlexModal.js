@@ -20,10 +20,10 @@ export class FlexModal extends ModalBase {
 
   render() {
     let { content, options } = this.state
-    let { backgroundColor = LIGHT_COLOR } = options
+    let { backgroundColor = LIGHT_COLOR, title: propTitle } = options
     let { padding = options.padding || SIZE.l, ...props } = this.props
     // log(content, '000000')
-    let { children = content, title: propTitle, height } = this.props
+    let { children = content, height } = this.props
     // log(children, 'children')
     return (
       <ModalBox
@@ -39,6 +39,11 @@ export class FlexModal extends ModalBase {
         ref={(c) => (this.modal = c)}
         {...props}
       >
+        {propTitle ? (
+          <T.Center padding={SIZE.m} flex={0} bordered>
+            <T.Label theme="H5" text={propTitle} />
+          </T.Center>
+        ) : null}
         <T.Grid
           flex={0}
           // padding={padding}

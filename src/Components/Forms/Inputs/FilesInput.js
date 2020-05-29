@@ -40,16 +40,16 @@ export class FilesInput extends React.PureComponent {
                   name="camerao"
                   onPress={this.getImage}
                   iconSet="AntDesign"
-                  color="rgb(85,85,85)"
-                  larger={6}
+                  // color="rgb(85,85,85)"
+                  larger={12}
                 />
                 <T.Icon
                   name="file-pdf-o"
                   onPress={this.getPdf}
                   // iconSet="AntDesign"
                   // backgroundColor={BCOLOR}
-                  color="rgb(85,85,85)"
-                  larger={4}
+                  // color="rgb(85,85,85)"
+                  larger={6}
                 />
               </T.Row>
             ) : null}
@@ -148,6 +148,7 @@ export class FilesInput extends React.PureComponent {
           return await base64Image(image)
         })
       )
+
       // let photos = images
       // log(photos, 'photos 3333333')
       // setData(image)
@@ -155,9 +156,12 @@ export class FilesInput extends React.PureComponent {
       let { data } = this.state
       // log(data,  'data 4444444')
       data.uploads.push(...photos)
-      // log(data,  'data 55555')
+      // log(data, 'data 55555')
       // data.photos = photos
       this.setState({ data: { ...data } })
+      // delayed(() => {
+      //   this.forceUpdate()
+      // })
       // return photos
     })
   }
