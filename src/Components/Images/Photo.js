@@ -92,7 +92,8 @@ export class Photo extends React.PureComponent {
       // preview,
       // aspectRatio,
       // size,
-      onChange,
+      onChanged,
+      onChange = onChanged,
       ...props
     } = this.props
     let { thumbUri = uri } = this.state

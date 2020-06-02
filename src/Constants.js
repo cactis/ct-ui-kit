@@ -17,80 +17,6 @@ window.isTablet = SCREEN_WIDTH > 500
 
 window.BASE_SIZE = rwd(iOS ? (isTablet ? 10 : 11) : 11)
 
-const b = BASE_SIZE
-window.SIZE = {
-  h3: rwd(38),
-  h2: rwd(36),
-  h1: rwd(34),
-  h: rwd(b + 20),
-  l3: rwd(b + 18),
-  l2: rwd(b + 16),
-  l1: rwd(b + 14),
-  l: rwd(b + 12),
-  m3: rwd(b + 10),
-  m2: rwd(b + 8),
-  m1: rwd(b + 6),
-  m: rwd(b + 4),
-  s3: rwd(b + 2),
-  s2: rwd(b),
-  s1: rwd(b - 2),
-  s: rwd(b - 4),
-  t1: rwd(b - 6),
-  t: rwd(b - 8),
-  n1: rwd(b - 10),
-  n: rwd(0),
-  // h: SCREEN_WIDTH * 0.06,
-  // l: SCREEN_WIDTH * 0.05,
-  // m: SCREEN_WIDTH * 0.04,
-  // s: SCREEN_WIDTH * 0.03,
-  // t: SCREEN_WIDTH * 0.02,
-}
-
-// OVERWRITE
-window.BCOLOR = 'rgba(103,156,236,1)'
-window.BCOLOR_DEV = 'rgb(108,108,108)'
-window.FCOLOR = 'rgb(219,219,219)'
-// window.ICON_COLOR = 'rgba(55,47,66,1)'
-window.SUBMIT_COLOR = BCOLOR //'rgb(241,220,148)'
-window.SUBMIT_BACKGROUND_COLOR = BCOLOR
-window.STRONG_COLOR = 'rgba(133,15,15,1)'
-
-window.SCREEN_BACKGROUNDCOLOR = BCOLOR
-window.BUTTON_COLOR = 'rgba(217,76,111,0.8)'
-window.BUTTON_COLOR1 = 'rgba(0,111,182,.87)'
-window.BUTTON_COLOR = 'rgba(29,220,238,1)'
-window.BUTTON_RADIUS = SIZE.s
-
-window.CHOOSEMENU_BACKGROUND = 'white'
-
-window.LIGHT_COLOR = 'white'
-window.DARK_COLOR = '#333'
-
-window.TAG_BCOLOR = 'rgba(200,199,199,1)'
-window.TAG_COLOR = '#333'
-// alert(iPhoneX)
-window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
-window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.s
-// alert(iPhoneX)
-window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
-window.SEGMENT_COLOR = LIGHT_COLOR
-window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR
-window.SEGMENT_ACTIVE_BGCOLOR = TColor(BCOLOR)
-window.SEGMENT_BORDER_COLOR = 'transparent'
-window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
-window.DROPDOWNALERT_COLOR_INFO = 'rgb(49,176,103)'
-window.WARNING_COLOR = 'rgba(208,35,35,1)'
-
-window.BUTTON_BORDER_COLOR = 'rgb(182, 182, 182)'
-//////////////////////////
-
-window.CLOSE_ICON_NAME = 'close'
-window.CLOSE_ICON_SET = 'AntDesign'
-window.CLOSE_ICON_NAME = 'chevron-down'
-window.CLOSE_ICON_SET = 'Entypo'
-
-require('../../../Constants.js')
-
 window.IOS_FONTS = [
   'AcademyEngravedLetPlain',
   'AlNile',
@@ -175,6 +101,80 @@ window.ANDROID_FONTS = [
   'Dancing Script Bold',
   'Carrois Gothic SC',
 ]
+
+const b = BASE_SIZE
+window.SIZE = {
+  h3: rwd(38),
+  h2: rwd(36),
+  h1: rwd(34),
+  h: rwd(b + 20),
+  l3: rwd(b + 18),
+  l2: rwd(b + 16),
+  l1: rwd(b + 14),
+  l: rwd(b + 12),
+  m3: rwd(b + 10),
+  m2: rwd(b + 8),
+  m1: rwd(b + 6),
+  m: rwd(b + 4),
+  s3: rwd(b + 2),
+  s2: rwd(b),
+  s1: rwd(b - 2),
+  s: rwd(b - 4),
+  t1: rwd(b - 6),
+  t: rwd(b - 8),
+  n1: rwd(b - 10),
+  n: rwd(0),
+  // h: SCREEN_WIDTH * 0.06,
+  // l: SCREEN_WIDTH * 0.05,
+  // m: SCREEN_WIDTH * 0.04,
+  // s: SCREEN_WIDTH * 0.03,
+  // t: SCREEN_WIDTH * 0.02,
+}
+
+// OVERWRITE
+window.BCOLOR = 'rgba(103,156,236,1)'
+window.BCOLOR_DEV = 'rgb(108,108,108)'
+window.FCOLOR = 'rgb(219,219,219)'
+// window.ICON_COLOR = 'rgba(55,47,66,1)'
+window.SUBMIT_COLOR = BCOLOR //'rgb(241,220,148)'
+window.SUBMIT_BACKGROUND_COLOR = BCOLOR
+window.STRONG_COLOR = 'rgba(133,15,15,1)'
+
+window.SCREEN_BACKGROUNDCOLOR = BCOLOR
+window.BUTTON_COLOR = 'rgba(217,76,111,0.8)'
+window.BUTTON_COLOR1 = 'rgba(0,111,182,.87)'
+window.BUTTON_COLOR = 'rgba(29,220,238,1)'
+window.BUTTON_RADIUS = SIZE.s
+
+window.CHOOSEMENU_BACKGROUND = 'white'
+
+window.LIGHT_COLOR = 'white'
+window.DARK_COLOR = '#333'
+
+window.TAG_BCOLOR = 'rgba(200,199,199,1)'
+window.TAG_COLOR = '#333'
+// alert(iPhoneX)
+window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
+window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.s
+// alert(iPhoneX)
+window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
+window.SEGMENT_COLOR = LIGHT_COLOR
+window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR
+window.SEGMENT_ACTIVE_BGCOLOR = TColor(BCOLOR)
+window.SEGMENT_BORDER_COLOR = 'transparent'
+window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
+window.DROPDOWNALERT_COLOR_INFO = 'rgb(49,176,103)'
+window.WARNING_COLOR = 'rgba(208,35,35,1)'
+
+window.BUTTON_BORDER_COLOR = 'rgb(182, 182, 182)'
+//////////////////////////
+
+window.CLOSE_ICON_NAME = 'close'
+window.CLOSE_ICON_SET = 'AntDesign'
+window.CLOSE_ICON_NAME = 'chevron-down'
+window.CLOSE_ICON_SET = 'Entypo'
+
+require('../../../Constants.js')
 
 setDeviceName = () => {
   D.getDeviceName().then((res) => {

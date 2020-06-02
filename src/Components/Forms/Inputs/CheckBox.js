@@ -38,11 +38,25 @@ export class CheckBox extends React.PureComponent {
   }
 
   _onChecked = () => {
-    let { checked } = this.state
-    checked = !checked
-    this.setState({ checked })
-    let { onChecked } = this.props
-    onChecked && onChecked(checked)
+    let { confirm: title } = this.props
+    if (confirm) {
+      confirm(
+        () => {
+          let { checked } = this.state
+          checked = !checked
+          this.setState({ checked })
+          let { onChecked } = this.props
+          onChecked && onChecked(checked)
+        },
+        { title: title }
+      )
+    } else {
+      let { checked } = this.state
+      checked = !checked
+      this.setState({ checked })
+      let { onChecked } = this.props
+      onChecked && onChecked(checked)
+    }
   }
 
   initStateData = (onComplete) => {

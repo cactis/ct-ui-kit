@@ -15,6 +15,7 @@ export class BarItem extends React.Component {
           color="white"
           alignSelf="center"
           paddingTop={SIZE.s}
+          paddingRight={SIZE.s}
           // pad={SIZE.s}
           {...this.props}
         />

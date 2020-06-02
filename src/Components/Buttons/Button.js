@@ -76,7 +76,7 @@ export class Button extends React.PureComponent {
       style,
       beep,
       // color,
-      color,
+      color = BUTTON_COLOR,
       bordered = false,
       titleColor = color,
       rightIcon,
