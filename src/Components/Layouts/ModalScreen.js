@@ -14,7 +14,7 @@ export class ModalScreen extends ModalBase {
   render() {
     // alert(modalHeight)
     let { content, options, modalHeight, keyboardHeight = 0 } = this.state
-    log(keyboardHeight, 'keyboardHeight')
+    // log(keyboardHeight, 'keyboardHeight')
     let { children = content, title: propTitle, height } = this.props
 
     let {
