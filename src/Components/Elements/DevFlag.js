@@ -16,7 +16,7 @@ export class DevFlag extends React.PureComponent {
       <T.Float
         bottom={4 * SIZE.l}
         right={-1 * SIZE.t}
-        backgroundColor="rgb(1, 62, 76)"
+        backgroundColor="rgb(28, 67, 60)"
         borderRadius={SIZE.t}
         padding={SIZE.s}
       >

@@ -35,29 +35,22 @@ export class FilesInput extends React.PureComponent {
                 xAlign="flex-end"
                 yAlign="center"
               >
-                <T.Icon name="plus" color="#aaa" iconSet="AntDesign" pad={0} />
+                <T.Icon name="plus" color="#ccc" iconSet="AntDesign" pad={0} />
                 <T.Icon
                   name="camerao"
                   onPress={this.getImage}
                   iconSet="AntDesign"
-                  // color="rgb(85,85,85)"
-                  larger={12}
+                  larger={11}
                 />
-                <T.Icon
-                  name="file-pdf-o"
-                  onPress={this.getPdf}
-                  // iconSet="AntDesign"
-                  // backgroundColor={BCOLOR}
-                  // color="rgb(85,85,85)"
-                  larger={6}
-                />
+                <T.Icon name="file-pdf-o" onPress={this.getPdf} larger={6} />
               </T.Row>
             ) : null}
           </T.Row>
           <T.List
             ref={(c) => (this.list = c)}
             horizontal
-            data={item.uploads}
+            data={item.uploads || []}
+            extraData={this.state.extraData}
             renderItem={({ item, index }) =>
               item._destroy ? null : (
                 <T.Grid
@@ -155,10 +148,11 @@ export class FilesInput extends React.PureComponent {
       // onChanged(image)
       let { data } = this.state
       // log(data,  'data 4444444')
+      // photos = [...photos, {}]
       data.uploads.push(...photos)
       // log(data, 'data 55555')
       // data.photos = photos
-      this.setState({ data: { ...data } })
+      this.setState({ data: { ...data }, extraData: randId() })
       // delayed(() => {
       //   this.forceUpdate()
       // })

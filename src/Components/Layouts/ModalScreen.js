@@ -38,7 +38,7 @@ export class ModalScreen extends ModalBase {
       ...opts
     } = options
     if ((scrollable || fullScreen) && !swipeToClose) swipeToClose = false
-    // modalHeight = fullScreen ? SCREEN_HEIGHT : modalHeight
+    modalHeight = fullScreen ? SCREEN_HEIGHT : modalHeight
     // alert([fullScreen, modalHeight])
     // modalHeight = SCREEN_HEIGHT
     let rowHeight = SCREEN_HEIGHT - keyboardHeight - (iOS ? rwd(-10) : rwd(10))

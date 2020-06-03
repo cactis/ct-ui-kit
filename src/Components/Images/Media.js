@@ -7,9 +7,9 @@ export const Media = (props) => {
   if (!data) return null
   let { item = data } = data
   // log(item, 'item in Media')
-  // useEffect(() => {
-  //   return () => {}
-  // })
+  useEffect(() => {
+    return () => {}
+  })
 
   // let Tag
   // log(item.type, 'item.type')
@@ -45,7 +45,9 @@ export const Media = (props) => {
       return
     case 'video/mp4':
       return (
+        // <T.Space>
         <T.Video url={item.path || item.data || item.file_url} {...props} />
+        // </T.Space>
       )
       break
     case 'application/pdf':

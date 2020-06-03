@@ -29,6 +29,10 @@ export class Button extends React.PureComponent {
     }
   }
 
+  setDisabled = (disabled) => {
+    this.setState({ disabled })
+  }
+
   componentDidMount() {
     _trace()
     this.mounted = true
@@ -93,8 +97,8 @@ export class Button extends React.PureComponent {
       ...props
     } = this.props
     let { disabled } = this.state
-    color = disabled ? 'rgba(0,0,0,1)' : color
-    backgroundColor = disabled ? 'rgba(113,112,112,1)' : backgroundColor
+    color = disabled ? 'rgb(253, 142, 142)' : color
+    backgroundColor = disabled ? 'rgb(221, 220, 220)' : backgroundColor
     // let borderColor = 'rgba(255,255,255,.4)'
     // let {
     //   borderColor = backgroundColor

@@ -47,10 +47,17 @@ export class Touch extends Component {
     if (!disabled) onLongPress && onLongPress()
   }
 
+  running = false
   onPress = () => {
     // runOnly(() => {
     let { disabled = false, onPress, beep } = this.props
-    if (!disabled) onPress && onPress()
+    if (!disabled && !this.running) {
+      onPress && onPress()
+      this.running = true
+      delayed(() => {
+        this.running = false
+      })
+    }
     this._beep(beep)
     // }, 300)
   }
