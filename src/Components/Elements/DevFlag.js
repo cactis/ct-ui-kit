@@ -12,7 +12,7 @@ export class DevFlag extends React.PureComponent {
     log(data, 'data in DevFlag render()')
     // if (!data) return null
     // let { item = data} = data
-    return window.host == 'dev' ? (
+    return __DEV__ ? (
       <T.Float
         bottom={4 * SIZE.l}
         right={-1 * SIZE.t}
@@ -20,7 +20,7 @@ export class DevFlag extends React.PureComponent {
         borderRadius={SIZE.t}
         padding={SIZE.s}
       >
-        <T.Label text="dev" theme="H9" color="white" />
+        <T.Label text={window.host} theme="H9" color="white" />
       </T.Float>
     ) : null
   }

@@ -24,11 +24,12 @@ import Zocial from 'react-native-vector-icons/Zocial'
 
 export class Icon extends React.Component {
   iconSets = {
+    ...window.ICON_SETS,
+    FontAwesome: FontAwesome,
     AntDesign: AntDesign,
     Entypo: Entypo,
     Evil: Evil,
     Feather: Feather,
-    FontAwesome: FontAwesome,
     // FontAwesome5: FontAwesome5,
     // FontAwesome5s: FontAwesome5s,
     // FontAwesome5g: FontAwesome5g,
@@ -47,7 +48,7 @@ export class Icon extends React.Component {
       name = 'angle-right',
       larger = 0,
       smaller = 0,
-      size = SIZE.m * (isTablet ? 1 : 1) + rwd(larger) - rwd(smaller),
+      size = window.ICON_SIZE * (isTablet ? 1 : 1) + rwd(larger) - rwd(smaller),
       ratio = this.props.backgroundColor || this.props.style?.backgroundColor
         ? 1.2
         : 1,
@@ -69,7 +70,10 @@ export class Icon extends React.Component {
       ...props
     } = this.props
     // log(`0000000${color}`)
-    let key = (this.props.iconSet || 'FontAwesome').replace(/icons/gi, '')
+    let key = (this.props.iconSet || window.DEFAULT_ICON_SET).replace(
+      /icons/gi,
+      ''
+    )
     // log(key, 'key')
     const TagName = this.iconSets[key]
     const child = (
@@ -102,6 +106,7 @@ export class Icon extends React.Component {
           // allowFontScaling={true}
           name={name}
           color={color}
+          backgroundColor="green"
           // style={{color: color}}
           size={size}
           {...props}

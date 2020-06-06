@@ -3,7 +3,7 @@ import { View, Icon } from '../'
 
 export class BarItem extends React.Component {
   render() {
-    let { size = SIZE.m, badge, beep = false } = this.props
+    let { size, badge, beep = false } = this.props
     // alert(beep)
     return (
       <T.Center paddingVertical={SIZE.n} paddingHorizontal={SIZE.n}>

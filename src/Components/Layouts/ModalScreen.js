@@ -55,6 +55,7 @@ export class ModalScreen extends ModalBase {
     )
     // alert(SAFEAREA_TOP)
     // alert(swipeToClose)
+    // alert(scrollable)
     return (
       <ModalBox
         useNativeDriver={true}
@@ -69,7 +70,7 @@ export class ModalScreen extends ModalBase {
         // coverScreen={true}
         // borderWidth={3}
         style={{
-          height: modalHeight,
+          height: scrollable ? modalHeight : rowHeight,
           zIndex: 10000,
           // borderWidth: 3,
           borderRadius: 0,

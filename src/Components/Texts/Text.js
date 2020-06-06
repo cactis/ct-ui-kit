@@ -37,10 +37,10 @@ export class Text extends React.Component {
     let themeStyle = { ...styles[theme] } //!!!
     color && themeStyle && (themeStyle.color = color)
     size && themeStyle && (themeStyle.fontSize = size)
-    let lineHeightStyle =
-      numberOfLines && numberOfLines != 1
-        ? { lineHeight: themeStyle.fontSize * 1.2 }
-        : {}
+    let lineHeightStyle = { lineHeight: themeStyle.fontSize * 1.6 }
+    // numberOfLines && numberOfLines != 1
+    //   ? { lineHeight: themeStyle.fontSize * 1.2 }
+    //   : {}
 
     let tag = !children ? null : ( // <T.View />
       <RNText

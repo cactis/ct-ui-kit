@@ -132,6 +132,11 @@ window.SIZE = {
 }
 
 // OVERWRITE
+
+window.ICON_SIZE = SIZE.m
+window.ICON_SETS = {}
+window.DEFAULT_ICON_SET = 'FontAwesome'
+
 window.BCOLOR = 'rgba(103,156,236,1)'
 window.BCOLOR_DEV = 'rgb(108,108,108)'
 window.FCOLOR = 'rgb(219,219,219)'

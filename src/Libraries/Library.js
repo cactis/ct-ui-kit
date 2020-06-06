@@ -539,10 +539,9 @@ window.drawerToggler = (navigation) => {
   return (
     <T.Div paddingRight={10}>
       <T.BarItem
-        name="user"
-        iconSet="EvilIcons"
+        name="profile"
         color={BFCOLOR}
-        size={rwd(35)}
+        larger={3}
         onPress={() => navigation.openDrawer()}
       />
     </T.Div>
