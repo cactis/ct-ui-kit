@@ -23,7 +23,7 @@ export class ModalScreen extends ModalBase {
       // backgroundColor = 'rgba(204,57,57,.98)',
       safeArea = true,
       direction = 'bottom',
-      scrollable = false,
+      scrollable = true,
       swipeToClose = false,
       title = propTitle,
       titleColor = '#333', //BFCOLOR,
@@ -68,9 +68,11 @@ export class ModalScreen extends ModalBase {
         onClosed={() => this.setState({ myTitle: null })}
         // backgroundColor={backgroundColor}
         // coverScreen={true}
-        // borderWidth={3}
+        __b__
+        __c__
         style={{
           height: scrollable ? modalHeight : rowHeight,
+          height: SCREEN_HEIGHT,
           zIndex: 10000,
           // borderWidth: 3,
           borderRadius: 0,
@@ -155,23 +157,23 @@ export class ModalScreen extends ModalBase {
               </T.Space>
             </T.Row>
             <T.Row>
-              {scrollable ? (
+              {/* {scrollable ? (
                 <T.List
                   quoteable={quoteable}
                   ListHeaderComponent={children}
                   contentContainerStyle={{ padding: rwd(10) }}
                 />
-              ) : (
-                <T.Grid
-                  // backgroundColor="green"
-                  // backgroundColor="white"
-                  padding={padding}
-                  keyboardAware={keyboardAware}
-                  safeAreaDisabled={!safeArea}
-                >
-                  {children}
-                </T.Grid>
-              )}
+              ) : ( */}
+              <T.Grid
+                // backgroundColor="green"
+                // backgroundColor="white"
+                padding={padding}
+                keyboardAware={keyboardAware}
+                safeAreaDisabled={!safeArea}
+              >
+                {children}
+              </T.Grid>
+              {/* )} */}
             </T.Row>
             <T.Space size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0} />
             <T.SafeArea flex={0} backgroundColor={safeAreaColor} />
