@@ -125,7 +125,7 @@ export class Video2 extends React.PureComponent {
   // let player = React.createRef()
   render() {
     let { url, paused, color = 'rgba(38,38,38,.78)' } = this.state
-    log(url, 'url')
+    // log(url, 'url')
     // log(data, 'data in Video render()')
     // if (!data) return null
     // let { item = data} = data

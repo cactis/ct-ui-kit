@@ -46,7 +46,7 @@ export class ModalScreen extends ModalBase {
       <T.Icon
         onPress={this.close}
         name={CLOSE_ICON_NAME}
-        size={SIZE.l}
+        size={SIZE.m * 1.2}
         iconSet={CLOSE_ICON_SET}
         // color="rgb(131,131,131)"
         // color={BFCOLOR}
@@ -68,17 +68,15 @@ export class ModalScreen extends ModalBase {
         onClosed={() => this.setState({ myTitle: null })}
         // backgroundColor={backgroundColor}
         // coverScreen={true}
-        __b__
-        __c__
         style={{
           height: scrollable ? modalHeight : rowHeight,
-          height: SCREEN_HEIGHT,
+          // height: SCREEN_HEIGHT,
           zIndex: 10000,
           // borderWidth: 3,
           borderRadius: 0,
           backgroundColor: backgroundColor,
           // backgroundColor: 'red',
-          paddingTop: iPhoneX ? SIZE.n : SIZE.m,
+          // paddingTop: iPhoneX ? SIZE.n : SIZE.m,
           // borderWidth: 10,
           // borderColor: 'blue',
         }}
@@ -134,7 +132,7 @@ export class ModalScreen extends ModalBase {
                 {title && (
                   <T.Label
                     // theme="H0"
-                    // marginTop={0}
+                    // paddingTop={SIZE.s}
                     theme="H1"
                     color={titleColor}
                     size={rwd(17)}

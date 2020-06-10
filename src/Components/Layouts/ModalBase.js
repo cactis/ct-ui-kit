@@ -9,6 +9,8 @@ export class ModalBase extends KeyboardAware {
   state = {
     data: null,
     content: null,
+    closeConfirmation: false,
+    closeConfirmationTitle: '確定關閉嗎？',
     keyboardHeight: 0,
     modalHeight: SCREEN_HEIGHT,
     // title: null,
@@ -48,8 +50,18 @@ export class ModalBase extends KeyboardAware {
   }
 
   close = () => {
-    this.onClose()
-    this.modal.close()
+    if (this.state.closeConfirmation) {
+      confirm(
+        () => {
+          this.onClose()
+          this.modal.close()
+        },
+        { title: `${this.state.closeConfirmationTitle}` }
+      )
+    } else {
+      this.onClose()
+      this.modal.close()
+    }
   }
 
   onClose = () => {

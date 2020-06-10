@@ -28,6 +28,7 @@ export class FlexModal extends ModalBase {
     return (
       <ModalBox
         useNativeDriver={true}
+        // coverScreen={true}
         style={{
           height: 'auto',
           backgroundColor: backgroundColor,
@@ -40,8 +41,13 @@ export class FlexModal extends ModalBase {
         {...props}
       >
         {propTitle ? (
-          <T.Center padding={SIZE.m} flex={0} bordered>
-            <T.Label theme="H5" text={propTitle} />
+          <T.Center
+            // height={SIZE.l * 3}
+            flex={0}
+            bordered__
+            backgroundColor="#aaa"
+          >
+            <T.Label theme="H1" text={propTitle} />
           </T.Center>
         ) : null}
         <T.Grid
@@ -50,7 +56,7 @@ export class FlexModal extends ModalBase {
           // backgroundColor="rgb(241,241,241)"
           backgroundColor={backgroundColor}
           // backgroundColor="red"
-          paddingBottom={30}
+          // paddingBottom={30}
         >
           {children}
           {/* <T.Button title="Close" onPress={() => this.close()} /> */}

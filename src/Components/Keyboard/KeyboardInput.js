@@ -4,6 +4,7 @@ export { RNKeyboard }
 let _navigation
 export class KeyboardInput extends React.PureComponent {
   state = {
+    avatar: true,
     data: null,
     mounted: false,
     paddingBottom: SAFEAREA_BOTTOM,
@@ -29,10 +30,13 @@ export class KeyboardInput extends React.PureComponent {
     this.setState({ replyTo })
   }
   open = (text, options = {}) => {
+    let { avatar = this.state.avatar } = options
     let { onSend = () => {}, cancelReplyTo = () => {} } = options
     this.mounted &&
       this.setState({
         text,
+        avatar,
+        options,
       })
     this.onSend = onSend
     this.cancelReplyTo = cancelReplyTo
@@ -46,6 +50,7 @@ export class KeyboardInput extends React.PureComponent {
 
   render() {
     let {
+      avatar,
       text,
       textInputHeight,
       title,
@@ -53,6 +58,7 @@ export class KeyboardInput extends React.PureComponent {
       paddingBottom,
       replyTo,
     } = this.state
+
     // log(textInputHeight, 'textInputHeight')
     let modalHeight = textInputHeight + rwd(5) + (iPhoneX ? rwd(10) : rwd(5))
     // alert(modalHeight)
@@ -69,9 +75,11 @@ export class KeyboardInput extends React.PureComponent {
           backgroundColor_="red"
           activeOpacity={1}
         >
-          <T.Center flex={0}>
-            <R.Avatar data={global.currentUser} size={rwd(30)} />
-          </T.Center>
+          {avatar ? (
+            <T.Center flex={0}>
+              <R.Avatar data={global.currentUser} size={rwd(30)} />
+            </T.Center>
+          ) : null}
           <T.Space />
           <T.Center
             height="auto"
@@ -120,9 +128,11 @@ export class KeyboardInput extends React.PureComponent {
                   this.updateSize(e.nativeEvent.contentSize.height)
                 }
                 multiline={true}
+                placeholder="回覆…"
                 height={200}
                 style={{
                   flex: 1,
+                  // textAlign: 'center',
                   backgroundColor: 'rgb(238,238,238)',
                   // height: textInputHeight,
                   // height: 200,
@@ -132,9 +142,17 @@ export class KeyboardInput extends React.PureComponent {
           </T.Center>
           <T.Space />
           <T.Col align="center" flex={0}>
-            <T.Label borderWidth={0.6} title="Send" onPress={this._onSend} />
+            <T.Button
+              borderWidth={0.6}
+              title="送出"
+              borderRadius={SIZE.l}
+              onPress={this._onSend}
+              backgroundColor={BFCOLOR}
+              color={LIGHT_COLOR}
+            />
           </T.Col>
         </T.Grid>
+        {/* <T.Space size={SAFEAREA_BOTTOM} /> */}
       </T.KeyboardToolbar>
     )
   }

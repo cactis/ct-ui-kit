@@ -21,7 +21,7 @@
     ]
   },
   "dependencies": {
-    "@react-native-community/push-notification-ios": "^1.2.0",
+    "@react-native-community/push-notification-ios": "^1.2.2",
     "npm-check-updates": "latest",
     "react-native-dropdownalert": "^4.2.1",
     "react-native-image-view": "2.1.9",
