@@ -20,6 +20,7 @@ export class View extends React.Component {
       style = {},
       children,
       bordered,
+      borderedTop = false,
       animation,
       // keyboardAware = false,
       ...props
@@ -39,6 +40,9 @@ export class View extends React.Component {
       __DEV__ && props.__b__
         ? { ...drawBorderedStyle, borderWidth: 0.5, borderColor: 'red' }
         : drawBorderedStyle
+    // drawBorderedStyle = borderedTop
+    //   ? { ...drawBorderedStyle, borderWidth: 3, borderTopWidth: 0.5 }
+    //   : drawBorderedStyle
     let content = (
       <Tag
         ref={(c) => {

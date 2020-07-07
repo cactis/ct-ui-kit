@@ -42,14 +42,14 @@ export class ModalScreen extends ModalBase {
     // alert([fullScreen, modalHeight])
     // modalHeight = SCREEN_HEIGHT
     let rowHeight = SCREEN_HEIGHT - keyboardHeight - (iOS ? rwd(-10) : rwd(10))
+    let position = fullScreen ? 'top' : 'bottom'
     let closeIcon = (
       <T.Icon
         onPress={this.close}
         name={CLOSE_ICON_NAME}
         size={SIZE.m * 1.2}
         iconSet={CLOSE_ICON_SET}
-        // color="rgb(131,131,131)"
-        // color={BFCOLOR}
+        color={TColor.mostReadable(backgroundColor, ['#efefef', '#111'])}
         theme="H1"
       />
     )
@@ -62,7 +62,7 @@ export class ModalScreen extends ModalBase {
         ref={(c) => (this.modal = c)}
         swipeToClose={swipeToClose}
         swipeToClose={false}
-        position={direction}
+        position={position}
         entry={direction}
         keyboardTopOffset={0}
         onClosed={() => this.setState({ myTitle: null })}

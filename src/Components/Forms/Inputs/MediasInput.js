@@ -80,7 +80,7 @@ export class MediasInput extends React.PureComponent {
   }
   getImage = async () => {
     RNImagePicker.openPicker({
-      compressImageQuality: 1,
+      compressImageQuality: 0.75,
       multiple: true,
       maxFiles: 10,
       // useFrontCamera: true,

@@ -18,7 +18,7 @@ export const IconLabel = (props) => {
     iconColor = color || ICON_COLOR,
     labelColor = iconColor,
     bordered,
-    theme = 'H3',
+    theme = 'H6',
     pill,
     image,
     text,
@@ -62,7 +62,7 @@ export const IconLabel = (props) => {
     <Label
       color={labelColor}
       text={text}
-      // theme={theme}
+      theme={theme}
       size={labelSize}
       // disabled={disabled}
       // onPress={!disabled ? onPress : null}

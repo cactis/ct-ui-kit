@@ -56,7 +56,7 @@ export class Photo extends React.PureComponent {
     return _.map(images, (img) => {
       return {
         source: {
-          uri: img.file_url,
+          uri: img.large_file_url || img.fiel_url,
         },
         title: img.title,
         // width: SCREEN_WIDTH,
@@ -88,6 +88,7 @@ export class Photo extends React.PureComponent {
       data,
       // size,
       // aspectRatio,
+      editable = false,
       title,
       // preview,
       // aspectRatio,
@@ -147,6 +148,29 @@ export class Photo extends React.PureComponent {
             </T.Center>
           </T.Float>
         ) : null}
+        {editable ? (
+          <T.Float right={rwd(SIZE.t)} top={rwd(SIZE.t)}>
+            <T.Icon
+              name="close"
+              smaller={5}
+              backgroundColor="rgba(255,255,255,.87)"
+              onPress={() => {
+                // T.RNKeyboard.dismiss()
+                this.setState({ data: { ...data } }, () => {
+                  confirm(
+                    () => {
+                      let { parent: data, index } = this.props
+                      data.uploads[index]._destroy = true
+                      // this.setState({ data: { ...data } })
+                      this.props.onUpdated && this.props.onUpdated({ ...data })
+                    },
+                    { title: `Confirm to delete?` }
+                  )
+                })
+              }}
+            />
+          </T.Float>
+        ) : null}
       </T.Touch>
     )
   }
@@ -154,7 +178,7 @@ export class Photo extends React.PureComponent {
     let { onChange } = this.props
     if (onChange) {
       ImagePicker.openPicker({
-        compressImageQuality: 1,
+        compressImageQuality: 0.75,
         // width: 300,
         // height: 400,
         // cropping: false,

@@ -784,3 +784,25 @@ window.takeShot = (ref) => {
     (error) => console.error('Oops, snapshot failed', error)
   )
 }
+
+/**
+ * Replace last occurrence of a string with another string
+ * x - the initial string
+ * y - string to replace
+ * z - string that will replace
+ */
+window.replaceLast = (x, y, z) => {
+  var a = x.split('')
+  var length = y.length
+  if (x.lastIndexOf(y) != -1) {
+    for (var i = x.lastIndexOf(y); i < x.lastIndexOf(y) + length; i++) {
+      if (i == x.lastIndexOf(y)) {
+        a[i] = z
+      } else {
+        delete a[i]
+      }
+    }
+  }
+
+  return a.join('')
+}

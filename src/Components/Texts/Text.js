@@ -42,12 +42,16 @@ export class Text extends React.Component {
     //   ? { lineHeight: themeStyle.fontSize * 1.2 }
     //   : {}
 
-    let tag = !children ? null : ( // <T.View />
+    let tag = !children ? null : (
       <RNText
         // flex={1}
         numberOfLines={numberOfLines}
         allowFontScaling={true}
         // selectable={selectable} !!!!!!!!!! 會導致 母層的 onPress 失效
+        onPress={this.onPress}
+        onResponderGrant={this.onResponderGrant}
+        suppressHighlighting={true}
+        onResponderRelease={this.onResponderRelease}
         style={{
           // alignSelf: 'flex-start',
           textAlign: align,
@@ -81,6 +85,25 @@ export class Text extends React.Component {
       </T.Div>
     ) : (
       tag
+    )
+  }
+
+  onResponderGrant = (e) => {
+    log(e, 'e#onResponderGrant')
+    log(e.nativeEvent, 'e.nativeEvent#onResponderGrant')
+  }
+
+  onResponderRelease = (e) => {
+    log(e, 'e#onResponderRelease')
+    log(e.nativeEvent, 'e.nativeEvent#onResponderRelease')
+  }
+
+  onPress = (e) => {
+    log(e, 'e')
+    log(e.nativeEvent, 'e.nativeEvent#')
+    log(
+      e._dispatchInstances.memoizedProps,
+      'e._dispatchInstances.memoizedProps#'
     )
   }
 }

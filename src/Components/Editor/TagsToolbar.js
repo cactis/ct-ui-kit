@@ -136,7 +136,7 @@ const Icon = (props) => {
         break
       case 'img':
         ImagePicker.openPicker({
-          compressImageQuality: 1,
+          compressImageQuality: 0.75,
           // width: 300,
           // height: 400,
           // cropping: false,

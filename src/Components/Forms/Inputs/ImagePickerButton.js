@@ -17,7 +17,11 @@ export class ImagePickerButton extends React.PureComponent {
   }
   onPress = () => {
     if (this.props.onPress) {
-      this.openAlbums(this.props.type, (image) => {
+      this.openAlbums(
+        this.props.type,
+        this.props.options,
+        this.props.onPress
+      ).then((image) => {
         // log(image, 'image 2222 in ImagePickerButton#onPress')
         this.props.onPress(image)
       })
@@ -26,31 +30,51 @@ export class ImagePickerButton extends React.PureComponent {
     }
   }
 
-  openAlbums = (type = 'photo', callback) => {
+  openAlbums = async (type = 'photo', options = {}, callback) => {
+    let { multiple = false } = options
     if (type == 'photo') {
       T.RNImagePicker.openPicker({
-        compressImageQuality: 1,
+        compressImageQuality: 0.75,
+        ...options,
+        multiple: multiple,
         // width: 300,
         // height: 400,
         // cropping: false,
         // cicular: true,
         includeBase64: true,
-      }).then((image) => {
+      }).then(async (images) => {
         // log(image, 'image 00000')
-        base64Image(image).then((image) => {
-          // log(
-          //   image,
-          //   'image 1111 after base64Image in ImagePickerButton#openAlbums'
-          // )
-          // setData(image)
-          // onChanged(image)
-          callback(image)
-        })
+        log(111111)
+        // log(images, 'images')
+        // alert(images.length)
+        if (multiple) {
+          Promise.all(
+            images.map(async (image) => {
+              return await base64Image(image)
+            })
+          ).then((photos) => {
+            callback(photos)
+            return photos
+          })
+        } else {
+          log(2222)
+          // log(typeof images)
+          base64Image([images][0]).then((image) => {
+            // log(
+            //   image,
+            //   'image 1111 after base64Image in ImagePickerButton#openAlbums'
+            // )
+            // setData(image)
+            // onChanged(image)
+            callback([image])
+            return [image]
+          })
+        }
       })
     } else {
       // if (DEVICE_INFO.isSimulator) return alert('相機不支援模擬器。')
       T.RNImagePicker.openCamera({
-        compressImageQuality: 1,
+        compressImageQuality: 0.75,
         // width: 300,
         // height: 400,
         // cropping: false,
@@ -65,7 +89,8 @@ export class ImagePickerButton extends React.PureComponent {
           // )
           // setData(image)
           // onChanged(image)
-          callback(image)
+          callback([image])
+          return image
         })
       })
     }

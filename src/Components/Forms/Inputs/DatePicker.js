@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-import DateTimePicker from 'react-native-date-picker'
-// import DateTimePicker from '@react-native-community/datetimepicker'
+// import DateTimePicker from 'react-native-date-picker'
+import DateTimePicker from '@react-native-community/datetimepicker'
 
 toDate = (date, mode) => {
   if (mode == 'date') {
@@ -21,8 +21,8 @@ export class DatePicker extends React.PureComponent {
     // data: toDate(new Date(new Date().toISOString())),
   }
 
-  setDate = data => {
-  // log(data,  'data')
+  setDate = (data) => {
+    // log(data,  'data')
     let { mode = 'date' } = this.props
     this.setState({ data: toDate(data, mode) })
     this.props.onUpdated && this.props.onUpdated(this.state.data)
@@ -44,7 +44,7 @@ export class DatePicker extends React.PureComponent {
     // alert(new Date(new Date().toISOString()))
     // alert(new Date())
     let { data } = this.state
-  // log(data,  'data in DatePicker render()')
+    // log(data,  'data in DatePicker render()')
     // if (!data) return null
     // let { item = data } = data
     return (
@@ -59,7 +59,7 @@ export class DatePicker extends React.PureComponent {
     )
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       data &&

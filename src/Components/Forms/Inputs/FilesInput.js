@@ -42,7 +42,12 @@ export class FilesInput extends React.PureComponent {
                   iconSet="AntDesign"
                   larger={11}
                 />
-                <T.Icon name="file-pdf-o" onPress={this.getPdf} larger={6} />
+                <T.Icon
+                  name="file-pdf-o"
+                  iconSet="FontAwesome"
+                  onPress={this.getPdf}
+                  larger={6}
+                />
               </T.Row>
             ) : null}
           </T.Row>

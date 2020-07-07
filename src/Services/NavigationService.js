@@ -22,9 +22,9 @@ export class NavigationService {
     window.keyboardInput?.close()
     // }
     log('goBack in NavigationService')
-    runLast(() => {
-      _navigator.dispatch(NavigationActions.back())
-    }, 200)
+    // runLast(() => {
+    _navigator.dispatch(NavigationActions.back())
+    // }, 200)
   }
 
   static navigate = (routeName, params = {}) => {
