@@ -746,6 +746,7 @@ window.prompt = (message = 'Coming soon~', type, options = {}) => {
     let title = { error: '錯誤' }[type] || ''
     let _type = type || 'success'
     // log(_type, '_type in prompt')
+    log(message, 'message')
     window.dropdown.open(message, type, options)
   } else {
     Alert.alert(`${message}`)

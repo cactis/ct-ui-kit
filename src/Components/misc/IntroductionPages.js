@@ -47,6 +47,7 @@ const SLIDES = [
 export class IntroductionPages extends React.PureComponent {
   state = {
     slides: SLIDES,
+    index: 0,
   }
 
   _renderItem = ({ item }) => {
@@ -97,26 +98,36 @@ export class IntroductionPages extends React.PureComponent {
       <AppIntroSlider
         // borderWidth={1}
         ref={(c) => (this.slider = c)}
-        renderItem={this._renderItem}
+        renderItem={this.props.renderItem || this._renderItem}
         data={slides}
         slides={slides}
-        onDone={this._onDone}
-        dotStyle={{ backgroundColor: BCOLOR }}
-        activeDotStyle={{ backgroundColor: '#aaa' }}
+        dotStyle={{ backgroundColor: '#aaa' }}
+        activeDotStyle={{ backgroundColor: BCOLOR }}
         renderDoneButton={this._renderDoneButton}
         renderNextButton={this._renderNextButton}
+        onSlideChange={this._onSlideChange}
+        {...this.props}
+        onDone={this._onDone}
       />
     )
+  }
+
+  onSlideChange = (index) => {
+    log(index, 'index')
+    this.setState({ index })
   }
 
   _renderNextButton = () => {
     return (
       <T.Div style={styles.buttonCircle__}>
         <T.Label
-          text="Next"
+          text="下一步"
           name="md-arrow-round-forward"
-          color="#333"
-          theme="H2"
+          color={LIGHT_COLOR}
+          onPress={() => {
+            this.slider.goToSlide(this.state.index + 1)
+          }}
+          theme="H6"
           style={{ backgroundColor: 'transparent' }}
         />
       </T.Div>
@@ -126,11 +137,12 @@ export class IntroductionPages extends React.PureComponent {
     return (
       <T.Div style={styles.buttonCircle__}>
         <T.Label
-          text="Done"
+          text="開始"
           name="md-checkmark"
-          color="#333"
-          theme="H2"
+          color={LIGHT_COLOR}
+          theme="H6"
           style={{ backgroundColor: 'transparent' }}
+          onPress={this._onDone}
         />
       </T.Div>
     )

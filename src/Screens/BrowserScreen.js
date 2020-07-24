@@ -73,7 +73,8 @@ export class BrowserScreen extends React.PureComponent {
 
   render() {
     let {
-      uri,
+      url,
+      uri = url,
       text,
       keyword,
       extraData,
@@ -246,6 +247,7 @@ export class BrowserScreen extends React.PureComponent {
         fontSize,
         onFontSizeChanged,
       } = _navigation?.state.params
+      // alert(url)
       // log(keywords, 'keywords')
       keywords = keywords?.slice(0, keywords.length - 1)
       // log(data, 'data - in BrowserScreen initStateData()')

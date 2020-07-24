@@ -296,7 +296,7 @@ window.initConstant = () => {
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.t
 
-window.language = 'en'
+window.language = 'zh-tw'
 
 window.timeZoneOffset = () => {
   let date = new Date()

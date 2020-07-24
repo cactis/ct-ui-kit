@@ -7,7 +7,7 @@ export class User extends Component {
     log('validateToken called')
 
     let accessTokens = await User.tokens()
-    // log(accessTokens, 'accessTokens in User validateToken')
+    log(accessTokens, 'accessTokens in User validateToken')
     // alert(accessTokens)
 
     if (accessTokens) {

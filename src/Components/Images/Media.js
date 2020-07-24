@@ -20,7 +20,14 @@ export const Media = (props) => {
     case 'Photo':
       return (
         <T.Photo
-          uri={item.path || item.data || item.small_file_url || item.file_url}
+          uri={
+            item.path ||
+            item.data ||
+            item.large_file_url ||
+            item.medium_file_url ||
+            item.small_file_url ||
+            item.file_url
+          }
           ref={(c) => (this.photo = c)}
           {...props}
         />

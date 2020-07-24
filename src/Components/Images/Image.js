@@ -12,7 +12,8 @@ export class Image extends Component {
       rounded,
       width = size || '100%',
       aspectRatio = 1,
-      mode = 'cover',
+      resizeMode,
+      mode = resizeMode || 'cover',
       ...props
     } = this.props
     // log(source, uri, 'source, uri')
@@ -51,3 +52,4 @@ export class Image extends Component {
     )
   }
 }
+export { RNImage }

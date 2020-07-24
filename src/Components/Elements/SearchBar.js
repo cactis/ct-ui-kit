@@ -8,9 +8,15 @@ export class SearchBar extends React.PureComponent {
     data: null,
   }
 
+  search = (keyword) => {
+    // alert(keyword)
+    this.props.onChange(keyword)
+    this.setState({ value: keyword })
+  }
+
   render() {
-    let { data } = this.state
-  // log(data,  'data in SearchBar render()')
+    let { data, value } = this.state
+    // log(data,  'data in SearchBar render()')
     // if (!data) return null
     // let { item = data} = data
     return (
@@ -26,9 +32,12 @@ export class SearchBar extends React.PureComponent {
             padding={rwd(4)}
             clearButtonMode="always"
             autoCapitalize="none"
-            value={this.props.value}
+            value={value || this.props.value}
             onChange={this.props.onChange}
-            onChangeText={value => this.props.onChange(value)}
+            onChangeText={(value) => {
+              this.setState({ value: value })
+              this.props.onChange(value)
+            }}
             onSubmitEditing={this.props.onSubmit}
           />
         </Row>
@@ -43,7 +52,7 @@ export class SearchBar extends React.PureComponent {
     }
   }
 
-  initStateData = onComplete => {
+  initStateData = (onComplete) => {
     let { data } = this.props
     this.mounted &&
       this.setState({ data }, () => {

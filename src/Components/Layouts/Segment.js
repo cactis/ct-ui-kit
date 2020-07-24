@@ -109,6 +109,8 @@ export class Segment extends Component {
       <T.Grid
         onLayout={this._onLayout}
         // borderWidth={20}
+        borderWidth={0.5}
+        borderColor={window.SEGMENT_BORDER_COLOR}
         paddingVertical={SIZE.n}
       >
         <T.Row flex={0} style={{ ...wrapper }} layout="row">

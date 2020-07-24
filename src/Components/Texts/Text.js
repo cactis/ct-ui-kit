@@ -89,22 +89,22 @@ export class Text extends React.Component {
   }
 
   onResponderGrant = (e) => {
-    log(e, 'e#onResponderGrant')
-    log(e.nativeEvent, 'e.nativeEvent#onResponderGrant')
+    // log(e, 'e#onResponderGrant')
+    // log(e.nativeEvent, 'e.nativeEvent#onResponderGrant')
   }
 
   onResponderRelease = (e) => {
-    log(e, 'e#onResponderRelease')
-    log(e.nativeEvent, 'e.nativeEvent#onResponderRelease')
+    // log(e, 'e#onResponderRelease')
+    // log(e.nativeEvent, 'e.nativeEvent#onResponderRelease')
   }
 
   onPress = (e) => {
-    log(e, 'e')
-    log(e.nativeEvent, 'e.nativeEvent#')
-    log(
-      e._dispatchInstances.memoizedProps,
-      'e._dispatchInstances.memoizedProps#'
-    )
+    // log(e, 'e')
+    // log(e.nativeEvent, 'e.nativeEvent#')
+    // log(
+    //   e._dispatchInstances.memoizedProps,
+    //   'e._dispatchInstances.memoizedProps#'
+    // )
   }
 }
 

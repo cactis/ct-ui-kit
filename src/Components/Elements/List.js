@@ -281,6 +281,11 @@ export class List extends React.PureComponent {
     // log('onLoad is not assigned')
   }
 
+  search = (keyword) => {
+    // alert(keyword)
+    this.searchBar.search(keyword)
+  }
+
   _onScroll = () => {
     // log('_onScroll')
     // this.props.onScroll && this.props.onScroll()
@@ -398,10 +403,11 @@ export class List extends React.PureComponent {
               searchable ? (
                 <Div>
                   <SearchBar
+                    ref={(c) => (this.searchBar = c)}
                     onChange={(keyword) => {
                       // log(e, 'e')
                       // let keyword = e.nativeEvent.text
-                      log(keyword, 'keyword')
+                      log(keyword, 'keyword in List')
                       runLast(() => {
                         this.mounted && this.setState({ keyword })
                         this.reloadData()
