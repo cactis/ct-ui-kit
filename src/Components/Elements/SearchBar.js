@@ -19,19 +19,30 @@ export class SearchBar extends React.PureComponent {
     // log(data,  'data in SearchBar render()')
     // if (!data) return null
     // let { item = data} = data
+    let { style = {} } = this.props
+    let {
+      borderRadius,
+      placeholderTextColor = '#666',
+      backgroundColor = 'white',
+    } = style
     return (
       <Row padding={SIZE.n} backgroundColor__="rgb(255,255,255)">
         <Row
-          borderRadius={rwd(3)}
+          borderRadius={borderRadius}
           paddingVertical={rwd(5)}
           paddingHorizontal={rwd(10)}
+          marginBottom={SIZE.s * 1.2}
           backgroundColor="rgba(255,255,255,.59)"
+          backgroundColor="#E4E8EB"
+          backgroundColor={backgroundColor}
         >
           <TextInput
             placeholder="type keyword to search..."
+            placeholder="#hashtag search"
             padding={rwd(4)}
             clearButtonMode="always"
             autoCapitalize="none"
+            placeholderTextColor={placeholderTextColor}
             value={value || this.props.value}
             onChange={this.props.onChange}
             onChangeText={(value) => {

@@ -4,8 +4,12 @@ export const Media = (props) => {
   // let _ref = React.forwardRef()
   let { navigation, image } = props
   let [data, setData] = useState(props.data)
+  // log(data, 'data in Media')
   if (!data) return null
   let { item = data } = data
+  // let _item = { ...item }
+  // log()
+  // _item.map((i) => (i.data = '...'))
   // log(item, 'item in Media')
   useEffect(() => {
     return () => {}
@@ -28,6 +32,18 @@ export const Media = (props) => {
             item.small_file_url ||
             item.file_url
           }
+          images={[
+            {
+              uri:
+                item.path ||
+                item.data ||
+                item.large_file_url ||
+                item.medium_file_url ||
+                item.small_file_url ||
+                item.file_url,
+              ...item,
+            },
+          ]}
           ref={(c) => (this.photo = c)}
           {...props}
         />

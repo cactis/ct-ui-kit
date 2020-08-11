@@ -7,7 +7,7 @@ export class NavigationService {
     _navigator = navigatorRef
   }
 
-  static goBack = () => {
+  static goBack = (callback = () => {}) => {
     // log(_navigator, '_navigator')
     // let { state } = _navigator
     // let { nav } = state
@@ -25,6 +25,9 @@ export class NavigationService {
     // runLast(() => {
     _navigator.dispatch(NavigationActions.back())
     // }, 200)
+    delayed(() => {
+      callback()
+    })
   }
 
   static navigate = (routeName, params = {}) => {

@@ -1,33 +1,47 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
+import ImageZoom from 'react-native-image-pan-zoom'
+import ImageView from 'react-native-image-viewing'
 
 let _navigation
-export class Medias1 extends React.PureComponent {
+export class ImageViewer extends React.PureComponent {
   state = {
     data: null,
+    visible: true,
   }
 
   render() {
-    let { data } = this.state
-    // log(data, 'data in Medias1 render()')
+    let { data, visible } = this.state
+    log(data, 'data in ImageViewer render()')
     if (!data) return null
     let { item = data } = data
+    log(item, 'item#ImageViewer')
+    let images = item.uploads.map((i) => {
+      uri: i.large_file_url
+    })
+    log(images, 'images#')
     return (
-      <T.Row height={SCREEN_HEIGHT / 3}>
-        <T.Media
-          {...this.props}
-          data={item[0]}
-          // images={item}
-          // uri={item[0].small_file_url}
-          // aspectRatio={1.5}
-          style={{ width: '100%', height: '100%' }}
-          // thumbUri={item[0].small_file_url}
-          // height={SCREEN_HEIGHT / 3}
-          // paddingTop={SIZE.s}
-        />
-      </T.Row>
+      <ImageView
+        images={images}
+        imageIndex={0}
+        visible={visible}
+        onRequestClose={() => this.setState({ visible: false })}
+      />
     )
   }
+  // <ImageZoom
+  //   cropWidth={SCREEN_WIDTH}
+  //   cropHeight={SCREEN_HEIGHT}
+  //   imageWidth={SCREEN_WIDTH}
+  //   imageHeight={SCREEN_HEIGHT}
+  // >
+  //   <T.RNImage
+  //     style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT }}
+  //     source={{
+  //       uri: item.uploads[0].file_url,
+  //     }}
+  //   />
+  // </ImageZoom>
   onPress = () => {
     if (this.props.onPress) {
       this.props.onPress()

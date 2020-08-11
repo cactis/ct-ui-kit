@@ -45,7 +45,7 @@ export class Icon extends React.Component {
   render() {
     // log(ICON_COLOR, 'ICON_COLOR')
     let {
-      name = 'angle-right',
+      name = window.DEFAULT_ICON_NAME,
       larger = 0,
       smaller = 0,
       size = window.ICON_SIZE * (isTablet ? 1 : 1) + rwd(larger) - rwd(smaller),
@@ -69,7 +69,7 @@ export class Icon extends React.Component {
       text,
       ...props
     } = this.props
-    // log(`0000000${color}`)
+    // log(color, 'color in Icon#render')
     let key = (this.props.iconSet || window.DEFAULT_ICON_SET).replace(
       /icons/gi,
       ''

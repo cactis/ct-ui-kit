@@ -109,8 +109,8 @@ export class Segment extends Component {
       <T.Grid
         onLayout={this._onLayout}
         // borderWidth={20}
-        borderWidth={0.5}
-        borderColor={window.SEGMENT_BORDER_COLOR}
+        // borderWidth={0.5}
+        // borderColor={window.SEGMENT_BORDER_COLOR}
         paddingVertical={SIZE.n}
       >
         <T.Row flex={0} style={{ ...wrapper }} layout="row">
@@ -119,6 +119,7 @@ export class Segment extends Component {
             data={tabs}
             horizontal
             ref={(c) => (this.tabs_scroll = c)}
+            showsHorizontalScrollIndicator={false}
             renderItem={({ item, index }) => (
               <Tab
                 theme={theme}
@@ -138,6 +139,7 @@ export class Segment extends Component {
             // borderWidth={2}
             // borderColor="red"
             scrollEnabled={global.state?.onScrollEndDrag}
+            // showsHorizontalScrollIndicator={false}
             onScroll={this._onScroll}
             scrollEventThrottle={16}
             ref={(ref) => (this._scroll = ref)}
@@ -161,9 +163,10 @@ export class Segment extends Component {
   }
 
   _onScroll = (e) => {
-    // log('onScroll in Segment')
+    log('onScroll in Segment')
     if (this.state.userScrolling) return
     let x = e.nativeEvent.contentOffset.x
+    log(x, 'x')
     runLast(
       () => {
         let index = Math.floor(x / this.state.width)
@@ -171,9 +174,10 @@ export class Segment extends Component {
         this.setState({ selectIndex: _index }, () => {
           index = index <= 1 ? 0 : index - 1
           this.tabs_scroll.scrollToIndex(index)
+          // this.onTappedAt(index)
         })
       },
-      300,
+      100,
       e
     )
   }

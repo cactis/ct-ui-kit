@@ -37,6 +37,7 @@ export const PushNotification = (navigation, options = {}) => {
     onNotification: function (notification) {
       // _alert('get message')
       __log(notification, 'notification')
+
       // process the notification
       processNotification(notification)
       // alert('got it')
@@ -137,6 +138,9 @@ window.processNotification = (notification = push) => {
     title = alert.title
     body = alert.body
     record = alert.record
+    badge = alert.badge
+    window.updateBadge(badge)
+    __log('----------------------')
   } else {
     let { data = notification } = notification
     title = data.title

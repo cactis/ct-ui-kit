@@ -106,9 +106,11 @@ export class Modal extends ModalBase {
             <T.Div borderWidth={0} flex={0}>
               <T.Icon
                 onPress={this.close}
-                size={rwd(18)}
-                name="closecircleo"
-                iconSet="AntDesign"
+                size={SIZE.m * 1.2}
+                // name="closecircleo"
+                // iconSet="AntDesign"
+                name={CLOSE_ICON_NAME}
+                iconSet={CLOSE_ICON_SET}
                 color="rgb(131,131,131)"
               />
             </T.Div>

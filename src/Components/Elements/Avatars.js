@@ -29,7 +29,7 @@ export const Avatar0 = (props) => {
   return (
     <T.Row flex={0} opPress={() => navigateToObject(item)}>
       <T.Div align="center" flow={flow}>
-        <T.Photo rounded uri={uri} size={size} onChange={onChange} />
+        <T.Photo rounded uri={uri} size={size} onChange={onChange} {...props} />
         <T.Space />
         {noName ? null : <T.Label text={item.name} theme="H7" />}
         {noTitle ? null : <T.Text text={title || item.title} size={size / 3} />}

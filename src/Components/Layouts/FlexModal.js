@@ -20,7 +20,10 @@ export class FlexModal extends ModalBase {
 
   render() {
     let { content, options } = this.state
-    let { backgroundColor = 'white', title: propTitle } = options
+    let {
+      backgroundColor = this.props.backgroundColor || 'white',
+      title: propTitle,
+    } = options
     let { padding = options.padding || SIZE.l, ...props } = this.props
     // log(content, '000000')
     let { children = content, height } = this.props
@@ -33,6 +36,7 @@ export class FlexModal extends ModalBase {
           height: 'auto',
           backgroundColor: backgroundColor,
           // backgroundColor: 'red',
+          borderRadius: 30,
         }}
         {...options}
         position="bottom"
@@ -52,9 +56,11 @@ export class FlexModal extends ModalBase {
         ) : null}
         <T.Grid
           flex={0}
+          borderRadius={SIZE.l}
           // padding={padding}
           // backgroundColor="rgb(241,241,241)"
-          backgroundColor={backgroundColor}
+          // __b__
+          // backgroundColor={backgroundColor}
           // backgroundColor="red"
           // paddingBottom={30}
         >

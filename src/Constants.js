@@ -136,6 +136,7 @@ window.SIZE = {
 window.ICON_SIZE = SIZE.m
 window.ICON_SETS = {}
 window.DEFAULT_ICON_SET = 'FontAwesome'
+window.DEFAULT_ICON_NAME = 'angle-right'
 
 window.BCOLOR = 'rgba(103,156,236,1)'
 window.BCOLOR_DEV = 'rgb(108,108,108)'
@@ -163,9 +164,9 @@ window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.s
 // alert(iPhoneX)
 window.SEGMENT_BGCOLOR = TColor(BCOLOR).darken()
-window.SEGMENT_COLOR = LIGHT_COLOR
-window.SEGMENT_ACTIVE_COLOR = LIGHT_COLOR
-window.SEGMENT_ACTIVE_BGCOLOR = TColor(BCOLOR)
+window.SEGMENT_COLOR = '#333'
+window.SEGMENT_ACTIVE_COLOR = '#333'
+window.SEGMENT_ACTIVE_BGCOLOR = '#dedede'
 window.SEGMENT_BORDER_COLOR = 'transparent'
 window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
 window.DROPDOWNALERT_COLOR_INFO = 'rgb(49,176,103)'

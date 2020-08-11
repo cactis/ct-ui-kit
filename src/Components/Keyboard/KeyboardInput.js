@@ -45,7 +45,7 @@ export class KeyboardInput extends React.PureComponent {
 
   close = () => {
     this._cancelReplyTo()
-    this.toolbar.close()
+    this.toolbar?.close()
   }
 
   render() {

@@ -23,7 +23,7 @@ export class Medias extends React.PureComponent {
         : item.length == 4
         ? Medias4
         : Medias5
-    return <MediaTagType data={data} />
+    return <MediaTagType {...this.props} data={data} />
   }
   onPress = () => {
     if (this.props.onPress) {

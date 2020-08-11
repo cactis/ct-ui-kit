@@ -46,8 +46,8 @@ export class ModalScreen extends ModalBase {
     let closeIcon = (
       <T.Icon
         onPress={this.close}
-        name={CLOSE_ICON_NAME}
         size={SIZE.m * 1.2}
+        name={CLOSE_ICON_NAME}
         iconSet={CLOSE_ICON_SET}
         color={TColor.mostReadable(backgroundColor, ['#efefef', '#111'])}
         theme="H1"
@@ -174,7 +174,7 @@ export class ModalScreen extends ModalBase {
               {/* )} */}
             </T.Row>
             <T.Space size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0} />
-            <T.SafeArea flex={0} backgroundColor={safeAreaColor} />
+            {/* <T.SafeArea flex={0} backgroundColor={safeAreaColor} /> */}
           </T.Row>
         )}
       </ModalBox>

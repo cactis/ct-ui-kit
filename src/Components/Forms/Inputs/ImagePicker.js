@@ -37,6 +37,9 @@ export const ImagePicker = (props) => {
     <T.Photo
       uri={data.path || data.small_file_url || data.thumb_file_url}
       size={size}
+      // bordered
+      // borderRadius={SIZE.s}
+      // padding={SIZE.l}
       onChange={onChanged}
     />
   ) : (

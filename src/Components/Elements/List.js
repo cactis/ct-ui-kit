@@ -403,6 +403,7 @@ export class List extends React.PureComponent {
               searchable ? (
                 <Div>
                   <SearchBar
+                    style={this.props.searchBarStyle}
                     ref={(c) => (this.searchBar = c)}
                     onChange={(keyword) => {
                       // log(e, 'e')

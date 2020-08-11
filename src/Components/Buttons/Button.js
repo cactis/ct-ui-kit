@@ -132,7 +132,7 @@ export class Button extends React.PureComponent {
         >
           {leftIcon}
           <Label
-            // theme={labelTheme}
+            theme={labelTheme}
             // disabled={disabled}
             onPress={!disabled ? this.onPress : null}
             style={{

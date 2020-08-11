@@ -21,10 +21,9 @@ export class Delete extends React.PureComponent {
       ) : (
         <T.Icon
           onPress={this.onPress}
-          name="minuscircleo"
-          iconSet="AntDesign"
+          name="delete"
           // size={SIZE.m - 2}
-          color={STRONG_COLOR}
+          // color={STRONG_COLOR}
         />
       )
     ) : null
@@ -40,7 +39,11 @@ export class Delete extends React.PureComponent {
           onDeleted(data)
         })
       },
-      { title: `Confirm to delete this item?` }
+      {
+        title: '刪除嗎？',
+        ok: '對，就刪了吧',
+        cancel: '不，我孝慮一下',
+      }
     )
 
     // if (this.props.onPress) {

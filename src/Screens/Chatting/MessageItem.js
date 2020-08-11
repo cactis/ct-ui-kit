@@ -27,46 +27,64 @@ export class MessageItem extends React.PureComponent {
     if (!data) return null
     let { item = data } = data
     if (!item.id) return <T.Div />
+    if (item.editing)
+      return (
+        <T.Animatable.View ref={(c) => (this.animator = c)}>
+          <T.MessageForm
+            data={data}
+            onUpdate={this.onUpdate}
+            onCancel={this.onCancel}
+          />
+        </T.Animatable.View>
+      )
     return (
       <T.Animatable.View ref={(c) => (this.animator = c)}>
         <T.Row flow="row" padding={rwd(8)}>
-          <T.Col yAlign="center" flex={0} paddingTop={rwd(10)}>
+          <T.Col yAlign="center" flex={0} paddingTop={rwd(0)}>
             <R.Avatar
               data={item.user}
-              size={rwd(40)}
+              size={SIZE.l * 2}
               navigation={_navigation}
             />
           </T.Col>
           <T.Space />
-          <T.Col flex={0}>
+          <T.Col flex={1}>
             <T.Div
-              flex-shrink={1}
-              maxWidth={SCREEN_WIDTH - rwd(70)}
-              maxWidth="80%"
-              style={{ width: 'auto' }}
-              backgroundColor="rgb(244,244,244)"
-              borderRadius={rwd(10)}
+              // flex-shrink={1}
+              // maxWidth={SCREEN_WIDTH - rwd(70)}
+              // width="90%"
+              width="100%"
+              // style={{ width: 'auto' }}
+              backgroundColor="#E4E8EB"
+              borderRadius={SIZE.s}
               padding={rwd(8)}
+              // __b__
             >
-              <T.Label text={item.user.name} theme="H5" size={rwd(15)} />
-              <T.Text numberOfLines={0} text={item.content} flex={0} />
+              <T.Text
+                numberOfLines={0}
+                text={item.content}
+                onPress={this.openMenu}
+                flex={0}
+                theme="H9"
+              />
             </T.Div>
-            <T.Row flow="row" yAlign="center">
-              <R.TimeAgo borderWidth={1} data={item.created_at} />
+            <T.Row flow="row" yAlign="center" marginTop={-1 * SIZE.m * 0.3}>
+              <T.Label text={item.user.name} theme="H9" />
+              <T.Space />
+              <R.TimeAgo borderWidth={1} data={item.created_at} theme="H9" />
               <T.Space />
               {this.props.likeable && <R.Like data={item} />}
               <T.Space />
               {this.props.replyable && (
                 <T.Label
                   theme="H8"
-                  text="Reply"
+                  text="回覆"
                   onPress={() => this.reply(item.parent)}
                 />
               )}
-              <T.Space size={SIZE.l} />
+              {/* <R.Edit data={item} />
               <T.Delete
                 data={item}
-                title="Delete"
                 onDeleted={() => {
                   // log(a, 'a')
                   window.Effect.disappear(this.animator, () => {
@@ -77,11 +95,11 @@ export class MessageItem extends React.PureComponent {
                 // alignSelf="flex-end"
                 // bordered
                 // style={{ ...STYLES.bordered }}
-              />
+              /> */}
             </T.Row>
             {!url && item.messages_count > 0 ? (
               <T.Label
-                text={`view more ${item.messages_count} reply...`}
+                text={`查看 ${item.messages_count} 回覆...`}
                 theme="H5"
                 size={rwd(13)}
                 onPress={() => {
@@ -103,6 +121,97 @@ export class MessageItem extends React.PureComponent {
         </T.Row>
       </T.Animatable.View>
     )
+  }
+
+  onCancel = () => {
+    let { data } = this.state
+    let { item = data } = data
+    item.editing = false
+    // window.Effect.appear(this.animator, () => {
+    this.setState({ data: { ...data } })
+    // })
+  }
+
+  onUpdate = (data) => {
+    // let { data } = this.state
+    let { item = data } = data
+    T.Api.put(item.routes, { message: item }, (res) => {
+      window.Effect.bounce(this.animator, () => {
+        log('callback ----------------')
+        let { data } = res
+        // this.props.list?.itemEvent?.onUpdated(res.data)
+        log(data, 'data')
+        this.setState({ data: { ...data } })
+      })
+    })
+  }
+
+  openMenu = () => {
+    let { data } = this.state
+    let { item = data } = data
+    log(item, 'item')
+    log(item.user?.id, global.currentUser.id)
+    if (item.user?.id != global.currentUser.id) return
+    window.chooseMenu.open({
+      // title: '上方寶劍',
+      menus: [
+        <T.IconLabel
+          // name="dislike"
+          // iconSet="SimpleLineIcons"
+          title="編輯"
+          larger={5}
+          color="#000"
+          // size={100}
+          // onPress={() => {
+          //   alert('333')
+          // }}
+        />,
+        <T.IconLabel
+          // name="dislike"
+          // iconSet="SimpleLineIcons"
+          title="刪除"
+          larger={5}
+          color="red"
+          // size={100}
+          // onPress={() => {
+          //   alert('333')
+          // }}
+        />,
+      ],
+      onPress: (index) => {
+        let { data } = this.state
+        let { item = data } = data
+        window.chooseMenu.close()
+        switch (index) {
+          case 0:
+            item.editing = true
+            this.setState({ data: item })
+            break
+          case 1:
+            // let { data } = this.state
+            // let { item = data } = data
+            // let { onDeleted = () => {} } = this.props
+            confirm(
+              () => {
+                T.Api.delete(item.routes, (res) => {
+                  log(item, 'item in delete#res')
+                  window.Effect.disappear(this.animator, () => {
+                    log('callback ----------------')
+                    this.props.list?.itemEvent?.onDeleted(item)
+                    // this.props.list?.reloadData()
+                  })
+                })
+              },
+              {
+                title: '刪除嗎？',
+                ok: '對，就刪了吧',
+                cancel: '不，我孝慮一下',
+              }
+            )
+          default:
+        }
+      },
+    })
   }
 
   loadList = (url) => {

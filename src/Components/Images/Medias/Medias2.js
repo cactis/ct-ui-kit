@@ -16,6 +16,7 @@ export class Medias2 extends React.PureComponent {
       <T.Row flow="row" height={SCREEN_HEIGHT / 4}>
         <T.Col>
           <T.Media
+            {...this.props}
             images={item}
             index={0}
             data={item[0]}
@@ -25,6 +26,7 @@ export class Medias2 extends React.PureComponent {
         <T.Space size={SIZE.t / 2} />
         <T.Col>
           <T.Media
+            {...this.props}
             images={item}
             index={1}
             data={item[1]}
