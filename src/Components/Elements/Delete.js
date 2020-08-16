@@ -42,7 +42,7 @@ export class Delete extends React.PureComponent {
       {
         title: '刪除嗎？',
         ok: '對，就刪了吧',
-        cancel: '不，我孝慮一下',
+        cancel: '不，我考慮一下',
       }
     )
 

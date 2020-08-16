@@ -22,8 +22,8 @@ export class SearchBar extends React.PureComponent {
     let { style = {} } = this.props
     let {
       borderRadius,
-      placeholderTextColor = '#666',
-      backgroundColor = 'white',
+      placeholderTextColor = window.SEARCHBAR_PLACEHOLDER_COLOR,
+      backgroundColor = window.SEARCHBAR_BACKGROUND_COLOR,
     } = style
     return (
       <Row padding={SIZE.n} backgroundColor__="rgb(255,255,255)">
@@ -32,9 +32,10 @@ export class SearchBar extends React.PureComponent {
           paddingVertical={rwd(5)}
           paddingHorizontal={rwd(10)}
           marginBottom={SIZE.s * 1.2}
-          backgroundColor="rgba(255,255,255,.59)"
-          backgroundColor="#E4E8EB"
+          // backgroundColor="rgba(255,255,255,.59)"
+          // backgroundColor="#E4E8EB"
           backgroundColor={backgroundColor}
+          // backgroundColor="red"
         >
           <TextInput
             placeholder="type keyword to search..."

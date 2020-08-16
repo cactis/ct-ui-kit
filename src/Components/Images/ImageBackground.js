@@ -31,7 +31,7 @@ export class ImageBackground extends React.PureComponent {
     if (placeholdered && !uri) {
       // uri = 'https://picsum.photos/1000/1400/?random'
       uri = `https://picsum.photos/${SCREEN_WIDTH}/${SCREEN_HEIGHT}/?random&${randId()}`
-      uri = 'https://nofriends.goodsforfree.com.tw/images/introSlide/bg.png'
+      uri = 'https://nofriend.goodsforfree.com.tw/images/introSlide/bg.png'
     } else {
     }
     if (source) {

@@ -147,9 +147,10 @@ window.SUBMIT_BACKGROUND_COLOR = BCOLOR
 window.STRONG_COLOR = 'rgba(133,15,15,1)'
 
 window.SCREEN_BACKGROUNDCOLOR = BCOLOR
-window.BUTTON_COLOR = 'rgba(217,76,111,0.8)'
-window.BUTTON_COLOR1 = 'rgba(0,111,182,.87)'
+// window.BUTTON_COLOR = 'rgba(217,76,111,0.8)'
 window.BUTTON_COLOR = 'rgba(29,220,238,1)'
+
+window.BUTTON_COLOR1 = 'rgba(0,111,182,.87)'
 window.BUTTON_RADIUS = SIZE.s
 
 window.CHOOSEMENU_BACKGROUND = 'white'
@@ -172,6 +173,10 @@ window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
 window.DROPDOWNALERT_COLOR_INFO = 'rgb(49,176,103)'
 window.WARNING_COLOR = 'rgba(208,35,35,1)'
 
+window.BODY_COLOR = 'black'
+window.SECONDARY_BODY_COLOR = '#8d8d8d'
+
+window.NAV_COLOR = '#445265'
 window.BUTTON_BORDER_COLOR = 'rgb(182, 182, 182)'
 //////////////////////////
 
@@ -179,6 +184,10 @@ window.CLOSE_ICON_NAME = 'close'
 window.CLOSE_ICON_SET = 'AntDesign'
 window.CLOSE_ICON_NAME = 'chevron-down'
 window.CLOSE_ICON_SET = 'Entypo'
+
+window.SEARCHBAR_BACKGROUND_COLOR = '#E4E8EB'
+// window.SEARCHBAR_BACKGROUND_COLOR = 'red'
+window.SEARCHBAR_PLACEHOLDER_COLOR = 'white'
 
 require('../../../Constants.js')
 

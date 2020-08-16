@@ -201,7 +201,7 @@ const styles = {
     // fontFamily: iOS ? 'GillSans' : 'sourcesanspro_regular',
     fontSize: fSize + (iOS ? 2 : 2),
     fontWeight: iOS ? '300' : '200',
-    color: 'rgba(0,0,0,.8)',
+    color: window.BODY_COLOR,
   },
   H7: {
     fontSize: fSize + (iOS ? 1 : 1),

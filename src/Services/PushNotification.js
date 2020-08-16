@@ -36,7 +36,7 @@ export const PushNotification = (navigation, options = {}) => {
     // (required) Called when a remote or local notification is opened or received
     onNotification: function (notification) {
       // _alert('get message')
-      __log(notification, 'notification')
+      // __log(notification, 'notification')
 
       // process the notification
       processNotification(notification)
@@ -121,7 +121,7 @@ const push = {
   sound: 'default',
 }
 window.processNotification = (notification = push) => {
-  // __log(notification, 'notification')
+  __log(notification, 'notification')
   // notification =
   // let { alert } = notification
   // let { title, body} = notification
@@ -201,31 +201,20 @@ const ios = {
   foreground: true,
   userInteraction: false,
   message: {
-    title:
-      'Barton liked your article Imagine you are writing an email. You are in front of the computer. You are operating the computer, clicking a mouse and typing on a keyboard, but the message will be sent to a human over the internet. So you are working before the computer, but with a human behind the computer.',
-    record:
-      '{"type":"Article","routes":"/articles/249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","id":"249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","state":null,"created_at":"2020-04-12T03:13:51.063Z","updated_at":"2020-04-14T08:39:39.053Z","cover":null}',
-    body: '[n5] ... ...',
+    title: '回應貼文通知',
+    body: '有人回應你的貼文：「測試」',
   },
   data: {
     remote: true,
     payload: {
       badge_sets: {
-        notifications_count: 15,
-        chattings_count: 7,
+        notifications_count: 2,
       },
       record:
-        '{"type":"Article","routes":"/articles/249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","id":"249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","state":null,"created_at":"2020-04-12T03:13:51.063Z","updated_at":"2020-04-14T08:39:39.053Z","cover":null}',
+        '{"type":"Article","routes":"/articles/b09f1f87-d690-4b39-b588-d612704b5622","id":"b09f1f87-d690-4b39-b588-d612704b5622","state":null,"created_at":"2020-08-11T14:27:34.222Z","updated_at":"2020-08-11T14:27:34.222Z","cover":null}',
     },
-    notificationId: '55248FAB-4E50-4ED1-82A7-BC021384910F',
+    notificationId: 'A7B5C461-472A-40A9-90D6-28770DF147E7',
   },
-  badge: 22,
-  alert: {
-    title:
-      'Barton liked your article Imagine you are writing an email. You are in front of the computer. You are operating the computer, clicking a mouse and typing on a keyboard, but the message will be sent to a human over the internet. So you are working before the computer, but with a human behind the computer.',
-    record:
-      '{"type":"Article","routes":"/articles/249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","id":"249d6f35-b7c3-4c7f-a6c6-ace24cf5ab45","state":null,"created_at":"2020-04-12T03:13:51.063Z","updated_at":"2020-04-14T08:39:39.053Z","cover":null}',
-    body: '[n5] ... ...',
-  },
-  sound: 'default',
+  badge: 2,
+  soundName: 'default',
 }
