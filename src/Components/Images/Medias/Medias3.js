@@ -19,7 +19,7 @@ export class Medias3 extends React.PureComponent {
     let aspectRatio2 = w / 2 / (h - space)
     log(item, 'item')
     return (
-      <T.Row flow="row" height={SCREEN_HEIGHT / 3}>
+      <T.Row flow="row" height={SCREEN_HEIGHT / 3} backgroundColor__="black">
         <T.Col backgroundColor_="red" flex={2}>
           <T.Media
             images={item}

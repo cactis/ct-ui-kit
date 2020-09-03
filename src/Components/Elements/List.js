@@ -52,6 +52,7 @@ export class List extends React.PureComponent {
         this.setState({ data: [...data], extraData: randId() })
       })
       // this.forceUpdate()
+      this.reloadData()
     },
     onCreated: (item) => {
       // this._reload()

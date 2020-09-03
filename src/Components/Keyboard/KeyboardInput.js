@@ -116,7 +116,7 @@ export class KeyboardInput extends React.PureComponent {
                       color="rgb(186,186,186)"
                       size={rwd(14)}
                     />
-                    <T.Label text={`reply to ${replyTo}`} theme="H8" />
+                    <T.Label text={`回覆 ${replyTo}`} theme="H8" />
                   </T.Center>
                 </T.Row>
               ) : null}
@@ -147,7 +147,7 @@ export class KeyboardInput extends React.PureComponent {
               title="送出"
               borderRadius={SIZE.l}
               onPress={this._onSend}
-              backgroundColor={BFCOLOR}
+              backgroundColor={BUTTON_COLOR}
               color={LIGHT_COLOR}
             />
           </T.Col>

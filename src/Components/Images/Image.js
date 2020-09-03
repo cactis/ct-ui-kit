@@ -6,7 +6,12 @@ import FastImage from 'react-native-fast-image'
 export class Image extends Component {
   render() {
     let {
-      uri, //= 'https://placekitten.com/600/600',
+      data = {},
+      thumb_file_url = data.thumb_file_url,
+      small_file_url = data.small_file_url || thumb_file_url,
+      medium_file_url = data.medium_file_url || small_file_url,
+      large_file_url = data.large_file_url || medium_file_url,
+      uri = large_file_url, //= 'https://placekitten.com/600/600',
       source,
       size,
       rounded,

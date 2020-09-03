@@ -22,13 +22,17 @@ export class CheckBox extends React.PureComponent {
     let color = checked ? '#333' : '#999'
     return (
       // <T.Row flex={0} onPress={this._onChecked}>
-      <T.Icon
-        name={name}
-        color={color}
-        iconSet={iconSet}
-        size={rwd(25)}
-        onPress={this._onChecked}
-      />
+      <T.Center flex={0}>
+        <T.Icon
+          name={name}
+          color={color}
+          iconSet={iconSet}
+          // size={rwd(25)}
+          onPress={this._onChecked}
+          {...this.props}
+          larger={checked ? 8 : 7}
+        />
+      </T.Center>
       // </T.Row>
     )
   }

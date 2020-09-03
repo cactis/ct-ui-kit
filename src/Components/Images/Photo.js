@@ -17,6 +17,7 @@ export class Photo extends React.PureComponent {
   }
 
   render() {
+    log(this.images, 'this.images')
     let {
       url,
       uri = url,
@@ -98,7 +99,7 @@ export class Photo extends React.PureComponent {
               <T.Space>
                 <T.Text
                   numberOfLines={1}
-                  text={this.props.images[imageIndex].title}
+                  text={this.images[imageIndex].title}
                   theme="H5"
                 />
               </T.Space>
@@ -114,17 +115,17 @@ export class Photo extends React.PureComponent {
           )}
           FooterComponent={({ imageIndex }) => (
             <>
-              <T.Row backgroundColor={bg} padding={SIZE.m}>
+              <T.Row backgroundColor={bg} padding={SIZE.m} __b____>
                 {/* <T.Center padding={SIZE.s}>
                 <T.Text
                   numberOfLines={0}
-                  text={this.props.images[imageIndex].title}
+                  text={this.images[imageIndex].title}
                   color={LIGHT_COLOR}
                 />
               </T.Center> */}
                 <T.Text
                   numberOfLines={10}
-                  text={this.props.images[imageIndex].description}
+                  text={this.images[imageIndex].description}
                   theme="H7"
                 />
               </T.Row>
@@ -151,34 +152,7 @@ export class Photo extends React.PureComponent {
             </>
           )}
         />
-        {/* <ImageView
-          images={this.images}
-          imageUrls={this.images}
-          imageIndex={this.props.index || 0}
-          index={this.props.index || 0}
-          enablePreload={true}
-          enableSwipeDown={true}
-          visible={preview}
-          isVisible={preview}
-          onClose={() => {
-            this.setState({ preview: false })
-          }}
-          onCancel={() => {
-            this.setState({ preview: false })
-          }}
-          onRequestClose={() => this.setState({ preview: false })}
-          FooterComponent={(currentImage) => (
-            <T.Grid padding={SAFEAREA_BOTTOM + rwd(10)}>
-              <T.Text theme="H7" color="white" text={title} />
-            </T.Grid>
-          )}
-          renderFooter={(currentImage) => (
-            <T.Grid padding={SAFEAREA_BOTTOM + rwd(10)}>
-              <T.Text theme="H7" color="white" text={title} />
-            </T.Grid>
-          )}
-        /> */}
-        {/* </Modal> */}
+
         {onChange ? (
           <T.Float right={-5} bottom={0}>
             <T.Center

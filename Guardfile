@@ -12,7 +12,7 @@ copy_commend target
 
 guard :shell do
   watch(%r{src}) {
-    %w(amp bootstrap nofriends SeedsLife iFix readus tinyr).each do |app|
+    %w(amp bootstrap nofriend SeedsLife iFix readus tinyr).each do |app|
       p app
       # ['writus', 'ctnews'].each do |app|
       target = "/Volumes/RamDisk/#{app}/node_modules/ct-ui-kit"
@@ -25,7 +25,7 @@ guard :shell do
     end
 
 
-    %w(nofriends/apps/bootstrap SeedsLife/apps/bootstrap ampup/apps/amp writus/apps/readus writus/apps/tinyr iFix/apps/bootstrap).each do |app|
+    %w(nofriend/apps/bootstrap SeedsLife/apps/bootstrap ampup/apps/amp writus/apps/readus writus/apps/tinyr iFix/apps/bootstrap).each do |app|
       p app
       # ['writus', 'ctnews'].each do |app|
       target = "~/www/#{app}/node_modules/ct-ui-kit"

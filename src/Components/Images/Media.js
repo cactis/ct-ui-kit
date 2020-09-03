@@ -32,6 +32,18 @@ export const Media = (props) => {
             item.small_file_url ||
             item.file_url
           }
+          data={[
+            {
+              uri:
+                item.path ||
+                item.data ||
+                item.large_file_url ||
+                item.medium_file_url ||
+                item.small_file_url ||
+                item.file_url,
+              ...item,
+            },
+          ]}
           images={[
             {
               uri:
@@ -45,6 +57,8 @@ export const Media = (props) => {
             },
           ]}
           ref={(c) => (this.photo = c)}
+          // borderWidth={0.5}
+          // borderColor="#dedede"
           {...props}
         />
       )

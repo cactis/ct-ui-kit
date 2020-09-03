@@ -69,7 +69,7 @@ export class MessageItem extends React.PureComponent {
               />
             </T.Div>
             <T.Row flow="row" yAlign="center" marginTop={-1 * SIZE.m * 0.3}>
-              <T.Label text={item.user.name} theme="H9" />
+              <T.Label text={item.author} theme="H9" />
               <T.Space />
               <R.TimeAgo borderWidth={1} data={item.created_at} theme="H9" />
               <T.Space />

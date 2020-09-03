@@ -8,7 +8,7 @@ const RESTORE = 'Show Full Text'
 let _this, _navigation, _text
 export class BrowserScreen extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
-    log(navigation, 'navigation in static navigationOptions')
+    // log(navigation, 'navigation in static navigationOptions')
     return {
       headerVisible: navigation?.state.params.isHeaderShow,
       title: navigation?.state.params

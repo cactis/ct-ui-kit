@@ -20,24 +20,27 @@ export class NodeItem extends React.PureComponent {
           // padding={SIZE.m}
           // paddingBottom={0}
           // paddingRight={0}
+          borderLeftWidth={0.5}
+          // borderStyle="dashed"
+          borderColor="#aaa"
+          paddingLeft={SIZE.s}
         >
-          <T.Col xAlign="center" paddingVertical={SIZE.s}>
-            <T.Label text={item.title} theme="H5" />
+          <T.Col xAlign="center" paddingVertical={SIZE.n}>
+            <T.Label text={`- ${item.title}`} theme="H9" />
           </T.Col>
-          <T.Center flex={0}>
-            {item?.children?.length > 0 ? null : (
-              <T.CheckBox
-                ref="checkbox"
-                checkedIconName="md-checkbox"
-                unCheckedIconName="md-checkbox-outline"
-                checked={this.getChecked(item)}
-                onChecked={(checked) => {
-                  item.checked = checked
-                  this.props.onChecked(item)
-                }}
-                // iconSet="Fontisto"
-              />
-            )}
+          <T.Center flex={0} _b__ yAlign="flex-start" width={SIZE.l * 3}>
+            <T.CheckBox
+              ref="checkbox"
+              // size={SIZE.l}
+              checkedIconName="md-checkbox"
+              unCheckedIconName="md-checkbox-outline"
+              checked={this.getChecked(item)}
+              onChecked={(checked) => {
+                item.checked = checked
+                this.props.onChecked(item)
+              }}
+            />
+            {/* )} */}
           </T.Center>
         </T.Row>
         <T.NodePicker

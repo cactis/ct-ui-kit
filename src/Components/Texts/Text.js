@@ -74,7 +74,6 @@ export class Text extends React.Component {
         borderWidth={1}
         borderColor={color}
         borderRadius={3}
-        borderStyle="dashed"
         backgroundColor={backgroundColor}
         paddingHorizontal={SIZE.s}
         paddingVertical={SIZE.t}
