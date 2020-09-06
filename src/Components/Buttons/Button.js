@@ -132,9 +132,11 @@ export class Button extends React.PureComponent {
         >
           {leftIcon}
           <Label
+            flex={1}
+            padding={20}
             theme={labelTheme}
             // disabled={disabled}
-            onPress={!disabled ? this.onPress : null}
+            // onPress={!disabled ? this.onPress : null}
             style={{
               // fontSize: fontSize,
               ...styles[theme]['label'],
@@ -145,6 +147,7 @@ export class Button extends React.PureComponent {
               // fontWeight: '400',
               // fontFamily: 'Verdana',
             }}
+            // backgroundColor="red"
             {...props}
           >
             {title}

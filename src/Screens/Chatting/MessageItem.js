@@ -114,7 +114,11 @@ export class MessageItem extends React.PureComponent {
               url={url}
               extraData={url}
               renderItem={(item) => (
-                <T.MessageItem data={item} parent={this.props.parent} />
+                <T.MessageItem
+                  likeable={true}
+                  data={item}
+                  parent={this.props.parent}
+                />
               )}
             />
           </T.Col>

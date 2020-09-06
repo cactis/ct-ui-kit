@@ -1,7 +1,7 @@
 import React, { PureComponent as Component } from 'react'
 import { TouchableOpacity as RNTouch } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler' // TODO: 這裡 Android 有點選問題
-
+export { RNTouch }
 // import { Vibration } from 'react-native'
 
 import ReactNativeHaptic from 'react-native-haptic'
