@@ -72,19 +72,19 @@ export class WebSocketBase extends React.PureComponent {
     }
 
     ws.onclose = (e) => {
-      _alert('closed')
+      // _alert('closed')
       this.connected = false
       this.reconnect()
     }
   }
 
   reconnect = () => {
-    _alert('reconnect')
+    // _alert('reconnect')
 
     delayed(() => {
       if (this.tries < 10 && !this.connected && this.mounted) {
         this.tries = this.tries + 1
-        _alert('onclose: connecting...')
+        // _alert('onclose: connecting...')
         this.connectSocket()
       }
     })
