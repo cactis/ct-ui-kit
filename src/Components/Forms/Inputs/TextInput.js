@@ -158,6 +158,8 @@ export class TextInput1 extends Component {
       value,
       backgroundColor = 'rgb(242,240,240)',
       height,
+      placeholderTextColor = BCOLOR,
+      // placeholderTextColor = 'red',
       editable = true,
       bordered = true,
       ...props
@@ -185,6 +187,7 @@ export class TextInput1 extends Component {
         style={{
           ...borderStyle,
           ...heightStyle,
+
           // paddingVertical: rwd(10),
         }}
         // xAlign="center"
@@ -219,6 +222,7 @@ export class TextInput1 extends Component {
           // }}
           // flex={1}
           // backgroundColor="transparent"
+          placeholderTextColor={placeholderTextColor}
           style={{
             ...alignTop,
             ...heightStyle,

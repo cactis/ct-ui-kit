@@ -120,6 +120,7 @@ const push = {
   },
   sound: 'default',
 }
+
 window.processNotification = (notification = push) => {
   __log(notification, 'notification')
   // notification =
@@ -134,7 +135,7 @@ window.processNotification = (notification = push) => {
     // let { record } = asJSON(payload) || notification
 
     // log(_navigation.state.routeName, 'current route name')
-    let { alert } = notification
+    let { message, alert = message } = notification
     title = alert.title
     body = alert.body
     record = alert.record
@@ -145,14 +146,10 @@ window.processNotification = (notification = push) => {
     let { data = notification } = notification
     title = data.title
     body = data.body
-    payload = data.payload
-    // title = notification.title
-    // body = notification.body
-    // payload = notification.payload
-    log(payload, 'payload')
-    if (payload) {
-      record = asJSON(payload)?.record
-    }
+    record = data.record
+    // if (payload) {
+    //   record = asJSON(payload)?.record
+    // }
   }
   record = asJSON(record)
   log(window.currentRoom, record?.id)
@@ -169,8 +166,9 @@ window.processNotification = (notification = push) => {
         // let { action } = data
         // log(action, 'action')
         // if (action == 'tap') {
-        //  log(_navigation, '_navigation')
-        navigateToRecord(record, _navigation)
+        log(_navigation, '_navigation')
+        // navigateToRecord(record, _navigation)
+        showRecord(record)
         // }
       },
     })

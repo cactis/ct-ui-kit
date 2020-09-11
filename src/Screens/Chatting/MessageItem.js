@@ -58,7 +58,7 @@ export class MessageItem extends React.PureComponent {
               backgroundColor="#E4E8EB"
               borderRadius={SIZE.s}
               padding={rwd(8)}
-              // __b__
+              //
             >
               <T.Text
                 numberOfLines={0}
@@ -69,33 +69,29 @@ export class MessageItem extends React.PureComponent {
               />
             </T.Div>
             <T.Row flow="row" yAlign="center" marginTop={-1 * SIZE.m * 0.3}>
-              <T.Label text={item.author} theme="H9" />
+              <T.Col flex={0} width="50%">
+                <T.Label text={item.author} theme="H9" ellipsizeMode="middle" />
+              </T.Col>
               <T.Space />
-              <R.TimeAgo borderWidth={1} data={item.created_at} theme="H9" />
+              <T.Col flex={0}>
+                <R.TimeAgo borderWidth={1} data={item.created_at} theme="H9" />
+              </T.Col>
               <T.Space />
-              {this.props.likeable && <R.Like data={item} />}
+              <T.Col flex={0}>
+                {this.props.likeable && (
+                  <R.Like data={item} paddingHorizontal={SIZE.n} />
+                )}
+              </T.Col>
               <T.Space />
               {this.props.replyable && (
-                <T.Label
-                  theme="H8"
-                  text="回覆"
-                  onPress={() => this.reply(item.parent)}
-                />
+                <T.Col flex={0} marginRight={SIZE.l}>
+                  <T.Label
+                    theme="H8"
+                    text="回覆"
+                    onPress={() => this.reply(item.parent)}
+                  />
+                </T.Col>
               )}
-              {/* <R.Edit data={item} />
-              <T.Delete
-                data={item}
-                onDeleted={() => {
-                  // log(a, 'a')
-                  window.Effect.disappear(this.animator, () => {
-                    this.props.parent.refs.list.itemEvent.onDeleted(data)
-                  })
-                }}
-                // onDeleted={this.props.parent}
-                // alignSelf="flex-end"
-                // bordered
-                // style={{ ...STYLES.bordered }}
-              /> */}
             </T.Row>
             {!url && item.messages_count > 0 ? (
               <T.Label
@@ -104,6 +100,7 @@ export class MessageItem extends React.PureComponent {
                 size={rwd(13)}
                 onPress={() => {
                   // alert(item.messages_url)
+                  beep()
                   this.loadList(item.messages_url)
                 }}
               />
@@ -226,6 +223,7 @@ export class MessageItem extends React.PureComponent {
   }
 
   reply = (item) => {
+    beep()
     log(this.props.parent.messageRefs, 'this.props.parent.messageRefs')
     // log(item, 'item')
     // global.currentThread = this

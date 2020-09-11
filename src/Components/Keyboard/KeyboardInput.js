@@ -95,7 +95,7 @@ export class KeyboardInput extends React.PureComponent {
                 paddingHorizontal: rwd(10),
                 // borderWidth: 0.4,
                 // borderColor: '#999',
-                height: textInputHeight - rwd(5) * 2,
+                height: textInputHeight - rwd(5) * (iOS ? 2 : 1),
               }}
             >
               {replyTo ? (
@@ -134,6 +134,7 @@ export class KeyboardInput extends React.PureComponent {
                   flex: 1,
                   // textAlign: 'center',
                   backgroundColor: 'rgb(238,238,238)',
+                  // backgroundColor: 'red',
                   // height: textInputHeight,
                   // height: 200,
                 }}

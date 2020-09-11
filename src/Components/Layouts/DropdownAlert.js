@@ -83,6 +83,12 @@ export class DropdownAlert extends React.PureComponent {
           // flex: 0,
           height: 'auto',
         }}
+        onPress={() => {
+          // this._onDropdownAlertTapped()
+          // this.modal.close()
+          this.onTapped()
+          this.close()
+        }}
       >
         <T.Grid
           // margin={rwd(20)}
@@ -119,14 +125,50 @@ export class DropdownAlert extends React.PureComponent {
               text_="title"
               // theme="H5"
               numberOfLines={2}
+              onPress={() => {
+                // this._onDropdownAlertTapped()
+                // this.modal.close()
+                this.onTapped()
+                this.close()
+              }}
             />
             <T.Space>
-              <T.Text color="#fff" text={body} text_="body" numberOfLines={5} />
+              <T.Text
+                color="#fff"
+                text={body}
+                text_="body"
+                numberOfLines={5}
+                onPress={() => {
+                  // this._onDropdownAlertTapped()
+                  // this.modal.close()
+                  this.onTapped()
+                  this.close()
+                }}
+              />
             </T.Space>
           </T.Col>
           {this.state?.options?.onTapped ? (
-            <T.Center flex={0}>
-              <T.Icon size={SIZE.m} color="white" />
+            <T.Center flex={0} paddingHorizontal={SIZE.m} align="center">
+              <T.Touch
+                onPress={() => {
+                  // this._onDropdownAlertTapped()
+                  // this.modal.close()
+                  this.onTapped()
+                  this.close()
+                }}
+              >
+                <T.Icon
+                  size={SIZE.m}
+                  color="white"
+                  name="righarrow"
+                  onPress={() => {
+                    // this._onDropdownAlertTapped()
+                    // this.modal.close()
+                    this.onTapped()
+                    this.close()
+                  }}
+                />
+              </T.Touch>
             </T.Center>
           ) : null}
         </T.Grid>
