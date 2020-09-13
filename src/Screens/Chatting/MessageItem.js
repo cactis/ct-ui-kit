@@ -57,12 +57,15 @@ export class MessageItem extends React.PureComponent {
               // style={{ width: 'auto' }}
               backgroundColor="#E4E8EB"
               borderRadius={SIZE.s}
-              padding={rwd(8)}
+              paddingHorizontal={SIZE.s}
               //
             >
-              <T.Text
+              <R.Content
                 numberOfLines={0}
                 text={item.content}
+                data={data}
+                smaller={2}
+                paddingVertical={SIZE.s}
                 onPress={this.openMenu}
                 flex={0}
                 theme="H9"
