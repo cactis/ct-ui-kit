@@ -36,7 +36,8 @@ export class FlexModal extends ModalBase {
           height: 'auto',
           backgroundColor: backgroundColor,
           // backgroundColor: 'red',
-          borderRadius: 30,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
         }}
         {...options}
         position="bottom"

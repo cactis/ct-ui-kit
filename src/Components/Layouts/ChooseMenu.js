@@ -17,7 +17,7 @@ export class ChooseMenu extends React.PureComponent {
         flex={0}
         padding={SIZE.m}
         align="center"
-        // backgroundColor="rgba(185,185,185,.85)"
+        backgroundColor="rgba(185,185,185,.85)"
         borderTopWidth={0.5}
         borderColor="rgba(255,255,255,.9)"
       >
@@ -25,7 +25,7 @@ export class ChooseMenu extends React.PureComponent {
       </T.Cell>
     ) : null
     let _menu = menus.map((m, index) => (
-      <T.Center
+      <T.Row
         key={index}
         flex={0}
         padding={SIZE.l / 2}
@@ -34,15 +34,15 @@ export class ChooseMenu extends React.PureComponent {
         // backgroundColor="red"
         // onPress={() => this.onPress(index)}
         // onPress={alert}
-        borderBottomWidth={0.3}
-        borderColor="rgb(220, 220, 220)"
+        // borderBottomWidth={0.3}
+        // borderColor="rgb(220, 220, 220)"
         onPress={() => {
           // alert()
           this.onPress(index)
         }}
       >
         {m}
-      </T.Center>
+      </T.Row>
     ))
     // alert(iPhoneX)
     return (
@@ -53,12 +53,12 @@ export class ChooseMenu extends React.PureComponent {
         ref={(c) => (this.modal = c)}
         // backgroundColor={CHOOSEMENU_BACKGROUND}
 
-        backgroundColor="transparent"
+        // backgroundColor="transparent"
         // style={{ ...this.props.style, backgroundColor: 'transparent' }}
         // backgroundColor="red"
         __b__
       >
-        <T.Row flex={0} margin={SIZE.s}>
+        <T.Row flex={0} margin={SIZE.l}>
           <T.Row
             borderRadius={SIZE.s}
             flex={0}
@@ -76,11 +76,12 @@ export class ChooseMenu extends React.PureComponent {
             flex={0}
             marginTop={SIZE.s}
             padding={SIZE.l / 2}
+            onPress={this.close}
           >
-            <T.Label text="取消" theme="H3" />
+            <T.Label text="取消" theme="H5" color={window.NavText} />
           </T.Center>
         </T.Row>
-        <T.Space size={SAFEAREA_BOTTOM} />
+        {/* <T.Space size={SAFEAREA_BOTTOM} /> */}
       </T.FlexModal>
     )
   }

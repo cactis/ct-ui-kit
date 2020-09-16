@@ -171,12 +171,13 @@ window.SEGMENT_ACTIVE_BGCOLOR = '#dedede'
 window.SEGMENT_BORDER_COLOR = 'transparent'
 window.DROPDOWNALERT_COLOR = 'rgb(49,176,103)'
 window.DROPDOWNALERT_COLOR_INFO = 'rgb(49,176,103)'
-window.WARNING_COLOR = 'rgba(208,35,35,1)'
+window.WARNING_COLOR = '#b33939' //warning
 
 window.BODY_COLOR = 'black'
 window.SECONDARY_BODY_COLOR = '#8d8d8d'
 
-window.NAV_COLOR = '#445265'
+window.NAV_COLOR = '#445265' // NavText
+window.NavText = window.NAV_COLOR
 window.BUTTON_BORDER_COLOR = 'rgb(182, 182, 182)'
 //////////////////////////
 
