@@ -24,20 +24,12 @@ export class ChooseMenu extends React.PureComponent {
         <T.Label text={title} color="#333" theme="H3" />
       </T.Cell>
     ) : null
-    let _menu = menus.map((m, index) => (
+    let _menus = menus.map((m, index) => (
       <T.Row
         key={index}
         flex={0}
         padding={SIZE.l / 2}
-        // height={SIZE.l * 5}
-        // paddingHorizontal={SIZE.s}
-        // backgroundColor="red"
-        // onPress={() => this.onPress(index)}
-        // onPress={alert}
-        // borderBottomWidth={0.3}
-        // borderColor="rgb(220, 220, 220)"
         onPress={() => {
-          // alert()
           this.onPress(index)
         }}
       >
@@ -47,16 +39,9 @@ export class ChooseMenu extends React.PureComponent {
     // alert(iPhoneX)
     return (
       <T.FlexModal
-        // padding={SIZE.l}
         useNativeDriver={true}
         // padding={0}
         ref={(c) => (this.modal = c)}
-        // backgroundColor={CHOOSEMENU_BACKGROUND}
-
-        // backgroundColor="transparent"
-        // style={{ ...this.props.style, backgroundColor: 'transparent' }}
-        // backgroundColor="red"
-        __b__
       >
         <T.Row flex={0} margin={SIZE.l}>
           <T.Row
@@ -67,7 +52,7 @@ export class ChooseMenu extends React.PureComponent {
           >
             {_title}
             <T.Row flex={0} _backgroundColor="#aaa">
-              {_menu}
+              {_menus}
             </T.Row>
           </T.Row>
           <T.Center

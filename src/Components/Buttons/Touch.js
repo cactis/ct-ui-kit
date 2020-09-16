@@ -6,8 +6,9 @@ export { RNTouch }
 
 import ReactNativeHaptic from 'react-native-haptic'
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
-// let Tag = iOS ? TouchableOpacity : RNTouch
+// let Tag = !iOS ? TouchableOpacity : RNTouch
 let Tag = TouchableOpacity
+// let Tag = RNTouch
 window.beep = () => {
   // if (__DEV__) alert('beep')
   if (iOS) {
