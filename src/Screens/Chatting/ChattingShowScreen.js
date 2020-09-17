@@ -152,7 +152,9 @@ export class ChattingShowScreen extends ChattingBase {
 
   componentWillUnmount() {
     this.mounted = false
-    ws && ws.close()
+    if (eval('typeof ws !== "undefined"')) {
+      ws.close()
+    }
   }
   autoRun = () => {
     _autoRun('inviteFriend', () => {

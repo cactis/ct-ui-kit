@@ -60,16 +60,29 @@ export class MessageItem extends React.PureComponent {
               paddingHorizontal={SIZE.s}
               //
             >
-              <R.Content
-                numberOfLines={0}
-                text={item.content}
-                data={data}
-                smaller={2}
-                paddingVertical={SIZE.s}
-                onPress={this.openMenu}
-                flex={0}
-                theme="H9"
-              />
+              {item.user?.id == global.currentUser.id ? (
+                <T.Touch onPress={this.openMenu}>
+                  <R.Content
+                    numberOfLines={0}
+                    text={item.content}
+                    data={data}
+                    smaller={2}
+                    paddingVertical={SIZE.s}
+                    flex={0}
+                    theme="H9"
+                  />
+                </T.Touch>
+              ) : (
+                <R.Content
+                  numberOfLines={0}
+                  text={item.content}
+                  data={data}
+                  smaller={2}
+                  paddingVertical={SIZE.s}
+                  flex={0}
+                  theme="H9"
+                />
+              )}
             </T.Div>
             <T.Row flow="row" yAlign="center" marginTop={-1 * SIZE.m * 0.3}>
               <T.Col flex={0} width="50%">
@@ -131,6 +144,7 @@ export class MessageItem extends React.PureComponent {
     let { data } = this.state
     let { item = data } = data
     item.editing = false
+    this.props.attachKeyBoard && this.props.attachKeyBoard()
     // window.Effect.appear(this.animator, () => {
     this.setState({ data: { ...data } })
     // })
@@ -141,10 +155,8 @@ export class MessageItem extends React.PureComponent {
     let { item = data } = data
     T.Api.put(item.routes, { message: item }, (res) => {
       window.Effect.bounce(this.animator, () => {
-        log('callback ----------------')
+        this.props.attachKeyBoard && this.props.attachKeyBoard()
         let { data } = res
-        // this.props.list?.itemEvent?.onUpdated(res.data)
-        log(data, 'data')
         this.setState({ data: { ...data } })
       })
     })
@@ -153,33 +165,24 @@ export class MessageItem extends React.PureComponent {
   openMenu = () => {
     let { data } = this.state
     let { item = data } = data
-    log(item, 'item')
-    log(item.user?.id, global.currentUser.id)
-    if (item.user?.id != global.currentUser.id) return
+    // log(item, 'item')
+    // log(item.user?.id, global.currentUser.id)
     window.chooseMenu.open({
       // title: '上方寶劍',
       menus: [
         <T.IconLabel
-          // name="dislike"
-          // iconSet="SimpleLineIcons"
+          name="edit"
           title="編輯"
+          theme="H1"
           larger={5}
-          color="#000"
-          // size={100}
-          // onPress={() => {
-          //   alert('333')
-          // }}
+          color={window.NAV_COLOR}
         />,
         <T.IconLabel
-          // name="dislike"
-          // iconSet="SimpleLineIcons"
+          name="delete"
           title="刪除"
           larger={5}
-          color="red"
-          // size={100}
-          // onPress={() => {
-          //   alert('333')
-          // }}
+          theme="H1"
+          color={window.WARNING_COLOR}
         />,
       ],
       onPress: (index) => {
@@ -189,6 +192,7 @@ export class MessageItem extends React.PureComponent {
         switch (index) {
           case 0:
             item.editing = true
+            window.keyboardInput.close()
             this.setState({ data: item })
             break
           case 1:
