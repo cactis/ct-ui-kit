@@ -113,9 +113,9 @@ export class DropdownAlert extends React.PureComponent {
           <T.Center flex={0}>
             <T.Icon
               size={rwd(25)}
-              name="sun"
+              name="day-sunny"
               color="#efefef"
-              iconSet="Feather"
+              iconSet="Fontisto"
             />
           </T.Center>
           <T.Col xAlign="center">

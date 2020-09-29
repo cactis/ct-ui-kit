@@ -136,23 +136,36 @@ window.processNotification = (notification = push) => {
 
     // log(_navigation.state.routeName, 'current route name')
     let { message, alert = message } = notification
+
+    // eval(request_action)
     title = alert.title
     body = alert.body
     record = alert.record
     badge = alert.badge
+
+    log(alert, 'alert')
+    let { request = () => {} } = alert
+    // _alert(request)
+    eval(request)
     window.updateBadge(badge)
     __log('----------------------')
   } else {
+    log(notification, 'notifition')
     let { data = notification } = notification
     title = data.title
     body = data.body
     record = data.record
+
+    log(data, 'data')
+    let { request = () => {} } = data
+    // _alert(request)
+    eval(request)
     // if (payload) {
     //   record = asJSON(payload)?.record
     // }
   }
   record = asJSON(record)
-  log(window.currentRoom, record?.id)
+  // log(window.currentRoom, record?.id)
   if (window.currentRoom && window.currentRoom == record?.id) {
     // _alert('no need alert')
     return
