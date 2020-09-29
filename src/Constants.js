@@ -4,6 +4,7 @@ import React from 'react'
 import { StatusBar } from 'react-native'
 
 import { Dimensions, Platform } from 'react-native'
+
 require('./Libraries/Library.js')
 window.TColor = require('tinycolor2')
 

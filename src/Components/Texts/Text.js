@@ -71,13 +71,14 @@ export class Text extends React.Component {
     // return <RNText>{children}</RNText>
     return backgroundColor ? (
       <T.Div
-        borderWidth={1}
+        // borderWidth={1}
         borderColor={color}
-        borderRadius={3}
-        backgroundColor={backgroundColor}
-        paddingHorizontal={SIZE.s}
-        paddingVertical={SIZE.t}
+        // borderRadius={3}
+        // backgroundColor={backgroundColor}
+        paddingHorizontal={SIZE.m * 1.2}
+        paddingVertical={SIZE.s * 1.2}
         align="center"
+        {...this.props}
         // backgroundColor="red"
       >
         {tag}
