@@ -158,7 +158,7 @@ export class TextInput1 extends Component {
       value,
       backgroundColor = 'rgb(242,240,240)',
       height,
-      placeholderTextColor = BCOLOR,
+      placeholderTextColor = PLACEHOLDER,
       // placeholderTextColor = 'red',
       editable = true,
       bordered = true,

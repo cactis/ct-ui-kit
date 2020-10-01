@@ -36,11 +36,18 @@ export class FilesInput extends React.PureComponent {
                 yAlign="center"
               >
                 <T.Icon name="plus" color="#ccc" iconSet="AntDesign" pad={0} />
-                <T.Icon
+                <T.ImagePickerButton
                   name="camerao"
-                  onPress={this.getImage}
+                  type="camera"
                   iconSet="AntDesign"
-                  larger={11}
+                  larger={12}
+                  onPress={this.onGetImage}
+                />
+                <T.ImagePickerButton
+                  name="picture"
+                  iconSet="AntDesign"
+                  larger={12}
+                  onPress={this.onGetImage}
                 />
                 <T.Icon
                   name="file-pdf-o"
@@ -58,17 +65,8 @@ export class FilesInput extends React.PureComponent {
             extraData={this.state.extraData}
             renderItem={({ item, index }) =>
               item._destroy ? null : (
-                <T.Grid
-                  width={rwd(120)}
-                  paddingRight={SIZE.t}
-                  flex={0}
-                  // onPress={() => navigateToRecord(item, _navigation)}
-                >
-                  <T.Media
-                    // aspectRatio={1.22}
-                    data={item}
-                  />
-
+                <T.Grid width={rwd(120)} paddingRight={SIZE.t} flex={0}>
+                  <T.Media data={item} />
                   {editable ? (
                     <T.Float right={rwd(SIZE.t)} top={rwd(SIZE.t)}>
                       <T.Icon
@@ -127,6 +125,14 @@ export class FilesInput extends React.PureComponent {
         throw err
       }
     }
+  }
+
+  onGetImage = (image) => {
+    // log(image, 'image')
+    let { data } = this.state
+    data.uploads.push(...image)
+    // data.uploads = image
+    this.setState({ data: { ...data } })
   }
 
   getImage = async () => {
