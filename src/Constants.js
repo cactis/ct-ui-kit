@@ -191,6 +191,8 @@ window.SEARCHBAR_BACKGROUND_COLOR = '#E4E8EB'
 // window.SEARCHBAR_BACKGROUND_COLOR = 'red'
 window.SEARCHBAR_PLACEHOLDER_COLOR = 'white'
 
+window.PLACEHOLDER = NAV_COLOR
+
 require('../../../Constants.js')
 
 setDeviceName = () => {

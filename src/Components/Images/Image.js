@@ -22,7 +22,7 @@ export class Image extends Component {
       ...props
     } = this.props
     // log(source, uri, 'source, uri')
-    // log(uri, 'uri')
+    log(uri, 'uri')
     // log(FastImage.priority.normal, 'FastImage.priority.normal')
     let _mode = FastImage.resizeMode[mode]
     let _source = {
