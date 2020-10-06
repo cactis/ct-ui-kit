@@ -614,21 +614,14 @@ window.audioRecording = (item, options = {}) => {
         <T.Text text={item.text} size={SIZE.l} numberOfLines={0} />
         <T.Space />
         <T.List
-          // borderWidth={1}
-          height={200}
+            height={200}
           ref={(c) => (this.recordings_list = c)}
           url={item.recordings_url}
           ListEmptyComponent=<T.Center padding={SIZE.l}>
             <T.Label text="Hi! Become the first to provide voice?" />
           </T.Center>
-          // meta={true}
-          // ListHeaderComponent=<T.Label
-          //   text={this.recordings_list?.state?.data?.length}
-          // />
           renderItem={(item) => (
             <R.RecordingItem
-              // navigation={_navigation}
-              // onPress={() => navigateToRecord(item, _navigation)}
               reloadData={() => this.recordings_list.reloadData()}
               data={item}
               parent={this}
