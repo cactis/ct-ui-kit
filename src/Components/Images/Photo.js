@@ -87,14 +87,7 @@ export class Photo extends React.PureComponent {
           backgroundColor={bg}
           onRequestClose={() => this.setState({ preview: false })}
           HeaderComponent={({ imageIndex }) => (
-            <T.Row
-              // padding={SIZE.l}
-              // __b__
-              // height={SCREEN_HEIGHT - 100}
-              backgroundColor={bg}
-              xAlign="flex-end"
-              yAlign="center"
-            >
+            <T.Row backgroundColor={bg} xAlign="flex-end" yAlign="center">
               <T.Space size={SAFEAREA_TOP} />
               <T.Space>
                 <T.Text
@@ -103,26 +96,11 @@ export class Photo extends React.PureComponent {
                   theme="H5"
                 />
               </T.Space>
-
-              {/* <T.Row align="center">
-                <T.Label
-                  text={`${imageIndex + 1} / ${this.images.length}`}
-                  color="rgb(104, 104, 104)"
-                  theme="H9"
-                />
-              </T.Row> */}
             </T.Row>
           )}
           FooterComponent={({ imageIndex }) => (
             <>
-              <T.Row backgroundColor={bg} padding={SIZE.m} __b____>
-                {/* <T.Center padding={SIZE.s}>
-                <T.Text
-                  numberOfLines={0}
-                  text={this.images[imageIndex].title}
-                  color={LIGHT_COLOR}
-                />
-              </T.Center> */}
+              <T.Row backgroundColor={bg} padding={SIZE.m}>
                 <T.Text
                   numberOfLines={10}
                   text={this.images[imageIndex].description}
@@ -142,7 +120,6 @@ export class Photo extends React.PureComponent {
                     size={SIZE.m * 1.2}
                     name={CLOSE_ICON_NAME}
                     iconSet={CLOSE_ICON_SET}
-                    // backgroundColor="#efefef"
                     color={TColor.mostReadable('efefef', ['#efefef', '#111'])}
                     onPress={() => this.setState({ preview: false })}
                   />
