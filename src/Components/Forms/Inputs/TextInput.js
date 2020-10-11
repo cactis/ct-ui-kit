@@ -246,6 +246,7 @@ export class TextInput1 extends Component {
             // textAlignVertical: 'top',
           }}
           clearButtonMode={editable ? 'always' : ''}
+          clearButtonMode="always"
           // height={rwd(30)}
           multiline={multiline}
           ref={(el) => (this.input = el)}

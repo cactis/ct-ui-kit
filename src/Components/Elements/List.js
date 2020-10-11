@@ -101,6 +101,11 @@ export class List extends React.PureComponent {
     this._reload()
   }
 
+  forceUpdate = () => {
+    this.forceUpdate()
+    _alert('this.flatList.forceUpdate()')
+  }
+
   clearData = (onComplete) => {
     this.mounted &&
       this.setState({ data: [] }, () => {
@@ -402,7 +407,7 @@ export class List extends React.PureComponent {
             // key={data ? data.length : randId()}
             ListHeaderComponent={
               searchable ? (
-                <Div>
+                <Row flex={1}>
                   <SearchBar
                     style={this.props.searchBarStyle}
                     ref={(c) => (this.searchBar = c)}
@@ -417,7 +422,7 @@ export class List extends React.PureComponent {
                     }}
                   />
                   {ListHeaderComponentWithMeta}
-                </Div>
+                </Row>
               ) : (
                 ListHeaderComponentWithMeta
               )

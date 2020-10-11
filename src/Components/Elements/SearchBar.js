@@ -19,14 +19,14 @@ export class SearchBar extends React.PureComponent {
     // log(data,  'data in SearchBar render()')
     // if (!data) return null
     // let { item = data} = data
-    let { style = {} } = this.props
+    let { style = {}, width = SCREEN_WIDTH - SIZE.m } = this.props
     let {
       borderRadius,
       placeholderTextColor = window.SEARCHBAR_PLACEHOLDER_COLOR,
       backgroundColor = window.SEARCHBAR_BACKGROUND_COLOR,
     } = style
     return (
-      <Row padding={SIZE.n} backgroundColor__="rgb(255,255,255)">
+      <Row padding={SIZE.n} flex={1} backgroundColor__="red" width={width}>
         <Row
           borderRadius={borderRadius}
           paddingVertical={rwd(5)}
