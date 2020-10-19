@@ -39,7 +39,7 @@ export class SearchBar extends React.PureComponent {
         >
           <TextInput
             placeholder="type keyword to search..."
-            placeholder="#hashtag search"
+            placeholder="search"
             padding={rwd(4)}
             clearButtonMode="always"
             autoCapitalize="none"
