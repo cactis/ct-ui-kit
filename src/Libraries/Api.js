@@ -90,7 +90,7 @@ export class Api {
     }
     _url = encodeURI(_url)
     // [_url, AppConfig.apiVersion].join('/')
-    _log(method, _url, 'mthod, _url')
+    log(_url, '_url')
     var response = {}
     const headers = {
       Accept: 'application/json',

@@ -10,7 +10,7 @@ export class SearchBar extends React.PureComponent {
 
   search = (keyword) => {
     // alert(keyword)
-    this.props.onChange(keyword)
+    this.props.onChange && this.props.onChange(keyword)
     this.setState({ value: keyword })
   }
 
@@ -48,9 +48,11 @@ export class SearchBar extends React.PureComponent {
             onChange={this.props.onChange}
             onChangeText={(value) => {
               this.setState({ value: value })
-              this.props.onChange(value)
+              this.props.onChange && this.props.onChange(value)
             }}
-            onSubmitEditing={this.props.onSubmit}
+            onSubmitEditing={() =>
+              this.props.onSubmit && this.props.onSubmit(value)
+            }
           />
         </Row>
       </Row>

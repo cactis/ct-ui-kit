@@ -44,7 +44,7 @@ export class ImageBackground extends React.PureComponent {
         />
       )
     } else if (uri) {
-      log(uri, 'uri#ImageBackgroud')
+      // log(uri, 'uri#ImageBackgroud')
       return (
         <RNImageBackground
           {...this.props}

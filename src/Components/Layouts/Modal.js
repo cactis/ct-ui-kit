@@ -6,19 +6,6 @@ import ModalBox from 'react-native-modalbox'
 let _navigation
 import { ModalBase } from './ModalBase'
 export class Modal extends ModalBase {
-  // state = {
-  //   data: null,
-  //   content: null,
-  //   // title: null,
-  //   options: {},
-  //   _options: {
-  //     swipeToClose: true,
-  //     height: SCREEN_HEIGHT * (iOS ? 0.6 : 0.8),
-  //     direction: 'bottom',
-  //     title: null,
-  //   },
-  // }
-
   componentDidMount() {
     this.mounted = true
     _trace()
@@ -78,9 +65,9 @@ export class Modal extends ModalBase {
           <T.Row
             flex={0}
             paddingHorizontal={SIZE.m}
-            paddingVertical={SIZE.l}
-            paddingBottom={padding / 2}
-            marginTop={fullScreen ? SAFEAREA_TOP : 0}
+            paddingVertical={SIZE.n}
+            // paddingBottom={padding / 2}
+            marginTop={fullScreen ? SAFEAREA_TOP : SIZE.s}
             flow="row"
           >
             <T.Space borderWidth={0} flex={0} align="center">
@@ -93,15 +80,7 @@ export class Modal extends ModalBase {
               />
             </T.Space>
             <T.Col borderWidth={0} align="center">
-              {title && (
-                <T.Label
-                  theme="H0"
-                  marginTop={0}
-                  // numberOfLines={0}
-                  marginBottom={0}
-                  text={title}
-                />
-              )}
+              {title && <T.Label theme="H5" text={title} />}
             </T.Col>
             <T.Div borderWidth={0} flex={0}>
               <T.Icon
