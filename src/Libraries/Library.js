@@ -800,3 +800,9 @@ window.replaceLast = (x, y, z) => {
 
   return a.join('')
 }
+
+window.getHostName = (url) => {
+    const urlStart: string = url.includes('//www.') ? '//www.' : '//';
+    
+    return url.substring(url.indexOf(urlStart) + urlStart.length).split('/')[0];
+}

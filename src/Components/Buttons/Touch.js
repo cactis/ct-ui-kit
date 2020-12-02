@@ -7,7 +7,8 @@ export { RNTouch }
 import ReactNativeHaptic from 'react-native-haptic'
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 // let Tag = !iOS ? TouchableOpacity : RNTouch
-let Tag = TouchableOpacity
+// let Tag = TouchableOpacity
+// let Tag = iOS ? TouchableOpacity : RNTouch
 // let Tag = RNTouch
 window.beep = () => {
   // if (__DEV__) alert('beep')
@@ -73,7 +74,7 @@ export class Touch extends Component {
     } = this.props
 
     let { disabled } = this.state
-
+    let Tag = this.props.native ? RNTouch : TouchableOpacity 
     return (
       <Tag
         activeOpacity={disabled || !onPress ? 1 : 0.8}

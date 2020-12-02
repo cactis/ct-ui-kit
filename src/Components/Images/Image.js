@@ -46,11 +46,14 @@ export class Image extends Component {
             width: width,
             // borderWidth: 0.5,
             borderRadius: rounded && size ? size / 2 : 0,
+            borderTopLeftRadius: this.props.borderTopLeftRadius,
+            borderTopRightRadius: this.props.borderTopRightRadius,
             ...aspectRatio,
             ...this.props.style,
           }}
           source={source || _source}
           resizeMode={_mode}
+          
           // {...props}
         />
       </T.Div>

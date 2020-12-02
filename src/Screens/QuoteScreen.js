@@ -8,7 +8,7 @@ import { NavigationEvents } from 'react-navigation'
 let _this, _navigation
 export class QuoteScreen extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
-    return {
+     return {
       title: navigation.state.params?.title || 'Teacher Quote',
     }
   }

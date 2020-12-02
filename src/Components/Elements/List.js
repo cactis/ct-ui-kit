@@ -388,11 +388,13 @@ export class List extends React.PureComponent {
             // onEndReached={this.fetchData}
             // onEndThreshold={500}
             // numColumns={data.length > 1 ? numColumns : 1}
-            // contentContainerStyle={{ margin: 4 }}
+            contentContainerStyle={{ padding: padding }}
+            // contentContainerStyle={this.props. || { margin: 4 }}
             numColumns={numColumns}
             // horizontal={false}
             // columnWrapperStyle={{ flex: 1, justifyContent: 'space-between' }}
             contentContainerStyle={{ padding: padding }}
+            contentContainerStyle={this.props.contentContainerStyle || { padding: padding }}
             keyExtractor={(item, index) => String(index)}
             // ItemSeparatorComponent={() => <Space size={20} />}
             // nestedScrollEnabled

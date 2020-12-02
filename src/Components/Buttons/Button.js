@@ -94,6 +94,7 @@ export class Button extends React.PureComponent {
       // disabled = false,
       backgroundColor,
       // backgroundColor,
+      native,
       ...props
     } = this.props
     let { disabled } = this.state
@@ -112,7 +113,7 @@ export class Button extends React.PureComponent {
     // log(negtive, 'negtive')
     // alert(disabled)
     return (
-      <Touch disabled={disabled} beep={beep} onPress={this.onPress}>
+      <Touch disabled={disabled} beep={beep} onPress={this.onPress} native={native}>
         <Center
           flex={flex}
           style={{
@@ -127,8 +128,11 @@ export class Button extends React.PureComponent {
 
             ...style,
           }}
+        
           {..._bordered}
           {...props}
+          // pointerEvents="none"
+          // onPress={this.onPress}
         >
           {leftIcon}
           <Label
@@ -149,6 +153,7 @@ export class Button extends React.PureComponent {
             }}
             // backgroundColor="red"
             {...props}
+            
           >
             {title}
           </Label>
