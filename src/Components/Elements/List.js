@@ -308,6 +308,12 @@ export class List extends React.PureComponent {
     // log(first?.index, 'first?.index')
     if (last?.index > this.state.data?.length - 6) this.fetchData()
     this.props.onViewableItemsChanged && this.props.onViewableItemsChanged(info)
+    log(info, 'info')
+    log(last, 'last')
+    log(last.index, 'last.index')
+    runLast(() => {
+      this.setState({scrollToTopButtonVisible: last.index > 20})
+    })
     // this.props.onScroll && this.props.onScroll()
   }
 
@@ -326,7 +332,7 @@ export class List extends React.PureComponent {
   }
 
   render() {
-    let { isRefreshing, refresh, data, meta, lastPage, url, toTop } = this.state
+    let { isRefreshing, refresh, data, meta, lastPage, url, toTop, scrollToTopButtonVisible } = this.state
     let { loadingUri = `${AppConfig.web}/img/loading1.gif` } = this.props
     // _log(loadingUri, 'loadingUri')
     // if (!data) return null
@@ -474,6 +480,22 @@ export class List extends React.PureComponent {
             {...extra}
           />
         ) : null}
+        {scrollToTopButtonVisible ? <T.Float left={SIZE.l} bottom={2 * SIZE.l}>
+          <T.Icon
+            name="absolve"
+            color={BCOLOR}
+            backgroundColor={window.NAV_COLOR}
+            boxShadow={1}
+            style={{
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.2,
+              shadowRadius: 2,
+            }}
+            size={SIZE.l * 1.2}
+            onPress={this.scrollToTop }
+          />
+        </T.Float> : null}
       </Grid>
     )
   }
