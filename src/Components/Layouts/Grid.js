@@ -24,7 +24,7 @@ export class Grid extends React.PureComponent {
         ? {
             padding: rwd(8),
             borderWidth: 0.5,
-            borderColor: '#666',
+            borderColor: '#7E8691',
             borderRadius: rwd(3),
           }
         : {}

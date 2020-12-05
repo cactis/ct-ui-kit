@@ -802,6 +802,7 @@ window.replaceLast = (x, y, z) => {
 }
 
 window.getHostName = (url) => {
+  if(!url) return null
     const urlStart: string = url.includes('//www.') ? '//www.' : '//';
     
     return url.substring(url.indexOf(urlStart) + urlStart.length).split('/')[0];

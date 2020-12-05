@@ -59,7 +59,7 @@ export class Text extends React.Component {
           textAlignVertical: 'bottom',
           // borderWidth: 1,
 
-          ...textShadow,
+          // ...textShadow,
           ...{ ...themeStyle, ...customFont },
           ...style,
         }}
@@ -111,9 +111,9 @@ export class Text extends React.Component {
 // const BASE_SIZE = BASE_SIZE //iOS ? (isTablet ? 10 : 8) : 9
 
 const textShadow = {
-  textShadowColor: 'rgba(0, 0, 0, 0.5)',
-  textShadowOffset: { width: -0.2, height: 0.2 },
-  textShadowRadius: 0.1,
+  // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+  // textShadowOffset: { width: -0.2, height: 0.2 },
+  // textShadowRadius: 0.1,
 }
 
 // const HEADER_FONT = iOS ? ['Avenir', 'Helvetica'][0] : ['Noto_Serif_Bold'][0]
@@ -202,6 +202,7 @@ const styles = {
     fontSize: fSize + (iOS ? 2 : 2),
     fontWeight: iOS ? '300' : '200',
     color: window.BODY_COLOR,
+    // color: '#000'
   },
   H7: {
     fontSize: fSize + (iOS ? 1 : 1),
