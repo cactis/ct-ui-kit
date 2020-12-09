@@ -312,7 +312,7 @@ export class List extends React.PureComponent {
     log(last, 'last')
     log(last.index, 'last.index')
     runLast(() => {
-      this.setState({scrollToTopButtonVisible: last.index > 20})
+      this.setState({scrollToTopButtonVisible: last.index > (__DEV__ ? 15 : 15)})
     })
     // this.props.onScroll && this.props.onScroll()
   }
@@ -460,7 +460,7 @@ export class List extends React.PureComponent {
                           name="totop"
                           size={rwd(12)}
                           color="rgba(161,157,161,.73)"
-                          onPress={() => this.scrollToTop()}
+                          onPress={() => {this.scrollToTop(); delayed((this.setState(scrollToTopButtonVisible: false)))}}
                         />
                       </Row>
                     )}
@@ -480,11 +480,12 @@ export class List extends React.PureComponent {
             {...extra}
           />
         ) : null}
-        {scrollToTopButtonVisible ? <T.Float left={SIZE.l} bottom={2 * SIZE.l}>
+        {scrollToTopButtonVisible ? <T.Float left={SIZE.n} bottom={1.5 * SIZE.l} width='100%' align='center'>
           <T.Icon
-            name="absolve"
+            name="top"
             color={BCOLOR}
-            backgroundColor={window.NAV_COLOR}
+            backgroundColor={window.Secondary}
+            backgroundColor='rgba(126, 134, 145, 0.6)'
             boxShadow={1}
             style={{
               shadowColor: '#000',
@@ -492,7 +493,7 @@ export class List extends React.PureComponent {
               shadowOpacity: 0.2,
               shadowRadius: 2,
             }}
-            size={SIZE.l * 1.2}
+            size={SIZE.l * 0.8}
             onPress={this.scrollToTop }
           />
         </T.Float> : null}
