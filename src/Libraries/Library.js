@@ -190,11 +190,13 @@ window.rwd = (num, weight = 1) => {
 }
 
 window._runLast = undefined
-window.runLast = (func, wait = 1000, ...args) => {
+window.runLast = (func, wait = 1000, id = randId(), ...args) => {
+  // alert(id)
+  // alert('runLast')
   clearTimeout(_runLast)
-  _runLast = setTimeout((args) => {
+  _runLast = `${id}_${setTimeout((args) => {
     func.apply(null, args)
-  }, wait)
+  }, wait)}`
 }
 
 window._runOnly = undefined

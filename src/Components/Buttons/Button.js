@@ -94,7 +94,7 @@ export class Button extends React.PureComponent {
       // disabled = false,
       backgroundColor,
       // backgroundColor,
-      native,
+      native = true,
       ...props
     } = this.props
     let { disabled } = this.state
@@ -131,7 +131,7 @@ export class Button extends React.PureComponent {
         
           {..._bordered}
           {...props}
-          // pointerEvents="none"
+          pointerEvents="none"
           // onPress={this.onPress}
         >
           {leftIcon}

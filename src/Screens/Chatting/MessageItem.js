@@ -39,8 +39,8 @@ export class MessageItem extends React.PureComponent {
       )
     return (
       <T.Animatable.View ref={(c) => (this.animator = c)}>
-        <T.Row flow="row" padding={rwd(8)}>
-          <T.Col yAlign="center" flex={0} paddingTop={rwd(0)}>
+        <T.Row flow="row" padding={SIZE.n} paddingBottom={SIZE.s} paddingRight={SIZE.m}>
+          <T.Col yAlign="center" flex={0} paddingTop={SIZE.n}>
             <R.Avatar
               data={item.user}
               size={SIZE.l * 2}
@@ -84,7 +84,7 @@ export class MessageItem extends React.PureComponent {
                 />
               )}
             </T.Div>
-            <T.Row flow="row" yAlign="center" marginTop={-1 * SIZE.m * 0.3}>
+            <T.Row flow="row" yAlign="center" marginTop={-1 * SIZE.m * 0.5}>
               <T.Col flex={0} width="50%">
                 <T.Label text={item.author} theme="H9" ellipsizeMode="middle" />
               </T.Col>
@@ -110,7 +110,7 @@ export class MessageItem extends React.PureComponent {
               )}
             </T.Row>
             {!url && item.messages_count > 0 ? (
-              <T.Label
+              <T.Row marginTop={-1 * SIZE.s} marginBottom={SIZE.s}><T.Label
                 text={`查看 ${item.messages_count} 回覆...`}
                 theme="H5"
                 size={rwd(13)}
@@ -119,7 +119,7 @@ export class MessageItem extends React.PureComponent {
                   beep()
                   this.loadList(item.messages_url)
                 }}
-              />
+              /></T.Row>
             ) : null}
             <T.List
               // ListHeaderComponent=<T.Label text="abc" />

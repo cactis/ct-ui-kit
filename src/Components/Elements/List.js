@@ -308,9 +308,9 @@ export class List extends React.PureComponent {
     // log(first?.index, 'first?.index')
     if (last?.index > this.state.data?.length - 6) this.fetchData()
     this.props.onViewableItemsChanged && this.props.onViewableItemsChanged(info)
-    log(info, 'info')
-    log(last, 'last')
-    log(last.index, 'last.index')
+    // log(info, 'info')
+    // log(last, 'last')
+    // log(last.index, 'last.index')
     runLast(() => {
       this.setState({scrollToTopButtonVisible: last.index > (__DEV__ ? 15 : 15)})
     })
@@ -460,7 +460,7 @@ export class List extends React.PureComponent {
                           name="totop"
                           size={rwd(12)}
                           color="rgba(161,157,161,.73)"
-                          onPress={() => {this.scrollToTop(); delayed((this.setState(scrollToTopButtonVisible: false)))}}
+                          onPress={() => {this.scrollToTop()}}
                         />
                       </Row>
                     )}
@@ -480,12 +480,12 @@ export class List extends React.PureComponent {
             {...extra}
           />
         ) : null}
-        {scrollToTopButtonVisible ? <T.Float left={SIZE.n} bottom={1.5 * SIZE.l} width='100%' align='center'>
+        {scrollToTopButtonVisible && this.props.scrollToTop ? <T.Float left={SIZE.n} bottom={1.5 * SIZE.l} width='100%' align='center'>
           <T.Icon
             name="top"
             color={BCOLOR}
             backgroundColor={window.Secondary}
-            backgroundColor='rgba(126, 134, 145, 0.6)'
+            backgroundColor='rgba(126, 134, 145, 0.75)'
             boxShadow={1}
             style={{
               shadowColor: '#000',
@@ -494,7 +494,11 @@ export class List extends React.PureComponent {
               shadowRadius: 2,
             }}
             size={SIZE.l * 0.8}
-            onPress={this.scrollToTop }
+            onPress={
+              () => {
+               delayed(() => (this.setState({scrollToTopButtonVisible: false})), 100)
+                this.scrollToTop()
+            }  }
           />
         </T.Float> : null}
       </Grid>

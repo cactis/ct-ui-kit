@@ -144,6 +144,7 @@ export class KeyboardInput extends React.PureComponent {
           <T.Space />
           <T.Col align="center" flex={0}>
             <T.Button
+              // native={true}
               borderWidth={0.6}
               title="送出"
               borderRadius={SIZE.l}
