@@ -1,6 +1,6 @@
 log('!!! List#UIKIT')
 import React from 'react'
-import { FlatList as RNList, View, TextInput } from 'react-native'
+import { FlatList as RNList, View, TextInput, Animated } from 'react-native'
 import { Api } from '../../Libraries/Api.js'
 import { Label } from '..'
 import { Div, Row, Grid, Col, RowLine, Cell, Space, Float, Hr } from '../'
@@ -14,8 +14,25 @@ export class List extends React.PureComponent {
     super(props)
     this.onComplete = this.props.onComplete || this.onComplete
   }
+
+  initPage = () => {
+    return (this.props.page || 1) - 1
+  }
+
+  DefaultState = {
+    data: [],
+    fadeAnim: new Animated.Value(0),
+    prevPage: this.initPage(),
+    page: this.initPage(),
+    isRefreshing: false,
+    lastPage: false,
+    meta: null,
+    isPageLoading: false,
+  }
+
   state = {
-    data: !this.props.url && Dev.seeds ? _.range(100) : null,
+    ...this.DefaultState,
+    data: !this.props.url && Dev.seeds ? _.range(100) : [],
     selecteds: [],
     ddd__: Array(15)
       .join()
@@ -23,9 +40,6 @@ export class List extends React.PureComponent {
       .map((_) => 1),
     url: this.props.url,
     refresh: true,
-    page: 0,
-    isRefreshing: false,
-    lastPage: false,
     pagination: null,
     toTop: false,
   }
@@ -40,64 +54,38 @@ export class List extends React.PureComponent {
 
   itemEvent = {
     onDeleted: (item) => {
-      log(item, 'item in List#itemEvent#onDeleted')
-      // this.flatList._reload()
-      // log(item, 'item - in itemDeleted#List')
       let { data } = this.state
-      // log(data, 'data - in List#onItemDeleted')
       data.splice(item.index, 1)
-      // data = data.filter(d => d.id !== item.id)
-      // log(data, 'data - in List#onItemDeleted')
       this.setState({ data: [] }, () => {
         this.setState({ data: [...data], extraData: randId() })
       })
-      // this.forceUpdate()
       this.reloadData()
     },
     onCreated: (item) => {
-      // this._reload()
-      // return
-      // let { item = newItem } = newItem
-      // log(item, 'item in List#itemEvent#onCreated')
-      // // log(item, 'item - in List#itemCreated')
-      // item = { index: 0, item: item }
       item.animation = window.Effect.zoomOut //'shake'
       item.animation = 'bounceInDown'
       item.animation = 'shake'
       item.animation = true
       let { data } = this.state
       data = [item, ...data]
-      // // // log(data, 'data - in ')
-      // alert('update')
       this.setState({ data: [] }, () => {
         delayed(() => {
           this.scrollToTop()
         })
         this.setState({ data: [...data], extraData: randId() })
       })
-      // // this.setState({ data: [...newData] })
-      // // log(newData, 'newData - in ')
-      // this.flatList.forceUpdate()
-      // this.forceUpdate()
     },
     onUpdated: (item) => {
-      // log(item, 'item - in itemChanged#List')
       let { data } = this.state
       data[item.index] = item.item
-      // log(data,  'data')
-      // this.setState({ data: [] }, () => {
       this.setState({
         data: [...data],
         extraData: randId(),
       })
-      // })
-      // this.forceUpdate()
-      // this._reload()
     },
   }
 
   reloadData = () => {
-    // log('reloadData in List')
     this._reload()
   }
 
@@ -119,17 +107,9 @@ export class List extends React.PureComponent {
   }
 
   _reload = (onSuccess) => {
-    // log('_reload in List')
     this.mounted &&
       this.setState(
-        {
-          data: [],
-          page: 0,
-          meta: null,
-          lastPage: false,
-          isRefreshing: false,
-          isPageLoading: false,
-        },
+        this.DefaultState,
         () => {
           this.fetchData()
         }
@@ -137,11 +117,8 @@ export class List extends React.PureComponent {
   }
 
   scrollToTop = (delay = 500) => {
-    // log('scrollToTop in List')
-    // delayed(() => {
     this.flatList?.scrollToOffset({ offset: 0, animated: true })
     this.mounted && this.setState({ toTop: 0 })
-    // }, delay)
   }
 
   scrollToBottom = (delay = 500) => {
@@ -149,7 +126,6 @@ export class List extends React.PureComponent {
   }
 
   scrollToIndex = (index) => {
-    // alert(index)
     this.flatList.scrollToIndex({ index: index })
   }
 
@@ -158,25 +134,19 @@ export class List extends React.PureComponent {
   }
 
   fetchData = async (onSuccess) => {
-    // log('fetchData')
     let { prettyPage = true } = this.props
-    if (this.state.isPageLoading) {
-      // log('isPageLoading')
+    if(this.state.isPageLoading) {
       return
     } else {
-      // log('not isPageLoading')
       this.mounted && this.setState({ isPageLoading: true })
     }
 
-    // log(this.state.lastPage, 'lastPage')
-    if (this.state.lastPage) {
-      // log('已是最後一頁。')
+    if(this.state.lastPage) {
       return
     }
-    // let url = this.state.url
     let { url, dataPath = 'data' } = this.state
     log(url, 'url in List#fetchData')
-    if (!url) return
+    if(!url) return
     let { meta, pagination } = this.state
     let page = this.state.page + 1
     this.state.page = page
@@ -185,73 +155,51 @@ export class List extends React.PureComponent {
 
     let { keyword = this.props.keyword } = this.state
     let keywordStr = ''
-    if (keyword) {
+    if(keyword) {
       window.keyword = keyword
       keywordStr = `keyword=${keyword}`
     } else {
       window.keyword = null
     }
 
-    if (urls.length > 1) {
-      if (prettyPage) {
+    if(urls.length > 1) {
+      if(prettyPage) {
         url = `${urls[0]}/page/${page}?${urls[1]}`
       } else {
         url = `${urls[0]}?${urls[1]}&page=${page}`
       }
-      // url = `${urls[0]}/?page=${page}&${urls[1]}`
-      if (keyword) url = `${url}&${keywordStr}`
+      if(keyword) url = `${url}&${keywordStr}`
     } else {
-      if (prettyPage) {
+      if(prettyPage) {
         url = `${urls[0]}/page/${page}`
       } else {
         url = `${urls[0]}?page=${page}`
       }
-      // url = `${urls[0]}?page=${page}`
-      if (keyword) url = `${url}?${keywordStr}`
+      if(keyword) url = `${url}?${keywordStr}`
     }
-    // if (urls.length > 1) {
-    //   url = `${urls[0]}/page/${page}?${urls[1]}`
-    //   // url = `${urls[0]}/?page=${page}&${urls[1]}`
-    //   if (keyword) url = `${url}&${keywordStr}`
-    // } else {
-    //   url = `${urls[0]}/page/${page}`
-    //   // url = `${urls[0]}?page=${page}`
-    //   if (keyword) url = `${url}?${keywordStr}`
-    // }
-    // // if (!pagination) url = url.split('/page')[0]
 
     let json
     let { graphql } = this.props
-    if (graphql) {
-      // log(this.props.url, 'this.props.url')
+    if(graphql) {
       let key = this.props.url.replace('/', '')
-      // log(key, 'key')
       let res = await Api.graphql({
         query: `{${key} (page: ${page}) ${graphql}}`,
       })
-      // log(res, 'res')
       let { data } = res
       let items = data[key]
       json = { data: items }
-      // log(json, 'json')
     } else {
-      // json = await Api.get(url)
-      // alert('ddd')
       json = await Api.get(url, { HttpHeader: this.props.HttpHeader })
     }
 
-    // log(json, 'json in List')
     this.props.onLoadedData && this.props.onLoadedData(json)
     let data = getDataByPaths(json, dataPath)
-
-    if (!data) data = Array.isArray(json) ? json : []
+    // log(data, 'data')
+    if(!data) data = Array.isArray(json) ? json : []
     let collection = page == 1 ? data : [...this.state.data, ...data]
 
     let rest = []
-    if (page == 1) {
-      // log(page, 'page')
-      // this.onLoad && this.onLoad()
-      // rest = this.onLoad(collection, json) || collection
+    if(page == 1) {
       rest =
         (this.props.onLoad && this.props.onLoad(collection, json)) || collection
       rest = collection
@@ -259,7 +207,6 @@ export class List extends React.PureComponent {
     } else {
       rest = collection
     }
-    // log(data, page, 'data, page - in List# before setState')
 
     this.mounted &&
       this.setState(
@@ -273,10 +220,16 @@ export class List extends React.PureComponent {
           toTop: page > 5,
         },
         () => {
-          // log(this.state.data, 'this.state.data')
+          // Animated.timing( // performs animation over time
+          //   this.state.fadeAnim, // the value of the variable in the animation
+          //   {
+          //     toValue: 1, // transparency eventually becomes 1, ie completely opaque
+          //     Duration: 3000, // let the animation last for a while
+          //   }
+          // ).start(); // S
         }
       )
-    if (onSuccess && typeof onSuccess === 'function') {
+    if(onSuccess && typeof onSuccess === 'function') {
       onSuccess(this.state.data)
     }
     this.props.onUpdatedStateData &&
@@ -284,17 +237,13 @@ export class List extends React.PureComponent {
   }
 
   onLoad = () => {
-    // log('onLoad is not assigned')
   }
 
   search = (keyword) => {
-    // alert(keyword)
     this.searchBar.search(keyword)
   }
 
   _onScroll = () => {
-    // log('_onScroll')
-    // this.props.onScroll && this.props.onScroll()
   }
 
   renderItem = ({ item }) => (
@@ -302,40 +251,37 @@ export class List extends React.PureComponent {
   )
 
   onViewableItemsChanged = (info) => {
-    // log(info, 'info in List onViewableItemsChanged()')
     let last = _.last(info.viewableItems)
     let first = _.first(info.viewableItems)
-    // log(first?.index, 'first?.index')
-    if (last?.index > this.state.data?.length - 6) this.fetchData()
+    if(last?.index > this.state.data?.length - 6) this.fetchData()
     this.props.onViewableItemsChanged && this.props.onViewableItemsChanged(info)
-    // log(info, 'info')
-    // log(last, 'last')
-    // log(last.index, 'last.index')
     runLast(() => {
-      this.setState({scrollToTopButtonVisible: last.index > (__DEV__ ? 15 : 15)})
+      this.setState({ scrollToTopButtonVisible: last.index > (__DEV__ ? 15 : 15) })
     })
-    // this.props.onScroll && this.props.onScroll()
   }
 
   _onBeginDrag = (params) => {
-    // log(params, 'params in _onBeginDrag')
     this.props.onBeginDrag && this.props.onBeginDrag()
   }
   _onDragEnd = (params) => {
-    // log(params, 'params in _onDragEnd')
-    //   let { data } = params
-    //   let { onDragEnd } = this.props
-    //   onDragEnd && onDragEnd(params)
-    //   // this.setState({ data: [] }, () => {
-    //   //   // this.setState({ data: [...data], refresh: !this.state.refresh })
-    //   // })
+  }
+
+  loadPrevPage = () => {
+    let { url, prevPage } = this.state
+    url = `${url}/page/${prevPage}`
+    T.Api.get(url, {}, res => {
+      let { data } = res
+      let _data = [...data, ...this.state.data]
+      log(_data.length, '_data.length')
+      this.setState({ data: [] }, () => {
+        this.setState({ data: _data, extraData: _data, prevPage: prevPage - 1 })
+      })
+    })
   }
 
   render() {
-    let { isRefreshing, refresh, data, meta, lastPage, url, toTop, scrollToTopButtonVisible } = this.state
+    let { isRefreshing, refresh, data, meta, lastPage, prevPage, url, toTop, scrollToTopButtonVisible, fadeAnim } = this.state
     let { loadingUri = `${AppConfig.web}/img/loading1.gif` } = this.props
-    // _log(loadingUri, 'loadingUri')
-    // if (!data) return null
     let {
       numColumns = 1,
       padding = 0,
@@ -346,9 +292,8 @@ export class List extends React.PureComponent {
       searchable = false,
       ...extra
     } = this.props
-    // log(numColumns, 'numColumns in List render')
     let columnWrapperStyle = {}
-    if (numColumns > 1)
+    if(numColumns > 1)
       columnWrapperStyle['columnWrapperStyle'] = {
         flext: 1,
         alignItems: 'center',
@@ -363,23 +308,28 @@ export class List extends React.PureComponent {
         </Row>
       ) : null
 
+    if(prevPage > 0) {
+      ListHeaderComponent = <>{ListHeaderComponent}<T.Center padding={SIZE.s}><T.Label text='載入上一頁' theme='H9' onPress={this.loadPrevPage} /></T.Center></>
+    }
     let ListHeaderComponentWithMeta = meta ? (
       <Grid>
         {ListHeaderComponent}
         {meta_tag}
       </Grid>
     ) : (
-      ListHeaderComponent
-    )
+        ListHeaderComponent
+      )
     let ListTagType = draggable ? DraggableFlatList : RNList
-    // log(ListTagType, 'ListTagType')
     return (
+
       <Grid>
+        {/* <Animated.View // Use a specialized animable View component
+          style={{
+            // ...this.props.style,
+            Opacity: fadeAnim, // specify transparency as the value of the animation variable
+          }}> */}
         {data ? (
           <ListTagType
-            // key={`randId()`}
-            // listKey={`randId()`}
-            // keyExtractor={(item, index) => index.toString()}
             onDragBegin={(index) => log(index, 'index')}
             onRelease={(index) => log(index, 'index')}
             onScrollBeginDrag={this._onBeginDrag}
@@ -388,31 +338,15 @@ export class List extends React.PureComponent {
             data={data}
             onScroll={this._onScroll}
             onViewableItemsChanged={this.onViewableItemsChanged}
-            // refreshing={isRefreshing}
             refreshing={false}
             onRefresh={this.onRefresh}
-            // onEndReached={this.fetchData}
-            // onEndThreshold={500}
-            // numColumns={data.length > 1 ? numColumns : 1}
             contentContainerStyle={{ padding: padding }}
-            // contentContainerStyle={this.props. || { margin: 4 }}
             numColumns={numColumns}
-            // horizontal={false}
-            // columnWrapperStyle={{ flex: 1, justifyContent: 'space-between' }}
             contentContainerStyle={{ padding: padding }}
             contentContainerStyle={this.props.contentContainerStyle || { padding: padding }}
             keyExtractor={(item, index) => String(index)}
-            // ItemSeparatorComponent={() => <Space size={20} />}
-            // nestedScrollEnabled
-            // pagingEnabled
-            // onPanResponderTerminationRequest={() => false}
-            // horizontal
             renderItem={this.props.renderItem || this.renderItem}
-            // extraData={this.props.data}
-            // extraData={this.state.refresh}
-            // extraData={this.state}
             extraData={data}
-            // key={data ? data.length : randId()}
             ListHeaderComponent={
               searchable ? (
                 <Row flex={1}>
@@ -433,26 +367,16 @@ export class List extends React.PureComponent {
                   {ListHeaderComponentWithMeta}
                 </Row>
               ) : (
-                ListHeaderComponentWithMeta
-              )
+                  ListHeaderComponentWithMeta
+                )
             }
-            // ListHeaderComponent=<SearchBar />
             ListFooterComponent={
               <T.Row>
                 {ListFooterComponent}
                 {!this.props.horizontal ? (
                   <Row marginTop={rwd(0)}>
                     {meta_tag}
-                    {/* {lastPage || this.props.quoteable ? (
-                                        <Row paddingTop={rwd(50)}>
-                                            <T.Quote
-                                                paddable={true}
-                                                navigation={
-                                                    this.props.navigation
-                                                }
-                                            />
-                                        </Row>
-                                    ) : null} */}
+
                     {this.state.page < 3 ? null : (
                       <Row align="center" paddingTop={rwd(50)}>
                         <Icon
@@ -460,7 +384,7 @@ export class List extends React.PureComponent {
                           name="totop"
                           size={rwd(12)}
                           color="rgba(161,157,161,.73)"
-                          onPress={() => {this.scrollToTop()}}
+                          onPress={() => { this.scrollToTop() }}
                         />
                       </Row>
                     )}
@@ -496,21 +420,22 @@ export class List extends React.PureComponent {
             size={SIZE.l * 0.8}
             onPress={
               () => {
-               delayed(() => (this.setState({scrollToTopButtonVisible: false})), 100)
+                delayed(() => (this.setState({ scrollToTopButtonVisible: false })), 100)
                 this.scrollToTop()
-            }  }
+              }}
           />
         </T.Float> : null}
+        {/* </Animated.View> */}
       </Grid>
     )
   }
-  onComplete = () => {}
+  onComplete = () => { }
   componentDidMount() {
     this.mounted = true
 
     let { data, dataPath = 'data', onLoad, pagination = true } = this.props
 
-    if (data) {
+    if(data) {
       this.mounted && this.setState({ data, dataPath, pagination })
     } else {
       this.mounted && this.setState({ dataPath, pagination })
@@ -519,56 +444,27 @@ export class List extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    // log('List#componentDidUpdate')
-    if (prevProps.data !== this.props.data)
+    if(prevProps.data !== this.props.data)
       this.setState({ data: [] }, () => {
         this.setState({
           data: { ...this.props.data },
           extraData: { ...this.props.data },
         })
       })
-    if (prevProps.onLoad !== this.props.onLoad) this.onLoad = this.props.onLoad
-    // log('componentDidUpdate')
-    // log(prevProps.url, 'prevProps.url')
-    // log(this.props.url, 'this.props.url')
-    // log(prevProps.url !== this.props.url, 'prevProps.url !== this.props.url')
-    if (prevProps.url !== this.props.url) {
-      // log(this.props.url, 'url changed')
+    if(prevProps.onLoad !== this.props.onLoad) this.onLoad = this.props.onLoad
+    if(prevProps.url !== this.props.url) {
+      // alert('url be updated')
       this.mounted &&
         this.setState(
           {
-            // page: 0,
-            // data: [],
-            // meta: null,
-            // isRefreshing: true,
             url: this.props.url,
-            // lastPage: false,
-            // isPageLoading: false,
           },
           () => {
             this.reloadData()
           }
         )
-      // this.fetchData()
     }
-    // if (prevProps.keyword !== this.props.keyword) {
-    //   this.mounted &&
-    //     this.setState(
-    //       {
-    //         keyword: this.props.keyword,
-    //       },
-    //       () => {
-    //         this.reloadData()
-    //       }
-    //     )
-    // }
   }
-
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.data !== this.props.data)
-  //     this.setState({ data: this.props.data })
-  //   if (prevProps.url !== this.props.url) this.setState({ url: this.props.url })
-  // }
 
   componentWillUnmount() {
     this.mounted = false

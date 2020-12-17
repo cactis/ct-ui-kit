@@ -127,28 +127,50 @@ window.processNotification = (notification = push) => {
   // let { alert } = notification
   // let { title, body} = notification
 
-  let title, body, payload, record
-  if (iOS) {
+  let title, body, record
+  if(iOS) {
     // log(record, 'record')
 
     // let { title, body, payload = notification.alert } = notification
     // let { record } = asJSON(payload) || notification
 
     // log(_navigation.state.routeName, 'current route name')
-    let { message, alert = message } = notification
-
+    let n = {
+      foreground: false,
+      userInteraction: false,
+      message: "有人喜歡你的貼文: 「Aaa」",
+      data: {
+        remote: true,
+        payload: {
+          badge_sets: {
+            notifications_count: 0
+          },
+          record: "{\"type\":\"Article\",\"routes\":\"/articles/e49e161d-467b-4222-8f9f-e34920b381fb\",\"id\":\"e49e161d-467b-4222-8f9f-e34920b381fb\",\"state\":\"published\",\"created_at\":\"2020-12-16T12:12:57.836Z\",\"updated_at\":\"2020-12-16T12:12:57.836Z\",\"cover\":null}"
+        },
+        notificationId: "2C1B200F-79AA-4077-9A7A-53E11CD41D7C"
+      },
+      badge: 0,
+      title: "按讚通知",
+      soundName: "default"
+    }
+    // let { message, alert = message } = notification
+    title = notification.title
+    body = notification.message
+    badge = notification.badge
+    let { data } = notification
+    // title, message: body, badge, data } = notification
+    // let { request = () => { } } = data
+    // __log(alert, 'alert')
     // eval(request_action)
-    title = alert.title
-    body = alert.body
-    record = alert.record
-    badge = alert.badge
-
-    log(alert, 'alert')
-    let { request = () => {} } = alert
+    let { payload } = data
+    record = payload.record
+    let request = payload.request
+    // log(alert, 'alert')
+    // let { request = () => { } } = alert
     // _alert(request)
     eval(request)
     window.updateBadge(badge)
-    __log('----------------------')
+    // __log('----------------------')
   } else {
     log(notification, 'notifition')
     let { data = notification } = notification
@@ -157,7 +179,7 @@ window.processNotification = (notification = push) => {
     record = data.record
 
     log(data, 'data')
-    let { request = () => {} } = data
+    let { request = () => { } } = data
     // _alert(request)
     eval(request)
     // if (payload) {
@@ -166,13 +188,13 @@ window.processNotification = (notification = push) => {
   }
   record = asJSON(record)
   // log(window.currentRoom, record?.id)
-  if (window.currentRoom && window.currentRoom == record?.id) {
+  if(window.currentRoom && window.currentRoom == record?.id) {
     // _alert('no need alert')
     return
   }
   log(title, 'title')
   log(body, 'body')
-  if (title || body) {
+  if(title || body) {
     alert({ title: title, body: body }, 'info', {
       onTapped: () => {
         // log(data, 'data')
