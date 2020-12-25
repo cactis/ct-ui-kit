@@ -145,7 +145,7 @@ export class List extends React.PureComponent {
       return
     }
     let { url, dataPath = 'data' } = this.state
-    log(url, 'url in List#fetchData')
+    // log(url, 'url in List#fetchData')
     if(!url) return
     let { meta, pagination } = this.state
     let page = this.state.page + 1

@@ -14,20 +14,25 @@ export class MessageItem extends React.PureComponent {
     _navigation = this.props.navigation
     this.initStateData(() => {
       this.autoRun()
+      let { data } = this.state
+      let { item = data } = data
+      if(this.props.autoExpend) this.loadList(item.messages_url)
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   render() {
     let { data, url } = this.state
     // log(data, 'data in MessageItem render()')
-    if (!data) return null
+    log(this.props.autoExpend, 'this.props.autoExpend')
+
+    if(!data) return null
     let { item = data } = data
-    if (!item.id) return <T.Div />
-    if (item.editing)
+    if(!item.id) return <T.Div />
+    if(item.editing)
       return (
         <T.Animatable.View ref={(c) => (this.animator = c)}>
           <T.MessageForm
@@ -58,7 +63,7 @@ export class MessageItem extends React.PureComponent {
               backgroundColor="#E4E8EB"
               borderRadius={SIZE.s}
               paddingHorizontal={SIZE.s}
-              //
+            //
             >
               {item.user?.id == global.currentUser.id ? (
                 <T.Touch onPress={this.openMenu}>
@@ -73,16 +78,16 @@ export class MessageItem extends React.PureComponent {
                   />
                 </T.Touch>
               ) : (
-                <R.Content
-                  numberOfLines={0}
-                  text={item.content}
-                  data={data}
-                  smaller={2}
-                  paddingVertical={SIZE.s}
-                  flex={0}
-                  theme="H9"
-                />
-              )}
+                  <R.Content
+                    numberOfLines={0}
+                    text={item.content}
+                    data={data}
+                    smaller={2}
+                    paddingVertical={SIZE.s}
+                    flex={0}
+                    theme="H9"
+                  />
+                )}
             </T.Div>
             <T.Row flow="row" yAlign="center" marginTop={-1 * SIZE.m * 0.5}>
               <T.Col flex={0} width="50%">
@@ -189,7 +194,7 @@ export class MessageItem extends React.PureComponent {
         let { data } = this.state
         let { item = data } = data
         window.chooseMenu.close()
-        switch (index) {
+        switch(index) {
           case 0:
             item.editing = true
             window.keyboardInput.close()
@@ -247,6 +252,6 @@ export class MessageItem extends React.PureComponent {
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})
