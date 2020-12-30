@@ -1,4 +1,4 @@
-if (__DEV__) console.log('!!! Library.js#UIKIT')
+if(__DEV__) console.log('!!! Library.js#UIKIT')
 
 import React from 'react'
 
@@ -22,11 +22,11 @@ window.share = (content, options) => {
 }
 
 window.Effect = {
-  disappear: (target, callback = () => {}) =>
+  disappear: (target, callback = () => { }) =>
     target?.zoomOutLeft(600).then((endState) => callback()),
-  appear: (target, callback = () => {}) =>
+  appear: (target, callback = () => { }) =>
     target?.bounceIn(2000).then((endState) => callback()),
-  bounce: (target, callback = () => {}) => {
+  bounce: (target, callback = () => { }) => {
     // log(target, 'target')
     target
       ?.bounceOut(300)
@@ -121,7 +121,7 @@ window.setDeviceInfo = async () => {
 
 setDeviceInfo()
 window.log = (...message) => {
-  if (!Dev.disableLog) {
+  if(!Dev.disableLog) {
     let [m, ...ms] = message
     console.log('')
     // console.log('<------------------------------------------------------')
@@ -151,7 +151,7 @@ require('../../../../Dev.js')
 window._autoRun = (action, run, always = false) => {
   let DoString = Dev.do //?.split('-').slice(0, i)
   // log(action, 'action')
-  if (Dev.autoRunTrace) {
+  if(Dev.autoRunTrace) {
     log(
       [Dev.doIndex, action, Dev.do, DoString?.indexOf(action)],
       '[Dev.doIndex, action, Dev.do, DoString?.indexOf(action)]'
@@ -161,7 +161,7 @@ window._autoRun = (action, run, always = false) => {
   let i = (Dev.doIndex >= 0 ? Dev.doIndex : 99) + 1
   // log(DoString, 'DoString')
   // log(DoString?.indexOf(action), 'DoString?.indexOf(action)')
-  if (DoString?.indexOf(action) > -1 || always) {
+  if(DoString?.indexOf(action) > -1 || always) {
     // log(action, run, 'action, run')
     _runOnce(action, () => {
       delayed(run)
@@ -170,10 +170,10 @@ window._autoRun = (action, run, always = false) => {
 }
 
 window._trace = (key) => {
-  if (key) log(key, 'tracing ----')
+  if(key) log(key, 'tracing ----')
   key = key ? key : randId()
   _runOnce(key, () => {
-    if (Dev?.logTrace || Dev?.componentTrace) {
+    if(Dev?.logTrace || Dev?.componentTrace) {
       console.log('======= component trace ==========')
       console.log(new Error().stack)
     }
@@ -205,7 +205,7 @@ window.runOnly = (func, wait = 1000, ...args) => {
     window._runOnly = undefined
     log(window._runOnly, 'window._runOnly 2')
   }, 500)
-  if (window._runOnly && new Date().getUTCSeconds() - window._runOnly < 2) {
+  if(window._runOnly && new Date().getUTCSeconds() - window._runOnly < 2) {
     log(window._runOnly, 'window._runOnly 1')
     log('no run')
   } else {
@@ -226,7 +226,7 @@ window.runOnly = (func, wait = 1000, ...args) => {
 
 window._runOnce = (key, run) => {
   let _runOnce = global._runOnce || {}
-  if (!_runOnce[key]) {
+  if(!_runOnce[key]) {
     global._runOnce[key] = true
     run()
   }
@@ -244,11 +244,10 @@ window.delayed = (func, wait = 1000, ...args) => {
 
 window.navigateTo = (navigation, route, params = {}) => {
   // log(navigation, 'navigation in Library#navigateTo----------------')
-  let nextKey = `${route}_${
-    params?.data?.item?.id || params?.data?.id || params?.url
-  }_${randId()}`
+  let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || params?.url
+    }_${randId()}`
 
-  if (!navigation) return
+  if(!navigation) return
   // log(params, 'params - in Library navigateTo')
   // log(navigation, 'navigation - in ')
   let { routeName, key } = navigation.state
@@ -260,11 +259,11 @@ window.navigateTo = (navigation, route, params = {}) => {
     // log('clear currentRoute')
     global.currentRoute = null
   })
-  if (global.currentRoute == route) {
+  if(global.currentRoute == route) {
     return log('duplicate click')
   }
   // log(routeName, route, 'routeName, route')
-  if (routeName == route) {
+  if(routeName == route) {
     // log(params, 'params in push')
     navigation.push(route, params, nextKey)
   } else {
@@ -288,11 +287,10 @@ window.navigateTo = (navigation, route, params = {}) => {
 window.pushTo = (navigation, route, params = {}) => {
   runLast(() => {
     // log(navigation, 'navigation pushTo called')
-    if (!navigation) return
+    if(!navigation) return
     // log(params, 'params - in Library pushTo')
-    let nextKey = `${route}_${
-      params?.data?.item?.id || params?.data?.id || randId()
-    }`
+    let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || randId()
+      }`
     // log(nextKey, 'nextKey - in Library pushTo')
 
     // log(navigation, 'navigation - in ')
@@ -300,7 +298,7 @@ window.pushTo = (navigation, route, params = {}) => {
     // if (routeName == route) {
     //   navigation.push(route, params)
     // } else {
-    if (global.currentKey == nextKey) return log('duplicate click!!')
+    if(global.currentKey == nextKey) return log('duplicate click!!')
     global.currentKey = nextKey
     navigation.push(route, params, nextKey)
     global.currentKey = null
@@ -309,7 +307,7 @@ window.pushTo = (navigation, route, params = {}) => {
 }
 
 String.prototype.remove = function (str) {
-  if (this) {
+  if(this) {
     return this.replace(str, '')
   } else {
     return this
@@ -339,7 +337,7 @@ window.columnsNumber = (padding = 0) => {
 window._runOnce = (key, run) => {
   let runKeys = global.runKeys || {}
   // if (__DEV__) console.log(runKeys, 'runKeys')
-  if (!runKeys[key]) {
+  if(!runKeys[key]) {
     runKeys[key] = true
     window.runKeys = runKeys
     run()
@@ -347,7 +345,7 @@ window._runOnce = (key, run) => {
 }
 
 window._log = (...message) => {
-  if (!Dev.disableLog) {
+  if(!Dev.disableLog) {
     console.log(...message)
   }
 }
@@ -355,18 +353,18 @@ window._log = (...message) => {
 window._clear = () => {
   console.clear()
 }
-if (!__DEV__) {
-  window._runOnce = () => {}
-  window.log = () => {}
-  window._log = () => {}
-  window._autoRun = () => {}
-  window._trace = () => {}
-  window._clear = () => {}
+if(!__DEV__) {
+  window._runOnce = () => { }
+  window.log = () => { }
+  window._log = () => { }
+  window._autoRun = () => { }
+  window._trace = () => { }
+  window._clear = () => { }
 }
 
 window.getDataByPaths = (json, paths) => {
   let pathArr = paths
-  if (typeof paths === 'string') pathArr = paths.split('/')
+  if(typeof paths === 'string') pathArr = paths.split('/')
   // log(pathArr, 'pathArr')
   return pathArr.reduce(
     (obj, key) => (obj && obj[key] !== 'undefined' ? obj[key] : undefined),
@@ -383,7 +381,7 @@ import moment from 'moment'
 // alert(moment.locale())
 window.timeAgo = (date, locale = 'en') => {
   // log(date, 'date')
-  if (locale == 'zh-tw') {
+  if(locale == 'zh-tw') {
     moment.locale('zh-tw', {
       months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split(
         '_'
@@ -409,12 +407,12 @@ window.timeAgo = (date, locale = 'en') => {
       meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
       meridiemHour: function (h, meridiem) {
         let hour = h
-        if (hour === 12) {
+        if(hour === 12) {
           hour = 0
         }
-        if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
+        if(meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
           return hour
-        } else if (meridiem === '下午' || meridiem === '晚上') {
+        } else if(meridiem === '下午' || meridiem === '晚上') {
           return hour + 12
         } else {
           // '中午'
@@ -423,15 +421,15 @@ window.timeAgo = (date, locale = 'en') => {
       },
       meridiem: function (hour, minute, isLower) {
         const hm = hour * 100 + minute
-        if (hm < 600) {
+        if(hm < 600) {
           return '凌晨'
-        } else if (hm < 900) {
+        } else if(hm < 900) {
           return '早上'
-        } else if (hm < 1130) {
+        } else if(hm < 1130) {
           return '上午'
-        } else if (hm < 1230) {
+        } else if(hm < 1230) {
           return '中午'
-        } else if (hm < 1800) {
+        } else if(hm < 1800) {
           return '下午'
         } else {
           return '晚上'
@@ -467,7 +465,7 @@ window.timeAgo = (date, locale = 'en') => {
       },
       ordinalParse: /\d{1,2}(日|月|周)/,
       ordinal: function (number, period) {
-        switch (period) {
+        switch(period) {
           case 'd':
           case 'D':
           case 'DDD':
@@ -521,12 +519,12 @@ window.asJSON = (data) => {
   try {
     // log(data,  'data')
     var json = JSON.parse(data)
-    if (typeof json === 'object') {
+    if(typeof json === 'object') {
       return json
     } else {
       return data
     }
-  } catch (e) {
+  } catch(e) {
     return data
   }
 }
@@ -573,12 +571,12 @@ RegExp.prototype.indexOf = function (str, startIndex) {
   )
   re.lastIndex = startIndex || 0
   var res = re.exec(str)
-  if (!res) return -1
+  if(!res) return -1
   return re.lastIndex - res[0].length
 }
 
 window.asCurrency = function (num, dollar = '') {
-  if (num == null) {
+  if(num == null) {
     return ''
   }
   let n = String(num)
@@ -595,7 +593,7 @@ Number.prototype.asCurrency = function (dollar = '') {
 }
 
 window.requestPermissions = async () => {
-  if (!iOS) {
+  if(!iOS) {
     const result = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.CAMERA
     )
@@ -639,7 +637,7 @@ window.audioRecording = (item, options = {}) => {
         />
       </T.Center>
       <T.Space />
-    </T.Div>,
+    </T.Div >,
     {
       backdropOpacity: 0.8,
       backgroundColor_: 'transparent',
@@ -674,7 +672,7 @@ window.requestRating = async (force: false) => {
   let key = 'requestedReview'
 
   let requested = await T.Storage.get(key)
-  if (requested && !force) return
+  if(requested && !force) return
 
   let { currentUser } = global
   log(currentUser, 'currentUser')
@@ -682,9 +680,9 @@ window.requestRating = async (force: false) => {
   log(reading, 'reading')
   let times = _.keys(reading).length
   log(times, 'times')
-  if (!(times > 5 && searching && lookings) && !force) return
+  if(!(times > 5 && searching && lookings) && !force) return
   await T.Storage.set(key, 'true')
-  if (iOS) {
+  if(iOS) {
     doRating()
   } else {
     Alert.alert(
@@ -719,7 +717,7 @@ doRating = () => {
   }
   // delayed(() => {
   Rate.rate(options, (success) => {
-    if (success) {
+    if(success) {
       // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
       // this.setState({ rated: true })
     }
@@ -733,11 +731,11 @@ window.alert = (message, type, options = {}) => {
 }
 
 window._alert = (message, type, options = {}) => {
-  if (__DEV__) prompt(`__DEV__: ${message}`, type, options)
+  if(__DEV__) prompt(`__DEV__: ${message}`, type, options)
 }
 
 window.prompt = (message = 'Coming soon~', type, options = {}) => {
-  if (window.dropdown) {
+  if(window.dropdown) {
     let title = { error: '錯誤' }[type] || ''
     let _type = type || 'success'
     // log(_type, '_type in prompt')
@@ -790,9 +788,9 @@ window.takeShot = (ref) => {
 window.replaceLast = (x, y, z) => {
   var a = x.split('')
   var length = y.length
-  if (x.lastIndexOf(y) != -1) {
-    for (var i = x.lastIndexOf(y); i < x.lastIndexOf(y) + length; i++) {
-      if (i == x.lastIndexOf(y)) {
+  if(x.lastIndexOf(y) != -1) {
+    for(var i = x.lastIndexOf(y); i < x.lastIndexOf(y) + length; i++) {
+      if(i == x.lastIndexOf(y)) {
         a[i] = z
       } else {
         delete a[i]
@@ -805,7 +803,9 @@ window.replaceLast = (x, y, z) => {
 
 window.getHostName = (url) => {
   if(!url) return null
-    const urlStart: string = url.includes('//www.') ? '//www.' : '//';
-    
-    return url.substring(url.indexOf(urlStart) + urlStart.length).split('/')[0];
+  const urlStart: string = url.includes('//www.') ? '//www.' : '//';
+
+  return url.substring(url.indexOf(urlStart) + urlStart.length).split('/')[0];
 }
+
+

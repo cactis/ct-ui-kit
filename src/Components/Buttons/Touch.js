@@ -12,7 +12,7 @@ import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 // let Tag = RNTouch
 window.beep = () => {
   // if (__DEV__) alert('beep')
-  if (iOS) {
+  if(iOS) {
     ReactNativeHaptic.generate('notification')
   } else {
     const options = {
@@ -37,7 +37,7 @@ export class Touch extends Component {
   _beep = (beep) => {
     // log(beep, 'beep')
     // let { beep = false } = this.props
-    if (beep) window.beep()
+    if(beep) window.beep()
   }
 
   onLongPress = () => {
@@ -46,18 +46,19 @@ export class Touch extends Component {
     let { disabled = false, onLongPress } = this.props
     log(onLongPress, 'onLongPress')
     log(!disabled, '!disabled')
-    if (!disabled) onLongPress && onLongPress()
+    if(!disabled) onLongPress && onLongPress()
   }
 
   running = false
   onPress = () => {
     // runOnly(() => {
+    if(window.avoidOnPress) return
     let { disabled = false, onPress, beep } = this.props
-    if (!disabled && !this.running) {
+    if(!disabled && !window.avoidOnPress) {
+      window.avoidOnPress = true
       onPress && onPress()
-      this.running = true
       delayed(() => {
-        this.running = false
+        window.avoidOnPress = false
       })
     }
     this._beep(beep)
@@ -74,7 +75,7 @@ export class Touch extends Component {
     } = this.props
 
     let { disabled } = this.state
-    let Tag = this.props.native ? RNTouch : TouchableOpacity 
+    let Tag = this.props.native ? RNTouch : TouchableOpacity
     return (
       <Tag
         activeOpacity={disabled || !onPress ? 1 : 0.8}
@@ -93,9 +94,9 @@ export class Touch extends Component {
   }
   componentDidUpdate(prevProps) {
     // log(this.props.disabled, 'this.props.disabled')
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
-    if (prevProps.disabled !== this.props.disabled)
+    if(prevProps.disabled !== this.props.disabled)
       this.setState({ disabled: this.props.disabled })
   }
 }

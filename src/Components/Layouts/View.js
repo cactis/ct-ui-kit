@@ -9,7 +9,7 @@ export class View extends React.Component {
   state = {}
   render() {
     // Tag = Animatable.View
-    if (this.props.__hidden__) return null
+    if(this.props.__hidden__) return null
     let __color__ =
       __DEV__ && this.props.__c__ ? { backgroundColor: 'red' } : {}
     let {
@@ -48,6 +48,7 @@ export class View extends React.Component {
         ref={(c) => {
           this.view = c
         }}
+        onPress={this.onPress}
         // delay={3000}
         // animation={animation}
         // animation="shake"
@@ -67,17 +68,27 @@ export class View extends React.Component {
     return this.props.keyboardAware && false ? (
       <KeyboardAwareScrollView {...props}>{content}</KeyboardAwareScrollView>
     ) : (
-      content
-    )
+        content
+      )
   }
-  disappear = (callback = () => {}) => {
+
+  onPress = () => {
+    if(window.avoidOnPress) return
+    window.avoidOnPress = true
+    this.props.onPress && this.props.onPress()
+    delayed(() => {
+      window.avoidOnPress = false
+    })
+  }
+
+  disappear = (callback = () => { }) => {
     window.Effect.disappear(this.view, callback)
   }
   componentDidMount() {
     // let { animation } = this.props
     delayed(() => {
       //   if (animation) this.setState({ animation })
-      if (this.props.animation) window.Effect.appear(this.view)
+      if(this.props.animation) window.Effect.appear(this.view)
     }, 800)
   }
   // componentDidUpdate(prevProps) {
