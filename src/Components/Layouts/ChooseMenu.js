@@ -10,7 +10,7 @@ export class ChooseMenu extends React.PureComponent {
   render() {
     let { data, title, menus } = this.state
     // log(data,  'data in ChooseMenu render()')
-    if (!menus) return null
+    if(!menus) return null
     // let { item = data} = data
     let _title = title ? (
       <T.Cell
@@ -48,7 +48,7 @@ export class ChooseMenu extends React.PureComponent {
             borderRadius={SIZE.s}
             flex={0}
             backgroundColor="white"
-            // padding={SIZE.l}
+          // padding={SIZE.l}
           >
             {_title}
             <T.Row flex={0} _backgroundColor="#aaa">
@@ -72,7 +72,7 @@ export class ChooseMenu extends React.PureComponent {
   }
   open = (options) => {
     this.setState({ ...options }, () => {
-      this.modal.open()
+      this.modal?.open()
     })
   }
   close = () => {
@@ -101,13 +101,13 @@ export class ChooseMenu extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

@@ -54,7 +54,7 @@ export class LiveVideoRecorder extends React.PureComponent {
           width="100%"
           yAlign="center"
           bottom={SAFEAREA_BOTTOM + SIZE.l}
-          // padding={SIZE.l}
+        // padding={SIZE.l}
         >
           <T.Icon
             name="camera"
@@ -95,8 +95,8 @@ export class LiveVideoRecorder extends React.PureComponent {
               options={{ subject: 'subject' }}
             />
           ) : (
-            <T.Space />
-          )}
+              <T.Space />
+            )}
 
           <T.Icon
             name="closecircleo"
@@ -125,7 +125,7 @@ export class LiveVideoRecorder extends React.PureComponent {
     // let { data } = this.state
     let { recording, appName, streamName } = this.state
     recording = !recording
-    if (!recording) {
+    if(!recording) {
       this.setState({
         recording: false,
       })
@@ -159,7 +159,7 @@ export class LiveVideoRecorder extends React.PureComponent {
         outputUrl,
       },
       () => {
-        this.modal.open()
+        this.modal?.open()
       }
     )
     // })
@@ -167,13 +167,13 @@ export class LiveVideoRecorder extends React.PureComponent {
   onClose = () => {
     this.modal.close()
     let { recording } = this.state
-    if (recording) {
+    if(recording) {
       this.setState({ recording: false })
       this.vb?.stop()
     }
   }
   onPress = () => {
-    if (this.props.onPress) {
+    if(this.props.onPress) {
       this.props.onPress()
     } else {
       log('need to set onPress on item')
@@ -197,18 +197,18 @@ export class LiveVideoRecorder extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
     let { recording } = this.state
-    if (recording) {
+    if(recording) {
       this.setState({ recording: false })
       this.vb?.stop()
     }
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

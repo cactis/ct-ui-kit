@@ -29,7 +29,7 @@ export class Dict extends React.PureComponent {
   }
   open = size => {
     this.mounted && this.setState({ size })
-    this.modal.open()
+    this.modal?.open()
   }
 
   close = () => {
@@ -68,7 +68,7 @@ export class Dict extends React.PureComponent {
   }
   onIndexChanged = index => {
     // alert(index)
-    if (index == 1) {
+    if(index == 1) {
       runLast(() => {
         !this.noNeedFirstRun && this.props.reloadData(this.state.data)
         this.noNeedFirstRun = true
@@ -82,8 +82,8 @@ export class Dict extends React.PureComponent {
     // let { item } = data
     let defs = item
       ? JSON.parse(item.def).map(def => {
-          return `[${def.POS}] ${def.gloss} ${def['other terms']}`
-        })
+        return `[${def.POS}] ${def.gloss} ${def['other terms']}`
+      })
       : []
     return (
       <Modal
@@ -123,14 +123,14 @@ export class Dict extends React.PureComponent {
                     color="rgb(80,80,80)"
                     size={rwd(20)}
                     onPress={() => {
-                      if (iOS) {
+                      if(iOS) {
                         beep()
                         data = data.replace(/'|"|;|\[|\]|\.|,/g, '')
                         // alert(data)
                         NativeModules.ReferenceLibraryManager?.showDefinitionForTerm(
                           data,
                           hasDefinition => {
-                            if (!hasDefinition) {
+                            if(!hasDefinition) {
                               alert(`${data} definition not found!`)
                             }
                           }
@@ -170,21 +170,21 @@ export class Dict extends React.PureComponent {
               ]}
             />
           ) : (
-            <T.List
-              data={defs}
-              contentContainerStyle={{ padding: rwd(10) }}
-              renderItem={item => (
-                <T.Row key={randId()} flow="row" flex={0}>
-                  <T.Col yAlign="center" flex={0} borderWidth_={1}>
-                    <T.Icon name="dot-single" iconSet="Entypo" />
-                  </T.Col>
-                  <T.Col padding={rwd(4)}>
-                    <T.Dicts data={item} />
-                  </T.Col>
-                </T.Row>
-              )}
-            />
-          )}
+              <T.List
+                data={defs}
+                contentContainerStyle={{ padding: rwd(10) }}
+                renderItem={item => (
+                  <T.Row key={randId()} flow="row" flex={0}>
+                    <T.Col yAlign="center" flex={0} borderWidth_={1}>
+                      <T.Icon name="dot-single" iconSet="Entypo" />
+                    </T.Col>
+                    <T.Col padding={rwd(4)}>
+                      <T.Dicts data={item} />
+                    </T.Col>
+                  </T.Row>
+                )}
+              />
+            )}
         </T.SafeArea>
       </Modal>
     )
@@ -198,7 +198,7 @@ export class Dict extends React.PureComponent {
       })
   }
 
-  autoRun = () => {}
+  autoRun = () => { }
 
   componentWillUnmount() {
     this.mounted = false

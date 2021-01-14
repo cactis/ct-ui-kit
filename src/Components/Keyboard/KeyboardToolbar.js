@@ -25,11 +25,11 @@ export class KeyboardToolbar extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
-  _onKeyboardTapped = () => {}
+  _onKeyboardTapped = () => { }
   // replyTo = replyTo => {
   //   this.setState({ replyTo })
   // }
@@ -44,7 +44,7 @@ export class KeyboardToolbar extends React.PureComponent {
         },
       })
     // log(this.state, 'this.state')
-    this.modal.open()
+    this.modal?.open()
   }
 
   close = () => {
@@ -127,6 +127,6 @@ export class KeyboardToolbar extends React.PureComponent {
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

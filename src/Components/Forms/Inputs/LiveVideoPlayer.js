@@ -55,10 +55,10 @@ export class LiveVideoPlayer extends React.PureComponent {
   }
 
   open = (url) => {
-    if (url) {
+    if(url) {
       this.setState({ url })
 
-      this.modal.open()
+      this.modal?.open()
     } else {
       alert('No url for live streaming to play.')
     }
@@ -68,7 +68,7 @@ export class LiveVideoPlayer extends React.PureComponent {
     this.vp?.stop()
   }
   onPress = () => {
-    if (this.props.onPress) {
+    if(this.props.onPress) {
       this.props.onPress()
     } else {
       log('need to set onPress on item')
@@ -92,7 +92,7 @@ export class LiveVideoPlayer extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
@@ -100,6 +100,6 @@ export class LiveVideoPlayer extends React.PureComponent {
     this.mounted = false
     this.vp?.close()
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

@@ -49,9 +49,9 @@ export class EditorBase extends KeyboardAware {
     this.mounted &&
       this.setState({ paddingBottom: height, toolbarHeight: height })
     // log(this.modal, 'this.modal')
-    if (this.modal && height > 0) {
+    if(this.modal && height > 0) {
       // log('open')
-      this.modal.open()
+      this.modal?.open()
     } else {
       // log('close')
       this.modal && this.modal.close()

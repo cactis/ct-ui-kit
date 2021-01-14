@@ -23,7 +23,7 @@ export class ModalBase extends KeyboardAware {
     },
   }
 
-  updateHeight = () => {}
+  updateHeight = () => { }
   onKeyboardChanged = (height) => {
     // alert('onKeyboardChanged')
     // alert(height)
@@ -46,11 +46,11 @@ export class ModalBase extends KeyboardAware {
           ...{ title: null, ...this.state._options, ...options },
         },
       })
-    this.modal.open()
+    this.modal?.open()
   }
 
   close = () => {
-    if (this.state.closeConfirmation) {
+    if(this.state.closeConfirmation) {
       confirm(
         () => {
           this.onClose()

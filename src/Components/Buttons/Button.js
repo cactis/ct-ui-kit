@@ -19,9 +19,10 @@ export class Button extends React.PureComponent {
   state = { disabled: false }
 
   onPress = () => {
+    _alert('onPress in Button')
     let { url, onPress } = this.props
     // if (disabled) return
-    if (url) {
+    if(url) {
       this.handleClick()
     } else {
       // log('onPress')
@@ -44,18 +45,18 @@ export class Button extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     // log(this.props.disabled, 'this.props.disabled')
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
-    if (prevProps.disabled !== this.props.disabled)
+    if(prevProps.disabled !== this.props.disabled)
       this.setState({ disabled: this.props.disabled })
   }
 
   handleClick = () => {
     let { url } = this.props
-    if (!url) return
+    if(!url) return
     _log(url, 'url')
     log(this.props.inApp, 'inApp in handleClick')
-    if (this.props.inApp) {
+    if(this.props.inApp) {
       // _log(url, 'url')
       // log(_navigation, '_navigation 22222')
       navigateTo(_navigation, 'WebViewScreen', {
@@ -64,7 +65,7 @@ export class Button extends React.PureComponent {
       })
     } else {
       Linking.canOpenURL(url).then((supported) => {
-        if (supported) {
+        if(supported) {
           Linking.openURL(url)
         } else {
           console.log("Don't know how to open URI: " + this.props.url)
@@ -128,11 +129,11 @@ export class Button extends React.PureComponent {
 
             ...style,
           }}
-        
+
           {..._bordered}
           {...props}
           pointerEvents="none"
-          // onPress={this.onPress}
+        // onPress={this.onPress}
         >
           {leftIcon}
           <Label
@@ -153,7 +154,7 @@ export class Button extends React.PureComponent {
             }}
             // backgroundColor="red"
             {...props}
-            
+
           >
             {title}
           </Label>

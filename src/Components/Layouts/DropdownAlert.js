@@ -18,25 +18,25 @@ export class DropdownAlert extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
-  _onDropdownAlertTapped = () => {}
+  _onDropdownAlertTapped = () => { }
 
   open = (content, type, options = {}) => {
     // log(options, 'options')
     // let { title, type = 'success' } = options
     let title, body
     // log(typeof content, '----')
-    if (typeof content == 'object') {
+    if(typeof content == 'object') {
       title = content.title
       body = content.body
     } else {
       // log('content is String')
       body = `${content}`
     }
-    let { onTapped = () => {}, onClose = () => {} } = options
+    let { onTapped = () => { }, onClose = () => { } } = options
     this.mounted &&
       this.setState({
         type,
@@ -46,7 +46,7 @@ export class DropdownAlert extends React.PureComponent {
         options,
       })
     // log(this.state, 'this.state')
-    this.modal.open()
+    this.modal?.open()
     delayed(() => {
       this.close()
     }, 5000)
@@ -55,7 +55,7 @@ export class DropdownAlert extends React.PureComponent {
     this.onTapped = onTapped
   }
   close = () => {
-    let { onClose = () => {} } = this.state.options
+    let { onClose = () => { } } = this.state.options
 
     this.modal.close()
     onClose()
@@ -186,6 +186,6 @@ export class DropdownAlert extends React.PureComponent {
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})
