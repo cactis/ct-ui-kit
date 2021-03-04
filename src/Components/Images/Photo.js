@@ -42,8 +42,9 @@ export class Photo extends React.PureComponent {
     // let { item } = data
     // log(uri, 'uri - in Photo.js#uri')
     // log(this.images, 'this.images#')
-    let bg = 'rgb(246, 246, 246)'
-    if (parent?.uploads[index]._destroy) return null
+    // let bg = 'rgb(246, 246, 246)'
+    let bg = 'black'
+    if(parent?.uploads[index]._destroy) return null
 
     return (
       <T.Touch onPress={this.props.onPress || this.preview}>
@@ -87,7 +88,7 @@ export class Photo extends React.PureComponent {
           backgroundColor={bg}
           onRequestClose={() => this.setState({ preview: false })}
           HeaderComponent={({ imageIndex }) => (
-            <T.Row backgroundColor={bg} xAlign="flex-end" yAlign="center">
+            <T.Row __hidden__ backgroundColor={bg} xAlign="flex-end" yAlign="center">
               <T.Space size={SAFEAREA_TOP} />
               <T.Space>
                 <T.Text
@@ -100,19 +101,19 @@ export class Photo extends React.PureComponent {
           )}
           FooterComponent={({ imageIndex }) => (
             <>
-              <T.Row backgroundColor={bg} padding={SIZE.m}>
+              <T.Row __hidden__ backgroundColor={bg} padding={SIZE.m}>
                 <T.Text
                   numberOfLines={10}
                   text={this.images[imageIndex].description}
                   theme="H7"
                 />
               </T.Row>
-              <T.Row align="center" padding={SIZE.l}>
-                <T.Label
+              <T.Row align="center" padding__={SIZE.l}>
+                {/* <T.Label 
                   text={`${imageIndex + 1} / ${this.images.length}`}
                   color="rgb(104, 104, 104)"
                   theme="H9"
-                />
+                /> */}
                 <T.Float right={SIZE.s} bottom={SIZE.l * 0.8}>
                   <T.Icon
                     smaller={10}
@@ -120,7 +121,8 @@ export class Photo extends React.PureComponent {
                     size={SIZE.m * 1.2}
                     name={CLOSE_ICON_NAME}
                     iconSet={CLOSE_ICON_SET}
-                    color={TColor.mostReadable('efefef', ['#efefef', '#111'])}
+                    // color={TColor.mostReadable(bg, ['#efefef', '#111'])}
+                    color='#aaa'
                     onPress={() => this.setState({ preview: false })}
                   />
                 </T.Float>
@@ -171,15 +173,15 @@ export class Photo extends React.PureComponent {
     this.images = this.props.images
       ? this.getImages(this.props.images)
       : [
-          {
-            source: {
-              uri: uri,
-            },
-            title: title,
-            // width: SCREEN_WIDTH,
-            // height: SCREEN_HEIGHT,
+        {
+          source: {
+            uri: uri,
           },
-        ]
+          title: title,
+          // width: SCREEN_WIDTH,
+          // height: SCREEN_HEIGHT,
+        },
+      ]
     // log(this.images, 'this.images')
   }
 
@@ -203,8 +205,8 @@ export class Photo extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.uri !== this.props.uri) this.setState({ uri: this.props.uri })
-    if (prevProps.parent !== this.props.parent)
+    if(prevProps.uri !== this.props.uri) this.setState({ uri: this.props.uri })
+    if(prevProps.parent !== this.props.parent)
       this.setState({ parent: this.props.parent })
   }
 
@@ -218,7 +220,7 @@ export class Photo extends React.PureComponent {
   }
   onChange = () => {
     let { onChange } = this.props
-    if (onChange) {
+    if(onChange) {
       ImagePicker.openPicker({
         compressImageQuality: 0.75,
         // width: 300,
@@ -236,6 +238,6 @@ export class Photo extends React.PureComponent {
     }
   }
 
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

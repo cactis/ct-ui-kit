@@ -21,17 +21,17 @@ export class KeyboardInput extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
-  _onKeyboardTapped = () => {}
+  _onKeyboardTapped = () => { }
   replyTo = (replyTo) => {
     this.setState({ replyTo })
   }
   open = (text, options = {}) => {
     let { avatar = this.state.avatar } = options
-    let { onSend = () => {}, cancelReplyTo = () => {} } = options
+    let { onSend = () => { }, cancelReplyTo = () => { } } = options
     this.mounted &&
       this.setState({
         text,
@@ -83,7 +83,7 @@ export class KeyboardInput extends React.PureComponent {
           <T.Space />
           <T.Center
             height="auto"
-            // height={textInputHeight + rwd(5) + iPhoneX ? rwd(10) : rwd(5)}
+          // height={textInputHeight + rwd(5) + iPhoneX ? rwd(10) : rwd(5)}
           >
             <T.Div
               style={{
@@ -124,12 +124,12 @@ export class KeyboardInput extends React.PureComponent {
                 ref={(c) => (window.input = c)}
                 value={text}
                 onChangeText={(text) => this.setState({ text })}
-                onContentSizeChange={(e) =>
+                onContentSizeChange__={(e) =>
                   this.updateSize(e.nativeEvent.contentSize.height)
                 }
                 multiline={true}
                 placeholder="回覆…"
-                height={200}
+                // height={200}
                 style={{
                   flex: 1,
                   // textAlign: 'center',
@@ -163,7 +163,7 @@ export class KeyboardInput extends React.PureComponent {
     this.setState({ replyTo: null })
     this.cancelReplyTo && this.cancelReplyTo()
   }
-  onSend = () => {}
+  onSend = () => { }
 
   _onSend = () => {
     let { text } = this.state
@@ -173,7 +173,7 @@ export class KeyboardInput extends React.PureComponent {
   }
 
   updateSize = (textInputHeight) => {
-    if (textInputHeight <= this.state.textInputHeight) return
+    if(textInputHeight <= this.state.textInputHeight) return
     log(textInputHeight, 'textInputHeight')
     this.setState({
       textInputHeight,
@@ -191,6 +191,6 @@ export class KeyboardInput extends React.PureComponent {
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

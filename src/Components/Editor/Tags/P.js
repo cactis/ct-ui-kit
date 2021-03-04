@@ -21,14 +21,14 @@ export class P extends TagBase {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
     // if (prevProps.data !== this.props.data)
     //   this.setState({ data: { ...this.props.data } })
   }
 
   onChangeText = value => {
-    log(value, 'value')
+    // log(value, 'value')
     this.mounted && this.setState({ value })
     let { data } = this.state
     data.item.content = value
@@ -38,7 +38,7 @@ export class P extends TagBase {
   render() {
     let { data, value } = this.state
     // _log(data, 'data in P render()')
-    if (!data) return null
+    if(!data) return null
     let { item = data, index } = data
     // alert(index)
     // log(item, 'item in P')
@@ -91,7 +91,7 @@ export class P extends TagBase {
           onFocus={this.onFocus}
           onKeyPress={this.onKeyPress}
           onBlur={this.onBlur}
-          // children={value}
+        // children={value}
         />
       </T.Row>
     )
@@ -111,7 +111,7 @@ export class P extends TagBase {
     window.tagsToolbar.forceUpdate()
   }
 
-  onBlur = e => {}
+  onBlur = e => { }
 
   initStateData = onComplete => {
     let { data } = this.props

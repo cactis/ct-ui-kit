@@ -7,9 +7,10 @@ export class Line extends React.Component {
       flex = 0,
       size = 0.2,
       style,
-      color = 'rgba(182,182,182, 0.5)',
+      color = Background, //'rgba(182,182,182, 0.5)',
       ...props
     } = this.props
+    // color = 'red'
     return (
       <Row
         style={{
