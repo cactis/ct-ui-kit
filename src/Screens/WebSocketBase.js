@@ -17,7 +17,7 @@ export class WebSocketBase extends React.PureComponent {
         appName: AppConfig.appName,
       },
     })
-    log(ws, 'ws')
+    // log(ws, 'ws')
 
     ws.onopen = () => {
       // _alert('connected')
@@ -33,23 +33,23 @@ export class WebSocketBase extends React.PureComponent {
       const data = JSON.parse(e.data)
       // log(data, 'data')
 
-      if (data.type != 'ping') {
+      if(data.type != 'ping') {
         //   log('ws.onmessage')
         //   log(data, 'data')
       }
 
-      switch (data.type) {
+      switch(data.type) {
         case 'ping':
           break
         case 'confirm_subscription':
-          log(data.type, 'data.type')
+          // log(data.type, 'data.type')
           this.tries = 0
           this.connected = true
           // log('confirmation_subscription')
           // log(data,  'data system message')
           break
         case 'welcome':
-          log(data.type, 'data.type')
+          // log(data.type, 'data.type')
           // this.reconnect()
           // runLast(() => {
           //   this.reconnect()
@@ -60,7 +60,7 @@ export class WebSocketBase extends React.PureComponent {
           break
         default:
           // log(data,  'data 需要處理')
-          log(data.type, 'data.type')
+          // log(data.type, 'data.type')
           this.processMessage(data)
       }
     }
@@ -82,7 +82,7 @@ export class WebSocketBase extends React.PureComponent {
     // _alert('reconnect')
 
     delayed(() => {
-      if (this.tries < 10 && !this.connected && this.mounted) {
+      if(this.tries < 10 && !this.connected && this.mounted) {
         this.tries = this.tries + 1
         // _alert('onclose: connecting...')
         this.connectSocket()
@@ -90,7 +90,7 @@ export class WebSocketBase extends React.PureComponent {
     })
   }
 
-  processMessage = (data) => {}
+  processMessage = (data) => { }
 
   _runCommand = (command, content) => {
     log(command, 'command in WebSocketBase#_runCommand')
@@ -98,7 +98,7 @@ export class WebSocketBase extends React.PureComponent {
     let { room } = this.state
     log(room, 'room')
     // log(channel, 'channel in _runCommand')
-    if (room) {
+    if(room) {
       var message = {
         command: command,
         identifier: '{"channel": "ChatChannel", "room": "' + room + '"}',
@@ -113,6 +113,6 @@ export class WebSocketBase extends React.PureComponent {
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

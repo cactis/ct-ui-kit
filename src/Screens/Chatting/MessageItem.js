@@ -27,7 +27,7 @@ export class MessageItem extends React.PureComponent {
   render() {
     let { data, url } = this.state
     // log(data, 'data in MessageItem render()')
-    log(this.props.autoExpend, 'this.props.autoExpend')
+    // log(this.props.autoExpend, 'this.props.autoExpend')
 
     if(!data) return null
     let { item = data } = data

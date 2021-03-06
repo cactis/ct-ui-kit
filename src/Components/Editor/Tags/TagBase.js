@@ -44,10 +44,10 @@ export class TagBase extends React.PureComponent {
 
     let { image } = options
     // log(image, 'image from options')
-    if (image) {
+    if(image) {
       // log(image.data, 'base64data')
       // data.item.content = null
-      log(image, data.item, 'image, data.item1111')
+      // log(image, data.item, 'image, data.item1111')
       data.item.src = image.path // for preview
       data.item.data = image.data
       data.item.mime = image.mime
@@ -69,7 +69,7 @@ export class TagBase extends React.PureComponent {
 
   updateData = data => {
     let { parent } = this.props
-    if (parent) {
+    if(parent) {
       parent.updateData(data)
     }
   }
