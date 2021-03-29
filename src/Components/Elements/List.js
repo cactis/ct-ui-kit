@@ -357,9 +357,9 @@ export class List extends React.PureComponent {
                     onChange={(e) => {
                       // log(e, 'e')
                       let keyword
-                      if (e.nativeEvent) {
-                      let { text } = e.nativeEvent
-                      keyword = text
+                      if(e.nativeEvent) {
+                        let { text } = e.nativeEvent
+                        keyword = text
                       } else {
                         keyword = e
                       }
@@ -370,7 +370,7 @@ export class List extends React.PureComponent {
                         // this.reloadData()
                       })
                     }}
-                      onSubmit={()=> this.reloadData()}
+                    onSubmit={() => this.reloadData()}
                   />
                   {ListHeaderComponentWithMeta}
                 </Row>
@@ -385,7 +385,7 @@ export class List extends React.PureComponent {
                   <Row marginTop={rwd(0)}>
                     {meta_tag}
 
-                    {this.state.page < 3 ? null : (
+                    {/* {this.state.page < 3 ? null : (
                       <Row align="center" paddingTop={rwd(50)}>
                         <Icon
                           iconSet="AntDesign"
@@ -395,7 +395,7 @@ export class List extends React.PureComponent {
                           onPress={() => { this.scrollToTop() }}
                         />
                       </Row>
-                    )}
+                    )} */}
                     {url && !lastPage && this.state.isPageLoading ? (
                       <Row align="center" paddingTop={rwd(50)}>
                         <Image
@@ -412,12 +412,13 @@ export class List extends React.PureComponent {
             {...extra}
           />
         ) : null}
-        {scrollToTopButtonVisible && this.props.scrollToTop ? <T.Float left={SIZE.n} bottom={1.5 * SIZE.l} width='100%' align='center'>
+        {(scrollToTopButtonVisible && this.props.scrollToTop != false) ? <T.Float left={SIZE.n} bottom={1.5 * SIZE.l} width='100%' align='center'>
           <T.Icon
-            name="top"
-            color={BCOLOR}
-            backgroundColor={window.Secondary}
-            backgroundColor='rgba(126, 134, 145, 0.75)'
+            iconSet={SCROLL_TO_TOP_ICON_SET}
+            name={SCROLL_TO_TOP_ICON_NAME}
+            color={SCROLL_TO_TOP_COLOR}
+            // backgroundColor={window.Secondary}
+            backgroundColor={SCROLL_TO_TOP_BCOLOR}
             boxShadow={1}
             style={{
               shadowColor: '#000',

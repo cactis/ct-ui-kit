@@ -193,6 +193,11 @@ window.SEARCHBAR_PLACEHOLDER_COLOR = '##aaa'
 
 window.PLACEHOLDER = NAV_COLOR
 
+window.SCROLL_TO_TOP_COLOR = '#d8dee6'
+window.SCROLL_TO_TOP_BCOLOR = 'rgba(126, 134, 145, 0.75)'
+window.SCROLL_TO_TOP_ICON_NAME = 'angle-up'
+window.SCROLL_TO_TOP_ICON_SET = DEFAULT_ICON_SET
+
 require('../../../Constants.js')
 
 setDeviceName = () => {
