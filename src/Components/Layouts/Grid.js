@@ -22,14 +22,13 @@ export class Grid extends React.PureComponent {
     let borderStyle =
       this.props.theme == 'bordered'
         ? {
-            padding: rwd(8),
-            borderWidth: 0.5,
-            borderColor: '#7E8691',
-            borderRadius: rwd(3),
-          }
+          padding: rwd(8),
+          borderWidth: 0.5,
+          borderColor: '#7E8691',
+          borderRadius: rwd(3),
+        }
         : {}
     let _styleWithBordered = { ..._style, ...borderStyle }
-
     return !disabled && (props.onPress || props.onLongPress) ? (
       <Touch
         onPress={props.onPress}

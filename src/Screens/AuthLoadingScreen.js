@@ -41,6 +41,6 @@ export class AuthLoadingScreen extends React.PureComponent {
     // }
     // navigation.setParams({ title: '改為新標題' })
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

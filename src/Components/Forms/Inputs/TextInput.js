@@ -21,7 +21,7 @@ export class TextInput extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
@@ -39,7 +39,7 @@ export class TextInput extends React.PureComponent {
           onChangeText && onChangeText(value)
         }}
         {...props}
-        // value="aa"
+      // value="aa"
       />,
       {
         title: 'Edit',
@@ -65,7 +65,7 @@ export class TextInput extends React.PureComponent {
         // borderWidth={3}
         // padding={SIZE.l}
         style={{ height: height, flex: 1, width: '100%', padding_: SIZE.t }}
-        // xAlign="center"
+      // xAlign="center"
       >
         {multiline && false ? (
           <T.Scroll
@@ -88,10 +88,10 @@ export class TextInput extends React.PureComponent {
               // onPress={this.openInput}
               numberOfLines={0}
               text={value}
-              // height="100%"
-              // style={{ backgroundColor__: 'red', height: '100%' }}
-              // onPress={this.openInput}
-              // backgroundColor="white"
+            // height="100%"
+            // style={{ backgroundColor__: 'red', height: '100%' }}
+            // onPress={this.openInput}
+            // backgroundColor="white"
             >
               {value}
             </T.Text>
@@ -113,7 +113,7 @@ export class TextInput extends React.PureComponent {
     //       <T.Text numberOfLines={0} text={value} />
     //     </T.Row>
     //     <T.Row theme="bordered" onPress={() => log('hi')}>
-    //       <T.Text numberOfLines={0} text={value} />
+    //       <T.Text numberOfLines={0} text={value} /> 
     //     </T.Row>
     //   </T.Row>
     // )
@@ -128,7 +128,7 @@ export class TextInput extends React.PureComponent {
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})
 
@@ -141,7 +141,7 @@ export class TextInput1 extends Component {
 
   componentDidMount() {
     let { onChangeText } = this.props
-    if (onChangeText) {
+    if(onChangeText) {
       this.onChangeText = onChangeText
     } else {
       this.onChangeText()
@@ -167,10 +167,10 @@ export class TextInput1 extends Component {
     let borderStyle =
       false && bordered && editable
         ? {
-            borderWidth: 0.5,
-            borderColor: 'rgba(1,1,1,0.4)',
-            borderRadius: rwd(3),
-          }
+          borderWidth: 0.5,
+          borderColor: 'rgba(1,1,1,0.4)',
+          borderRadius: rwd(3),
+        }
         : {}
     // log(props, 'props')
     let alignTop = iOS && multiline ? {} : { textAlignVertical: 'top' }
@@ -190,7 +190,7 @@ export class TextInput1 extends Component {
 
           // paddingVertical: rwd(10),
         }}
-        // xAlign="center"
+      // xAlign="center"
       >
         {/* <Row
         // borderColor="rgb(203,201,196)"
@@ -211,9 +211,11 @@ export class TextInput1 extends Component {
           padding={bordered ? (iOS ? SIZE.s / 2 : SIZE.s) : SIZE.n}
           paddingTop={iOS ? SIZE.s / 5 : SIZE.n}
           paddingLeft={0}
+          padding={SIZE.s}
           // marginBottom={10}
           // paddingHorizontal={bordered ? rwd(5) : 0}
           editable={editable}
+          // borderWidth={1}
           // flex={1}
           // style={{
           //   ...style.textInput,
@@ -226,6 +228,7 @@ export class TextInput1 extends Component {
           style={{
             ...alignTop,
             ...heightStyle,
+            height: SIZE.l,
             // padding: rwd(3),
             // lineHeight: fontSize,
             // paddingBottom: 0,

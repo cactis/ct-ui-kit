@@ -11,11 +11,11 @@ export class Segment extends Component {
       width: 0,
       userScrolling: false,
     }
-    if (this.props.onIndexChanged)
+    if(this.props.onIndexChanged)
       this.onIndexChanged = this.props.onIndexChanged
   }
 
-  onIndexChanged = () => {}
+  onIndexChanged = () => { }
 
   tappedAtIndex = (index) => {
     this.onTappedAt(index)
@@ -29,13 +29,13 @@ export class Segment extends Component {
     // log(index)
     let _index = index <= 1 ? 0 : index - 1
     this.tabs_scroll.scrollToIndex(_index)
-    if (index == this.state.selectIndex) {
+    if(index == this.state.selectIndex) {
       let views = this.props.views
       // log(views, 'views')
       let view = views[index]
       log(view, 'view')
       // log(view.ref, 'view.ref')
-      if (view) {
+      if(view) {
         let list = this.props.parent?.refs[view.ref]
         log(list, 'list')
         list?.scrollToTop && list?.scrollToTop()
@@ -53,7 +53,7 @@ export class Segment extends Component {
   }
 
   _onLayout = (e) => {
-    if (this.state.width == e.nativeEvent.layout.width) return
+    if(this.state.width == e.nativeEvent.layout.width) return
     this.setState({
       width: e.nativeEvent.layout.width,
       height: e.nativeEvent.layout.height,
@@ -87,14 +87,14 @@ export class Segment extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.tabs)
+    if(!this.props.tabs)
       __warning__('GSegment needs tabs props: [{title: "Tab"}, ...]')
-    if (!this.props.views)
+    if(!this.props.views)
       __warning__('GSegment needs views props: [<View/>...]')
   }
 
   render() {
-    if (this.props.__hidden__) return null
+    if(this.props.__hidden__) return null
     let {
       theme = 'parent',
       tabs = [{ title: 'TAB1' }, { title: 'Tab2' }],
@@ -108,9 +108,6 @@ export class Segment extends Component {
     return (
       <T.Grid
         onLayout={this._onLayout}
-        // borderWidth={20}
-        // borderWidth={0.5}
-        // borderColor={window.SEGMENT_BORDER_COLOR}
         paddingVertical={SIZE.n}
       >
         <T.Row flex={0} style={{ ...wrapper }} layout="row">
@@ -164,7 +161,7 @@ export class Segment extends Component {
 
   _onScroll = (e) => {
     log('onScroll in Segment')
-    if (this.state.userScrolling) return
+    if(this.state.userScrolling) return
     let x = e.nativeEvent.contentOffset.x
     log(x, 'x')
     runLast(

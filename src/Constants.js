@@ -189,7 +189,7 @@ window.CLOSE_ICON_SET = 'Entypo'
 
 window.SEARCHBAR_BACKGROUND_COLOR = '#E4E8EB'
 // window.SEARCHBAR_BACKGROUND_COLOR = 'red'
-window.SEARCHBAR_PLACEHOLDER_COLOR = 'white'
+window.SEARCHBAR_PLACEHOLDER_COLOR = '##aaa'
 
 window.PLACEHOLDER = NAV_COLOR
 
@@ -207,14 +207,14 @@ initAppFontSize = async () => {
     const value = await AsyncStorage.getItem('appBaseSize')
 
     // console.log(value, 'value 11111111111')
-    if (value) {
+    if(value) {
       value = parseInt(value)
       // console.log(value, 'value 2222')
       return value
     } else {
       return window.BASE_SIZE
     }
-  } catch (error) {}
+  } catch(error) { }
 }
 initAppFontSize().then((value) => {
   // window.BASE_SIZE = value

@@ -317,8 +317,8 @@ export class List extends React.PureComponent {
         {meta_tag}
       </Grid>
     ) : (
-        ListHeaderComponent
-      )
+      ListHeaderComponent
+    )
     let ListTagType = draggable ? DraggableFlatList : RNList
     return (
 
@@ -367,8 +367,8 @@ export class List extends React.PureComponent {
                   {ListHeaderComponentWithMeta}
                 </Row>
               ) : (
-                  ListHeaderComponentWithMeta
-                )
+                ListHeaderComponentWithMeta
+              )
             }
             ListFooterComponent={
               <T.Row>

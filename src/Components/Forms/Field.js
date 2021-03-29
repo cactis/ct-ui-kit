@@ -34,7 +34,7 @@ export class Field extends Component {
         flex={0}
         // padding={rwd(5)}
         marginLeft={rwd(5)}
-        // marginBottom={iOS ? rwd(5) : 0}
+      // marginBottom={iOS ? rwd(5) : 0}
       >
         {preIcon}
       </T.Col>
@@ -54,14 +54,15 @@ export class Field extends Component {
           // backgroundColor: backgroundColor,
         }}
         backgroundColor={backgroundColor}
+        // backgroundColor='red'
         // padding={backgroundColor ? SIZE.l * 1.2 : SIZE.n}
         padding={backgroundColor ? SIZE.m : SIZE.n}
         {...props}
-        // onFocus={(event: Event) => {
-        //   // if (!form) return
-        //   // form._scrollToInput(ReactNative.findNodeHandle(event.target))
-        // }}
-        // height="auto"
+      // onFocus={(event: Event) => {
+      //   // if (!form) return
+      //   // form._scrollToInput(ReactNative.findNodeHandle(event.target))
+      // }}
+      // height="auto"
       >
         {title ? (
           <T.Row flex={0}>
@@ -87,7 +88,7 @@ export class Field extends Component {
           {...borderStyle}
         >
           <T.Center flex={0}>{preIconTag}</T.Center>
-          <T.Col>
+          <T.Col >
             <InputTag
               ref="input"
               // height={height}

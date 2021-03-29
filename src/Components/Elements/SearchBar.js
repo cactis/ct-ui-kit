@@ -21,26 +21,25 @@ export class SearchBar extends React.PureComponent {
     // let { item = data} = data
     let { style = {}, width = SCREEN_WIDTH - SIZE.m } = this.props
     let {
-      borderRadius,
+      borderRadius = SIZE.t,
       placeholderTextColor = window.SEARCHBAR_PLACEHOLDER_COLOR,
-      backgroundColor = window.SEARCHBAR_BACKGROUND_COLOR,
+      backgroundColor = window.SEARCHBAR_BACKGROUND_COLOR
     } = style
     return (
-      <Row padding={SIZE.n} flex={1} backgroundColor__="red" width={width}>
+      <Row padding__={SIZE.s} flex={1} backgroundColor_="red" width__={width}
+        width='100%' marginVertical={SIZE.t} {...this.props}  >
         <Row
-          borderRadius={borderRadius}
-          paddingVertical={rwd(5)}
-          paddingHorizontal={rwd(10)}
-          marginBottom={SIZE.s * 1.2}
-          // backgroundColor="rgba(255,255,255,.59)"
-          // backgroundColor="#E4E8EB"
+          // borderRadius={borderRadius}
+          style={{ borderRadius: SIZE.l }}
+          paddingVertical={SIZE.t}
           backgroundColor={backgroundColor}
-          // backgroundColor="red"
+        // backgroundColor='red'
         >
           <TextInput
-            placeholder="type keyword to search..."
             placeholder="search"
-            padding={rwd(4)}
+            // style={{ borderRadius: SIZE.m }}
+            padding={SIZE.s}
+            paddingHorizontal={SIZE.m}
             clearButtonMode="always"
             autoCapitalize="none"
             placeholderTextColor={placeholderTextColor}
@@ -59,7 +58,7 @@ export class SearchBar extends React.PureComponent {
     )
   }
   onPress = () => {
-    if (this.props.onPress) {
+    if(this.props.onPress) {
       this.props.onPress()
     } else {
       log('need to set onPress on item')
@@ -83,13 +82,13 @@ export class SearchBar extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

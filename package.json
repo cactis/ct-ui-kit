@@ -9,7 +9,7 @@
   "author": "cactis <cactis.lin@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.21"
   },
   "jest": {
     "preset": "jest-react-native",
@@ -21,11 +21,11 @@
     ]
   },
   "dependencies": {
-    "@react-native-community/push-notification-ios": "^1.2.2",
+    "@react-native-community/push-notification-ios": "^1.8.0",
     "npm-check-updates": "latest",
-    "react-native-dropdownalert": "^4.2.1",
+    "react-native-dropdownalert": "^4.3.0",
     "react-native-image-view": "2.1.9",
-    "react-native-modalbox": "2.0.0",
-    "tinycolor2": "1.4.1"
+    "react-native-modalbox": "2.0.2",
+    "tinycolor2": "1.4.2"
   }
 }
