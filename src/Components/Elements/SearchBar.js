@@ -43,8 +43,8 @@ export class SearchBar extends React.PureComponent {
             clearButtonMode="always"
             autoCapitalize="none"
             placeholderTextColor={placeholderTextColor}
-            value={value || this.props.value}
-            onChange={this.props.onChange}
+            value={value || this.props.keyword || this.props.value}
+            // onChange={this.props.onChange}
             onChangeText={(value) => {
               this.setState({ value: value })
               this.props.onChange && this.props.onChange(value)

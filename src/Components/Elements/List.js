@@ -351,18 +351,26 @@ export class List extends React.PureComponent {
               searchable ? (
                 <Row flex={1}>
                   <SearchBar
+                    keyword={this.props.keyword}
                     style={this.props.searchBarStyle}
                     ref={(c) => (this.searchBar = c)}
                     onChange={(e) => {
                       // log(e, 'e')
-                      let { text: keyword } = e.nativeEvent
+                      let keyword
+                      if (e.nativeEvent) {
+                      let { text } = e.nativeEvent
+                      keyword = text
+                      } else {
+                        keyword = e
+                      }
                       log(keyword, 'keyword in List')
                       keyword = keyword.replace('#', '%23')
                       runLast(() => {
                         this.mounted && this.setState({ keyword })
-                        this.reloadData()
+                        // this.reloadData()
                       })
                     }}
+                      onSubmit={()=> this.reloadData()}
                   />
                   {ListHeaderComponentWithMeta}
                 </Row>
