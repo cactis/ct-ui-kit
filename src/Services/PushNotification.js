@@ -163,13 +163,15 @@ window.processNotification = (notification = push) => {
     // __log(alert, 'alert')
     // eval(request_action)
     let { payload } = data
-    record = payload.record
-    let request = payload.request
-    // log(alert, 'alert')
-    // let { request = () => { } } = alert
-    // _alert(request)
-    eval(request)
-    window.updateBadge(badge)
+    if(payload) {
+      record = payload.record
+      let request = payload.request
+      // log(alert, 'alert')
+      // let { request = () => { } } = alert
+      // _alert(request)
+      eval(request)
+      window.updateBadge(badge)
+    }
     // __log('----------------------')
   } else {
     log(notification, 'notifition')
