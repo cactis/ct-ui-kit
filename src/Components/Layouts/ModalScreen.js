@@ -37,7 +37,7 @@ export class ModalScreen extends ModalBase {
       button,
       ...opts
     } = options
-    if ((scrollable || fullScreen) && !swipeToClose) swipeToClose = false
+    if((scrollable || fullScreen) && !swipeToClose) swipeToClose = false
     modalHeight = fullScreen ? SCREEN_HEIGHT : modalHeight
     // alert([fullScreen, modalHeight])
     // modalHeight = SCREEN_HEIGHT
@@ -85,7 +85,9 @@ export class ModalScreen extends ModalBase {
       >
         {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_TOP : 0} /> */}
         {nowrap ? (
-          children
+          <>{children}
+            <T.Float top={30} right={10}>{closeIcon}</T.Float>
+          </>
         ) : (
           <T.Row
             flex={1}
@@ -106,10 +108,10 @@ export class ModalScreen extends ModalBase {
               // padding={padding}
 
               flow="row"
-              // xAlign="center"
-              // right={SIZE.s}
-              // top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
-              // zIndex={1000}
+            // xAlign="center"
+            // right={SIZE.s}
+            // top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
+            // zIndex={1000}
             >
               <T.Space
                 width={SIZE.l * 4}
@@ -176,7 +178,8 @@ export class ModalScreen extends ModalBase {
             <T.Space size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0} />
             {/* <T.SafeArea flex={0} backgroundColor={safeAreaColor} /> */}
           </T.Row>
-        )}
+        )
+        }
       </ModalBox>
     )
   }
@@ -190,7 +193,7 @@ export class ModalScreen extends ModalBase {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
@@ -202,7 +205,7 @@ export class ModalScreen extends ModalBase {
       })
   }
 
-  autoRun = () => {}
+  autoRun = () => { }
 
   componentWillUnmount() {
     this.mounted = false

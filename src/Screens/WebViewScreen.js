@@ -47,6 +47,7 @@ export class WebViewScreen extends WebSocketBase {
             // flex={1}
             source={{ uri: uri }}
             style={{
+              backgroundColor: 'red',
               width: '100%',
               height: SCREEN_HEIGHT,
             }}
@@ -57,7 +58,7 @@ export class WebViewScreen extends WebSocketBase {
   }
 
   initStateData = (onComplete) => {
-    if (_navigation?.state.params) {
+    if(_navigation?.state.params) {
       let { data, uri, fullScreen = true } = _navigation?.state.params
       // _navigation.setParams({ title: '改為新標題' })
       this.setState({ data, uri, fullScreen }, () => {
@@ -67,6 +68,6 @@ export class WebViewScreen extends WebSocketBase {
       onComplete && onComplete()
     }
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

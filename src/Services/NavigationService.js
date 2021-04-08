@@ -7,7 +7,7 @@ export class NavigationService {
     _navigator = navigatorRef
   }
 
-  static goBack = (callback = () => {}) => {
+  static goBack = (callback = () => { }) => {
     // log(_navigator, '_navigator')
     // let { state } = _navigator
     // let { nav } = state
@@ -31,9 +31,9 @@ export class NavigationService {
   }
 
   static navigate = (routeName, params = {}) => {
-    log(`||| ${routeName} ||| screen -- 2`)
+    // log(`||| ${routeName} ||| screen -- 2`)
     let key = `${routeName}_${params.data?.id}`
-    if (global.currentKey == key) return log('duplicate click')
+    if(global.currentKey == key) return log('duplicate click')
     // log(key, 'key from NavigationService navigate()')
     // log(_navigator, '_navigator')
     _navigator.dispatch(
@@ -50,8 +50,9 @@ export class NavigationService {
   }
 }
 
-window.gotoScreen = (screenname, options = {}) => {
-  T.NavigationService.navigate(screenname, options)
+window.gotoScreen = (screenName, options = {}) => {
+  log(screenName, 'screenName#')
+  T.NavigationService.navigate(screenName, options)
 }
 
 window.goBack = () => {

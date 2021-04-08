@@ -160,7 +160,7 @@ export class DropdownAlert extends React.PureComponent {
                 <T.Icon
                   size={SIZE.m}
                   color="white"
-                  name="righarrow"
+                  name="angle-right"
                   onPress={() => {
                     // this._onDropdownAlertTapped()
                     // this.modal.close()
