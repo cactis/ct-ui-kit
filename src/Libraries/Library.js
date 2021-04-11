@@ -243,7 +243,7 @@ window.delayed = (func, wait = 1000, ...args) => {
 }
 
 window.navigateTo = (navigation, route, params = {}) => {
-  // log(navigation, 'navigation in Library#navigateTo----------------')
+  log(navigation, 'navigation in Library#navigateTo----------------')
   let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || params?.url
     }_${randId()}`
 
@@ -726,7 +726,7 @@ doRating = () => {
 }
 
 /////////////////////////
-window.alert = (message, type, options = {}) => {
+window.alert = (message, type = 'success', options = {}) => {
   prompt(message, type, options)
 }
 

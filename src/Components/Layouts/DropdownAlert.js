@@ -63,7 +63,7 @@ export class DropdownAlert extends React.PureComponent {
 
   render() {
     let { title, body, type } = this.state
-    // log(type, 'type')
+    log(type, 'type in DropdownAlert render')
     let backgroundColor =
       type == 'success' ? DROPDOWNALERT_COLOR : DROPDOWNALERT_COLOR_INFO
     // log(backgroundColor, 'backgroundColor')

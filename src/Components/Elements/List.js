@@ -256,7 +256,7 @@ export class List extends React.PureComponent {
     if(last?.index > this.state.data?.length - 6) this.fetchData()
     this.props.onViewableItemsChanged && this.props.onViewableItemsChanged(info)
     runLast(() => {
-      this.setState({ scrollToTopButtonVisible: last?.index > (__DEV__ ? 15 : 15) })
+      this.setState({ scrollToTopButtonVisible: last?.index > (this.props.scrollToTopIndexValue || 15) })
     })
   }
 

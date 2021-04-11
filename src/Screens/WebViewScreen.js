@@ -47,7 +47,7 @@ export class WebViewScreen extends WebSocketBase {
             // flex={1}
             source={{ uri: uri }}
             style={{
-              backgroundColor: 'red',
+              // backgroundColor: 'red',
               width: '100%',
               height: SCREEN_HEIGHT,
             }}

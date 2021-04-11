@@ -8,7 +8,7 @@ let AppConfig = {
   appName: '(need to set by project)',
   // host: __DEV__ ? 'api' : 'api',
   apiVersion: '',
-  Host: () => {},
+  Host: () => { },
   Hosts: {
     example: 'http://example.com',
   },
@@ -53,23 +53,23 @@ export class Api {
     let { HttpHeader } = params
     // log(HttpHeader, 'HttpHeader')
     params['HttpHeader'] = null
-    if (Dev.logResponse)
+    if(Dev.logResponse)
       log(method, url, params, '(method, url, params in request')
-    if (!url) return log('no url be setted in Api#request')
+    if(!url) return log('no url be setted in Api#request')
     let accessTokens = global.accessTokens
     // log(accessTokens, 'accessTokens in API request')
     // const _url = Settings.host + url
     // log(AppConfig, 'AppConfig')
     let _url
 
-    if (url.includes('http')) {
+    if(url.includes('http')) {
       _url = url
     } else {
-      if (url.includes('@')) {
+      if(url.includes('@')) {
         let [key, value] = url.split('@')
         let _url = key
-        if (value) {
-          if (AppConfig.apiVersion) {
+        if(value) {
+          if(AppConfig.apiVersion) {
             _url = AppConfig.Hosts[key] + AppConfig.apiVersion
           }
           _url = `${_url}${value}`
@@ -81,7 +81,7 @@ export class Api {
         // log(defaultHost, 'defaufltHost')
         // _url = AppConfig.Hosts[defaultHost]
         _url = AppConfig.Host()
-        if (AppConfig.apiVersion) {
+        if(AppConfig.apiVersion) {
           _url = AppConfig.Hosts[defaultHost] + AppConfig.apiVersion
         }
 
@@ -111,7 +111,7 @@ export class Api {
     // log(headers, 'headers')
     // log(DEVICE_INFO, 'DEVICE_INFO')
     // alert(_url)
-    switch (method) {
+    switch(method) {
       case 'DELETE':
       case 'GET':
         response = await fetch(_url, {
@@ -136,33 +136,36 @@ export class Api {
     // log(contentType, 'contentType')
 
     // log(Dev.logResponse, 'Dev.logResponse')
-    if (contentType && contentType.indexOf('application/json') !== -1) {
+    if(contentType && contentType.indexOf('application/json') !== -1) {
       const json = await response.json()
-      if (Dev.logResponse) log(json, `json in Api.js ${_url}`)
-      if (json) {
+      if(Dev.logResponse) log(json, `json in Api.js ${_url}`)
+      if(json) {
         let { meta } = json
         let { errors } = json
-        if (errors) {
-          if (__DEV__) {
-            alert(errors.map((e) => e.message).join('\n'))
-          }
+        if(errors) {
+          // if(__DEV__) {
+          //   _alert(errors.map((e) => e.message).join('\n'))
+          // }
           return onError && onError(errors)
         }
-        if (meta) {
-          if (meta.alert) {
-            alert(json.alert)
+
+        log(meta, 'meta')
+        if(meta) {
+          if(meta.alert) {
+            json.alert && alert(json.alert)
+            meta.alert && alert(meta.alert)
           }
-          if (meta.error) {
+          if(meta.error) {
             log('error type ==================')
             alert(meta.error, 'error')
             return onError && onError(meta)
           }
-          if (meta.notice) {
+          if(meta.notice) {
             alert(meta.notice)
           }
         }
       }
-      if (onSuccess) {
+      if(onSuccess) {
         // log(json, 'onSuccess --------------')
         return onSuccess(json)
       } else {
@@ -170,7 +173,7 @@ export class Api {
       }
     } else {
       let text = await response.text()
-      if (onSuccess) {
+      if(onSuccess) {
         return onSuccess(text)
       } else {
         return text
@@ -181,7 +184,7 @@ export class Api {
 
 window.objToQueryString = (obj) => {
   const keyValuePairs = []
-  for (const key in obj) {
+  for(const key in obj) {
     keyValuePairs.push(
       encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])
     )
