@@ -1,4 +1,4 @@
-log('!!! Api.js#UIKIT')
+// log('!!! Api.js#UIKIT')
 // import '../Constants'
 require('./Library')
 require('../../../../AppConfig')
@@ -149,7 +149,7 @@ export class Api {
           return onError && onError(errors)
         }
 
-        log(meta, 'meta')
+        // log(meta, 'meta')
         if(meta) {
           if(meta.alert) {
             json.alert && alert(json.alert)

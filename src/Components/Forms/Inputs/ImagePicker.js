@@ -47,13 +47,19 @@ export const ImagePicker = (props) => {
   )
 }
 
+window.correctFilename = (files) => {
+  return files.map((file) => {
+    let names = file.uri.split('/')
+    names[names.length - 1] = file.name
+    file.uri = names.join('/')
+    // file.fileCopyUri = file.uri
+    return file
+  })
+}
+
 window.readBase64FromFile = async (file) => {
   let { filename, path } = file
   log(path, 'path#readBase64FromFile')
-  let names = path.split('/')
-  names[names.length - 1] = filename
-  path = names.join('/')
-  log(path, 'path')
   let base64 = await RNFS.readFile(path, 'base64')
   file.base64 = base64
   return file

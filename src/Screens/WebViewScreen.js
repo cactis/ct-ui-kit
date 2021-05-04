@@ -30,7 +30,7 @@ export class WebViewScreen extends WebSocketBase {
     // if (!data) return null
     // __DEV__ && alert(uri)
     // log(data,  'data in WebViewScreen render() ')
-    // log(uri, 'uri')
+    log(uri, 'uri')
     let padding = fullScreen ? SIZE.s : SIZE.n
     return (
       <>

@@ -16,10 +16,11 @@ export class Back extends React.PureComponent {
       <T.BarItem
         name="angle-left"
         iconSet="Fontisto"
-        size={rwd(14)}
+        size={rwd(11)}
         color="white"
         beep={true}
-        paddingRight={0}
+        padding={SIZE.s}
+        // paddingRight={0}
         onPress={() => {
           // window.currentRoom = null
           T.NavigationService.goBack()
@@ -30,7 +31,7 @@ export class Back extends React.PureComponent {
     )
   }
   onPress = () => {
-    if (this.props.onPress) {
+    if(this.props.onPress) {
       this.props.onPress()
     } else {
       log('need to set onPress on item')
@@ -54,13 +55,13 @@ export class Back extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

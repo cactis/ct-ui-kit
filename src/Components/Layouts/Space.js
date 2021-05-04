@@ -12,7 +12,7 @@ export class Space extends React.Component {
     render() {
         let { theme, size = THEME[theme] || 4 } = this.props
 
-        if (this.props.large) size = rwd(20)
+        if(this.props.large) size = rwd(20)
 
         return <View padding={size} {...this.props} />
     }

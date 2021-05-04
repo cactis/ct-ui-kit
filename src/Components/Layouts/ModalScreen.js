@@ -1,6 +1,6 @@
 log('!!!! ModalScreen')
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, StatusBar } from 'react-native'
 import * as T from 'ct-ui-kit'
 import ModalBox from 'react-native-modalbox'
 
@@ -46,10 +46,10 @@ export class ModalScreen extends ModalBase {
     let closeIcon = (
       <T.Icon
         onPress={this.close}
-        size={SIZE.m * 1.2}
+        size={SIZE.m}
         name={CLOSE_ICON_NAME}
         iconSet={CLOSE_ICON_SET}
-        color={TColor.mostReadable(backgroundColor, ['#efefef', '#111'])}
+        color={TColor.mostReadable(backgroundColor, ['#efefef', '#aaa'])}
         theme="H1"
       />
     )
@@ -57,70 +57,72 @@ export class ModalScreen extends ModalBase {
     // alert(swipeToClose)
     // alert(scrollable)
     return (
-      <ModalBox
-        useNativeDriver={true}
-        ref={(c) => (this.modal = c)}
-        swipeToClose={swipeToClose}
-        swipeToClose={false}
-        position={position}
-        entry={direction}
-        keyboardTopOffset={0}
-        onClosed={() => this.setState({ myTitle: null })}
-        // backgroundColor={backgroundColor}
-        // coverScreen={true}
-        style={{
-          height: scrollable ? modalHeight : rowHeight,
-          // height: SCREEN_HEIGHT,
-          zIndex: 10000,
-          // borderWidth: 3,
-          borderRadius: 0,
-          backgroundColor: backgroundColor,
-          // backgroundColor: 'red',
-          // paddingTop: iPhoneX ? SIZE.n : SIZE.m,
-          // borderWidth: 10,
-          // borderColor: 'blue',
-        }}
-        {...opts}
-        {...this.props}
-      >
-        {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_TOP : 0} /> */}
-        {nowrap ? (
-          <>{children}
-            <T.Float top={30} right={10}>{closeIcon}</T.Float>
-          </>
-        ) : (
-          <T.Row
-            flex={1}
-            // height={rowHeight}
-            // height={modalHeight}
-            borderWidth_={3}
-            borderColor_="red"
-          >
+      <><StatusBar hidden={true} />
+        <ModalBox
+          useNativeDriver={true}
+          ref={(c) => (this.modal = c)}
+          swipeToClose={swipeToClose}
+          swipeToClose={false}
+          position={position}
+          entry={direction}
+          keyboardTopOffset={0}
+          onClosed={() => this.setState({ myTitle: null })}
+          // backgroundColor={backgroundColor}
+          coverScreen={true}
+          style={{
+            height: scrollable ? modalHeight : rowHeight,
+            // height: SCREEN_HEIGHT,
+            zIndex: 10000,
+            // borderWidth: 3,
+            borderRadius: 0,
+            backgroundColor: backgroundColor,
+            // backgroundColor: 'red',
+            // paddingTop: SAFEAREA_TOP,
+            // paddingBottom: SAFEAREA_BOTTOM,
+            // borderWidth: 10,
+            // borderColor: 'blue',
+          }}
+          {...opts}
+          {...this.props}
+        >
+          {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_TOP : 0} /> */}
+          {nowrap ? (
+            <>{children}
+              <T.Float top={iPhoneX && isPortrait() ? SIZE.s + SAFEAREA_TOP : SIZE.s} right={SIZE.s}>{closeIcon}</T.Float>
+            </>
+          ) : (
             <T.Row
-              flex={0}
-              padding={padding / 2}
-              // onLayout={e => alert(e.nativeEvent.layout.height)}
-              paddingTop={padding}
-              marginTop={
-                fullScreen ? SAFEAREA_TOP + (iPhoneX ? 0.5 : 0) * SIZE.s : 0
-              }
-              // borderWidth={1}
-              // padding={padding}
-
-              flow="row"
-            // xAlign="center"
-            // right={SIZE.s}
-            // top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
-            // zIndex={1000}
+              flex={1}
+              // height={rowHeight}
+              // height={modalHeight}
+              borderWidth_={3}
+              borderColor_="red"
             >
-              <T.Space
-                width={SIZE.l * 4}
-                borderWidth_={1}
-                // paddingLeft={SIZE.t}
+              <T.Row
                 flex={0}
-                xAlign="center"
+                padding={padding / 2}
+                // onLayout={e => alert(e.nativeEvent.layout.height)}
+                paddingTop={padding}
+                marginTop={
+                  fullScreen ? SAFEAREA_TOP + (iPhoneX ? 0.5 : 0) * SIZE.s : 0
+                }
+                // borderWidth={1}
+                // padding={padding}
+
+                flow="row"
+              // xAlign="center"
+              // right={SIZE.s}
+              // top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
+              // zIndex={1000}
               >
-                {/* <T.Icon
+                <T.Space
+                  width={SIZE.l * 4}
+                  borderWidth_={1}
+                  // paddingLeft={SIZE.t}
+                  flex={0}
+                  xAlign="center"
+                >
+                  {/* <T.Icon
               onPress={this.close}
               name="close"
               size={rwd(18)}
@@ -128,59 +130,59 @@ export class ModalScreen extends ModalBase {
               iconSet="AntDesign"
               // color="rgb(131,131,131)"
             /> */}
-                {button ? closeIcon : null}
-              </T.Space>
-              <T.Col borderWidth_={0} align="center" paddingHorizontal={SIZE.m}>
-                {title && (
-                  <T.Label
-                    // theme="H0"
-                    // paddingTop={SIZE.s}
-                    theme="H1"
-                    color={titleColor}
-                    size={rwd(17)}
-                    // numberOfLines={1}
-                    marginBottom={0}
-                    // color={BCOLOR}
-                    text={title}
-                  />
-                )}
-              </T.Col>
-              <T.Space
-                width={SIZE.l * 4}
-                borderWidth_={1}
-                flex={0}
-                xAlign="center"
-                yAlign="flex-end"
-                paddingRight={SIZE.s}
-              >
-                {button ? button : closeIcon}
-              </T.Space>
-            </T.Row>
-            <T.Row>
-              {/* {scrollable ? (
+                  {button ? closeIcon : null}
+                </T.Space>
+                <T.Col borderWidth_={0} align="center" paddingHorizontal={SIZE.m}>
+                  {title && (
+                    <T.Label
+                      // theme="H0"
+                      // paddingTop={SIZE.s}
+                      theme="H1"
+                      color={titleColor}
+                      size={rwd(17)}
+                      // numberOfLines={1}
+                      marginBottom={0}
+                      // color={BCOLOR}
+                      text={title}
+                    />
+                  )}
+                </T.Col>
+                <T.Space
+                  width={SIZE.l * 4}
+                  borderWidth_={1}
+                  flex={0}
+                  xAlign="center"
+                  yAlign="flex-end"
+                  paddingRight={SIZE.s}
+                >
+                  {button ? button : closeIcon}
+                </T.Space>
+              </T.Row>
+              <T.Row>
+                {/* {scrollable ? (
                 <T.List
                   quoteable={quoteable}
                   ListHeaderComponent={children}
                   contentContainerStyle={{ padding: rwd(10) }}
                 />
               ) : ( */}
-              <T.Grid
-                // backgroundColor="green"
-                // backgroundColor="white"
-                padding={padding}
-                keyboardAware={keyboardAware}
-                safeAreaDisabled={!safeArea}
-              >
-                {children}
-              </T.Grid>
-              {/* )} */}
+                <T.Grid
+                  // backgroundColor="green"
+                  // backgroundColor="white"
+                  padding={padding}
+                  keyboardAware={keyboardAware}
+                  safeAreaDisabled={!safeArea}
+                >
+                  {children}
+                </T.Grid>
+                {/* )} */}
+              </T.Row>
+              <T.Space size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0} />
+              {/* <T.SafeArea flex={0} backgroundColor={safeAreaColor} /> */}
             </T.Row>
-            <T.Space size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0} />
-            {/* <T.SafeArea flex={0} backgroundColor={safeAreaColor} /> */}
-          </T.Row>
-        )
-        }
-      </ModalBox>
+          )
+          }
+        </ModalBox></>
     )
   }
 

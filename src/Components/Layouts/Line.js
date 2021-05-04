@@ -7,7 +7,7 @@ export class Line extends React.Component {
       flex = 0,
       size = 0.2,
       style,
-      color = Background, //'rgba(182,182,182, 0.5)',
+      color = LINE_COLOR, //'rgba(182,182,182, 0.5)',
       ...props
     } = this.props
     // color = 'red'

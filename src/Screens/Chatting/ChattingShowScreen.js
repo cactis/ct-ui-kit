@@ -68,7 +68,7 @@ export class ChattingShowScreen extends ChattingBase {
           onSend={(messages) => this.onSend(messages)}
           renderUsernameOnMessage={true}
           user={{
-            _id: currentUser.id,
+            _id: currentUser?.id,
           }}
         />
         <T.NavEvent
@@ -96,7 +96,7 @@ export class ChattingShowScreen extends ChattingBase {
   }
 
   initStateData = (onComplete) => {
-    if (_navigation.state.params) {
+    if(_navigation.state.params) {
       let { data: channel } = _navigation.state.params
       log(channel, 'channel in initStateData')
       let messages = channel.messages.map((item) => {
@@ -146,13 +146,13 @@ export class ChattingShowScreen extends ChattingBase {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
-    if (eval('typeof ws !== "undefined"')) {
+    if(eval('typeof ws !== "undefined"')) {
       ws.close()
     }
   }

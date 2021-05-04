@@ -1,5 +1,4 @@
 if(__DEV__) console.log('!!! Library.js#UIKIT')
-
 import React from 'react'
 
 import D from 'react-native-device-info'
@@ -8,8 +7,8 @@ import RNViewShot from 'react-native-view-shot'
 import _ from 'lodash'
 import {
   Alert,
+  Dimensions,
   PermissionsAndroid,
-  Platform,
   Share as RNShare,
 } from 'react-native'
 
@@ -113,7 +112,11 @@ window.setDeviceInfo = async () => {
     iOS &&
     (_info.Model?.indexOf('iPhone X') == 0 ||
       _info.Model?.indexOf('iPhone 1') == 0)
-
+  window.isLandScape = () => {
+    // alert(Dimensions.get('window').width > Dimensions.get('window').height)
+    return Dimensions.get('window').width > Dimensions.get('window').height
+  }
+  window.isPortrait = () => { return !isLandScape() }
   window.deviceName = () => {
     return _info.deviceName
   }
@@ -132,6 +135,24 @@ window.log = (...message) => {
   }
   // _trace()
 }
+
+
+// global._currentUser = null
+// window.currentUser = () => {
+//   if(_currentUser) {
+//     return _currentUser
+//   } else {
+//     T.User.validateToken().then((isLogged) => {
+//       if(isLogged) {
+//         return _currentUser
+//       } else { }
+//       T.User.logout(() => {
+//         reboot(window._navigation)
+//         return null
+//       })
+//     })
+//   }
+// }
 
 window.__log = (message, title = '') => {
   log(message, title)
@@ -186,17 +207,37 @@ window.randId = (min = 99999999, max = 999999999) => {
 
 window.rwd = (num, weight = 1) => {
   let r = SCREEN_WIDTH / 1400
-  return num * (0.7 + r)
+  return num * (0.7 + (SCREEN_WIDTH > 800 ? 0.6 : 1) * r)
 }
 
 window._runLast = undefined
 window.runLast = (func, wait = 1000, id = randId(), ...args) => {
   // alert(id)
   // alert('runLast')
+  log('clear runlast')
   clearTimeout(_runLast)
   _runLast = `${id}_${setTimeout((args) => {
     func.apply(null, args)
+    log('run runlast')
   }, wait)}`
+}
+
+let _runFirst
+window.runFirst = (func, awit = 1000, ...args) => {
+
+  let key = func.toString().hashCode()
+  log(key, 'key')
+  log(_runFirst === key, '_runFirst === key#')
+  if(_runFirst === key) {
+    log('no run')
+  } else {
+    _runFirst = key
+    log('run First -----------')
+    func.apply(null, args)
+    delayed(() => {
+      _runFirst = undefined
+    }, 3000)
+  }
 }
 
 window._runOnly = undefined
@@ -243,7 +284,7 @@ window.delayed = (func, wait = 1000, ...args) => {
 }
 
 window.navigateTo = (navigation, route, params = {}) => {
-  log(navigation, 'navigation in Library#navigateTo----------------')
+  // log(navigation, 'navigation in Library#navigateTo----------------')
   let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || params?.url
     }_${randId()}`
 
@@ -675,11 +716,11 @@ window.requestRating = async (force: false) => {
   if(requested && !force) return
 
   let { currentUser } = global
-  log(currentUser, 'currentUser')
+  // log(currentUser, 'currentUser')
   let { reading = {}, lookings, searching } = currentUser
-  log(reading, 'reading')
+  // log(reading, 'reading')
   let times = _.keys(reading).length
-  log(times, 'times')
+  // log(times, 'times')
   if(!(times > 5 && searching && lookings) && !force) return
   await T.Storage.set(key, 'true')
   if(iOS) {
@@ -809,3 +850,21 @@ window.getHostName = (url) => {
 }
 
 
+function functionName(fun) {
+  var ret = fun.toString();
+  log(ret, 'ret')
+  ret = ret.substr('function '.length);
+  ret = ret.substr(0, ret.indexOf('('));
+  return ret;
+}
+
+String.prototype.hashCode = function () {
+  var hash = 0, i, chr;
+  if(this.length === 0) return hash;
+  for(i = 0; i < this.length; i++) {
+    chr = this.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+};

@@ -26,34 +26,39 @@ export class SearchBar extends React.PureComponent {
       backgroundColor = window.SEARCHBAR_BACKGROUND_COLOR
     } = style
     return (
-      <Row padding__={SIZE.s} flex={1} backgroundColor_="red" width__={width}
+      <Row padding={SIZE.m} flex={1} backgroundColor_="red" width__={width}
+        paddingRight={this.props.searchBarCustomButton ? SIZE.n : SIZE.m}
+        flow='row'
         width='100%' marginVertical={SIZE.t} {...this.props}  >
-        <Row
-          // borderRadius={borderRadius}
-          style={{ borderRadius: SIZE.l }}
-          paddingVertical={SIZE.t}
-          backgroundColor={backgroundColor}
-        // backgroundColor='red'
-        >
-          <TextInput
-            placeholder="search"
-            // style={{ borderRadius: SIZE.m }}
-            padding={SIZE.s}
-            paddingHorizontal={SIZE.m}
-            clearButtonMode="always"
-            autoCapitalize="none"
-            placeholderTextColor={placeholderTextColor}
-            value={value || this.props.keyword || this.props.value}
-            // onChange={this.props.onChange}
-            onChangeText={(value) => {
-              this.setState({ value: value })
-              this.props.onChange && this.props.onChange(value)
-            }}
-            onSubmitEditing={() =>
-              this.props.onSubmit && this.props.onSubmit(value)
-            }
-          />
-        </Row>
+        <T.Col>
+          <Row
+            // borderRadius={borderRadius}
+            style={{ borderRadius: SIZE.l }}
+            paddingVertical={SIZE.t}
+            backgroundColor={backgroundColor}
+          // backgroundColor='red'
+          >
+            <TextInput
+              placeholder="search"
+              // style={{ borderRadius: SIZE.m }}
+              padding={SIZE.s}
+              paddingHorizontal={SIZE.m}
+              clearButtonMode="always"
+              autoCapitalize="none"
+              placeholderTextColor={placeholderTextColor}
+              value={value || this.props.keyword || this.props.value}
+              // onChange={this.props.onChange}
+              onChangeText={(value) => {
+                this.setState({ value: value })
+                this.props.onChange && this.props.onChange(value)
+              }}
+              onSubmitEditing={() =>
+                this.props.onSubmit && this.props.onSubmit(value)
+              }
+            />
+          </Row>
+        </T.Col>
+        {this.props.searchBarCustomButton}
       </Row>
     )
   }

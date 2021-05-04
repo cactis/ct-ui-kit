@@ -9,6 +9,10 @@ import DraggableFlatList from 'react-native-draggable-flatlist'
 import { SearchBar } from './SearchBar'
 export { RNList }
 
+export {
+  Animated
+}
+
 export class List extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -59,7 +63,7 @@ export class List extends React.PureComponent {
       this.setState({ data: [] }, () => {
         this.setState({ data: [...data], extraData: randId() })
       })
-      this.reloadData()
+      // this.reloadData()
     },
     onCreated: (item) => {
       item.animation = window.Effect.zoomOut //'shake'
@@ -280,6 +284,7 @@ export class List extends React.PureComponent {
   }
 
   render() {
+    if(this.props.__hidden__) return null
     let { isRefreshing, refresh, data, meta, lastPage, prevPage, url, toTop, scrollToTopButtonVisible, fadeAnim } = this.state
     let { loadingUri = `${AppConfig.web}/img/loading1.gif` } = this.props
     let {
@@ -290,6 +295,7 @@ export class List extends React.PureComponent {
       ListFooterComponent,
       draggable,
       searchable = false,
+      destroyable = false,
       ...extra
     } = this.props
     let columnWrapperStyle = {}
@@ -352,6 +358,7 @@ export class List extends React.PureComponent {
                 <Row flex={1}>
                   <SearchBar
                     keyword={this.props.keyword}
+                    searchBarCustomButton={this.props.searchBarCustomButton}
                     style={this.props.searchBarStyle}
                     ref={(c) => (this.searchBar = c)}
                     onChange={(e) => {
@@ -440,6 +447,7 @@ export class List extends React.PureComponent {
   }
   onComplete = () => { }
   componentDidMount() {
+    if(this.props.__hidden__) return
     this.mounted = true
 
     let { data, dataPath = 'data', onLoad, pagination = true } = this.props
