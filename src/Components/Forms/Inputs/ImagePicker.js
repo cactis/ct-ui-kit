@@ -61,6 +61,9 @@ window.readBase64FromFile = async (file) => {
   let { filename, path } = file
   log(path, 'path#readBase64FromFile')
   let base64 = await RNFS.readFile(path, 'base64')
+  // log(base64.length, 'base64.length # ')
+  // base64 = T.GZip.compress(base64)
+  // log(base64.length, 'base64.length # ')
   file.base64 = base64
   return file
 }

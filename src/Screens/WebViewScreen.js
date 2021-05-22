@@ -6,13 +6,16 @@ export { WebView }
 let _this, _navigation
 export class WebViewScreen extends WebSocketBase {
   static navigationOptions = ({ navigation }) => {
+    _navigation = navigation
     return {
       title: navigation.state.params?.title || '預設標題',
+      // headerShown: false,
+
     }
   }
   state = {
     data: null,
-    room: global.room,
+    room: window.room,
   }
 
   componentDidMount() {
@@ -25,49 +28,103 @@ export class WebViewScreen extends WebSocketBase {
     this.connectSocket()
   }
 
+  onMessage = event => {
+    // log(uri, 'uri onMessage')
+    log(event, 'event # onMessage')
+    const { data } = event.nativeEvent;
+    log(data, 'data in onMessage')
+    let uri = JSON.parse(data)
+    let { href } = uri
+    log(href, 'href in onMessage')
+    // alert(data)
+    // let { uri } = uri
+    if(href.indexOf('reader') > -1) {
+      popupScreen.open(<T.Grid flow={isPortrait() ? 'column' : 'row'}><T.Col ><T.WebView ref={c => window.reader = c}
+        injectedJavascript={window.injectedJavascript}
+        source={{ uri: href }} onMessage={this.onMessage} style={{}} /></T.Col></T.Grid>, {
+        nowrap: true, onClose: () => { window.reader?.injectJavaScript('savePosition("popupScreen close button")') }
+      })
+    } else {
+      navigateTo(_navigation, 'WebViewScreen', {
+        title: 'Your Bookshelves',
+        uri: href,
+        // headerShow: false,
+        // padding: 0,
+        // safeArea: false
+        // fullScreen: true
+      })
+      // this.setState({ data });
+    }
+  };
+
   render() {
-    let { data, uri = this.props.url, fullScreen } = this.state
-    // if (!data) return null
-    // __DEV__ && alert(uri)
-    // log(data,  'data in WebViewScreen render() ')
-    log(uri, 'uri')
-    let padding = fullScreen ? SIZE.s : SIZE.n
+    let { title, data, uri = this.props.url, fullScreen, padding } = this.state
+
+    log(uri, 'uri in WebViewScreen render')
+    padding = padding || fullScreen ? SIZE.s : SIZE.n
+    let header = <T.Row flex={0} flow='row' paddingTop={SAFEAREA_TOP + SIZE.m}
+      backgroundColor={BCOLOR}>
+      <T.Center padding={SIZE.m} flex={0}>
+        <T.Icon name="angle-left"
+          iconSet="Fontisto"
+          color='white'
+          size={rwd(11)} onPress={() => {
+            this.webview.goBack()
+          }} />
+      </T.Center>
+      <T.Center paddingBottom={SIZE.s}>
+        <T.Label text={title} theme='H3' size={SIZE.s * 2.5} color='white' />
+      </T.Center>
+      <T.Center padding={SIZE.m} flex={0}>
+        <T.Icon name="angle-left"
+          iconSet="Fontisto"
+          color={BCOLOR}
+          size={rwd(11)} /></T.Center>
+    </T.Row>
     return (
-      <>
-        <T.Screen padding={padding}>
-          {fullScreen && (
-            <T.BarItem
-              name="angle-left"
-              color="#333"
-              onPress={() => T.NavigationService.goBack()}
-            />
-          )}
-          {/* <T.Html uri={uri} /> */}
+      <T.Screen padding={0} safeAreaDisabled={true} backgroundColor_='red'>
+        {/* {header} */}
+        <T.Row>
           <WebView
             // flex={1}
+            ref={c => this.webview = c}
             source={{ uri: uri }}
+            applicationNameForUserAgent={`ReadusWebView/1.0.0_${window.accessTokens}`}
+            injectedJavaScript={window.injectedJavascript}
+            onMessage={this.onMessage}
             style={{
               // backgroundColor: 'red',
               width: '100%',
               height: SCREEN_HEIGHT,
             }}
           />
-        </T.Screen>
-      </>
+        </T.Row>
+      </T.Screen>
     )
   }
 
   initStateData = (onComplete) => {
     if(_navigation?.state.params) {
-      let { data, uri, fullScreen = true } = _navigation?.state.params
-      // _navigation.setParams({ title: '改為新標題' })
-      this.setState({ data, uri, fullScreen }, () => {
+      let { data, uri, title, fullScreen = true, padding } = _navigation?.state.params
+      // _navigation.setParams({title: '改為新標題' })
+      this.setState({ data, uri, title, fullScreen, padding }, () => {
         onComplete && onComplete()
       })
     } else {
       onComplete && onComplete()
     }
   }
-  autoRun = () => { }
+  autoRun = () => {
+    // document.addEventListener("message", event => {
+    //   alert(event.data)
+    //   this.setState({ msg: event.data });
+    // });
+    // window.addEventListener("message", event => {
+    //   alert(event.data)
+    //   this.setState({ msg: event.data });
+    // });
+    // window.ReactNativeWebView.postMessage('data');
+
+  }
 }
 var styles = StyleSheet.create({})

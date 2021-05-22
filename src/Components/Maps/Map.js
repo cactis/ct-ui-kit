@@ -67,12 +67,12 @@ export class Map extends React.PureComponent {
                 key={randId()}
                 title={`${item.latitude}`}
                 // title={
-                //   item.coordable?.id != global.currentUser?.id
+                //   item.coordable?.id != window.currentUser?.id
                 //     ? item.coordable?.name
                 //     : '(yourself)'
                 // }
                 // pinColor={
-                //   item.coordable?.id != global.currentUser?.id
+                //   item.coordable?.id != window.currentUser?.id
                 //     ? 'rgb(255,0,0)'
                 //     : iOS
                 //     ? 'rgba(43,219,14,.95)'

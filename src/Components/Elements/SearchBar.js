@@ -9,7 +9,7 @@ export class SearchBar extends React.PureComponent {
   }
 
   search = (keyword) => {
-    // alert(keyword)
+    log(keyword, 'keyword')
     this.props.onChange && this.props.onChange(keyword)
     this.setState({ value: keyword })
   }
@@ -19,21 +19,21 @@ export class SearchBar extends React.PureComponent {
     // log(data,  'data in SearchBar render()')
     // if (!data) return null
     // let { item = data} = data
-    let { style = {}, width = SCREEN_WIDTH - SIZE.m } = this.props
+    let { style = {}, width = SCREEN_WIDTH - SIZE.m, paddingHorizontal = SIZE.s } = this.props
     let {
-      borderRadius = SIZE.t,
+      borderRadius = SIZE.s,
       placeholderTextColor = window.SEARCHBAR_PLACEHOLDER_COLOR,
       backgroundColor = window.SEARCHBAR_BACKGROUND_COLOR
     } = style
     return (
-      <Row padding={SIZE.m} flex={1} backgroundColor_="red" width__={width}
-        paddingRight={this.props.searchBarCustomButton ? SIZE.n : SIZE.m}
+      <Row paddingTop={SIZE.s} paddingBottom={SIZE.n} flex={1} backgroundColor_="red" width__={width}
+        paddingHorizontal={this.props.searchBarCustomButton ? SIZE.s : paddingHorizontal}
         flow='row'
         width='100%' marginVertical={SIZE.t} {...this.props}  >
         <T.Col>
           <Row
             // borderRadius={borderRadius}
-            style={{ borderRadius: SIZE.l }}
+            style={{ borderRadius: borderRadius }}
             paddingVertical={SIZE.t}
             backgroundColor={backgroundColor}
           // backgroundColor='red'

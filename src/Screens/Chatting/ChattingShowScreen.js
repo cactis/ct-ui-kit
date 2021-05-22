@@ -60,7 +60,7 @@ export class ChattingShowScreen extends ChattingBase {
   }
 
   render() {
-    let { currentUser } = global
+    let { currentUser } = window
     return (
       <T.Screen padding={0}>
         <GiftedChat

@@ -52,13 +52,15 @@ export class Touch extends Component {
   running = false
   onPress = () => {
     // runOnly(() => {
-    if(window.avoidOnPress) return
     let { disabled = false, onPress, beep } = this.props
+
+    let code = onPress ? onPress.toString().hashCode() : ""
+    if(window.avoidOnPress == code) return
     if(!disabled && !window.avoidOnPress) {
-      window.avoidOnPress = true
+      window.avoidOnPress = code
       onPress && onPress()
       delayed(() => {
-        window.avoidOnPress = false
+        window.avoidOnPress = null
       })
     }
     this._beep(beep)
@@ -151,17 +153,17 @@ export class Touch extends Component {
 //     this._beep(beep)
 //     // log(this, 'this')
 //     if (disabled) return
-//     // log(global.justRun, this.id, 'global.justRun, this.id')
+//     // log(window.justRun, this.id, 'window.justRun, this.id')
 //     runLast(() => {
-//       global.justRun = null
+//       window.justRun = null
 //     })
-//     if (global.justRun == this.id) {
-//       log(global.justRun, 'justRun')
+//     if (window.justRun == this.id) {
+//       log(window.justRun, 'justRun')
 //       return
 //     }
 //
 //     onPress && onPress()
-//     global.justRun = this.id
+//     window.justRun = this.id
 //   }
 //
 //   onLongPress = () => {

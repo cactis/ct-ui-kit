@@ -88,7 +88,7 @@ export class Button extends React.PureComponent {
       link,
       onPress,
       fontSize = titleStyle?.fontSize || BASE_SIZE * 1.2,
-      disabledColor = 'rgb(253, 142, 142)',
+      disabledColor = 'white',
       disabledBackgroundColor = 'rgb(221, 220, 220)',
       padding = fontSize * 0.5,
       // disabled = false,

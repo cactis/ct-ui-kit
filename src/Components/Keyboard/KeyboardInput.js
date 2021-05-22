@@ -77,7 +77,7 @@ export class KeyboardInput extends React.PureComponent {
         >
           {avatar ? (
             <T.Center flex={0}>
-              <R.Avatar data={global.currentUser} size={rwd(30)} />
+              <R.Avatar data={window.currentUser} size={rwd(30)} />
             </T.Center>
           ) : null}
           <T.Space />

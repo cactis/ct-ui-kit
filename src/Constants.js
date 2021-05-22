@@ -204,7 +204,7 @@ require('../../../Constants.js')
 
 setDeviceName = () => {
   D.getDeviceName().then((res) => {
-    global.DeviceName = res
+    window.DeviceName = res
   })
 }
 setDeviceName()
@@ -316,6 +316,7 @@ window.initConstant = () => {
 
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.t
+window.LOAD_PREV_PAGE = '載入上一頁'
 
 window.language = 'zh-tw'
 

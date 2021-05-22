@@ -56,7 +56,7 @@ window.Effect = {
 }
 
 window._DEVICE_INFO = async () => {
-  let { currentUser } = global
+  let { currentUser } = window
   return {
     is__DEV__: __DEV__,
     Brand: await D.getBrand(),
@@ -137,7 +137,7 @@ window.log = (...message) => {
 }
 
 
-// global._currentUser = null
+// window._currentUser = null
 // window.currentUser = () => {
 //   if(_currentUser) {
 //     return _currentUser
@@ -156,7 +156,7 @@ window.log = (...message) => {
 
 window.__log = (message, title = '') => {
   log(message, title)
-  title = `${global.currentUser?.name}: ${title}`
+  title = `${window.currentUser?.name}: ${title}`
   T.Api.post('/log', {
     log: { title: title, body: message, os: iOS ? 'iOS' : 'Android' },
   })
@@ -212,6 +212,7 @@ window.rwd = (num, weight = 1) => {
 
 window._runLast = undefined
 window.runLast = (func, wait = 1000, id = randId(), ...args) => {
+  log(func.toString(), 'func # ')
   // alert(id)
   // alert('runLast')
   log('clear runlast')
@@ -224,7 +225,6 @@ window.runLast = (func, wait = 1000, id = randId(), ...args) => {
 
 let _runFirst
 window.runFirst = (func, awit = 1000, ...args) => {
-
   let key = func.toString().hashCode()
   log(key, 'key')
   log(_runFirst === key, '_runFirst === key#')
@@ -265,14 +265,6 @@ window.runOnly = (func, wait = 1000, ...args) => {
   // clearTimeout(_runOnly)
 }
 
-window._runOnce = (key, run) => {
-  let _runOnce = global._runOnce || {}
-  if(!_runOnce[key]) {
-    global._runOnce[key] = true
-    run()
-  }
-}
-
 // window.delayedTimer = undefined
 window.delayed = (func, wait = 1000, ...args) => {
   // clearTimeout(delayedTimer)
@@ -296,55 +288,51 @@ window.navigateTo = (navigation, route, params = {}) => {
   // log(key, 'key current')
   // log(route, 'navigate to route')
   // log(nextKey, 'nextKey - in Library navigateTo')
-  runLast(() => {
+  runFirst(() => {
     // log('clear currentRoute')
-    global.currentRoute = null
+    window.currentRoute = null
   })
-  if(global.currentRoute == route) {
+  if(window.currentRoute == route) {
     return log('duplicate click')
   }
   // log(routeName, route, 'routeName, route')
   if(routeName == route) {
-    // log(params, 'params in push')
+    log(params, 'params in push')
     navigation.push(route, params, nextKey)
   } else {
-    // log(params, 'params in navigate')
+    log(params, 'params in navigate')
     // log(
     //     { routeName: route, params: params, key: nextKey },
     //     '{ routeName: route, params: params, key: nextKey }'
     // )
+    // navigation.setOptions({ title: 'Updated!' })
+
     navigation.navigate({
       routeName: route,
       params: params,
       key: nextKey,
     })
   }
-  global.currentRoute = route
+  window.currentRoute = route
 
-  // global.routesStack.push(routeName)
-  // log(global.routesStack, 'global.routesStack')
+  // window.routesStack.push(routeName)
+  // log(window.routesStack, 'window.routesStack')
 }
 
 window.pushTo = (navigation, route, params = {}) => {
-  runLast(() => {
-    // log(navigation, 'navigation pushTo called')
-    if(!navigation) return
-    // log(params, 'params - in Library pushTo')
-    let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || randId()
-      }`
-    // log(nextKey, 'nextKey - in Library pushTo')
+  clearTimeout(window._pushTo)
+  log('clear timeout: _pushTo')
+  window._pushTo = setTimeout(() => {
+    log('run _pushTo')
+    delete window._pushTo
 
-    // log(navigation, 'navigation - in ')
-    // let { routeName } = navigation.state
-    // if (routeName == route) {
-    //   navigation.push(route, params)
-    // } else {
-    if(global.currentKey == nextKey) return log('duplicate click!!')
-    global.currentKey = nextKey
+    if(!navigation) return
+    let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || randId()}`
+    if(window.currentKey == nextKey) return log('duplicate click!!')
+    window.currentKey = nextKey
     navigation.push(route, params, nextKey)
-    global.currentKey = null
-  }, 300)
-  // }
+    window.currentKey = null
+  }, 1000)
 }
 
 String.prototype.remove = function (str) {
@@ -376,11 +364,17 @@ window.columnsNumber = (padding = 0) => {
 }
 
 window._runOnce = (key, run) => {
-  let runKeys = global.runKeys || {}
-  // if (__DEV__) console.log(runKeys, 'runKeys')
-  if(!runKeys[key]) {
-    runKeys[key] = true
-    window.runKeys = runKeys
+  window._runOnceSet = window._runOnceSet || {}
+  if(!window._runOnceSet[key]) {
+    window._runOnceSet[key] = true
+    run()
+  }
+}
+
+window.runOnce = (key, run) => {
+  window.runOnceSet = window.runOnceSet || {}
+  if(!window.runOnceSet[key]) {
+    window.runOnceSet[key] = true
     run()
   }
 }
@@ -715,7 +709,7 @@ window.requestRating = async (force: false) => {
   let requested = await T.Storage.get(key)
   if(requested && !force) return
 
-  let { currentUser } = global
+  let { currentUser } = window
   // log(currentUser, 'currentUser')
   let { reading = {}, lookings, searching } = currentUser
   // log(reading, 'reading')

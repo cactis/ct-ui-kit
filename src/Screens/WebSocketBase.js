@@ -7,7 +7,7 @@ export class WebSocketBase extends React.PureComponent {
   connectSocket = async () => {
     // alert('connectSocket')
     // alert('connectSocket')
-    let accessTokens = global.accessTokens
+    let accessTokens = window.accessTokens
     log(accessTokens, 'accessTokens')
 
     log(AppConfig.webSocket, 'AppConfig.webSocket')

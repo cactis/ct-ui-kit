@@ -33,7 +33,7 @@ export class NavigationService {
   static navigate = (routeName, params = {}) => {
     // log(`||| ${routeName} ||| screen -- 2`)
     let key = `${routeName}_${params.data?.id}`
-    if(global.currentKey == key) return log('duplicate click')
+    if(window.currentKey == key) return log('duplicate click')
     // log(key, 'key from NavigationService navigate()')
     // log(_navigator, '_navigator')
     _navigator.dispatch(
@@ -43,9 +43,9 @@ export class NavigationService {
         key: key,
       })
     )
-    global.currentKey = key
+    window.currentKey = key
     setTimeout(() => {
-      global.currentKey = null
+      window.currentKey = null
     }, 3000)
   }
 }

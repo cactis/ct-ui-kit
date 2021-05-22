@@ -65,7 +65,7 @@ export class MessageItem extends React.PureComponent {
               paddingHorizontal={SIZE.s}
             //
             >
-              {item.user?.id == global.currentUser?.id ? (
+              {item.user?.id == window.currentUser?.id ? (
                 <T.Touch onPress={this.openMenu}>
                   <R.Content
                     numberOfLines={0}
@@ -171,7 +171,7 @@ export class MessageItem extends React.PureComponent {
     let { data } = this.state
     let { item = data } = data
     // log(item, 'item')
-    // log(item.user?.id, global.currentUser?.id)
+    // log(item.user?.id, window.currentUser?.id)
     window.chooseMenu.open({
       // title: '上方寶劍',
       menus: [
@@ -238,7 +238,7 @@ export class MessageItem extends React.PureComponent {
     beep()
     log(this.props.parent.messageRefs, 'this.props.parent.messageRefs')
     // log(item, 'item')
-    // global.currentThread = this
+    // window.currentThread = this
     this.props.parent.replyTo(item)
   }
 

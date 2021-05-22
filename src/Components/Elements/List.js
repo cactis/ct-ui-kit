@@ -255,13 +255,20 @@ export class List extends React.PureComponent {
   )
 
   onViewableItemsChanged = (info) => {
+    // log('onViewableItemsChanged')
     let last = _.last(info.viewableItems)
     let first = _.first(info.viewableItems)
     if(last?.index > this.state.data?.length - 6) this.fetchData()
     this.props.onViewableItemsChanged && this.props.onViewableItemsChanged(info)
-    runLast(() => {
+
+    clearTimeout(window._onViewableItemsChanged_in_List)
+    // log('clear timeout: _onViewableItemsChanged_in_List')
+    window._onViewableItemsChanged_in_List = setTimeout(() => {
+      // log('run _onViewableItemsChanged_in_List')
+      delete window._onViewableItemsChanged_in_List
       this.setState({ scrollToTopButtonVisible: last?.index > (this.props.scrollToTopIndexValue || 15) })
-    })
+    }, 500)
+
   }
 
   _onBeginDrag = (params) => {
@@ -315,7 +322,7 @@ export class List extends React.PureComponent {
       ) : null
 
     if(prevPage > 0) {
-      ListHeaderComponent = <>{ListHeaderComponent}<T.Center padding={SIZE.s}><T.Label text='載入上一頁' theme='H9' onPress={this.loadPrevPage} /></T.Center></>
+      ListHeaderComponent = <>{ListHeaderComponent}<T.Center padding={SIZE.s}><T.Label text={window.LOAD_PREV_PAGE} theme='H9' onPress={this.loadPrevPage} /></T.Center></>
     }
     let ListHeaderComponentWithMeta = meta ? (
       <Grid>
@@ -359,7 +366,8 @@ export class List extends React.PureComponent {
                   <SearchBar
                     keyword={this.props.keyword}
                     searchBarCustomButton={this.props.searchBarCustomButton}
-                    style={this.props.searchBarStyle}
+                    style={{ ...this.props.searchBarStyle }}
+                    {...this.props.searchBarStyle}
                     ref={(c) => (this.searchBar = c)}
                     onChange={(e) => {
                       // log(e, 'e')
@@ -375,7 +383,7 @@ export class List extends React.PureComponent {
                       runLast(() => {
                         this.mounted && this.setState({ keyword })
                         // this.reloadData()
-                      })
+                      }, 300)
                     }}
                     onSubmit={() => this.reloadData()}
                   />

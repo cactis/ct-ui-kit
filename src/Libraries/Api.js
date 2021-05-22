@@ -56,7 +56,7 @@ export class Api {
     if(Dev.logResponse)
       log(method, url, params, '(method, url, params in request')
     if(!url) return log('no url be setted in Api#request')
-    let accessTokens = global.accessTokens
+    let accessTokens = window.accessTokens
     // log(accessTokens, 'accessTokens in API request')
     // const _url = Settings.host + url
     // log(AppConfig, 'AppConfig')
@@ -100,7 +100,7 @@ export class Api {
       build: window.DEVICE_INFO?.ReadableVersion,
       os: iOS ? 'iOS' : 'Android',
       tokens: accessTokens,
-      appName: AppConfig.appName,
+      appName: `${AppConfig.appName}${__DEV__ ? ' (__DEV__)' : ''}`,
       timeZoneOffset: window.timeZoneOffset(),
       ...HttpHeader,
     }
