@@ -32,9 +32,10 @@ export class NavigationService {
 
   static navigate = (routeName, params = {}) => {
     // log(`||| ${routeName} ||| screen -- 2`)
-    let key = `${routeName}_${params.data?.id}`
+    // let key = `${routeName}_${params.data?.id}`
+    let key = `${routeName}_${JSON.stringify(params).hashCode()}`
     if(window.currentKey == key) return log('duplicate click')
-    // log(key, 'key from NavigationService navigate()')
+    log(key, 'key from NavigationService navigate()')
     // log(_navigator, '_navigator')
     _navigator.dispatch(
       NavigationActions.navigate({

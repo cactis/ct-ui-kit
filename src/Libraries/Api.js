@@ -101,9 +101,10 @@ export class Api {
       os: iOS ? 'iOS' : 'Android',
       tokens: accessTokens,
       appName: `${AppConfig.appName}${__DEV__ ? ' (__DEV__)' : ''}`,
-      timeZoneOffset: window.timeZoneOffset(),
+      timeZoneOffset: String(window.timeZoneOffset()),
       ...HttpHeader,
     }
+    window.HTTP_HEADERS = headers
     // log(headers, 'headers')
     // headers = _.merge(headers, HttpHeader)
     // log(headers, 'headers')

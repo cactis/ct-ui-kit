@@ -8,7 +8,7 @@ export class WebViewScreen extends WebSocketBase {
   static navigationOptions = ({ navigation }) => {
     _navigation = navigation
     return {
-      title: navigation.state.params?.title || '預設標題',
+      title: navigation.state.params?.title || '',
       // headerShown: false,
 
     }
@@ -33,27 +33,34 @@ export class WebViewScreen extends WebSocketBase {
     log(event, 'event # onMessage')
     const { data } = event.nativeEvent;
     log(data, 'data in onMessage')
-    let uri = JSON.parse(data)
-    let { href } = uri
+    let _data = JSON.parse(data)
+    let { href, title = this.state.title } = _data
     log(href, 'href in onMessage')
     // alert(data)
     // let { uri } = uri
-    if(href.indexOf('reader') > -1) {
-      popupScreen.open(<T.Grid flow={isPortrait() ? 'column' : 'row'}><T.Col ><T.WebView ref={c => window.reader = c}
-        injectedJavascript={window.injectedJavascript}
-        source={{ uri: href }} onMessage={this.onMessage} style={{}} /></T.Col></T.Grid>, {
-        nowrap: true, onClose: () => { window.reader?.injectJavaScript('savePosition("popupScreen close button")') }
-      })
-    } else {
-      navigateTo(_navigation, 'WebViewScreen', {
-        title: 'Your Bookshelves',
-        uri: href,
-        // headerShow: false,
-        // padding: 0,
-        // safeArea: false
-        // fullScreen: true
-      })
-      // this.setState({ data });
+    if(href) {
+
+      if(href.indexOf('reader') > -1) {
+        popupScreen.open(<T.Grid flow={isPortrait() ? 'column' : 'row'}><T.Col ><T.WebView ref={c => window.reader = c}
+          injectedJavascript={window.injectedJavascript}
+          source={{ uri: href }} onMessage={this.onMessage} style={{}} /></T.Col></T.Grid>, {
+          nowrap: true, onClose: () => { window.reader?.injectJavaScript('savePosition("popupScreen close button")') }
+        })
+      } else {
+        gotoScreen('WebViewScreen', { title: title, uri: href })
+        // navigateTo(_navigation, 'WebViewScreen', {
+        //   title: 'Your Bookshelves',
+        //   uri: href,
+        //   // headerShow: false,
+        //   // padding: 0,
+        //   // safeArea: false
+        //   // fullScreen: true
+        // })
+        // this.setState({ data });
+      }
+    }
+    if(title) {
+      _navigation.setParams({ title: title })
     }
   };
 
@@ -88,8 +95,12 @@ export class WebViewScreen extends WebSocketBase {
           <WebView
             // flex={1}
             ref={c => this.webview = c}
-            source={{ uri: uri }}
+            source={{
+              uri: uri,
+              headers: HTTP_HEADERS
+            }}
             applicationNameForUserAgent={`ReadusWebView/1.0.0_${window.accessTokens}`}
+
             injectedJavaScript={window.injectedJavascript}
             onMessage={this.onMessage}
             style={{
