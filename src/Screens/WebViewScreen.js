@@ -89,7 +89,10 @@ export class WebViewScreen extends WebSocketBase {
           size={rwd(11)} /></T.Center>
     </T.Row>
     return (
-      <T.Screen padding={0} safeAreaDisabled={true} backgroundColor_='red'>
+      <T.Screen padding={0} safeAreaDisabled={true} backgroundColor_='red' scrollable={true} onRefresh={() => {
+        log('reloading')
+        this.webview.reload()
+      }}>
         {/* {header} */}
         <T.Row>
           <WebView
