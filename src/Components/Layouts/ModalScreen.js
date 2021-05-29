@@ -28,6 +28,7 @@ export class ModalScreen extends ModalBase {
       title = propTitle,
       titleColor = '#333', //BFCOLOR,
       quoteable,
+      statusBar = true,
       fullScreen = true,
       keyboardAware = false,
       // paddable = true,
@@ -57,7 +58,7 @@ export class ModalScreen extends ModalBase {
     // alert(swipeToClose)
     // alert(scrollable)
     return (
-      <><StatusBar hidden={true} />
+      <><StatusBar hidden={!statusBar} />
         <ModalBox
           useNativeDriver={true}
           ref={(c) => (this.modal = c)}
@@ -66,7 +67,10 @@ export class ModalScreen extends ModalBase {
           position={position}
           entry={direction}
           keyboardTopOffset={0}
-          onClosed={() => this.setState({ myTitle: null })}
+          onClosed={() => {
+            StatusBar.setHidden(false, 'slide');
+            this.setState({ myTitle: null })
+          }}
           // backgroundColor={backgroundColor}
           coverScreen={true}
           style={{

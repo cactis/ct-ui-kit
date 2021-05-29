@@ -491,9 +491,9 @@ export class List extends React.PureComponent {
     }
   }
 
-  componentWillUnmount() {
-    this.mounted = false
-  }
+  // componentWillUnmount() {
+  //   this.mounted = false
+  // }
 }
 
 class ListItem extends React.Component {

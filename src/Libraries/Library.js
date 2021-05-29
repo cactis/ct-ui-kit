@@ -129,7 +129,7 @@ window.log = (...message) => {
     console.log('')
     // console.log('<------------------------------------------------------')
     console.log(m)
-    console.log(`'${ms} from ${new Date()} ${D.getModel()}'`)
+    console.log(`'${ms} | from ${new Date()} ${D.getModel()}'`)
     // console.log('------------------------------------------------------>')
     // console.log('')
   }

@@ -316,7 +316,7 @@ window.initConstant = () => {
 
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.t
-window.LOAD_PREV_PAGE = '載入上一頁'
+window.LOAD_PREV_PAGE = '載入先前的留言'
 
 window.language = 'zh-tw'
 

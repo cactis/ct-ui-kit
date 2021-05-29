@@ -33,7 +33,9 @@ export class NavigationService {
   static navigate = (routeName, params = {}) => {
     // log(`||| ${routeName} ||| screen -- 2`)
     // let key = `${routeName}_${params.data?.id}`
-    let key = `${routeName}_${JSON.stringify(params).hashCode()}`
+    log(params, 'params # ')
+    let code = Object.keys(params).join('_').hashCode()
+    let key = `${routeName}_${code}`
     if(window.currentKey == key) return log('duplicate click')
     log(key, 'key from NavigationService navigate()')
     // log(_navigator, '_navigator')
@@ -52,7 +54,8 @@ export class NavigationService {
 }
 
 window.gotoScreen = (screenName, options = {}) => {
-  log(screenName, 'screenName#')
+  log(screenName, 'screenName# in NotificationService')
+  log(options, 'options # gotoScreen')
   T.NavigationService.navigate(screenName, options)
 }
 
