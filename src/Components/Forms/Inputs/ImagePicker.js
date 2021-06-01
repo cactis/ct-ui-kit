@@ -6,7 +6,7 @@ export { RNImagePicker }
 export const ImagePicker = (props) => {
   let { navigation, onChanged = () => { }, size } = props
   let [data, setData] = useState(props.data)
-  log(data, 'data')
+  // log(data, 'data')
   // if (!data) return null
   getImage = async () => {
     RNImagePicker.openPicker({

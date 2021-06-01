@@ -322,17 +322,23 @@ window.navigateTo = (navigation, route, params = {}) => {
 window.pushTo = (navigation, route, params = {}) => {
   clearTimeout(window._pushTo)
   log('clear timeout: _pushTo')
-  window._pushTo = setTimeout(() => {
-    log('run _pushTo')
-    delete window._pushTo
-
-    if(!navigation) return
-    let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || randId()}`
-    if(window.currentKey == nextKey) return log('duplicate click!!')
-    window.currentKey = nextKey
+  let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || randId()}`
+  if(!window.currentKey) {
     navigation.push(route, params, nextKey)
-    window.currentKey = null
-  }, 1000)
+    setTimeout(() => {
+      delete window.currentKey
+    })
+  }
+
+  // window._pushTo = setTimeout(() => {
+  //   log('run _pushTo')
+  //   delete window._pushTo
+  //   if(!navigation) return
+  //   if(window.currentKey == nextKey) return log('duplicate click!!')
+  //   navigation.push(route, params, nextKey)
+  //   window.currentKey = nextKey
+  //   window.currentKey = null
+  // }, 1000)
 }
 
 String.prototype.remove = function (str) {
@@ -638,7 +644,7 @@ window.requestPermissions = async () => {
 }
 
 window.audioRecording = (item, options = {}) => {
-  flexPopup.open(
+  window.flexPopup.open(
     <T.Div borderRadius={5} backgroundColor__={BFCOLOR}>
       <T.Row
         flex={0}
@@ -807,7 +813,7 @@ window.takeShot = (ref) => {
     (uri) => {
       T.Api.post('/reports', { image: urk }, (res) => {
         let { data } = res
-        log(data, 'data')
+        // log(data, 'data')
       })
     },
     (error) => console.error('Oops, snapshot failed', error)

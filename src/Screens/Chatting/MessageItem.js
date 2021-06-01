@@ -207,7 +207,7 @@ export class MessageItem extends React.PureComponent {
             confirm(
               () => {
                 T.Api.delete(item.routes, (res) => {
-                  log(item, 'item in delete#res')
+                  // log(item, 'item in delete#res')
                   window.Effect.disappear(this.animator, () => {
                     log('callback ----------------')
                     this.props.list?.itemEvent?.onDeleted(item)

@@ -9,7 +9,7 @@ export class DevFlag extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in DevFlag render()')
+    // log(data, 'data in DevFlag render()')
     // if (!data) return null
     // let { item = data} = data
     return __DEV__ ? (
@@ -25,7 +25,7 @@ export class DevFlag extends React.PureComponent {
     ) : null
   }
   onPress = () => {
-    if (this.props.onPress) {
+    if(this.props.onPress) {
       this.props.onPress()
     } else {
       log('need to set onPress on item')
@@ -49,13 +49,13 @@ export class DevFlag extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

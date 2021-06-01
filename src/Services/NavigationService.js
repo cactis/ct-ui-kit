@@ -36,7 +36,7 @@ export class NavigationService {
     log(params, 'params # ')
     let code = Object.keys(params).join('_').hashCode()
     let key = `${routeName}_${code}`
-    if(window.currentKey == key) return log('duplicate click')
+    // if(window.currentKey == key) return log('duplicate click')
     log(key, 'key from NavigationService navigate()')
     // log(_navigator, '_navigator')
     _navigator.dispatch(

@@ -52,7 +52,7 @@ export class TagBase extends React.PureComponent {
       data.item.data = image.data
       data.item.mime = image.mime
       // data.item = { ...data.item, ...image }
-      log(data.item, 'data.item2222')
+      // log(data.item, 'data.item2222')
     } else {
       data.item.src = null
       data.item.data = null

@@ -32,9 +32,9 @@ export class Mp3 extends React.PureComponent {
     let { item = data } = data
     // alert(item.url)
     try {
-      log(item.url, 'item.url to play')
+      // log(item.url, 'item.url to play')
       SoundPlayer.playUrl(item.url)
-    } catch (e) {
+    } catch(e) {
       console.log(`cannot play the sound file`, e)
     }
     // return
@@ -75,13 +75,13 @@ export class Mp3 extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

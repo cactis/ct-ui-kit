@@ -11,6 +11,10 @@ export class ModalScreen extends ModalBase {
   //   alert(`now:${this.keyboardHeight}`)
   //   this.setState({ keyboardHeight: this.keyboardHeight })
   // }
+  // constructor(props) {
+  //   super(props)
+  //   window._popups = [window.flexPopup, window.chooseMenu, window.dropdown]
+  // }
   render() {
     // alert(modalHeight)
     let { content, options, modalHeight, keyboardHeight = 0 } = this.state
@@ -72,7 +76,7 @@ export class ModalScreen extends ModalBase {
             this.setState({ myTitle: null })
           }}
           // backgroundColor={backgroundColor}
-          coverScreen={true}
+          coverScreen={false} // !!!!
           style={{
             height: scrollable ? modalHeight : rowHeight,
             // height: SCREEN_HEIGHT,
@@ -186,6 +190,10 @@ export class ModalScreen extends ModalBase {
             </T.Row>
           )
           }
+          {/* <T.ModalScreen ref={(c) => (window.formScreen0 = c)} />
+          <T.FlexModal ref={(c) => (window.flexPopup0 = c)} position="bottom" />
+          <T.ChooseMenu ref={(c) => (window.chooseMenu0 = c)} />
+          <T.DropdownAlert ref={(c) => (window.dropdown0 = c)} /> */}
         </ModalBox></>
     )
   }
@@ -215,6 +223,7 @@ export class ModalScreen extends ModalBase {
 
   componentWillUnmount() {
     this.mounted = false
+    // _.each(window._popups, (p => window[p] = p))
   }
 }
 var styles = StyleSheet.create({})

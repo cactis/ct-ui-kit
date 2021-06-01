@@ -14,7 +14,7 @@ export class FlexModal extends ModalBase {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
@@ -38,6 +38,7 @@ export class FlexModal extends ModalBase {
           // backgroundColor: 'red',
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
+          zIndex: 10000,
         }}
         {...options}
         position="bottom"
@@ -58,12 +59,12 @@ export class FlexModal extends ModalBase {
         <T.Grid
           flex={0}
           borderRadius={SIZE.l}
-          // padding={padding}
-          // backgroundColor="rgb(241,241,241)"
-          // __b__
-          // backgroundColor={backgroundColor}
-          // backgroundColor="red"
-          // paddingBottom={30}
+        // padding={padding}
+        // backgroundColor="rgb(241,241,241)"
+        // __b__
+        // backgroundColor={backgroundColor}
+        // backgroundColor="red"
+        // paddingBottom={30}
         >
           {children}
           {/* <T.Button title="Close" onPress={() => this.close()} /> */}
@@ -82,6 +83,6 @@ export class FlexModal extends ModalBase {
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

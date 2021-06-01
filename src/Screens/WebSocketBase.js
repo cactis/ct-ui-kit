@@ -35,7 +35,7 @@ export class WebSocketBase extends React.PureComponent {
 
       if(data.type != 'ping') {
         //   log('ws.onmessage')
-        //   log(data, 'data')
+        //   // log(data, 'data')
       }
 
       switch(data.type) {

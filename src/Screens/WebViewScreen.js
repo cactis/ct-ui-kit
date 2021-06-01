@@ -32,7 +32,7 @@ export class WebViewScreen extends WebSocketBase {
     // log(uri, 'uri onMessage')
     log(event, 'event # onMessage')
     const { data } = event.nativeEvent;
-    log(data, 'data in onMessage')
+    // log(data, 'data in onMessage')
     let _data = JSON.parse(data)
     let { href, title = this.state.title } = _data
     log(href, 'href in onMessage')
@@ -47,7 +47,8 @@ export class WebViewScreen extends WebSocketBase {
           nowrap: true, onClose: () => { window.reader?.injectJavaScript('savePosition("popupScreen close button")') }
         })
       } else {
-        gotoScreen('WebViewScreen', { title: title, uri: href })
+        // gotoScreen('WebViewScreen', { title: title, uri: href })
+        pushTo(_navigation, 'WebViewScreen', { title: title, uri: href })
         // navigateTo(_navigation, 'WebViewScreen', {
         //   title: 'Your Bookshelves',
         //   uri: href,
@@ -65,10 +66,13 @@ export class WebViewScreen extends WebSocketBase {
   };
 
   render() {
-    let { title, data, uri = this.props.url, fullScreen, padding } = this.state
-
+    let { title, data, uri = this.props.url || this.props.uri, fullScreen, padding } = this.state
+    // if(!uri) return null
+    let { height = SCREEN_HEIGHT } = this.props
     log(uri, 'uri in WebViewScreen render')
     padding = padding || fullScreen ? SIZE.s : SIZE.n
+    uri = uri && uri[0] == '/' ? `${AppConfig.web}${uri}` : uri
+    log(uri, 'uri in WebViewScreen render')
     let header = <T.Row flex={0} flow='row' paddingTop={SAFEAREA_TOP + SIZE.m}
       backgroundColor={BCOLOR}>
       <T.Center padding={SIZE.m} flex={0}>
@@ -109,7 +113,7 @@ export class WebViewScreen extends WebSocketBase {
             style={{
               // backgroundColor: 'red',
               width: '100%',
-              height: SCREEN_HEIGHT,
+              height: height,
             }}
           />
         </T.Row>

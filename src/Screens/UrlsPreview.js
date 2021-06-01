@@ -3,23 +3,23 @@ import { StyleSheet } from 'react-native'
 
 let _navigation
 export class UrlsPreview extends React.PureComponent {
-state = {
-data: null,
-}
+  state = {
+    data: null,
+  }
 
 
-render() {
-let { data } = this.state
-log(data, 'data in UrlsPreview render()')
-if (!data) return null
-let { item = data} = data
-let space = item.length == 0 ? null :  <T.Space size={SIZE.s} />
-  return <T.Space size={SIZE.n}>{space}{item.length == 1 ? <T.UrlPreviewItem
-    itemWidth='100%'
-    navigation={_navigation} data={item[0]}
-    parent={this}
+  render() {
+    let { data } = this.state
+    // log(data, 'data in UrlsPreview render()')
+    if(!data) return null
+    let { item = data } = data
+    let space = item.length == 0 ? null : <T.Space size={SIZE.s} />
+    return <T.Space size={SIZE.n}>{space}{item.length == 1 ? <T.UrlPreviewItem
+      itemWidth='100%'
+      navigation={_navigation} data={item[0]}
+      parent={this}
     // {...this.props}
-  /> : (
+    /> : (
       <T.List
         {...this.props}
         horizontal
@@ -43,39 +43,39 @@ let space = item.length == 0 ? null :  <T.Space size={SIZE.s} />
         )}
       />
     )}</T.Space>
-}
-onPress = () => {
-if (this.props.onPress){
-this.props.onPress()
-} else {
-log('need to set onPress on item')
-}
-}
+  }
+  onPress = () => {
+    if(this.props.onPress) {
+      this.props.onPress()
+    } else {
+      log('need to set onPress on item')
+    }
+  }
 
-initStateData = onComplete => {
-let { data } = this.props
-this.mounted && this.setState({ data }, () => {
-onComplete && onComplete()
-})
-}
+  initStateData = onComplete => {
+    let { data } = this.props
+    this.mounted && this.setState({ data }, () => {
+      onComplete && onComplete()
+    })
+  }
 
-componentDidMount() {
-_trace()
-this.mounted = true
-_navigation = this.props.navigation
-this.initStateData(() => {
-this.autoRun()
-})
-}
-componentDidUpdate(prevProps) {
-if (prevProps.navigation !== this.props.navigation)
-_navigation = this.props.navigation
-}
+  componentDidMount() {
+    _trace()
+    this.mounted = true
+    _navigation = this.props.navigation
+    this.initStateData(() => {
+      this.autoRun()
+    })
+  }
+  componentDidUpdate(prevProps) {
+    if(prevProps.navigation !== this.props.navigation)
+      _navigation = this.props.navigation
+  }
 
 
-componentWillUnmount() {
-this.mounted = false
-}
-autoRun = () => {}
+  componentWillUnmount() {
+    this.mounted = false
+  }
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

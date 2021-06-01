@@ -52,6 +52,7 @@ export class Touch extends Component {
   running = false
   onPress = () => {
     // runOnly(() => {
+    log('onPress in Touch')
     let { disabled = false, onPress, beep } = this.props
 
     let code = onPress ? onPress.toString().hashCode() : ""

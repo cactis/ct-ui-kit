@@ -180,7 +180,7 @@ window.processNotification = (notification = push) => {
     body = data.body
     record = data.record
 
-    log(data, 'data')
+    // log(data, 'data')
     let { request = () => { } } = data
     // _alert(request)
     eval(request)
