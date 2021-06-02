@@ -170,21 +170,21 @@ export class Dict extends React.PureComponent {
               ]}
             />
           ) : (
-              <T.List
-                data={defs}
-                contentContainerStyle={{ padding: rwd(10) }}
-                renderItem={item => (
-                  <T.Row key={randId()} flow="row" flex={0}>
-                    <T.Col yAlign="center" flex={0} borderWidth_={1}>
-                      <T.Icon name="dot-single" iconSet="Entypo" />
-                    </T.Col>
-                    <T.Col padding={rwd(4)}>
-                      <T.Dicts data={item} />
-                    </T.Col>
-                  </T.Row>
-                )}
-              />
-            )}
+            <T.List
+              data={defs}
+              contentContainerStyle={{ padding: rwd(10) }}
+              renderItem={item => (
+                <T.Row key={randId()} flow="row" flex={0}>
+                  <T.Col yAlign="center" flex={0} borderWidth_={1}>
+                    <T.Icon name="dot-single" iconSet="Entypo" />
+                  </T.Col>
+                  <T.Col padding={rwd(4)}>
+                    <T.Dicts data={item} />
+                  </T.Col>
+                </T.Row>
+              )}
+            />
+          )}
         </T.SafeArea>
       </Modal>
     )
