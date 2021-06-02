@@ -65,6 +65,10 @@ export class WebViewScreen extends WebSocketBase {
     }
   };
 
+  reload = () => {
+    this.webview?.reload()
+  }
+
   render() {
     let { title, data, uri = this.props.url || this.props.uri, fullScreen, padding } = this.state
     // if(!uri) return null
