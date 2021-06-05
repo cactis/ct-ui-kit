@@ -3,6 +3,10 @@ import { StyleSheet } from 'react-native'
 import { WebView } from 'react-native-webview'
 import { WebSocketBase } from './WebSocketBase'
 export { WebView }
+import { Header } from 'react-navigation-stack';
+
+
+
 let _this, _navigation
 export class WebViewScreen extends WebSocketBase {
   static navigationOptions = ({ navigation }) => {
@@ -44,7 +48,7 @@ export class WebViewScreen extends WebSocketBase {
         popupScreen.open(<T.Grid flow={isPortrait() ? 'column' : 'row'}><T.Col ><T.WebView ref={c => window.reader = c}
           injectedJavascript={window.injectedJavascript}
           source={{ uri: href }} onMessage={this.onMessage} style={{}} /></T.Col></T.Grid>, {
-          nowrap: true, onClose: () => { window.reader?.injectJavaScript('savePosition("popupScreen close button")') }
+          nowrap: true, statusBar: false, onClose: () => { window.reader?.injectJavaScript('savePosition("popupScreen close button")') }
         })
       } else {
         // gotoScreen('WebViewScreen', { title: title, uri: href })
@@ -72,7 +76,8 @@ export class WebViewScreen extends WebSocketBase {
   render() {
     let { title, data, uri = this.props.url || this.props.uri, fullScreen, padding } = this.state
     // if(!uri) return null
-    let { height = SCREEN_HEIGHT } = this.props
+    let { scrollable = true, safeAreaDisabled = true } = this.props
+    let { height = scrollable ? SCREEN_HEIGHT - Header.HEIGHT : SCREEN_HEIGHT } = this.props
     log(uri, 'uri in WebViewScreen render')
     padding = padding || fullScreen ? SIZE.s : SIZE.n
     uri = uri && uri[0] == '/' ? `${AppConfig.web}${uri}` : uri
@@ -97,7 +102,7 @@ export class WebViewScreen extends WebSocketBase {
           size={rwd(11)} /></T.Center>
     </T.Row>
     return (
-      <T.Screen padding={0} safeAreaDisabled={true} backgroundColor_='red' scrollable={true} onRefresh={() => {
+      <T.Screen padding={0} safeAreaDisabled={safeAreaDisabled} backgroundColor_='red' scrollable={scrollable} onRefresh={() => {
         log('reloading')
         this.webview.reload()
       }}>

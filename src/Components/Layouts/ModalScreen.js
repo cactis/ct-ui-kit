@@ -20,7 +20,7 @@ export class ModalScreen extends ModalBase {
     let { content, options, modalHeight, keyboardHeight = 0 } = this.state
     // log(keyboardHeight, 'keyboardHeight')
     let { children = content, title: propTitle, height } = this.props
-
+    log(options, 'options # ')
     let {
       // height: modalHeight = height,
       backgroundColor = SCREEN_BACKGROUNDCOLOR, // 'rgba(255,255,255,1)',

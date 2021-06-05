@@ -100,7 +100,7 @@ export class Api {
       build: window.DEVICE_INFO?.ReadableVersion,
       os: iOS ? 'iOS' : 'Android',
       tokens: accessTokens,
-      appName: `${AppConfig.appName}${__DEV__ ? ' (__DEV__)' : ''}`,
+      appName: AppConfig.appName,
       timeZoneOffset: String(window.timeZoneOffset()),
       ...HttpHeader,
     }

@@ -56,14 +56,14 @@ export class Touch extends Component {
     let { disabled = false, onPress, beep } = this.props
 
     let code = onPress ? onPress.toString().hashCode() : ""
-    if(window.avoidOnPress == code) return
-    if(!disabled && !window.avoidOnPress) {
-      window.avoidOnPress = code
-      onPress && onPress()
-      delayed(() => {
-        window.avoidOnPress = null
-      })
+    if(disabled || window.avoidOnPress) {
+      return
     }
+    onPress && onPress()
+    window.avoidOnPress = code
+    delayed(() => {
+      delete window.avoidOnPress
+    })
     this._beep(beep)
     // }, 300)
   }
