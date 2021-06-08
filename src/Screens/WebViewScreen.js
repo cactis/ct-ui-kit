@@ -36,18 +36,33 @@ export class WebViewScreen extends WebSocketBase {
     // log(uri, 'uri onMessage')
     log(event, 'event # onMessage')
     const { data } = event.nativeEvent;
-    // log(data, 'data in onMessage')
+    log(data, 'data in onMessage')
     let _data = JSON.parse(data)
+    log(_data, '_data # ')
+
     let { href, title = this.state.title } = _data
     log(href, 'href in onMessage')
+    let { scrollable = true, safeAreaDisabled = true } = this.props
+    let { height = scrollable ? SCREEN_HEIGHT - Header.HEIGHT : SCREEN_HEIGHT } = this.props
     // alert(data)
     // let { uri } = uri
     if(href) {
-
+      log(href.indexOf('reader') > -1, "href.indexOf('reader') > -1")
       if(href.indexOf('reader') > -1) {
-        popupScreen.open(<T.Grid flow={isPortrait() ? 'column' : 'row'}><T.Col ><T.WebView ref={c => window.reader = c}
-          injectedJavascript={window.injectedJavascript}
-          source={{ uri: href }} onMessage={this.onMessage} style={{}} /></T.Col></T.Grid>, {
+        popupScreen.open(<T.Grid flow={isPortrait() ? 'column' : 'row'}><T.Col >
+          <T.WebView
+            ref={c => window.reader = c}
+            applicationNameForUserAgent={`ReadusWebView/1.0.0_${window.accessTokens}`}
+            injectedJavascript={window.injectedJavascript}
+            source={{ uri: href, headers: HTTP_HEADERS }}
+            onMessage={this.onMessage}
+            style={{
+              // backgroundColor: 'red',
+              width: '100%',
+              height: height,
+            }}
+          />
+        </T.Col></T.Grid>, {
           nowrap: true, statusBar: false, onClose: () => { window.reader?.injectJavaScript('savePosition("popupScreen close button")') }
         })
       } else {
