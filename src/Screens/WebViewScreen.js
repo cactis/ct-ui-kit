@@ -40,7 +40,7 @@ export class WebViewScreen extends WebSocketBase {
     let _data = JSON.parse(data)
     log(_data, '_data # ')
 
-    let { href, title = this.state.title } = _data
+    let { href, title } = _data
     log(href, 'href in onMessage')
     let { scrollable = true, safeAreaDisabled = true } = this.props
     let { height = scrollable ? SCREEN_HEIGHT - Header.HEIGHT : SCREEN_HEIGHT } = this.props
