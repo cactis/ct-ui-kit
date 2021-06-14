@@ -197,7 +197,7 @@ export class MessageItem extends React.PureComponent {
         switch(index) {
           case 0:
             item.editing = true
-            window.keyboardInput.close()
+            window.keyboardInput?.close()
             this.setState({ data: item })
             break
           case 1:
@@ -236,7 +236,8 @@ export class MessageItem extends React.PureComponent {
 
   reply = (item) => {
     beep()
-    log(this.props.parent.messageRefs, 'this.props.parent.messageRefs')
+    log(item, 'item # ')
+    // log(this.props.parent.messageRefs, 'this.props.parent.messageRefs')
     // log(item, 'item')
     // window.currentThread = this
     this.props.parent.replyTo(item)

@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, TextInput, Keyboard as RNKeyboard } from 'react-native'
-import ModalBox from 'react-native-modalbox'
+// import ModalBox from 'react-native-modalbox'
 // import { AutoGrowTextInput } from 'react-native-auto-grow-textinput'
 // export { RNKeyboard }
-
+import ModalBox from 'rn-keyboard-sticky-view';
 let _navigation
 const _TEXT_INPUT_HEIGHT = rwd(0)
 export class KeyboardToolbar extends React.PureComponent {
@@ -49,7 +49,7 @@ export class KeyboardToolbar extends React.PureComponent {
 
   close = () => {
     // this._cancelReplyTo()
-    this.modal.close()
+    this.modal?.close()
   }
 
   render() {
@@ -70,28 +70,30 @@ export class KeyboardToolbar extends React.PureComponent {
     // alert(modalHeight)
     return (
       <ModalBox
-        useNativeDriver={true}
-        ref={(c) => (this.modal = c)}
+        // useNativeDriver={true}
+        // ref={(c) => (this.modal = c)}
         // flex={0}
-        borderWidth={1}
-        position="bottom"
+        // borderWidth={1}
+        // position="bottom"
         // backgroundColor="red"
-        entry="bottom"
+        // entry="bottom"
         // zIndex={1000000}
         // animationDuration={0}
-        backdrop={false}
+        // backdrop={false}
         style={{
           borderTopWidth: 0.5,
-          borderColor: '#999',
+          borderColor: '#aaa',
           backgroundColor: 'rgba(255,255,255,1)',
+          // marginBottom: iOS ? -10 : 0,
+          // paddingBottom: iOS ? -10 : 0
           // backgroundColor: 'red',
           // height: modalHeight,
 
-          height: 'auto',
+          // height: 'auto',
           // height: rwd(50),
         }}
       >
-        <T.Grid flex={0}>{children}</T.Grid>
+        <T.Grid flex={0} paddingVertical={0}>{children}</T.Grid>
       </ModalBox>
     )
   }

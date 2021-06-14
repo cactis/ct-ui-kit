@@ -1,5 +1,6 @@
 import React, { PureComponent as Component } from 'react'
 import { TextInput as PureRNTextInput, StyleSheet } from 'react-native'
+export { PureRNTextInput }
 import { Grid, Row } from '../../'
 
 import * as T from '../..'

@@ -57,7 +57,7 @@ export class DropdownAlert extends React.PureComponent {
   close = () => {
     let { onClose = () => { } } = this.state.options
 
-    this.modal.close()
+    this.modal?.close()
     onClose()
   }
 
@@ -85,7 +85,7 @@ export class DropdownAlert extends React.PureComponent {
         }}
         onPress={() => {
           // this._onDropdownAlertTapped()
-          // this.modal.close()
+          // this.modal?.close()
           this.onTapped()
           this.close()
         }}
@@ -105,7 +105,7 @@ export class DropdownAlert extends React.PureComponent {
           activeOpacity={1}
           onPress={() => {
             // this._onDropdownAlertTapped()
-            // this.modal.close()
+            // this.modal?.close()
             this.onTapped()
             this.close()
           }}
@@ -127,7 +127,7 @@ export class DropdownAlert extends React.PureComponent {
               numberOfLines={2}
               onPress={() => {
                 // this._onDropdownAlertTapped()
-                // this.modal.close()
+                // this.modal?.close()
                 this.onTapped()
                 this.close()
               }}
@@ -140,7 +140,7 @@ export class DropdownAlert extends React.PureComponent {
                 numberOfLines={5}
                 onPress={() => {
                   // this._onDropdownAlertTapped()
-                  // this.modal.close()
+                  // this.modal?.close()
                   this.onTapped()
                   this.close()
                 }}
@@ -152,7 +152,7 @@ export class DropdownAlert extends React.PureComponent {
               <T.Touch
                 onPress={() => {
                   // this._onDropdownAlertTapped()
-                  // this.modal.close()
+                  // this.modal?.close()
                   this.onTapped()
                   this.close()
                 }}
@@ -163,7 +163,7 @@ export class DropdownAlert extends React.PureComponent {
                   name="angle-right"
                   onPress={() => {
                     // this._onDropdownAlertTapped()
-                    // this.modal.close()
+                    // this.modal?.close()
                     this.onTapped()
                     this.close()
                   }}

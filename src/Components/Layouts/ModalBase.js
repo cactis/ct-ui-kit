@@ -54,14 +54,14 @@ export class ModalBase extends KeyboardAware {
       confirm(
         () => {
           this.onClose()
-          this.modal.close()
+          this.modal?.close()
         },
         { title: `${this.state.closeConfirmationTitle}` }
       )
     } else {
       log('close call')
       this.onClose()
-      this.modal.close()
+      this.modal?.close()
     }
   }
 

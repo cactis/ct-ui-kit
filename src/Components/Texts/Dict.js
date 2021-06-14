@@ -33,7 +33,7 @@ export class Dict extends React.PureComponent {
   }
 
   close = () => {
-    this.modal.close()
+    this.modal?.close()
   }
 
   callNPL = data => {

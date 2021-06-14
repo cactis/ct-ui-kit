@@ -54,7 +54,7 @@ export class EditorBase extends KeyboardAware {
       this.modal?.open()
     } else {
       // log('close')
-      this.modal && this.modal.close()
+      this.modal && this.modal?.close()
     }
   }
 
@@ -113,7 +113,7 @@ export class EditorBase extends KeyboardAware {
                 color="#545454"
                 size={rwd(14)}
                 onPress={() => {
-                  this.modal.close()
+                  this.modal?.close()
                   this.richText.blurContentEditor()
                   this.save()
                 }}
