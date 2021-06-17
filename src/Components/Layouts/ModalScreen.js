@@ -19,7 +19,11 @@ export class ModalScreen extends ModalBase {
     // alert(modalHeight)
     let { content, options, modalHeight, keyboardHeight = 0 } = this.state
     // log(keyboardHeight, 'keyboardHeight')
+<<<<<<< HEAD
     let { children = content, title: propTitle } = this.props
+=======
+    let { children = content, title: propTitle, height } = this.props
+>>>>>>> 4ad521bc517e5e1d3af3e3e70376afacace90fe7
     log(options, 'options # ')
     let {
       // height: modalHeight = height,
@@ -79,8 +83,13 @@ export class ModalScreen extends ModalBase {
           // backgroundColor={backgroundColor}
           coverScreen={false} // !!!!
           style={{
+<<<<<<< HEAD
             height: (scrollable ? modalHeight : rowHeight),
 
+=======
+            height: scrollable ? modalHeight : rowHeight,
+            // height: SCREEN_HEIGHT,
+>>>>>>> 4ad521bc517e5e1d3af3e3e70376afacace90fe7
             zIndex: 10000,
             // borderWidth: 3,
             borderRadius: 0,
@@ -186,9 +195,13 @@ export class ModalScreen extends ModalBase {
                 </T.Grid>
                 {/* )} */}
               </T.Row>
+<<<<<<< HEAD
               <T.Space
                 size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0}
               />
+=======
+              <T.Space size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0} />
+>>>>>>> 4ad521bc517e5e1d3af3e3e70376afacace90fe7
               {/* <T.SafeArea flex={0} backgroundColor={safeAreaColor} /> */}
             </T.Row>
           )
