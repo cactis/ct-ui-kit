@@ -9,8 +9,8 @@ export class TagContent extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in TagContent render()')
-    if (!data) return null
+    // log(data, 'data in TagContent render()')
+    if(!data) return null
     let { item = data } = data
     let size = SIZE.m * 1.1
     let { numberOfLines = 0 } = this.props
@@ -60,7 +60,7 @@ export class TagContent extends React.PureComponent {
     )
   }
   onPress = () => {
-    if (this.props.onPress) {
+    if(this.props.onPress) {
       this.props.onPress()
     } else {
       log('need to set onPress on item')
@@ -84,13 +84,13 @@ export class TagContent extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

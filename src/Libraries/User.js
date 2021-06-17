@@ -10,8 +10,8 @@ export class User extends Component {
     log(accessTokens, 'accessTokens in User validateToken')
     // alert(accessTokens)
 
-    if (accessTokens) {
-      global.accessTokens = accessTokens
+    if(accessTokens) {
+      window.accessTokens = accessTokens
       // return accessTokens //#T.AuthLoadingScreen.boot()
     }
     let url = '/validate_tokens'
@@ -20,7 +20,7 @@ export class User extends Component {
     let { data: user = res } = res
     // log(res, 'res')
     // log(user, 'user in validateToken')
-    if (user !== undefined && user.id !== undefined) {
+    if(user !== undefined && user.id !== undefined) {
       // runLast(() => {
       //     let appV = parseInt(
       //         _.last(DEVICE_INFO.ReadableVersion?.split('.'))
@@ -49,7 +49,9 @@ export class User extends Component {
       //     }
       // }, 3000)
       // if (__DEV__) alert(user.name)
-      global.currentUser = user
+      window.currentUser = user
+      // log(window.currentUser, 'window.currentUser')
+      // log(currentUser, 'currentUser')
       onSuccess && onSuccess(user)
 
       // let uts = await Storage.get('uts')
@@ -59,36 +61,36 @@ export class User extends Component {
       //     // member: user.member_token,
       //     user: user.token,
       // }
-      // global._uts = uts
+      // window._uts = uts
       // log(user.token)
       Storage.set('userToken', user.token)
-      global.isLogged = true
+      window.isLogged = true
       // T.Api.get('/me', res => {
       //   let { data } = res
       //   if (data) {
-      //     global.currentUser = data
+      //     window.currentUser = data
       //   }
       // })
     } else {
-      global.isLogged = undefined
+      window.isLogged = undefined
     }
-    // log(global.isLogged, 'global.isLogged')
-    return global.isLogged
+    // log(window.isLogged, 'window.isLogged')
+    return window.isLogged
   }
 
   static tokens = async () => {
     // log(Dev.accessTokens, 'Dev.accessTokens in User#tokens')
     log(Dev.accessTokens, 'Dev.accessTokens')
-    log(global.accessTokens, 'global.accessTokens')
-    if (Dev.accessTokens) return Dev.accessTokens
-    if (global.accessTokens) return global.accessTokens
+    log(window.accessTokens, 'window.accessTokens')
+    if(Dev.accessTokens) return Dev.accessTokens
+    if(window.accessTokens) return window.accessTokens
     let userToken = await Storage.get('userToken')
     log(userToken, 'userToken')
     // let memberToken = await Storage.get('memberToken')
-    if (userToken == undefined) {
+    if(userToken == undefined) {
       return undefined
     } else {
-      if (Dev.accessTokens) {
+      if(Dev.accessTokens) {
         return Dev.accessTokens
       } else {
         return userToken
@@ -108,20 +110,20 @@ export class User extends Component {
 
   static logout = async (onSuccess) => {
     log('logout')
-    // let { currentUser } = global
+    // let { currentUser } = window
     // log(currentUser, 'currentUser')
     await Storage.clearAll()
 
     // alert('logout after clearAll')
     Dev.accessTokens = null
-    global.accessTokens = undefined
+    window.accessTokens = undefined
     // log(Dev, 'Dev 2222222222222222')
     // let remembered = await Storage.get('remembered')
     // log(phone, remembered, 'phone, remembered')
-    global.isLogged = undefined
-    global.currentUser = undefined
+    window.isLogged = undefined
+    window.currentUser = undefined
     // log(global, 'global')
-    log(global.accessTokens, global.isLogged, global.currentUser)
+    log(window.accessTokens, window.isLogged, window.currentUser)
     onSuccess && onSuccess()
     // if (remembered) await Storage.set('remembered', remembered)
   }
@@ -130,13 +132,13 @@ export class User extends Component {
     // log(data, 'data - in setCurrentUser')
     let { data: user } = data
     // log(user?.id, 'user?.id')
-    if (user?.id) {
+    if(user?.id) {
       // let memberToken = user.member_token
       let userToken = user.token
-      global.isLogged = true
-      global.currentUser = user
-      global.accessTokens = `${userToken}; ${user.name}`
-      // log(global.currentUser, 'global.currentUser')
+      window.isLogged = true
+      window.currentUser = user
+      window.accessTokens = `${userToken}; ${user.name}`
+      // log(window.currentUser, 'window.currentUser')
       // Storage.set('phone', user.phone)
       await Storage.set('userToken', userToken)
       onSuccess && onSuccess(user)
@@ -157,11 +159,11 @@ export class User extends Component {
   }
 
   // static current = () => {
-  //   return global.currentUser
+  //   return window.currentUser
   // }
 
   static isLogin = () => {
-    return global.isLogged
+    return window.isLogged
   }
 }
 export default User
@@ -177,7 +179,7 @@ export class Storage {
       // alert('clear done')
       // log('clear all AsyncStorage')
       AsyncStorage.getAllKeys().then((keys) => {
-        log(keys, 'keys - in Storage clearAll')
+        // log(keys, 'keys - in Storage clearAll')
         callback && callback()
       })
     })
@@ -200,7 +202,7 @@ export class Storage {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(value))
       return value
-    } catch (error) {
+    } catch(error) {
       // log(error, 'Storage setItem error!')
     }
   }
@@ -208,11 +210,11 @@ export class Storage {
   static get = async (key, deleteIt = false) => {
     try {
       const value = await AsyncStorage.getItem(key)
-      if (value !== null) {
-        if (deleteIt) AsyncStorage.removeItem(key)
+      if(value !== null) {
+        if(deleteIt) AsyncStorage.removeItem(key)
         return JSON.parse(value)
       }
-    } catch (error) {
+    } catch(error) {
       // log(error, 'Storage getItem error!')
     }
   }

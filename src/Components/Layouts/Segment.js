@@ -135,7 +135,7 @@ export class Segment extends Component {
             flex={1}
             // borderWidth={2}
             // borderColor="red"
-            scrollEnabled={global.state?.onScrollEndDrag}
+            scrollEnabled={window.state?.onScrollEndDrag}
             // showsHorizontalScrollIndicator={false}
             onScroll={this._onScroll}
             scrollEventThrottle={16}

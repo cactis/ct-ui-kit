@@ -17,9 +17,9 @@ export class PdfViewerScreen extends React.PureComponent {
 
   render() {
     let { data } = this.props
-    if (!data) return null
+    if(!data) return null
     let { item = data } = data
-    log(data, 'data in PdfViewerScreen render() ')
+    // log(data, 'data in PdfViewerScreen render() ')
     const source = { uri: item.file_url, cache: true }
     log(source, 'source')
     return (
@@ -46,7 +46,7 @@ export class PdfViewerScreen extends React.PureComponent {
   }
 
   initStateData = (onComplete) => {
-    if (_navigation?.state?.params) {
+    if(_navigation?.state?.params) {
       let { data } = _navigation.state?.params
       // _navigation.setParams({ title: '改為新標題' })
       this.mounted &&
@@ -70,13 +70,13 @@ export class PdfViewerScreen extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

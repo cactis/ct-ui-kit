@@ -7,7 +7,7 @@ export class NavigationService {
     _navigator = navigatorRef
   }
 
-  static goBack = (callback = () => {}) => {
+  static goBack = (callback = () => { }) => {
     // log(_navigator, '_navigator')
     // let { state } = _navigator
     // let { nav } = state
@@ -31,10 +31,13 @@ export class NavigationService {
   }
 
   static navigate = (routeName, params = {}) => {
-    log(`||| ${routeName} ||| screen -- 2`)
-    let key = `${routeName}_${params.data?.id}`
-    if (global.currentKey == key) return log('duplicate click')
-    // log(key, 'key from NavigationService navigate()')
+    // log(`||| ${routeName} ||| screen -- 2`)
+    // let key = `${routeName}_${params.data?.id}`
+    log(params, 'params # ')
+    let code = Object.keys(params).join('_').hashCode()
+    let key = `${routeName}_${code}`
+    // if(window.currentKey == key) return log('duplicate click')
+    log(key, 'key from NavigationService navigate()')
     // log(_navigator, '_navigator')
     _navigator.dispatch(
       NavigationActions.navigate({
@@ -43,15 +46,17 @@ export class NavigationService {
         key: key,
       })
     )
-    global.currentKey = key
+    window.currentKey = key
     setTimeout(() => {
-      global.currentKey = null
+      window.currentKey = null
     }, 3000)
   }
 }
 
-window.gotoScreen = (screenname, options = {}) => {
-  T.NavigationService.navigate(screenname, options)
+window.gotoScreen = (screenName, options = {}) => {
+  log(screenName, 'screenName# in NotificationService')
+  log(options, 'options # gotoScreen')
+  T.NavigationService.navigate(screenName, options)
 }
 
 window.goBack = () => {

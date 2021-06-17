@@ -4,9 +4,9 @@ import RNImagePicker from 'react-native-image-crop-picker'
 import RNFS from 'react-native-fs'
 export { RNImagePicker }
 export const ImagePicker = (props) => {
-  let { navigation, onChanged = () => {}, size } = props
+  let { navigation, onChanged = () => { }, size } = props
   let [data, setData] = useState(props.data)
-  log(data, 'data')
+  // log(data, 'data')
   // if (!data) return null
   getImage = async () => {
     RNImagePicker.openPicker({
@@ -46,6 +46,28 @@ export const ImagePicker = (props) => {
     <T.Icon size={size} name="photo" color="rgb(96,96,96)" onPress={getImage} />
   )
 }
+
+window.correctFilename = (files) => {
+  return files.map((file) => {
+    let names = file.uri.split('/')
+    names[names.length - 1] = file.name
+    file.uri = names.join('/')
+    // file.fileCopyUri = file.uri
+    return file
+  })
+}
+
+window.readBase64FromFile = async (file) => {
+  let { filename, path } = file
+  log(path, 'path#readBase64FromFile')
+  let base64 = await RNFS.readFile(path, 'base64')
+  // log(base64.length, 'base64.length # ')
+  // base64 = T.GZip.compress(base64)
+  // log(base64.length, 'base64.length # ')
+  file.base64 = base64
+  return file
+}
+
 
 window.base64Image = async (image) => {
   // log(image, 'image in base64Image')

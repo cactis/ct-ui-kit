@@ -20,6 +20,7 @@ export class View extends React.Component {
       style = {},
       children,
       bordered,
+      boxShadowed,
       borderedTop = false,
       animation,
       // keyboardAware = false,
@@ -32,6 +33,8 @@ export class View extends React.Component {
     let emptyStyle = !children ? EMPTYSTYLE : {}
     // alert(animation)
     let Tag = animation ? Animatable.View : RNView
+    let _boxShadowed = boxShadowed ? { ...STYLE.BOXSHADOWED } : {}
+    // log(_boxShadowed, '_boxShadowed')
     let drawBorderedStyle =
       Dev.drawBorder || bordered
         ? { borderWidth: 0.5, borderColor: '#a8a8a8' }
@@ -55,6 +58,7 @@ export class View extends React.Component {
 
         flexDirection={flow}
         style={{
+          ..._boxShadowed,
           ...emptyStyle,
           ...style,
           ...drawBorderedStyle,
@@ -68,8 +72,8 @@ export class View extends React.Component {
     return this.props.keyboardAware && false ? (
       <KeyboardAwareScrollView {...props}>{content}</KeyboardAwareScrollView>
     ) : (
-        content
-      )
+      content
+    )
   }
 
   onPress = () => {

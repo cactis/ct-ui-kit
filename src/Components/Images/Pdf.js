@@ -9,10 +9,10 @@ export class Pdf extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Pdf render()')
-    if (!data) return null
+    // log(data, 'data in Pdf render()')
+    if(!data) return null
     let { item = data } = data
-    log(item, 'item Pdf#render')
+    // log(item, 'item Pdf#render')
     return (
       <T.Row
         onPress={() =>
@@ -30,8 +30,8 @@ export class Pdf extends React.PureComponent {
             uri={item.thumb_file_url || item.path || item.uri}
             // size={3 * SIZE.l}
             size="50%"
-            // size={100}
-            // margin={SIZE.t}
+          // size={100}
+          // margin={SIZE.t}
           />
 
           <T.Label text={item.title} theme="H8" color="#eee" />
@@ -40,7 +40,7 @@ export class Pdf extends React.PureComponent {
     )
   }
   onPress = () => {
-    if (this.props.onPress) {
+    if(this.props.onPress) {
       this.props.onPress()
     } else {
       log('need to set onPress on item')
@@ -64,13 +64,13 @@ export class Pdf extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

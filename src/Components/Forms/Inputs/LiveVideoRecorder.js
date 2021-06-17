@@ -95,8 +95,8 @@ export class LiveVideoRecorder extends React.PureComponent {
               options={{ subject: 'subject' }}
             />
           ) : (
-              <T.Space />
-            )}
+            <T.Space />
+          )}
 
           <T.Icon
             name="closecircleo"
@@ -165,7 +165,7 @@ export class LiveVideoRecorder extends React.PureComponent {
     // })
   }
   onClose = () => {
-    this.modal.close()
+    this.modal?.close()
     let { recording } = this.state
     if(recording) {
       this.setState({ recording: false })

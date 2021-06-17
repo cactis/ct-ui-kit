@@ -28,7 +28,7 @@ export class Map extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.markers !== this.props.markers)
+    if(prevProps.markers !== this.props.markers)
       this.setState({ markers: this.props.markers })
   }
 
@@ -67,12 +67,12 @@ export class Map extends React.PureComponent {
                 key={randId()}
                 title={`${item.latitude}`}
                 // title={
-                //   item.coordable?.id != global.currentUser.id
+                //   item.coordable?.id != window.currentUser?.id
                 //     ? item.coordable?.name
                 //     : '(yourself)'
                 // }
                 // pinColor={
-                //   item.coordable?.id != global.currentUser.id
+                //   item.coordable?.id != window.currentUser?.id
                 //     ? 'rgb(255,0,0)'
                 //     : iOS
                 //     ? 'rgba(43,219,14,.95)'
@@ -83,7 +83,7 @@ export class Map extends React.PureComponent {
                 coordinate={item}
                 pinColor="red"
                 title={item.title}
-                // coordinate={33}
+              // coordinate={33}
               />
             )
           )}
@@ -121,7 +121,7 @@ export class Map extends React.PureComponent {
   backToUserRegion = () => {
     let { userRegion } = this.state
     // log(userRegion, 'backToUserRegion -----------------------')
-    if (userRegion) {
+    if(userRegion) {
       this.mapView.animateToRegion(userRegion)
     }
   }
@@ -151,7 +151,7 @@ export class Map extends React.PureComponent {
     let { markers } = this.state
     this.getCurrentLocation().then((position) => {
       log(position, 'position')
-      if (position) {
+      if(position) {
         let region = {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
@@ -165,7 +165,7 @@ export class Map extends React.PureComponent {
         })
       }
       delayed(() => {
-        if (markers?.length > 0) {
+        if(markers?.length > 0) {
           // this.mapView.fitToElements(true)
         }
       })
@@ -185,6 +185,6 @@ export class Map extends React.PureComponent {
     })
   }
 
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

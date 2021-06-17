@@ -29,15 +29,15 @@ export class Text extends React.Component {
     let customFont = fontTheme
       ? { fontFamily: FontTheme[fontTheme] }
       : font
-      ? { fontFamily: font }
-      : {}
+        ? { fontFamily: font }
+        : {}
     // log(theme, 'theme')
     theme = _.upperCase(theme).replace(' ', '')
     // log(theme, 'theme in Text')
     let themeStyle = { ...styles[theme] } //!!!
     color && themeStyle && (themeStyle.color = color)
     size && themeStyle && (themeStyle.fontSize = size)
-    let lineHeightStyle = { lineHeight: themeStyle.fontSize * 1.6 }
+    let lineHeightStyle = { lineHeight: themeStyle.fontSize * 1.4 }
     // numberOfLines && numberOfLines != 1
     //   ? { lineHeight: themeStyle.fontSize * 1.2 }
     //   : {}
@@ -79,7 +79,7 @@ export class Text extends React.Component {
         paddingVertical={SIZE.s * 1.2}
         align="center"
         {...this.props}
-        // backgroundColor="red"
+      // backgroundColor="red"
       >
         {tag}
       </T.Div>

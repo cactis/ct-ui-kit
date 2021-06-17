@@ -1,10 +1,8 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 
 import { Touch } from './'
-import { View, Center } from '../Layouts'
+import { Center } from '../Layouts'
 import { Label } from '../Texts'
-import { Icon } from '../Images'
 
 import { Linking } from 'react-native'
 
@@ -19,13 +17,12 @@ export class Button extends React.PureComponent {
   state = { disabled: false }
 
   onPress = () => {
-    _alert('onPress in Button')
     let { url, onPress } = this.props
     // if (disabled) return
     if(url) {
       this.handleClick()
     } else {
-      // log('onPress')
+      log('onPress')
       onPress && onPress()
     }
   }
@@ -91,6 +88,8 @@ export class Button extends React.PureComponent {
       link,
       onPress,
       fontSize = titleStyle?.fontSize || BASE_SIZE * 1.2,
+      disabledColor = 'white',
+      disabledBackgroundColor = 'rgb(221, 220, 220)',
       padding = fontSize * 0.5,
       // disabled = false,
       backgroundColor,
@@ -99,8 +98,8 @@ export class Button extends React.PureComponent {
       ...props
     } = this.props
     let { disabled } = this.state
-    color = disabled ? 'rgb(253, 142, 142)' : color
-    backgroundColor = disabled ? 'rgb(221, 220, 220)' : backgroundColor
+    color = disabled ? disabledColor : titleColor
+    backgroundColor = disabled ? disabledBackgroundColor : backgroundColor
     // let borderColor = 'rgba(255,255,255,.4)'
     // let {
     //   borderColor = backgroundColor
@@ -145,7 +144,7 @@ export class Button extends React.PureComponent {
             style={{
               // fontSize: fontSize,
               ...styles[theme]['label'],
-              color: titleColor,
+              color: color,
               fontWeight: '600',
               ...titleStyle,
 
@@ -194,6 +193,6 @@ const styles = {
     // backgroundColor: 'rgb(245,197,66)',
   },
   negtive: {
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
   },
 }

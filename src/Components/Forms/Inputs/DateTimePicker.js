@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native'
 import RNDateTimePicker from '@react-native-community/datetimepicker'
 
 toDate = (date, mode) => {
-  if (mode == 'date') {
+  if(mode == 'date') {
     return date.toLocaleDateString('en-US')
   } else {
     return `${date.toLocaleDateString('en-US')} ${date.toLocaleTimeString(
@@ -42,11 +42,11 @@ export class DateTimePicker extends React.PureComponent {
   }
 
   showDatePicker = () => {
-    if (!this.state.editable) return
+    if(!this.state.editable) return
     T.RNKeyboard.dismiss()
-    if (iOS) {
+    if(iOS) {
       let { date } = this.state
-      flexPopup.open(
+      window.flexPopup.open(
         <RNDateTimePicker value={date} mode="date" onChange={this.onChanged} />
       )
     } else {
@@ -55,12 +55,12 @@ export class DateTimePicker extends React.PureComponent {
   }
 
   showTimePicker = () => {
-    if (!this.state.editable) return
+    if(!this.state.editable) return
     T.RNKeyboard.dismiss()
 
-    if (iOS) {
+    if(iOS) {
       let { date } = this.state
-      flexPopup.open(
+      window.flexPopup.open(
         <RNDateTimePicker value={date} mode="time" onChange={this.onChanged} />
       )
     } else {
@@ -73,7 +73,7 @@ export class DateTimePicker extends React.PureComponent {
     // alert(new Date())
     let { date, showDatePicker, showTimePicker } = this.state
     // log(data,  'data in DateTimePicker render()')
-    if (!date) return null
+    if(!date) return null
     // log(date, 'date#render')
     let dateLabel = date.toLocaleDateString()
     let timeLabel = date.toLocaleTimeString()
@@ -127,13 +127,13 @@ export class DateTimePicker extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

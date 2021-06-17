@@ -76,7 +76,7 @@ export class ChooseMenu extends React.PureComponent {
     })
   }
   close = () => {
-    this.modal.close()
+    this.modal?.close()
   }
   onPress = (index) => {
     // log(index, 'index')

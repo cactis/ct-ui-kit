@@ -9,6 +9,10 @@ import DraggableFlatList from 'react-native-draggable-flatlist'
 import { SearchBar } from './SearchBar'
 export { RNList }
 
+export {
+  Animated
+}
+
 export class List extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -59,7 +63,7 @@ export class List extends React.PureComponent {
       this.setState({ data: [] }, () => {
         this.setState({ data: [...data], extraData: randId() })
       })
-      this.reloadData()
+      // this.reloadData()
     },
     onCreated: (item) => {
       item.animation = window.Effect.zoomOut //'shake'
@@ -251,13 +255,20 @@ export class List extends React.PureComponent {
   )
 
   onViewableItemsChanged = (info) => {
+    // log('onViewableItemsChanged')
     let last = _.last(info.viewableItems)
     let first = _.first(info.viewableItems)
     if(last?.index > this.state.data?.length - 6) this.fetchData()
     this.props.onViewableItemsChanged && this.props.onViewableItemsChanged(info)
-    runLast(() => {
-      this.setState({ scrollToTopButtonVisible: last?.index > (__DEV__ ? 15 : 15) })
-    })
+
+    clearTimeout(window._onViewableItemsChanged_in_List)
+    // log('clear timeout: _onViewableItemsChanged_in_List')
+    window._onViewableItemsChanged_in_List = setTimeout(() => {
+      // log('run _onViewableItemsChanged_in_List')
+      delete window._onViewableItemsChanged_in_List
+      this.setState({ scrollToTopButtonVisible: last?.index > (this.props.scrollToTopIndexValue || 15) })
+    }, 500)
+
   }
 
   _onBeginDrag = (params) => {
@@ -280,6 +291,7 @@ export class List extends React.PureComponent {
   }
 
   render() {
+    if(this.props.__hidden__) return null
     let { isRefreshing, refresh, data, meta, lastPage, prevPage, url, toTop, scrollToTopButtonVisible, fadeAnim } = this.state
     let { loadingUri = `${AppConfig.web}/img/loading1.gif` } = this.props
     let {
@@ -290,6 +302,7 @@ export class List extends React.PureComponent {
       ListFooterComponent,
       draggable,
       searchable = false,
+      destroyable = false,
       ...extra
     } = this.props
     let columnWrapperStyle = {}
@@ -309,7 +322,7 @@ export class List extends React.PureComponent {
       ) : null
 
     if(prevPage > 0) {
-      ListHeaderComponent = <>{ListHeaderComponent}<T.Center padding={SIZE.s}><T.Label text='載入上一頁' theme='H9' onPress={this.loadPrevPage} /></T.Center></>
+      ListHeaderComponent = <>{ListHeaderComponent}<T.Center padding={SIZE.s}><T.Label text={window.LOAD_PREV_PAGE} theme='H9' onPress={this.loadPrevPage} /></T.Center></>
     }
     let ListHeaderComponentWithMeta = meta ? (
       <Grid>
@@ -351,18 +364,28 @@ export class List extends React.PureComponent {
               searchable ? (
                 <Row flex={1}>
                   <SearchBar
-                    style={this.props.searchBarStyle}
+                    keyword={this.props.keyword}
+                    searchBarCustomButton={this.props.searchBarCustomButton}
+                    style={{ ...this.props.searchBarStyle }}
+                    {...this.props.searchBarStyle}
                     ref={(c) => (this.searchBar = c)}
                     onChange={(e) => {
                       // log(e, 'e')
-                      let { text: keyword } = e.nativeEvent
+                      let keyword
+                      if(e.nativeEvent) {
+                        let { text } = e.nativeEvent
+                        keyword = text
+                      } else {
+                        keyword = e
+                      }
                       log(keyword, 'keyword in List')
                       keyword = keyword.replace('#', '%23')
                       runLast(() => {
                         this.mounted && this.setState({ keyword })
-                        this.reloadData()
-                      })
+                        // this.reloadData()
+                      }, 300)
                     }}
+                    onSubmit={() => this.reloadData()}
                   />
                   {ListHeaderComponentWithMeta}
                 </Row>
@@ -377,7 +400,7 @@ export class List extends React.PureComponent {
                   <Row marginTop={rwd(0)}>
                     {meta_tag}
 
-                    {this.state.page < 3 ? null : (
+                    {/* {this.state.page < 3 ? null : (
                       <Row align="center" paddingTop={rwd(50)}>
                         <Icon
                           iconSet="AntDesign"
@@ -387,7 +410,7 @@ export class List extends React.PureComponent {
                           onPress={() => { this.scrollToTop() }}
                         />
                       </Row>
-                    )}
+                    )} */}
                     {url && !lastPage && this.state.isPageLoading ? (
                       <Row align="center" paddingTop={rwd(50)}>
                         <Image
@@ -404,12 +427,13 @@ export class List extends React.PureComponent {
             {...extra}
           />
         ) : null}
-        {scrollToTopButtonVisible && this.props.scrollToTop ? <T.Float left={SIZE.n} bottom={1.5 * SIZE.l} width='100%' align='center'>
+        {(scrollToTopButtonVisible && this.props.scrollToTop != false) ? <T.Float left={SIZE.n} bottom={1.5 * SIZE.l} width='100%' align='center'>
           <T.Icon
-            name="top"
-            color={BCOLOR}
-            backgroundColor={window.Secondary}
-            backgroundColor='rgba(126, 134, 145, 0.75)'
+            iconSet={SCROLL_TO_TOP_ICON_SET}
+            name={SCROLL_TO_TOP_ICON_NAME}
+            color={SCROLL_TO_TOP_COLOR}
+            // backgroundColor={window.Secondary}
+            backgroundColor={SCROLL_TO_TOP_BCOLOR}
             boxShadow={1}
             style={{
               shadowColor: '#000',
@@ -431,6 +455,7 @@ export class List extends React.PureComponent {
   }
   onComplete = () => { }
   componentDidMount() {
+    if(this.props.__hidden__) return
     this.mounted = true
 
     let { data, dataPath = 'data', onLoad, pagination = true } = this.props
@@ -466,9 +491,9 @@ export class List extends React.PureComponent {
     }
   }
 
-  componentWillUnmount() {
-    this.mounted = false
-  }
+  // componentWillUnmount() {
+  //   this.mounted = false
+  // }
 }
 
 class ListItem extends React.Component {

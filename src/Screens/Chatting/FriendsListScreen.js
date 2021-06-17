@@ -16,8 +16,8 @@ export class FriendsListScreen extends React.PureComponent {
 
   render() {
     let { data } = this.state
-  // log(data,  'data in FriendsListScreen render() ')
-    if (!data) return null
+    // log(data,  'data in FriendsListScreen render() ')
+    if(!data) return null
     let { item = data } = data
     return (
       <T.Screen padding={SIZE.n}>
@@ -52,9 +52,9 @@ export class FriendsListScreen extends React.PureComponent {
   }
 
   // onChecked = data => {
-  //   log(data, 'data')
+  //   // log(data, 'data')
   //   let { item, index } = data
-  //   log(item.checked, index)
+  //   // log(item.checked, index)
   // }
   initStateData = onComplete => {
     // if (_navigation?.state?.params) {
@@ -82,13 +82,13 @@ export class FriendsListScreen extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

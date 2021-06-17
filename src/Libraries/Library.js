@@ -1,5 +1,4 @@
 if(__DEV__) console.log('!!! Library.js#UIKIT')
-
 import React from 'react'
 
 import D from 'react-native-device-info'
@@ -8,8 +7,8 @@ import RNViewShot from 'react-native-view-shot'
 import _ from 'lodash'
 import {
   Alert,
+  Dimensions,
   PermissionsAndroid,
-  Platform,
   Share as RNShare,
 } from 'react-native'
 
@@ -57,7 +56,7 @@ window.Effect = {
 }
 
 window._DEVICE_INFO = async () => {
-  let { currentUser } = global
+  let { currentUser } = window
   return {
     is__DEV__: __DEV__,
     Brand: await D.getBrand(),
@@ -113,7 +112,11 @@ window.setDeviceInfo = async () => {
     iOS &&
     (_info.Model?.indexOf('iPhone X') == 0 ||
       _info.Model?.indexOf('iPhone 1') == 0)
-
+  window.isLandScape = () => {
+    // alert(Dimensions.get('window').width > Dimensions.get('window').height)
+    return Dimensions.get('window').width > Dimensions.get('window').height
+  }
+  window.isPortrait = () => { return !isLandScape() }
   window.deviceName = () => {
     return _info.deviceName
   }
@@ -126,16 +129,34 @@ window.log = (...message) => {
     console.log('')
     // console.log('<------------------------------------------------------')
     console.log(m)
-    console.log(`'${ms} from ${new Date()} ${D.getModel()}'`)
+    console.log(`'${ms} | from ${new Date()} ${D.getModel()}'`)
     // console.log('------------------------------------------------------>')
     // console.log('')
   }
   // _trace()
 }
 
+
+// window._currentUser = null
+// window.currentUser = () => {
+//   if(_currentUser) {
+//     return _currentUser
+//   } else {
+//     T.User.validateToken().then((isLogged) => {
+//       if(isLogged) {
+//         return _currentUser
+//       } else { }
+//       T.User.logout(() => {
+//         reboot(window._navigation)
+//         return null
+//       })
+//     })
+//   }
+// }
+
 window.__log = (message, title = '') => {
   log(message, title)
-  title = `${global.currentUser?.name}: ${title}`
+  title = `${window.currentUser?.name}: ${title}`
   T.Api.post('/log', {
     log: { title: title, body: message, os: iOS ? 'iOS' : 'Android' },
   })
@@ -186,17 +207,37 @@ window.randId = (min = 99999999, max = 999999999) => {
 
 window.rwd = (num, weight = 1) => {
   let r = SCREEN_WIDTH / 1400
-  return num * (0.7 + r)
+  return num * (0.7 + (SCREEN_WIDTH > 800 ? 0.6 : 1) * r)
 }
 
 window._runLast = undefined
 window.runLast = (func, wait = 1000, id = randId(), ...args) => {
+  log(func.toString(), 'func # ')
   // alert(id)
   // alert('runLast')
+  log('clear runlast')
   clearTimeout(_runLast)
   _runLast = `${id}_${setTimeout((args) => {
     func.apply(null, args)
+    log('run runlast')
   }, wait)}`
+}
+
+let _runFirst
+window.runFirst = (func, awit = 1000, ...args) => {
+  let key = func.toString().hashCode()
+  log(key, 'key')
+  log(_runFirst === key, '_runFirst === key#')
+  if(_runFirst === key) {
+    log('no run')
+  } else {
+    _runFirst = key
+    log('run First -----------')
+    func.apply(null, args)
+    delayed(() => {
+      _runFirst = undefined
+    }, 3000)
+  }
 }
 
 window._runOnly = undefined
@@ -224,14 +265,6 @@ window.runOnly = (func, wait = 1000, ...args) => {
   // clearTimeout(_runOnly)
 }
 
-window._runOnce = (key, run) => {
-  let _runOnce = global._runOnce || {}
-  if(!_runOnce[key]) {
-    global._runOnce[key] = true
-    run()
-  }
-}
-
 // window.delayedTimer = undefined
 window.delayed = (func, wait = 1000, ...args) => {
   // clearTimeout(delayedTimer)
@@ -255,55 +288,57 @@ window.navigateTo = (navigation, route, params = {}) => {
   // log(key, 'key current')
   // log(route, 'navigate to route')
   // log(nextKey, 'nextKey - in Library navigateTo')
-  runLast(() => {
+  runFirst(() => {
     // log('clear currentRoute')
-    global.currentRoute = null
+    window.currentRoute = null
   })
-  if(global.currentRoute == route) {
+  if(window.currentRoute == route) {
     return log('duplicate click')
   }
   // log(routeName, route, 'routeName, route')
   if(routeName == route) {
-    // log(params, 'params in push')
+    log(params, 'params in push')
     navigation.push(route, params, nextKey)
   } else {
-    // log(params, 'params in navigate')
+    log(params, 'params in navigate')
     // log(
     //     { routeName: route, params: params, key: nextKey },
     //     '{ routeName: route, params: params, key: nextKey }'
     // )
+    // navigation.setOptions({ title: 'Updated!' })
+
     navigation.navigate({
       routeName: route,
       params: params,
       key: nextKey,
     })
   }
-  global.currentRoute = route
+  window.currentRoute = route
 
-  // global.routesStack.push(routeName)
-  // log(global.routesStack, 'global.routesStack')
+  // window.routesStack.push(routeName)
+  // log(window.routesStack, 'window.routesStack')
 }
 
 window.pushTo = (navigation, route, params = {}) => {
-  runLast(() => {
-    // log(navigation, 'navigation pushTo called')
-    if(!navigation) return
-    // log(params, 'params - in Library pushTo')
-    let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || randId()
-      }`
-    // log(nextKey, 'nextKey - in Library pushTo')
-
-    // log(navigation, 'navigation - in ')
-    // let { routeName } = navigation.state
-    // if (routeName == route) {
-    //   navigation.push(route, params)
-    // } else {
-    if(global.currentKey == nextKey) return log('duplicate click!!')
-    global.currentKey = nextKey
+  clearTimeout(window._pushTo)
+  log('clear timeout: _pushTo')
+  let nextKey = `${route}_${params?.data?.item?.id || params?.data?.id || randId()}`
+  if(!window.currentKey) {
     navigation.push(route, params, nextKey)
-    global.currentKey = null
-  }, 300)
-  // }
+    setTimeout(() => {
+      delete window.currentKey
+    })
+  }
+
+  // window._pushTo = setTimeout(() => {
+  //   log('run _pushTo')
+  //   delete window._pushTo
+  //   if(!navigation) return
+  //   if(window.currentKey == nextKey) return log('duplicate click!!')
+  //   navigation.push(route, params, nextKey)
+  //   window.currentKey = nextKey
+  //   window.currentKey = null
+  // }, 1000)
 }
 
 String.prototype.remove = function (str) {
@@ -335,11 +370,17 @@ window.columnsNumber = (padding = 0) => {
 }
 
 window._runOnce = (key, run) => {
-  let runKeys = global.runKeys || {}
-  // if (__DEV__) console.log(runKeys, 'runKeys')
-  if(!runKeys[key]) {
-    runKeys[key] = true
-    window.runKeys = runKeys
+  window._runOnceSet = window._runOnceSet || {}
+  if(!window._runOnceSet[key]) {
+    window._runOnceSet[key] = true
+    run()
+  }
+}
+
+window.runOnce = (key, run) => {
+  window.runOnceSet = window.runOnceSet || {}
+  if(!window.runOnceSet[key]) {
+    window.runOnceSet[key] = true
     run()
   }
 }
@@ -603,7 +644,7 @@ window.requestPermissions = async () => {
 }
 
 window.audioRecording = (item, options = {}) => {
-  flexPopup.open(
+  window.flexPopup.open(
     <T.Div borderRadius={5} backgroundColor__={BFCOLOR}>
       <T.Row
         flex={0}
@@ -674,12 +715,12 @@ window.requestRating = async (force: false) => {
   let requested = await T.Storage.get(key)
   if(requested && !force) return
 
-  let { currentUser } = global
-  log(currentUser, 'currentUser')
+  let { currentUser } = window
+  // log(currentUser, 'currentUser')
   let { reading = {}, lookings, searching } = currentUser
-  log(reading, 'reading')
+  // log(reading, 'reading')
   let times = _.keys(reading).length
-  log(times, 'times')
+  // log(times, 'times')
   if(!(times > 5 && searching && lookings) && !force) return
   await T.Storage.set(key, 'true')
   if(iOS) {
@@ -726,7 +767,7 @@ doRating = () => {
 }
 
 /////////////////////////
-window.alert = (message, type, options = {}) => {
+window.alert = (message, type = 'success', options = {}) => {
   prompt(message, type, options)
 }
 
@@ -772,7 +813,7 @@ window.takeShot = (ref) => {
     (uri) => {
       T.Api.post('/reports', { image: urk }, (res) => {
         let { data } = res
-        log(data, 'data')
+        // log(data, 'data')
       })
     },
     (error) => console.error('Oops, snapshot failed', error)
@@ -809,3 +850,21 @@ window.getHostName = (url) => {
 }
 
 
+function functionName(fun) {
+  var ret = fun.toString();
+  log(ret, 'ret')
+  ret = ret.substr('function '.length);
+  ret = ret.substr(0, ret.indexOf('('));
+  return ret;
+}
+
+String.prototype.hashCode = function () {
+  var hash = 0, i, chr;
+  if(this.length === 0) return hash;
+  for(i = 0; i < this.length; i++) {
+    chr = this.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+};

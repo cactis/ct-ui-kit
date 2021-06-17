@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import { Keyboard } from 'react-native'
 import { Touch, View } from '../'
 
 export class Grid extends React.PureComponent {
   disappear = (callback) => {
     this.view.disappear(callback)
+  }
+
+  state = {
+
   }
   render() {
     let {
@@ -11,9 +16,15 @@ export class Grid extends React.PureComponent {
       flow = layout,
       flex = 1,
       style,
+      keyboardAware = false,
+
       disabled = false,
+      children,
       ...props
     } = this.props
+
+    let { keyboardSpace = 0 } = this.state
+
     let _style = {
       flex: flex,
       flexDirection: flow,
@@ -36,15 +47,61 @@ export class Grid extends React.PureComponent {
         style={(_styleWithBordered, style)}
         {...props}
       >
-        <View ref={(c) => (this.view = c)} style={_style} {...props} />
-      </Touch>
+        <View
+          ref={(c) => (this.view = c)}
+          style={{
+            ..._style,
+            // marginBottom: keyboardSpace
+          }}
+          {...props}>
+          {children}
+        </View>
+        <View height={keyboardSpace} />
+      </Touch >
     ) : (
       <View
         ref={(c) => (this.view = c)}
-        style={_styleWithBordered}
+        style={{
+          ..._styleWithBordered,
+          // marginBottom: keyboardSpace
+        }}
         {...props}
-      />
+      >
+        {children}
+        <View height={keyboardSpace} />
+      </View >
     )
+  }
+
+  componentDidMount() {
+    // log(this.props.keyboardAware, 'this.props.keyboardAware')
+    if(this.props.keyboardAware) {
+      this.keyboardDidShowListener = Keyboard.addListener(
+        'keyboardDidShow',
+        this._keyboardDidShow,
+      );
+      this.keyboardDidHideListener = Keyboard.addListener(
+        'keyboardDidHide',
+        this._keyboardDidHide,
+      );
+    }
+  }
+  _keyboardDidShow = (e) => {
+    log('_keyboardDidShow')
+    let keyboardHeight = e.endCoordinates.height
+    log(keyboardHeight, 'keyboardHeight # ')
+    this.setState({ keyboardSpace: keyboardHeight });
+  }
+
+  _keyboardDidHide = () => {
+    log('_keyboardDidHide')
+    this.setState({ keyboardSpace: 0 });
+  }
+  componentWillUnmount() {
+    if(this.props.keyboardAware) {
+      this.keyboardDidShowListener.remove();
+      this.keyboardDidHideListener.remove();
+    }
   }
 
   // direction() {

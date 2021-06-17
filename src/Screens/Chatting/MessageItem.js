@@ -65,7 +65,7 @@ export class MessageItem extends React.PureComponent {
               paddingHorizontal={SIZE.s}
             //
             >
-              {item.user?.id == global.currentUser.id ? (
+              {item.user?.id == window.currentUser?.id ? (
                 <T.Touch onPress={this.openMenu}>
                   <R.Content
                     numberOfLines={0}
@@ -78,16 +78,16 @@ export class MessageItem extends React.PureComponent {
                   />
                 </T.Touch>
               ) : (
-                  <R.Content
-                    numberOfLines={0}
-                    text={item.content}
-                    data={data}
-                    smaller={2}
-                    paddingVertical={SIZE.s}
-                    flex={0}
-                    theme="H9"
-                  />
-                )}
+                <R.Content
+                  numberOfLines={0}
+                  text={item.content}
+                  data={data}
+                  smaller={2}
+                  paddingVertical={SIZE.s}
+                  flex={0}
+                  theme="H9"
+                />
+              )}
             </T.Div>
             <T.Row flow="row" yAlign="center" marginTop={-1 * SIZE.m * 0.5}>
               <T.Col flex={0} width="50%">
@@ -171,7 +171,7 @@ export class MessageItem extends React.PureComponent {
     let { data } = this.state
     let { item = data } = data
     // log(item, 'item')
-    // log(item.user?.id, global.currentUser.id)
+    // log(item.user?.id, window.currentUser?.id)
     window.chooseMenu.open({
       // title: '上方寶劍',
       menus: [
@@ -197,7 +197,7 @@ export class MessageItem extends React.PureComponent {
         switch(index) {
           case 0:
             item.editing = true
-            window.keyboardInput.close()
+            window.keyboardInput?.close()
             this.setState({ data: item })
             break
           case 1:
@@ -207,7 +207,7 @@ export class MessageItem extends React.PureComponent {
             confirm(
               () => {
                 T.Api.delete(item.routes, (res) => {
-                  log(item, 'item in delete#res')
+                  // log(item, 'item in delete#res')
                   window.Effect.disappear(this.animator, () => {
                     log('callback ----------------')
                     this.props.list?.itemEvent?.onDeleted(item)
@@ -236,9 +236,10 @@ export class MessageItem extends React.PureComponent {
 
   reply = (item) => {
     beep()
-    log(this.props.parent.messageRefs, 'this.props.parent.messageRefs')
+    log(item, 'item # ')
+    // log(this.props.parent.messageRefs, 'this.props.parent.messageRefs')
     // log(item, 'item')
-    // global.currentThread = this
+    // window.currentThread = this
     this.props.parent.replyTo(item)
   }
 

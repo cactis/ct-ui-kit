@@ -136,8 +136,8 @@ window.SIZE = {
 
 window.ICON_SIZE = SIZE.m
 window.ICON_SETS = {}
-window.DEFAULT_ICON_SET = 'FontAwesome'
-window.DEFAULT_ICON_NAME = 'angle-right'
+window.DEFAULT_ICON_SET = 'AntDesign'
+window.DEFAULT_ICON_NAME = 'check'
 
 window.BCOLOR = 'rgba(103,156,236,1)'
 window.BCOLOR_DEV = 'rgb(108,108,108)'
@@ -193,11 +193,18 @@ window.SEARCHBAR_PLACEHOLDER_COLOR = '##aaa'
 
 window.PLACEHOLDER = NAV_COLOR
 
+window.SCROLL_TO_TOP_COLOR = '#d8dee6'
+window.SCROLL_TO_TOP_BCOLOR = 'rgba(126, 134, 145, 0.75)'
+window.SCROLL_TO_TOP_ICON_NAME = 'angle-up'
+window.SCROLL_TO_TOP_ICON_SET = DEFAULT_ICON_SET
+
+window.LINE_COLOR = '#D8DEE6'
+
 require('../../../Constants.js')
 
 setDeviceName = () => {
   D.getDeviceName().then((res) => {
-    global.DeviceName = res
+    window.DeviceName = res
   })
 }
 setDeviceName()
@@ -309,6 +316,7 @@ window.initConstant = () => {
 
 window.SAFEAREA_TOP = iPhoneX ? rwd(30) : 0
 window.SAFEAREA_BOTTOM = iPhoneX ? rwd(15) : SIZE.t
+window.LOAD_PREV_PAGE = '載入先前的留言'
 
 window.language = 'zh-tw'
 

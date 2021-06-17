@@ -1,6 +1,7 @@
 import React, { PureComponent as Component } from 'react'
 
 import { Keyboard, KeyboardAvoidingView } from 'react-native'
+export { KeyboardAvoidingView, KeyboardAwareScrollView }
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 export class Form extends Component {
   constructor(props) {

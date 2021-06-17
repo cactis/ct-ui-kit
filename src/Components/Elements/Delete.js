@@ -11,7 +11,7 @@ export class Delete extends React.PureComponent {
     let { data } = this.state
     let { title } = this.props
     // log(data, 'data in Delete render()')
-    if (!data) return null
+    if(!data) return null
     let { item = data } = data
     return item.editable ? (
       title ? (
@@ -22,8 +22,8 @@ export class Delete extends React.PureComponent {
         <T.Icon
           onPress={this.onPress}
           name="delete"
-          // size={SIZE.m - 2}
-          // color={STRONG_COLOR}
+        // size={SIZE.m - 2}
+        // color={STRONG_COLOR}
         />
       )
     ) : null
@@ -31,11 +31,11 @@ export class Delete extends React.PureComponent {
   onPress = () => {
     let { data } = this.state
     let { item = data } = data
-    let { onDeleted = () => {} } = this.props
+    let { onDeleted = () => { } } = this.props
     confirm(
       () => {
         T.Api.delete(item.routes, (res) => {
-          log(item, 'item in delete#res')
+          // log(item, 'item in delete#res')
           onDeleted(data)
         })
       },
@@ -70,13 +70,13 @@ export class Delete extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

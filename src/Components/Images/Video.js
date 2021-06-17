@@ -11,7 +11,7 @@ export const Video = (props) => {
   //   setUrl(props.url)
   // })
   useEffect(() => {
-    return () => {}
+    return () => { }
   })
   // if (!data) return null
 
@@ -103,10 +103,10 @@ export const Video = (props) => {
             name="play"
             color={color}
             iconSet="AntDesign"
-            // borderWidth={0.5}
-            // borderColor="white"
-            // padding={rwd(20)}
-            // backgroundColor="black"
+          // borderWidth={0.5}
+          // borderColor="white"
+          // padding={rwd(20)}
+          // backgroundColor="black"
           />
         </T.Center>
       </T.Float>
@@ -173,10 +173,10 @@ export class Video2 extends React.PureComponent {
               name="play"
               color={color}
               iconSet="AntDesign"
-              // borderWidth={0.5}
-              // borderColor="white"
-              // padding={rwd(20)}
-              // backgroundColor="black"
+            // borderWidth={0.5}
+            // borderColor="white"
+            // padding={rwd(20)}
+            // backgroundColor="black"
             />
           </T.Center>
         </T.Float>
@@ -241,14 +241,14 @@ export class Video2 extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
-    if (prevProps.url !== this.props.url) this.setState({ url: this.props.url })
+    if(prevProps.url !== this.props.url) this.setState({ url: this.props.url })
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

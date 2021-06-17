@@ -12,14 +12,14 @@ export class FilesInput extends React.PureComponent {
     let { data } = this.state
     let { editable = true } = this.props
     // log(data, 'data in FilesInput render()')
-    if (!data) return null
+    if(!data) return null
     let { item = data } = data
     return (
       <T.Row
         backgroundColor_="red"
-        // borderWidth={0}
-        // borderColor="rgb(221,221,221)"
-        // padding={SIZE.s}
+      // borderWidth={0}
+      // borderColor="rgb(221,221,221)"
+      // padding={SIZE.s}
       >
         <T.Row style={STYLES.bordered}>
           <T.Row flex={0} flow="row" yAlign="center" xAlign="space-between">
@@ -118,8 +118,8 @@ export class FilesInput extends React.PureComponent {
       //   [res.uri, res.type, res.name, res.size],
       //   '[res.uri,res.type,res.name,res.size]'
       // )
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
+    } catch(err) {
+      if(DocumentPicker.isCancel(err)) {
         // User cancelled the picker, exit any dialogs or menus and move on
       } else {
         throw err
@@ -188,9 +188,9 @@ export class FilesInput extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
-    if (prevProps.data !== this.props.data) {
+    if(prevProps.data !== this.props.data) {
       //   alert('componentDidUpdate')
       //   this.list.clearData(() => {
       this.setState({ data: { ...this.props.data } })
@@ -201,6 +201,6 @@ export class FilesInput extends React.PureComponent {
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

@@ -9,7 +9,7 @@ export class Toolbar extends React.PureComponent {
 
   render() {
     let { data } = this.state
-    log(data, 'data in Toolbar render()')
+    // log(data, 'data in Toolbar render()')
     // if (!data) return null
     // let { item = data} = data
     return (
@@ -26,7 +26,7 @@ export class Toolbar extends React.PureComponent {
     )
   }
   onPress = () => {
-    if (this.props.onPress) {
+    if(this.props.onPress) {
       this.props.onPress()
     } else {
       log('need to set onPress on item')
@@ -50,13 +50,13 @@ export class Toolbar extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

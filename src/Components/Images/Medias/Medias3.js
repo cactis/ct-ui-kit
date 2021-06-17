@@ -10,14 +10,14 @@ export class Medias3 extends React.PureComponent {
   render() {
     let { data } = this.state
     // log(data, 'data in Medias3 render()')
-    if (!data) return null
+    if(!data) return null
     let { item = data } = data
     let space = SIZE.s / 4
     let h = SCREEN_HEIGHT / 3
     let w = SCREEN_WIDTH - space
     let aspectRatio1 = w / 2 / h
     let aspectRatio2 = w / 2 / (h - space)
-    log(item, 'item')
+    // log(item, 'item')
     return (
       <T.Row flow="row" height={SCREEN_HEIGHT / 3} backgroundColor__="black">
         <T.Col backgroundColor_="red" flex={2}>
@@ -26,7 +26,7 @@ export class Medias3 extends React.PureComponent {
             index={0}
             data={item[0]}
             style={{ width: '100%', height: '100%' }}
-            // aspectRatio={aspectRatio1}
+          // aspectRatio={aspectRatio1}
           />
         </T.Col>
         <T.Space size={space} />
@@ -38,7 +38,7 @@ export class Medias3 extends React.PureComponent {
               data={item[1]}
               style={{ width: '100%', height: '100%' }}
 
-              // aspectRatio={aspectRatio2}
+            // aspectRatio={aspectRatio2}
             />
           </T.Col>
           <T.Space size={space} />
@@ -55,7 +55,7 @@ export class Medias3 extends React.PureComponent {
     )
   }
   onPress = () => {
-    if (this.props.onPress) {
+    if(this.props.onPress) {
       this.props.onPress()
     } else {
       log('need to set onPress on item')
@@ -79,13 +79,13 @@ export class Medias3 extends React.PureComponent {
     })
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.navigation !== this.props.navigation)
+    if(prevProps.navigation !== this.props.navigation)
       _navigation = this.props.navigation
   }
 
   componentWillUnmount() {
     this.mounted = false
   }
-  autoRun = () => {}
+  autoRun = () => { }
 }
 var styles = StyleSheet.create({})

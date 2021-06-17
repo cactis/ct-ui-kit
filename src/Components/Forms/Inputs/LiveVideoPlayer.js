@@ -64,7 +64,7 @@ export class LiveVideoPlayer extends React.PureComponent {
     }
   }
   onClose = () => {
-    this.modal.close()
+    this.modal?.close()
     this.vp?.stop()
   }
   onPress = () => {

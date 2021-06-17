@@ -80,7 +80,7 @@ export class Field extends Component {
           // __xAlign="center"
           padding={SIZE.n}
           paddingVertical={iOS ? SIZE.n : SIZE.t}
-          paddingTop={iOS ? SIZE.t * 1 : SIZE.t * 2}
+          paddingTop={iOS ? SIZE.t * 3.5 : SIZE.t * 2}
           paddingHorizontal={bordered ? (iOS ? SIZE.t * 1.5 : SIZE.t) : SIZE.n}
           // flex={0}
           // height="auto"
