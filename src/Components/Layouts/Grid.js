@@ -10,6 +10,9 @@ export class Grid extends React.PureComponent {
   state = {
 
   }
+  // render() {
+  //   return null
+  // }
   render() {
     let {
       layout = 'column',
@@ -56,19 +59,23 @@ export class Grid extends React.PureComponent {
           {...props}>
           {children}
         </View>
-        <View height={keyboardSpace} />
+        {/* <View height={keyboardSpace} /> */}
       </Touch >
     ) : (
       <View
+
         ref={(c) => (this.view = c)}
         style={{
+
           ..._styleWithBordered,
           // marginBottom: keyboardSpace
+
         }}
+
         {...props}
       >
         {children}
-        <View height={keyboardSpace} />
+        {/* <View height={keyboardSpace} /> */}
       </View >
     )
   }
@@ -91,6 +98,7 @@ export class Grid extends React.PureComponent {
     let keyboardHeight = e.endCoordinates.height
     log(keyboardHeight, 'keyboardHeight # ')
     this.setState({ keyboardSpace: keyboardHeight });
+    this.forceUpdate()
   }
 
   _keyboardDidHide = () => {

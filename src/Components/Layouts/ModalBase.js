@@ -23,18 +23,19 @@ export class ModalBase extends KeyboardAware {
     },
   }
 
-  updateHeight = () => { }
-  onKeyboardChanged = (height) => {
+  updateHeight = (keyboardHeight) => { }
+  onKeyboardChanged = (keyboardHeight) => {
+    log(keyboardHeight, 'keyboardHeight # ModalBase onKeyboardChanged')
     // alert('onKeyboardChanged')
     // alert(height)
     // alert('hhh')
     // this.keyboardHeight = height
     this.setState({
-      keyboardHeight: height,
-      modalHeight: SCREEN_HEIGHT - height - (iOS ? 0 : 20),
+      keyboardHeight: keyboardHeight,
+      modalHeight: SCREEN_HEIGHT - keyboardHeight - (iOS ? 0 : 20),
     })
 
-    // this.updateHeight()
+    this.updateHeight(keyboardHeight)
   }
 
   open = (content, options = {}) => {

@@ -7,28 +7,12 @@ import ModalBox from 'react-native-modalbox'
 let _navigation
 import { ModalBase } from './ModalBase'
 export class ModalScreen extends ModalBase {
-  // updateHeight = () => {
-  //   alert(`now:${this.keyboardHeight}`)
-  //   this.setState({ keyboardHeight: this.keyboardHeight })
-  // }
-  // constructor(props) {
-  //   super(props)
-  //   window._popups = [window.flexPopup, window.chooseMenu, window.dropdown]
-  // }
+
   render() {
-    // alert(modalHeight)
     let { content, options, modalHeight, keyboardHeight = 0 } = this.state
-    // log(keyboardHeight, 'keyboardHeight')
-<<<<<<< HEAD
     let { children = content, title: propTitle } = this.props
-=======
-    let { children = content, title: propTitle, height } = this.props
->>>>>>> 4ad521bc517e5e1d3af3e3e70376afacace90fe7
-    log(options, 'options # ')
     let {
-      // height: modalHeight = height,
       backgroundColor = SCREEN_BACKGROUNDCOLOR, // 'rgba(255,255,255,1)',
-      // backgroundColor = 'rgba(204,57,57,.98)',
       safeArea = true,
       direction = 'bottom',
       scrollable = true,
@@ -40,7 +24,6 @@ export class ModalScreen extends ModalBase {
       fullScreen = true,
       height,
       keyboardAware = false,
-      // paddable = true,
       padding = SIZE.n,
       safeAreaColor = backgroundColor, //BCOLOR,
       nowrap = false,
@@ -49,9 +32,14 @@ export class ModalScreen extends ModalBase {
     } = options
     if((scrollable || fullScreen) && !swipeToClose) swipeToClose = false
     modalHeight = fullScreen ? SCREEN_HEIGHT : modalHeight
-    // alert([fullScreen, modalHeight])
-    // modalHeight = SCREEN_HEIGHT
-    let rowHeight = SCREEN_HEIGHT - keyboardHeight - (iOS ? rwd(-10) : rwd(10))
+    let rowHeight = SCREEN_HEIGHT - keyboardHeight// - (iOS ? rwd(-10) : rwd(10))
+
+    // height = (scrollable ? modalHeight : rowHeight)
+    // height = rowHeight
+    // height = modalHeight
+    height = SCREEN_HEIGHT - keyboardHeight
+    // height = 426
+    log(height, 'height # ModalScreen render')
     let position = fullScreen ? 'top' : 'bottom'
     let closeIcon = (
       <T.Icon
@@ -63,9 +51,6 @@ export class ModalScreen extends ModalBase {
         theme="H1"
       />
     )
-    // alert(SAFEAREA_TOP)
-    // alert(swipeToClose)
-    // alert(scrollable)
     return (
       <><StatusBar hidden={!statusBar} />
         <ModalBox
@@ -80,58 +65,35 @@ export class ModalScreen extends ModalBase {
             StatusBar.setHidden(false, 'slide');
             this.setState({ myTitle: null })
           }}
-          // backgroundColor={backgroundColor}
           coverScreen={false} // !!!!
-          style={{
-<<<<<<< HEAD
-            height: (scrollable ? modalHeight : rowHeight),
-
-=======
-            height: scrollable ? modalHeight : rowHeight,
-            // height: SCREEN_HEIGHT,
->>>>>>> 4ad521bc517e5e1d3af3e3e70376afacace90fe7
-            zIndex: 10000,
-            // borderWidth: 3,
-            borderRadius: 0,
-            backgroundColor: backgroundColor,
-            // backgroundColor: 'red',
-            // paddingTop: SAFEAREA_TOP,
-            // paddingBottom: SAFEAREA_BOTTOM,
-            // borderWidth: 10,
-            // borderColor: 'blue',
-          }}
           {...opts}
           {...this.props}
+          style={{
+            height: height,
+            zIndex: 10000,
+            borderRadius: 0,
+            backgroundColor: backgroundColor,
+          }}
         >
-          {/* <T.Space size={fullScreen && safeArea ? SAFEAREA_TOP : 0} /> */}
           {nowrap ? (
-            <>{children}
+            <>
+              {children}
               <T.Float top={iPhoneX && isPortrait() ? SIZE.s + SAFEAREA_TOP : SIZE.s} right={SIZE.s}>{closeIcon}</T.Float>
             </>
           ) : (
             <T.Row
               flex={1}
-              // height={rowHeight}
-              // height={modalHeight}
               borderWidth_={3}
               borderColor_="red"
             >
               <T.Row
                 flex={0}
                 padding={padding / 2}
-                // onLayout={e => alert(e.nativeEvent.layout.height)}
                 paddingTop={padding}
                 marginTop={
                   fullScreen ? SAFEAREA_TOP + (iPhoneX ? 0.5 : 0) * SIZE.s : 0
                 }
-                // borderWidth={1}
-                // padding={padding}
-
                 flow="row"
-              // xAlign="center"
-              // right={SIZE.s}
-              // top={fullScreen ? SAFEAREA_TOP + SIZE.s : SIZE.s}
-              // zIndex={1000}
               >
                 <T.Space
                   width={SIZE.l * 4}
@@ -140,27 +102,15 @@ export class ModalScreen extends ModalBase {
                   flex={0}
                   xAlign="center"
                 >
-                  {/* <T.Icon
-              onPress={this.close}
-              name="close"
-              size={rwd(18)}
-              color="transparent"
-              iconSet="AntDesign"
-              // color="rgb(131,131,131)"
-            /> */}
                   {button ? closeIcon : null}
                 </T.Space>
                 <T.Col borderWidth_={0} align="center" paddingHorizontal={SIZE.m}>
                   {title && (
                     <T.Label
-                      // theme="H0"
-                      // paddingTop={SIZE.s}
                       theme="H1"
                       color={titleColor}
                       size={rwd(17)}
-                      // numberOfLines={1}
                       marginBottom={0}
-                      // color={BCOLOR}
                       text={title}
                     />
                   )}
@@ -177,16 +127,7 @@ export class ModalScreen extends ModalBase {
                 </T.Space>
               </T.Row>
               <T.Row>
-                {/* {scrollable ? (
-                <T.List
-                  quoteable={quoteable}
-                  ListHeaderComponent={children}
-                  contentContainerStyle={{ padding: rwd(10) }}
-                />
-              ) : ( */}
                 <T.Grid
-                  // backgroundColor="green"
-                  // backgroundColor="white"
                   padding={padding}
                   keyboardAware={keyboardAware}
                   safeAreaDisabled={!safeArea}
@@ -195,23 +136,20 @@ export class ModalScreen extends ModalBase {
                 </T.Grid>
                 {/* )} */}
               </T.Row>
-<<<<<<< HEAD
               <T.Space
                 size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0}
               />
-=======
-              <T.Space size={keyboardHeight == 0 ? SAFEAREA_BOTTOM : 0} />
->>>>>>> 4ad521bc517e5e1d3af3e3e70376afacace90fe7
-              {/* <T.SafeArea flex={0} backgroundColor={safeAreaColor} /> */}
             </T.Row>
           )
           }
-          {/* <T.ModalScreen ref={(c) => (window.formScreen0 = c)} />
-          <T.FlexModal ref={(c) => (window.flexPopup0 = c)} position="bottom" />
-          <T.ChooseMenu ref={(c) => (window.chooseMenu0 = c)} />
-          <T.DropdownAlert ref={(c) => (window.dropdown0 = c)} /> */}
-        </ModalBox></>
+
+        </ModalBox ></>
     )
+  }
+
+  updateHeight = (keyboardHeight) => {
+    log('updateHeight called in ModalScreen')
+    this.setState({ keyboardHeight })
   }
 
   componentDidMount() {
