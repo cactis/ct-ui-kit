@@ -69,7 +69,9 @@ export class WebViewScreen extends WebSocketBase {
           })
       } else {
         // gotoScreen('WebViewScreen', { title: title, uri: href })
+        log(title, '------------')
         pushTo(_navigation, 'WebViewScreen', { title: title, uri: href })
+        return
         // navigateTo(_navigation, 'WebViewScreen', {
         //   title: 'Your Bookshelves',
         //   uri: href,
