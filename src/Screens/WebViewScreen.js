@@ -52,7 +52,7 @@ export class WebViewScreen extends WebSocketBase {
           ref={c => window.reader = c}
           applicationNameForUserAgent={`ReadusWebView/1.0.0_${window.accessTokens}`}
           injectedJavascript={window.injectedJavascript}
-          source={{ uri: href, headers: HTTP_HEADERS }}
+          source={{ uri: href, headers: window.HTTP_HEADERS }}
           onMessage={this.onMessage}
           style={{
             // backgroundColor: 'red',
